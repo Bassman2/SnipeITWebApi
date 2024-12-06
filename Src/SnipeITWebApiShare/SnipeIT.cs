@@ -24,7 +24,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetHardwareListAsync(cancellationToken);
-        if (res is not null)
+        //if (res is not null)
         {
             await foreach (var item in res)
             {
@@ -39,7 +39,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetHardwareListByCategoryAsync(category, cancellationToken);
-        if (res is not null)
+        //if (res is not null)
         {
             await foreach (var item in res)
             {

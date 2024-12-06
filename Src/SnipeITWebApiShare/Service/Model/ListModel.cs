@@ -1,10 +1,10 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class HardwareListModel
+internal class ListModel<T>
 {
     [JsonPropertyName("total")]
     public int Total { get; set; }
 
     [JsonPropertyName("rows")]
-    public List<HardwareModel>? Hardwares { get; set; }
+    public List<T>? Rows { get; set; }
 }

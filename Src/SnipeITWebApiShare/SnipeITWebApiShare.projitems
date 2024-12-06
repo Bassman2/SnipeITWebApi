@@ -15,7 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AssignedModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\DateItemModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\HardwareListModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ListModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\HardwareModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SourceGenerationContext.cs" />
