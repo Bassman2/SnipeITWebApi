@@ -4,6 +4,14 @@ public class SnipeIT : IDisposable
 {
     private SnipeITService? service;
 
+    public SnipeIT(string storeKey)
+    {
+        var key = WebServiceClient.Store.KeyStore.Key(storeKey)!;
+        string host = key.Host!;
+        string token = key.Token!;
+        service = new SnipeITService(new Uri(host), token);
+    }
+
     public SnipeIT(Uri host, string apikey)
     {
         service = new SnipeITService(host, apikey);
