@@ -4,17 +4,7 @@ internal class SnipeITService(Uri host, string apikey) : JsonService(host, Sourc
 {
     private const int limit = 1000;
 
-    protected override void TestAutentication()
-    {
-        try
-        {
-            var _ = GetStringAsync("api/v1/hardware?limit=1&offset=0", default).Result;
-        }
-        catch (Exception ex)
-        {
-            throw new AuthenticationException(ex.Message, ex);
-        }
-    }
+    protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
 
     public IAsyncEnumerable<HardwareModel> GetHardwareListAsync(CancellationToken cancellationToken)
     {
