@@ -4,17 +4,13 @@ public class SnipeIT : IDisposable
 {
     private SnipeITService? service;
 
-    public SnipeIT(string storeKey)
-    {
-        var key = WebServiceClient.Store.KeyStore.Key(storeKey)!;
-        string host = key.Host!;
-        string token = key.Token!;
-        service = new SnipeITService(new Uri(host), token);
-    }
+    public SnipeIT(string storeKey, string appName)
+    : this(new Uri(KeyStore.Key(storeKey)?.Host!), KeyStore.Key(storeKey)!.Token!, appName)
+    { }
 
-    public SnipeIT(Uri host, string apikey)
+    public SnipeIT(Uri host, string token, string appName)
     {
-        service = new SnipeITService(host, apikey);
+        service = new(host, new BearerAuthenticator(token), appName);
     }
 
     public void Dispose()

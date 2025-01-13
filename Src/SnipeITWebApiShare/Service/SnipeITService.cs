@@ -1,6 +1,7 @@
 ﻿namespace SnipeITWebApi.Service;
 
-internal class SnipeITService(Uri host, string apikey) : JsonService(host, SourceGenerationContext.Default, new BearerAuthenticator(apikey))
+internal class SnipeITService(Uri host, IAuthenticator? authenticator, string appName) 
+    : JsonService(host, authenticator, appName, SourceGenerationContext.Default)
 {
     private const int limit = 1000;
 
