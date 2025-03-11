@@ -2,6 +2,6 @@
 
 public abstract class SnipeITBaseUnitTest
 {
-    protected const string storeKey = "artifactory-trial";
+    protected const string storeKey = "snipeit";
     protected const string appName = "UnitTest";
 }
