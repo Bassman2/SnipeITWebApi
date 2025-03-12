@@ -1,0 +1,1 @@
+nuget pack SnipeITWebApi.nuspec -properties Configuration=Release
