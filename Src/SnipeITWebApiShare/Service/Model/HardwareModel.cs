@@ -19,17 +19,4 @@ internal class HardwareModel
 
     [JsonPropertyName("purchase_date")]
     public DateItemModel? PurchaseDate { get; set; }
-
-    public static implicit operator Hardware?(HardwareModel? model)
-    {
-        return model is null ? null : new Hardware()
-        {
-            Name = model.Name,
-            Model = model.Model,
-            Manufacturer = model.Manufacturer,
-            Category = model.Category,
-            AssignedTo = model.AssignedTo,
-            PurchaseDate = model.PurchaseDate
-        };
-    }
 }

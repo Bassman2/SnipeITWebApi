@@ -10,14 +10,4 @@ internal class AssignedModel
 
     [JsonPropertyName("email")]
     public string? Email { get; set; }
-
-    public static implicit operator Assigned?(AssignedModel? model)
-    {
-        return model is null ? null : new Assigned()
-        {
-            Username = model.Username,
-            Name = model.Name,
-            Email = model.Email
-        };
-    }
 }

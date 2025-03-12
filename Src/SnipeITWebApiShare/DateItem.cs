@@ -2,7 +2,13 @@
 
 public class DateItem
 {
-    public string? Date { get; init; }
+    internal DateItem(DateItemModel model)
+    {
+        Date = model.Date;
+        Formatted = model.Formatted;
+    }
 
-    public string? Formatted { get; init; }
+    public string? Date { get; }
+
+    public string? Formatted { get; }
 }

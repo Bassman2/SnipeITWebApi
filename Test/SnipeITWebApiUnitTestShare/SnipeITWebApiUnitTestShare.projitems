@@ -10,7 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITBaseUnitTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SnipeITMainUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITHardwareUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SniprITCategoriesUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,13 @@
 
 public class Item
 {
-    public int Id { get; init; }
+    internal Item(ItemModel model)
+    {
+        Id = model.Id;
+        Name = model.Name;
+    }
 
-    public string? Name { get; init; }
+    public int Id { get; }
+
+    public string? Name { get; }
 }

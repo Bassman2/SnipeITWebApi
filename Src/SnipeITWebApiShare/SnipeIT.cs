@@ -28,28 +28,41 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetHardwareListAsync(cancellationToken);
-        //if (res is not null)
+
+        await foreach (var item in res)
         {
-            await foreach (var item in res)
-            {
-                yield return item!;
-            }
+            yield return item.CastModel<Hardware>()!;
         }
+
     }
 
-    // Servers = 155
     public async IAsyncEnumerable<Hardware> GetHardwareListByCategoryAsync(int category, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetHardwareListByCategoryAsync(category, cancellationToken);
-        //if (res is not null)
+
+        await foreach (var item in res)
         {
-            await foreach (var item in res)
-            {
-                yield return item!;
-            }
+            yield return item.CastModel<Hardware>()!;
         }
+        
+
     }
+
+    public async IAsyncEnumerable<Category> GetCategoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = service.GetCategoriesAsync(cancellationToken);
+
+        //return res!.CastModelAsync<Category, CategoryModel>();
+        await foreach (var item in res)
+        {
+            yield return item.CastModel<Category>()!;
+        }
+
+    }
+   
 
 }

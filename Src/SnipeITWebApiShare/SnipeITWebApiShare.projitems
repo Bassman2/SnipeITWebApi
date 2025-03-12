@@ -9,12 +9,17 @@
     <Import_RootNamespace>SnipeITWebApi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Actions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assigned.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DateItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hardware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ActionsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AssignedModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CategoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\DateItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ErrorMessageModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ListModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\HardwareModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ItemModel.cs" />
