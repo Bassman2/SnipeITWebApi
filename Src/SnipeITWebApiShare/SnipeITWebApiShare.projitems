@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DateItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hardware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Manufacturer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ActionsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AssignedModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CategoryModel.cs" />
@@ -23,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ListModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\HardwareModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ItemModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ManufacturerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SourceGenerationContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\SnipeITService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeIT.cs" />

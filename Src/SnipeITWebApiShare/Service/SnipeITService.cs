@@ -15,29 +15,50 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         throw new WebServiceException(errorMessage?.Message, response.RequestMessage?.RequestUri, response.StatusCode, response.ReasonPhrase, memberName);
     }
 
+    #region Assets
+
     public IAsyncEnumerable<HardwareModel> GetHardwareListAsync(CancellationToken cancellationToken)
     {
-        var res = GetListAsync<HardwareModel>("api/v1/hardware?", cancellationToken);
+        var res = GetListAsync<HardwareModel>("api/v1/hardware", cancellationToken);
         return res;
     }
 
     public IAsyncEnumerable<HardwareModel> GetHardwareListByCategoryAsync(int category, CancellationToken cancellationToken)
     {
-        var res = GetListAsync<HardwareModel>($"api/v1/hardware?category_id={category}&", cancellationToken);
+        var res = GetListAsync<HardwareModel>(CombineUrl("api/v1/hardware", ("category_id", category)), cancellationToken);
         return res;
     }
+
+    #endregion
+
+
+
+    #region Category
 
     public IAsyncEnumerable<CategoryModel> GetCategoriesAsync(CancellationToken cancellationToken)
     {
-        var res = GetListAsync<CategoryModel>($"api/v1/categories?", cancellationToken);
+        var res = GetListAsync<CategoryModel>("api/v1/categories", cancellationToken);
         return res;
     }
 
-    
+    #endregion
+
+
+    #region Manufacturers
+
+    public IAsyncEnumerable<ManufacturerModel> GetManufacturersAsync(CancellationToken cancellationToken)
+    {
+        var res = GetListAsync<ManufacturerModel>("api/v1/manufacturers", cancellationToken);
+        return res;
+    }
+
+    #endregion
+
+
 
     #region Private
 
-    private async IAsyncEnumerable<T> GetListAsync<T>(string? requestUri, [EnumeratorCancellation] CancellationToken cancellationToken, [CallerMemberName] string memberName = "") //where T : class
+    private async IAsyncEnumerable<T> GetListAsync<T>(string requestUri, [EnumeratorCancellation] CancellationToken cancellationToken, [CallerMemberName] string memberName = "") //where T : class
     {
         ArgumentRequestUriException.ThrowIfNullOrWhiteSpace(requestUri, nameof(requestUri));
         WebServiceException.ThrowIfNullOrNotConnected(this);
@@ -46,7 +67,9 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         int offset = 0;
         while (count > offset)
         {
-            var res = await GetFromJsonAsync<ListModel<T>>($"{requestUri}limit={limit}&offset={offset}", cancellationToken);
+            
+            //var res = await GetFromJsonAsync<ListModel<T>>($"{requestUri}limit={limit}&offset={offset}", cancellationToken);
+            var res = await GetFromJsonAsync<ListModel<T>>(CombineUrl(requestUri, ("limit", limit), ("offset", offset)), cancellationToken);
             if (res != null && res.Rows != null)
             {
                 foreach (var item in res.Rows)

@@ -61,8 +61,19 @@ public class SnipeIT : IDisposable
         {
             yield return item.CastModel<Category>()!;
         }
+    }
+
+    public async IAsyncEnumerable<Manufacturer> GetManufacturersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = service.GetManufacturersAsync(cancellationToken);
+
+        //return res!.CastModelAsync<Category, CategoryModel>();
+        await foreach (var item in res)
+        {
+            yield return item.CastModel<Manufacturer>()!;
+        }
 
     }
-   
-
 }

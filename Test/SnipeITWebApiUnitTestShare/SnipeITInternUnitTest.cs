@@ -1,13 +1,13 @@
 ﻿namespace SnipeITWebApiUnitTest;
 
-[TestClass]
-public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
+//[TestClass]
+public class SnipeITInternUnitTest : SnipeITBaseUnitTest
 {
 
     [TestMethod]
     public async Task TestMethodGetHardwareListAsync()
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+        using var snipeIT = new SnipeIT(internalStoreKey, appName);
 
         var asyncList = snipeIT.GetHardwareListAsync();
 
@@ -22,7 +22,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
     [TestMethod]
     public async Task TestMethodGetHardwareListByCategoryAsync()
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+        using var snipeIT = new SnipeIT(internalStoreKey, appName);
 
         var asyncList = snipeIT.GetHardwareListByCategoryAsync(2);
 

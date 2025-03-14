@@ -4,5 +4,6 @@
 [JsonSerializable(typeof(ErrorMessageModel))]
 [JsonSerializable(typeof(ListModel<HardwareModel>))]
 [JsonSerializable(typeof(ListModel<CategoryModel>))]
+[JsonSerializable(typeof(ListModel<ManufacturerModel>))]
 internal partial class SourceGenerationContext  : JsonSerializerContext
 { }
