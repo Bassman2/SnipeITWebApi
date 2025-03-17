@@ -1,7 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.Xml.Linq;
-
-namespace SnipeITWebApi;
+﻿namespace SnipeITWebApi;
 
 public class Manufacturer
 {

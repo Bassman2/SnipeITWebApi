@@ -52,6 +52,29 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
+    public async Task<ManufacturerModel?> GetManufacturerAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this);
+
+        var res = await GetFromJsonAsync<ManufacturerModel>($"api/v1/manufacturers/{id}", cancellationToken);
+        return res;
+    }
+
+    public async Task<ManufacturerModel?> CreateManufacturerAsync(ManufacturerCreateModel create, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this);
+
+        var res = await PostAsJsonAsync<ManufacturerCreateModel, ManufacturerModel>("api/v1/manufacturers", create, cancellationToken);
+        return res;
+    }
+
+    public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this);
+
+        await DeleteAsync($"api/v1/manufacturers/{id}", cancellationToken);
+    }
+
     #endregion
 
 

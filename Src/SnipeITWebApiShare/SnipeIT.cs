@@ -1,4 +1,6 @@
-﻿namespace SnipeITWebApi;
+﻿using System.Xml.Linq;
+
+namespace SnipeITWebApi;
 
 public class SnipeIT : IDisposable
 {
@@ -76,4 +78,33 @@ public class SnipeIT : IDisposable
         }
 
     }
+
+    #region Manufacturers
+
+    public async Task<Manufacturer?> GetManufacturerAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.GetManufacturerAsync(id, cancellationToken);
+        return res.CastModel<Manufacturer>();
+    }
+
+    public async Task<Manufacturer?> CreateManufacturerAsync(string name, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var create = new ManufacturerCreateModel { Name = name };
+        var res = await service.CreateManufacturerAsync(create, cancellationToken);
+        return res.CastModel<Manufacturer>(); 
+    }
+
+    public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        await service.DeleteManufacturerAsync(id, cancellationToken);
+    }
+
+    #endregion
+
 }
