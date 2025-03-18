@@ -1,4 +1,6 @@
-﻿namespace SnipeITWebApi.Service;
+﻿using SnipeITWebApi.Service.Model;
+
+namespace SnipeITWebApi.Service;
 
 // https://snipe-it.readme.io/reference/api-overview
 
@@ -9,11 +11,36 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
 
-    protected override async Task ErrorHandlingAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
+    protected override async Task ErrorCheckAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
     {
-        var errorMessage = await ReadFromJsonAsync<ErrorMessageModel>(response, cancellationToken);
-        throw new WebServiceException(errorMessage?.Message, response.RequestMessage?.RequestUri, response.StatusCode, response.ReasonPhrase, memberName);
+        // SnipeIT errors can occure with a 200 status code
+
+        // for not closing the stream use ReadAsStringAsync instead of ReadFromJsonAsync
+
+        JsonTypeInfo<ErrorMessageModel> jsonTypeInfo = (JsonTypeInfo<ErrorMessageModel>)context.GetTypeInfo(typeof(ErrorMessageModel))!;
+
+        string res = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        var errorMessageModel = JsonSerializer.Deserialize<ErrorMessageModel>(res, jsonTypeInfo);
+
+        
+
+        //r errorMessageModel = await ReadFromJsonAsync<ErrorMessageModel>(response, cancellationToken);
+
+
+
+
+        if (!response.IsSuccessStatusCode)
+        {
+            await ErrorHandlingAsync(response, memberName, cancellationToken);
+        }
     }
+
+    //protected override async Task ErrorHandlingAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
+    //{
+    //    var errorMessage = await ReadFromJsonAsync<ErrorMessageModel>(response, cancellationToken);
+    //    throw new WebServiceException(errorMessage?.Messages, response.RequestMessage?.RequestUri, response.StatusCode, response.ReasonPhrase, memberName);
+    //}
 
     #region Assets
 
@@ -60,11 +87,11 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<ManufacturerModel?> CreateManufacturerAsync(ManufacturerCreateModel create, CancellationToken cancellationToken)
+    public async Task<ManufacturerModel?> CreateManufacturerAsync(ManufacturerModel create, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this);
 
-        var res = await PostAsJsonAsync<ManufacturerCreateModel, ManufacturerModel>("api/v1/manufacturers", create, cancellationToken);
+        var res = await PostAsJsonAsync<ManufacturerModel, ManufacturerModel>("api/v1/manufacturers", create, cancellationToken);
         return res;
     }
 

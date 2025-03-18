@@ -64,7 +64,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
         var item = await snipeIT.GetManufacturerAsync(1);
-                
+
         Assert.IsNotNull(item);
         Assert.AreEqual(1, item.Id, nameof(item.Id));
         Assert.AreEqual("Apple", item.Name, nameof(item.Name));
@@ -102,6 +102,43 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(true, item.AvailableActions.Update, "AvailableActions.Update");
         Assert.AreEqual(false, item.AvailableActions.Restore, "AvailableActions.Restore");
         Assert.AreEqual(false, item.AvailableActions.Delete, "AvailableActions.Delete");
+
+    }
+
+    [TestMethod]
+    public async Task TestMethodCreateManufacturerAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        var create = new Manufacturer()
+        {
+            Name = "Test Manufacturer",
+            Url = "https://test.com",
+            //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
+            SupportUrl = "https://support.test.com",
+            WarrantyLookupUrl = "https://checkcoverage.test.com",
+            SupportPhone = "+12725858512",
+            SupportEmail = "unknown@mictosoft.com"
+        };
+
+
+        var item = await snipeIT.CreateManufacturerAsync(create);
+        Assert.IsNotNull(item);
+
+        await snipeIT.DeleteManufacturerAsync(item.Id);
+
+
+        var del = await snipeIT.GetManufacturerAsync(item.Id);
+
+        Assert.AreEqual(1, item.Id, nameof(item.Id));
+        Assert.AreEqual("Apple", item.Name, nameof(item.Name));
+        Assert.AreEqual("https://apple.com", item.Url, nameof(item.Url));
+        Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", item.Image, nameof(item.Image));
+        Assert.AreEqual("https://support.apple.com", item.SupportUrl, nameof(item.SupportUrl));
+        Assert.AreEqual("https://checkcoverage.apple.com", item.WarrantyLookupUrl, nameof(item.WarrantyLookupUrl));
+        Assert.AreEqual("+12725858512", item.SupportPhone, nameof(item.SupportPhone));
+        Assert.AreEqual("marlee46@example.com", item.SupportEmail, nameof(item.SupportEmail));
+
 
     }
 }

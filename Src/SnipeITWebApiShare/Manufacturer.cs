@@ -1,7 +1,13 @@
-﻿namespace SnipeITWebApi;
+﻿using System.Reflection;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace SnipeITWebApi;
 
 public class Manufacturer
 {
+    public Manufacturer()
+    { }
+
     internal Manufacturer(ManufacturerModel model)
     {
         Id = model.Id;
@@ -24,6 +30,30 @@ public class Manufacturer
         DeletedAt = model.DeletedAt.CastModel<DateItem>();
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
+
+    internal ManufacturerModel ToModel() => new()
+    {
+        Id = Id,
+        Name = Name,
+        Url = Url,
+        Image = Image,
+        SupportUrl = SupportUrl,
+        WarrantyLookupUrl = WarrantyLookupUrl,
+        SupportPhone = SupportPhone,
+        SupportEmail = SupportEmail,
+        AssetsCount = AssetsCount,
+        LicensesCount = LicensesCount,
+        ConsumablesCount = ConsumablesCount,
+        AccessoriesCount = AccessoriesCount,
+        ComponentsCount = ComponentsCount,
+        Notes = Notes,
+        //CreatedBy = model.CreatedBy.CastModel<Item>();
+        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    };
+    
 
     public int Id { get; set; }
 

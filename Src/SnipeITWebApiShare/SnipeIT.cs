@@ -89,16 +89,15 @@ public class SnipeIT : IDisposable
         return res.CastModel<Manufacturer>();
     }
 
-    public async Task<Manufacturer?> CreateManufacturerAsync(string name, CancellationToken cancellationToken)
+    public async Task<Manufacturer?> CreateManufacturerAsync(Manufacturer create, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var create = new ManufacturerCreateModel { Name = name };
-        var res = await service.CreateManufacturerAsync(create, cancellationToken);
+        var res = await service.CreateManufacturerAsync(create.ToModel(), cancellationToken);
         return res.CastModel<Manufacturer>(); 
     }
 
-    public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken)
+    public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
