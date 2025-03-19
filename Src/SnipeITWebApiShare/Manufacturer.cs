@@ -24,10 +24,10 @@ public class Manufacturer
         AccessoriesCount = model.AccessoriesCount;
         ComponentsCount = model.ComponentsCount;
         Notes = model.Notes;
-        CreatedBy = model.CreatedBy.CastModel<Item>();
-        CreatedAt = model.CreatedAt.CastModel<DateItem>();
-        UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-        DeletedAt = model.DeletedAt.CastModel<DateItem>();
+        //CreatedBy = model.CreatedBy.CastModel<Item>();
+        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 

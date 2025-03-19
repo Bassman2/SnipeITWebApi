@@ -11,30 +11,30 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
 
-    protected override async Task ErrorCheckAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
-    {
-        // SnipeIT errors can occure with a 200 status code
+    //protected override async Task ErrorCheckAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
+    //{
+    //    // SnipeIT errors can occure with a 200 status code
 
-        // for not closing the stream use ReadAsStringAsync instead of ReadFromJsonAsync
+    //    // for not closing the stream use ReadAsStringAsync instead of ReadFromJsonAsync
 
-        JsonTypeInfo<ErrorMessageModel> jsonTypeInfo = (JsonTypeInfo<ErrorMessageModel>)context.GetTypeInfo(typeof(ErrorMessageModel))!;
+    //    JsonTypeInfo<ErrorMessageModel> jsonTypeInfo = (JsonTypeInfo<ErrorMessageModel>)context.GetTypeInfo(typeof(ErrorMessageModel))!;
 
-        string res = await response.Content.ReadAsStringAsync(cancellationToken);
+    //    string res = await response.Content.ReadAsStringAsync(cancellationToken);
 
-        var errorMessageModel = JsonSerializer.Deserialize<ErrorMessageModel>(res, jsonTypeInfo);
+    //    var errorMessageModel = JsonSerializer.Deserialize<ErrorMessageModel>(res, jsonTypeInfo);
 
         
 
-        //r errorMessageModel = await ReadFromJsonAsync<ErrorMessageModel>(response, cancellationToken);
+    //    //r errorMessageModel = await ReadFromJsonAsync<ErrorMessageModel>(response, cancellationToken);
 
 
 
 
-        if (!response.IsSuccessStatusCode)
-        {
-            await ErrorHandlingAsync(response, memberName, cancellationToken);
-        }
-    }
+    //    if (!response.IsSuccessStatusCode)
+    //    {
+    //        await ErrorHandlingAsync(response, memberName, cancellationToken);
+    //    }
+    //}
 
     //protected override async Task ErrorHandlingAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
     //{
@@ -81,7 +81,8 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     public async Task<ManufacturerModel?> GetManufacturerAsync(int id, CancellationToken cancellationToken)
     {
-        WebServiceException.ThrowIfNullOrNotConnected(this);
+        WebServiceException.ThrowIfNotConnected(client);
+
 
         var res = await GetFromJsonAsync<ManufacturerModel>($"api/v1/manufacturers/{id}", cancellationToken);
         return res;
@@ -89,17 +90,28 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     public async Task<ManufacturerModel?> CreateManufacturerAsync(ManufacturerModel create, CancellationToken cancellationToken)
     {
-        WebServiceException.ThrowIfNullOrNotConnected(this);
+        WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<ManufacturerModel, ManufacturerModel>("api/v1/manufacturers", create, cancellationToken);
-        return res;
+        var res = await PostAsJsonAsync<ManufacturerModel, ResultModel<ManufacturerModel>>("api/v1/manufacturers", create, cancellationToken);
+
+        if (res != null && res.Status == Status.Error)
+        {
+            throw new WebServiceException(res.ToString());
+        }
+        return res!.Payload;
     }
 
-    public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken)
+    public async Task<ManufacturerModel?> DeleteManufacturerAsync(int id, CancellationToken cancellationToken)
     {
-        WebServiceException.ThrowIfNullOrNotConnected(this);
+        WebServiceException.ThrowIfNotConnected(client);
 
-        await DeleteAsync($"api/v1/manufacturers/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<ManufacturerModel>> ($"api/v1/manufacturers/{id}", cancellationToken);
+
+        if (res != null && res.Status == Status.Error)
+        {
+            throw new WebServiceException(res.ToString());
+        }
+        return res?.Payload;
     }
 
     #endregion
@@ -111,7 +123,7 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
     private async IAsyncEnumerable<T> GetListAsync<T>(string requestUri, [EnumeratorCancellation] CancellationToken cancellationToken, [CallerMemberName] string memberName = "") //where T : class
     {
         ArgumentRequestUriException.ThrowIfNullOrWhiteSpace(requestUri, nameof(requestUri));
-        WebServiceException.ThrowIfNullOrNotConnected(this);
+        WebServiceException.ThrowIfNotConnected(client);
 
         int count = 1;
         int offset = 0;
@@ -119,7 +131,7 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         {
             
             //var res = await GetFromJsonAsync<ListModel<T>>($"{requestUri}limit={limit}&offset={offset}", cancellationToken);
-            var res = await GetFromJsonAsync<ListModel<T>>(CombineUrl(requestUri, ("limit", limit), ("offset", offset)), cancellationToken);
+            var res = await GetFromJsonAsync<ListModel<T>>(CombineUrl(requestUri, ("limit", limit), ("offset", offset)), cancellationToken, memberName);
             if (res != null && res.Rows != null)
             {
                 foreach (var item in res.Rows)

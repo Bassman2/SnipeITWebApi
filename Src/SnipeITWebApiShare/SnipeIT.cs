@@ -101,7 +101,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        await service.DeleteManufacturerAsync(id, cancellationToken);
+        var res = await service.DeleteManufacturerAsync(id, cancellationToken);
     }
 
     #endregion
