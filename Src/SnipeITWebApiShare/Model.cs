@@ -1,37 +1,31 @@
-﻿namespace SnipeITWebApi;
+﻿using System;
 
-public class Category
+namespace SnipeITWebApi;
+
+public class Model
 {
-    internal Category(CategoryModel model)
+    public Model()
+    { }
+
+    internal Model(ModelModel model)
     {
+
         Id = model.Id;
         Name = model.Name;
+        Manufacturer = model.Manufacturer.CastModel<NamedItem>();
         Image = model.Image;
-        CategoryType = model.CategoryType;
-        HasEula = model.HasEula;
-        UseDefaultEula = model.UseDefaultEula;
-        Eula = model.Eula;
-        CheckinEmail = model.CheckinEmail;
-        RequireAcceptance = model.RequireAcceptance;
-        ItemCount = model.ItemCount;
-        AssetsCount = model.AssetsCount;
-        AccessoriesCount = model.AccessoriesCount;
-        ConsumablesCount = model.ConsumablesCount;
-        ComponentsCount = model.ComponentsCount;
-        LicensesCount = model.LicensesCount;
-        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-        Notes = model.Notes;
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal CategoryModel ToCreate()
+    internal ModelModel ToCreate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentOutOfRangeException.ThrowIfZero(CategoryId, nameof(CategoryId));
         return new()
         {
+
+            //Id = Id,
             Name = Name,
+            CategoryId = CategoryId,
             //Url = Url,
             //Image = Image,
             //SupportUrl = SupportUrl,
@@ -52,12 +46,16 @@ public class Category
         };
     }
 
-    internal CategoryModel ToUpdate()
+    internal ModelModel ToUpdate()
     {
+        ArgumentOutOfRangeException.ThrowIfZero(Id, nameof(Id));
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentOutOfRangeException.ThrowIfZero(CategoryId, nameof(CategoryId));
         return new()
         {
+            Id = Id,
             Name = Name,
+            CategoryId = CategoryId,
             //Url = Url,
             //Image = Image,
             //SupportUrl = SupportUrl,
@@ -78,12 +76,16 @@ public class Category
         };
     }
 
-    internal CategoryModel ToPatch()
+    internal ModelModel ToPatch()
     {
+        ArgumentOutOfRangeException.ThrowIfZero(Id, nameof(Id));
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentOutOfRangeException.ThrowIfZero(CategoryId, nameof(CategoryId));
         return new()
         {
+            Id = Id,
             Name = Name,
+            CategoryId = CategoryId,
             //Url = Url,
             //Image = Image,
             //SupportUrl = SupportUrl,
@@ -104,43 +106,13 @@ public class Category
         };
     }
 
-    public int Id { get; set; }
+    public int Id { get; }
 
     public string? Name { get; set; }
 
+    public NamedItem? Manufacturer { get; set; }
+
     public string? Image { get; set; }
 
-    public string? CategoryType { get; set; }
-
-    public bool HasEula { get; set; }
-
-    public bool UseDefaultEula { get; set; }
-
-    public string? Eula { get; set; }
-
-    public bool CheckinEmail { get; set; }
-
-    public bool RequireAcceptance { get; set; }
-
-    public int ItemCount { get; set; }
-
-    public int AssetsCount { get; set; }
-
-    public int AccessoriesCount { get; set; }
-
-    public int ConsumablesCount { get; set; }
-
-    public int ComponentsCount { get; set; }
-
-    public int LicensesCount { get; set; }
-
-    public NamedItem? CreatedBy { get; set; }
-
-    public string? Notes { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    public Actions? AvailableActions { get; set; }
+    public int CategoryId { get; set; }
 }

@@ -1,8 +1,8 @@
 ﻿namespace SnipeITWebApi;
 
-public class Item
+public class NamedItem
 {
-    internal Item(ItemModel model)
+    internal NamedItem(NamedItemModel model)
     {
         Id = model.Id;
         Name = model.Name;

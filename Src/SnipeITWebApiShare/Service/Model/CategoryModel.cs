@@ -48,16 +48,18 @@ internal class CategoryModel
     public int LicensesCount { get; set; }
 
     [JsonPropertyName("created_by")]
-    public ItemModel? CreatedBy { get; set; }
+    public NamedItemModel? CreatedBy { get; set; }
 
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
 
     [JsonPropertyName("created_at")]
-    public DateItemModel? CreatedAt { get; set; }
+    [JsonConverter(typeof(JsonDateTimeConverter))]
+    public DateTime? CreatedAt { get; set; }
 
     [JsonPropertyName("updated_at")]
-    public DateItemModel? UpdatedAt { get; set; }
+    [JsonConverter(typeof(JsonDateTimeConverter))]
+    public DateTime? UpdatedAt { get; set; }
 
     [JsonPropertyName("available_actions")]
     public ActionsModel? AvailableActions { get; set; }

@@ -6,4 +6,5 @@ global using WebServiceClient;
 global using WebServiceClient.Store;
 
 global using SnipeITWebApi.Service;
+global using SnipeITWebApi.Service.Converter;
 global using SnipeITWebApi.Service.Model;

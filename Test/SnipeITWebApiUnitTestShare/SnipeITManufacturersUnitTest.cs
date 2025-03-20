@@ -35,21 +35,21 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(0, item.ComponentsCount, nameof(item.ComponentsCount));
         Assert.AreEqual("Created by DB seeder", item.Notes, nameof(item.Notes));
 
-        //Assert.IsNotNull(item.CreatedBy, nameof(item.CreatedBy));
-        //Assert.AreEqual(1, item.CreatedBy.Id, "CreatedBy.Id");
-        //Assert.AreEqual("Alf Shumway", item.CreatedBy.Name, "CreatedBy.Name");
+        //Assert.IsNotNull(create.CreatedBy, nameof(create.CreatedBy));
+        //Assert.AreEqual(1, create.CreatedBy.Id, "CreatedBy.Id");
+        //Assert.AreEqual("Alf Shumway", create.CreatedBy.Name, "CreatedBy.Name");
 
-        //Assert.IsNotNull(item.CreatedAt, nameof(item.CreatedAt));
-        //Assert.IsNull(item.CreatedAt.Date, "CreatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.CreatedAt.Formatted, "CreatedAt.Formatted");
+        //Assert.IsNotNull(create.CreatedAt, nameof(create.CreatedAt));
+        //Assert.IsNull(create.CreatedAt.Date, "CreatedAt.Date");
+        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.CreatedAt.Formatted, "CreatedAt.Formatted");
 
-        //Assert.IsNotNull(item.UpdatedAt);
-        //Assert.IsNull(item.UpdatedAt.Date, "UpdatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.UpdatedAt.Formatted, "UpdatedAt.Formatted");
+        //Assert.IsNotNull(create.UpdatedAt);
+        //Assert.IsNull(create.UpdatedAt.Date, "UpdatedAt.Date");
+        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.UpdatedAt.Formatted, "UpdatedAt.Formatted");
 
         Assert.IsNull(item.DeletedAt, nameof(item.DeletedAt));
-        //Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Date, "DeletedAt.Date");
-        //Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Formatted, "DeletedAt.Formatted");
+        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Date, "DeletedAt.Date");
+        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Formatted, "DeletedAt.Formatted");
 
         Assert.IsNotNull(item.AvailableActions, nameof(item.AvailableActions));
         Assert.AreEqual(true, item.AvailableActions.Update, "AvailableActions.Update");
@@ -82,21 +82,21 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(0, item.ComponentsCount, nameof(item.ComponentsCount));
         Assert.AreEqual("Created by DB seeder", item.Notes, nameof(item.Notes));
 
-        //Assert.IsNull(item.CreatedBy, nameof(item.CreatedBy));
-        //Assert.AreEqual(1, item.CreatedBy.Id, "CreatedBy.Id");
-        //Assert.AreEqual("Alf Shumway", item.CreatedBy.Name, "CreatedBy.Name");
+        //Assert.IsNull(create.CreatedBy, nameof(create.CreatedBy));
+        //Assert.AreEqual(1, create.CreatedBy.Id, "CreatedBy.Id");
+        //Assert.AreEqual("Alf Shumway", create.CreatedBy.Name, "CreatedBy.Name");
 
-        //Assert.IsNull(item.CreatedAt, nameof(item.CreatedAt));
-        //Assert.IsNull(item.CreatedAt.Date, "CreatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.CreatedAt.Formatted, "CreatedAt.Formatted");
+        //Assert.IsNull(create.CreatedAt, nameof(create.CreatedAt));
+        //Assert.IsNull(create.CreatedAt.Date, "CreatedAt.Date");
+        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.CreatedAt.Formatted, "CreatedAt.Formatted");
 
-        //Assert.IsNotNull(item.UpdatedAt);
-        //Assert.IsNull(item.UpdatedAt.Date, "UpdatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.UpdatedAt.Formatted, "UpdatedAt.Formatted");
+        //Assert.IsNotNull(create.UpdatedAt);
+        //Assert.IsNull(create.UpdatedAt.Date, "UpdatedAt.Date");
+        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.UpdatedAt.Formatted, "UpdatedAt.Formatted");
 
         Assert.IsNull(item.DeletedAt, nameof(item.DeletedAt));
-        //Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Date, "DeletedAt.Date");
-        //Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Formatted, "DeletedAt.Formatted");
+        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Date, "DeletedAt.Date");
+        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Formatted, "DeletedAt.Formatted");
 
         Assert.IsNotNull(item.AvailableActions, nameof(item.AvailableActions));
         Assert.AreEqual(true, item.AvailableActions.Update, "AvailableActions.Update");
@@ -111,7 +111,8 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
         string name = Guid.NewGuid().ToString();
-        var create = new Manufacturer()
+        
+        var create = await snipeIT.CreateManufacturerAsync(new()
         {
             Name = name,
             Url = "https://test.com",
@@ -119,26 +120,56 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
             SupportUrl = "https://support.test.com",
             WarrantyLookupUrl = "https://checkcoverage.test.com",
             SupportPhone = "+12725858512",
-            SupportEmail = "unknown@microsoft.com"
-        };
+            SupportEmail = "unknown@microsoft.com",
+            Notes = "Dummy Note"
+        });
+        Assert.IsNotNull(create);
+        
+        var update = await snipeIT.UpdateManufacturerAsync(new()
+        {
+            Name = Guid.NewGuid().ToString()
+        });
+        Assert.IsNotNull(update);
 
+        var patch = await snipeIT.PatchManufacturerAsync(new() 
+        {
+            Name = Guid.NewGuid().ToString()
+        });
+        Assert.IsNotNull(patch);
 
-        var item = await snipeIT.CreateManufacturerAsync(create);
-        Assert.IsNotNull(item);
+        await snipeIT.DeleteManufacturerAsync(create.Id);
 
-        await snipeIT.DeleteManufacturerAsync(item.Id);
+        var del = await snipeIT.GetManufacturerAsync(create.Id);
 
+        Assert.AreNotEqual(0, create.Id, "create.Id");
+        Assert.AreEqual(name, create.Name, "create.Name");
+        Assert.AreEqual("https://test.com", create.Url, "create.Url");
+        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", create.Image, nameof(create.Image));
+        Assert.AreEqual("https://support.test.com", create.SupportUrl, "create.SupportUrl");
+        Assert.AreEqual("https://checkcoverage.test.com", create.WarrantyLookupUrl, "create.WarrantyLookupUrl");
+        Assert.AreEqual("+12725858512", create.SupportPhone, "create.SupportPhone");
+        Assert.AreEqual("unknown@microsoft.com", create.SupportEmail, "create.SupportEmail");
+        Assert.AreEqual("Dummy Note", create.Notes, "create.Notes");
 
-        var del = await snipeIT.GetManufacturerAsync(item.Id);
+        Assert.AreNotEqual(0, update.Id, "create.Id");
+        Assert.AreEqual(name, update.Name, "update.Name");
+        Assert.AreEqual("https://test.com", update.Url, "update.Url");
+        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", update.Image, nameof(update.Image));
+        Assert.AreEqual("https://support.test.com", update.SupportUrl, "update.SupportUrl");
+        Assert.AreEqual("https://checkcoverage.test.com", update.WarrantyLookupUrl, "update.WarrantyLookupUrl");
+        Assert.AreEqual("+12725858512", update.SupportPhone, "update.SupportPhone");
+        Assert.AreEqual("unknown@microsoft.com", update.SupportEmail, "update.SupportEmail");
+        Assert.AreEqual("Dummy Note", update.Notes, "update.Notes");
 
-        Assert.AreNotEqual(0, item.Id, nameof(item.Id));
-        Assert.AreEqual(name, item.Name, nameof(item.Name));
-        Assert.AreEqual("https://test.com", item.Url, nameof(item.Url));
-        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", item.Image, nameof(item.Image));
-        Assert.AreEqual("https://support.test.com", item.SupportUrl, nameof(item.SupportUrl));
-        Assert.AreEqual("https://checkcoverage.test.com", item.WarrantyLookupUrl, nameof(item.WarrantyLookupUrl));
-        Assert.AreEqual("+12725858512", item.SupportPhone, nameof(item.SupportPhone));
-        Assert.AreEqual("unknown@microsoft.com", item.SupportEmail, nameof(item.SupportEmail));
+        Assert.AreNotEqual(0, patch.Id, "patch.Id");
+        Assert.AreEqual(name, patch.Name, "patch.Name");
+        Assert.AreEqual("https://test.com", patch.Url, "patch.Url");
+        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", patch.Image, nameof(patch.Image));
+        Assert.AreEqual("https://support.test.com", patch.SupportUrl, "patch.SupportUrl");
+        Assert.AreEqual("https://checkcoverage.test.com", patch.WarrantyLookupUrl, "patch.WarrantyLookupUrl");
+        Assert.AreEqual("+12725858512", patch.SupportPhone, "patch.SupportPhone");
+        Assert.AreEqual("unknown@microsoft.com", patch.SupportEmail, "patch.SupportEmail");
+        Assert.AreEqual("Dummy Note", patch.Notes, "patch.Notes");
     }
 
     [TestMethod]

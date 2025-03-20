@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace SnipeITWebApi;
+﻿namespace SnipeITWebApi;
 
 public class Manufacturer
 {
@@ -24,38 +21,96 @@ public class Manufacturer
         AccessoriesCount = model.AccessoriesCount;
         ComponentsCount = model.ComponentsCount;
         Notes = model.Notes;
-        //CreatedBy = model.CreatedBy.CastModel<Item>();
-        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+        CreatedAt = model.CreatedAt;
+        UpdatedAt = model.UpdatedAt;
+        DeletedAt = model.DeletedAt;
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal ManufacturerModel ToModel() => new()
+    internal ManufacturerModel ToCreate()
     {
-        Id = Id,
-        Name = Name,
-        Url = Url,
-        Image = Image,
-        SupportUrl = SupportUrl,
-        WarrantyLookupUrl = WarrantyLookupUrl,
-        SupportPhone = SupportPhone,
-        SupportEmail = SupportEmail,
-        AssetsCount = AssetsCount,
-        LicensesCount = LicensesCount,
-        ConsumablesCount = ConsumablesCount,
-        AccessoriesCount = AccessoriesCount,
-        ComponentsCount = ComponentsCount,
-        Notes = Notes,
-        //CreatedBy = model.CreatedBy.CastModel<Item>();
-        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-        //AvailableActions = model.AvailableActions.CastModel<Actions>();
-    };
-    
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            //Id = Id,
+            Name = Name,
+            Url = Url,
+            Image = Image,
+            SupportUrl = SupportUrl,
+            WarrantyLookupUrl = WarrantyLookupUrl,
+            SupportPhone = SupportPhone,
+            SupportEmail = SupportEmail,
+            AssetsCount = AssetsCount,
+            LicensesCount = LicensesCount,
+            ConsumablesCount = ConsumablesCount,
+            AccessoriesCount = AccessoriesCount,
+            ComponentsCount = ComponentsCount,
+            Notes = Notes,
+            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+            //AvailableActions = model.AvailableActions.CastModel<Actions>();
+        };
+    }
 
-    public int Id { get; set; }
+    internal ManufacturerModel ToUpdate()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            //Id = Id,
+            Name = Name,
+            Url = Url,
+            Image = Image,
+            SupportUrl = SupportUrl,
+            WarrantyLookupUrl = WarrantyLookupUrl,
+            SupportPhone = SupportPhone,
+            SupportEmail = SupportEmail,
+            AssetsCount = AssetsCount,
+            LicensesCount = LicensesCount,
+            ConsumablesCount = ConsumablesCount,
+            AccessoriesCount = AccessoriesCount,
+            ComponentsCount = ComponentsCount,
+            Notes = Notes,
+            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+            //AvailableActions = model.AvailableActions.CastModel<Actions>();
+        };
+    }
+
+    internal ManufacturerModel ToPatch()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            //Id = Id,
+            Name = Name,
+            Url = Url,
+            Image = Image,
+            SupportUrl = SupportUrl,
+            WarrantyLookupUrl = WarrantyLookupUrl,
+            SupportPhone = SupportPhone,
+            SupportEmail = SupportEmail,
+            AssetsCount = AssetsCount,
+            LicensesCount = LicensesCount,
+            ConsumablesCount = ConsumablesCount,
+            AccessoriesCount = AccessoriesCount,
+            ComponentsCount = ComponentsCount,
+            Notes = Notes,
+            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+            //AvailableActions = model.AvailableActions.CastModel<Actions>();
+        };
+    }
+
+
+    public int Id { get; }
 
     public string? Name { get; set; }
 
@@ -71,25 +126,25 @@ public class Manufacturer
 
     public string? SupportEmail { get; set; }
 
-    public int AssetsCount { get; set; }
+    public int AssetsCount { get; }
 
-    public int LicensesCount { get; set; }
+    public int LicensesCount { get; }
 
-    public int ConsumablesCount { get; set; }
+    public int ConsumablesCount { get; }
 
-    public int AccessoriesCount { get; set; }
+    public int AccessoriesCount { get; }
 
-    public int ComponentsCount { get; set; }
+    public int ComponentsCount { get; }
 
     public string? Notes { get; set; }
 
-    public Item? CreatedBy { get; set; }
+    public NamedItem? CreatedBy { get; set; }
 
-    public DateItem? CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; }
 
-    public DateItem? UpdatedAt { get; set; }
+    public DateTime? UpdatedAt { get; }
 
-    public DateItem? DeletedAt { get; set; }
+    public DateTime? DeletedAt { get; }
 
-    public Actions? AvailableActions { get; set; }
+    public Actions? AvailableActions { get; }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class ItemModel
+internal class NamedItemModel
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }

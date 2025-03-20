@@ -52,34 +52,72 @@ public class SnipeIT : IDisposable
 
     }
 
+    #region Categories
+
     public async IAsyncEnumerable<Category> GetCategoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetCategoriesAsync(cancellationToken);
-
-        //return res!.CastModelAsync<Category, CategoryModel>();
         await foreach (var item in res)
         {
             yield return item.CastModel<Category>()!;
         }
     }
 
+    public async Task<Category?> GetCategoryAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.GetCategoryAsync(id, cancellationToken);
+        return res.CastModel<Category>();
+    }
+
+    public async Task<Category?> CreateCategoryAsync(Category create, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.CreateCategoryAsync(create.ToCreate(), cancellationToken);
+        return res.CastModel<Category>();
+    }
+
+    public async Task<Category?> UpdateCategoryAsync(Category create, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.UpdateCategoryAsync(create.ToUpdate(), cancellationToken);
+        return res.CastModel<Category>();
+    }
+
+    public async Task<Category?> PatchCategoryAsync(Category patch, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.UpdateCategoryAsync(patch.ToPatch(), cancellationToken);
+        return res.CastModel<Category>();
+    }
+
+    public async Task DeleteCategoryAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.DeleteCategoryAsync(id, cancellationToken);
+    }
+
+    #endregion
+
+    #region Manufacturers
+
     public async IAsyncEnumerable<Manufacturer> GetManufacturersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetManufacturersAsync(cancellationToken);
-
-        //return res!.CastModelAsync<Category, CategoryModel>();
         await foreach (var item in res)
         {
             yield return item.CastModel<Manufacturer>()!;
         }
-
     }
-
-    #region Manufacturers
 
     public async Task<Manufacturer?> GetManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -93,8 +131,24 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateManufacturerAsync(create.ToModel(), cancellationToken);
+        var res = await service.CreateManufacturerAsync(create.ToCreate(), cancellationToken);
         return res.CastModel<Manufacturer>(); 
+    }
+
+    public async Task<Manufacturer?> UpdateManufacturerAsync(Manufacturer create, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.UpdatManufacturerAsync(create.ToUpdate(), cancellationToken);
+        return res.CastModel<Manufacturer>();
+    }
+
+    public async Task<Manufacturer?> PatchManufacturerAsync(Manufacturer patch, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.PatchManufacturerAsync(patch.ToPatch(), cancellationToken);
+        return res.CastModel<Manufacturer>();
     }
 
     public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
@@ -102,6 +156,60 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = await service.DeleteManufacturerAsync(id, cancellationToken);
+    }
+
+    #endregion
+
+    #region Models
+
+    public async IAsyncEnumerable<Model> GetModelsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = service.GetModelsAsync(cancellationToken);
+        await foreach (var item in res)
+        {
+            yield return item.CastModel<Model>()!;
+        }
+    }
+
+    public async Task<Model?> GetModelAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.GetModelAsync(id, cancellationToken);
+        return res.CastModel<Model>();
+    }
+
+    public async Task<Model?> CreateModelAsync(Model create, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.CreateModelAsync(create.ToCreate(), cancellationToken);
+        return res.CastModel<Model>();
+    }
+
+    public async Task<Model?> UpdateModelAsync(Model create, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.UpdateModelAsync(create.ToUpdate(), cancellationToken);
+        return res.CastModel<Model>();
+    }
+
+    public async Task<Model?> PatchModelAsync(Model patch, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.PatchModelAsync(patch.ToPatch(), cancellationToken);
+        return res.CastModel<Model>();
+    }
+
+    public async Task DeleteModelAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.DeleteModelAsync(id, cancellationToken);
     }
 
     #endregion
