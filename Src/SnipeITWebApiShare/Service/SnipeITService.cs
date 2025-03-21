@@ -29,6 +29,74 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
+    public async Task<HardwareModel?> GetHardwareAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await GetFromJsonAsync<HardwareModel>($"api/v1/hardware/{id}", cancellationToken);
+        return res;
+    }
+
+    public async Task<HardwareModel?> CreateHardwareAsync(HardwareModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+
+        var res = await PostAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>("api/v1/hardware", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<HardwareModel?> UpdateHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PutAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<HardwareModel?> PatchHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PatchAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<HardwareModel?> DeleteHardwareAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await DeleteAsJsonAsync<ResultModel<HardwareModel>>($"api/v1/hardware/{id}", cancellationToken);
+        CheckResultForError(res);
+        return res?.Payload;
+    }
+
+    public async Task<HardwareModel?> CheckoutHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PostAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}/checkout", model, cancellationToken);
+        CheckResultForError(res);
+        return res?.Payload;
+    }
+
+    public async Task<HardwareModel?> CheckinHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PostAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}/checkin", model, cancellationToken);
+        CheckResultForError(res);
+        return res?.Payload;
+    }
+
     #endregion
 
     #region Category
@@ -89,6 +157,63 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #endregion
 
+    #region Departments
+
+    public IAsyncEnumerable<DepartmentModel> GetDepartmentsAsync(CancellationToken cancellationToken)
+    {
+        var res = GetListAsync<DepartmentModel>("api/v1/departments", cancellationToken);
+        return res;
+    }
+
+    public async Task<DepartmentModel?> GetDepartmentAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await GetFromJsonAsync<DepartmentModel>($"api/v1/departments/{id}", cancellationToken);
+        return res;
+    }
+
+    public async Task<DepartmentModel?> CreateDepartmentAsync(DepartmentModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+
+        var res = await PostAsJsonAsync<DepartmentModel, ResultModel<DepartmentModel>>("api/v1/departments", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<DepartmentModel?> UpdateDepartmentAsync(int id, DepartmentModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PutAsJsonAsync<DepartmentModel, ResultModel<DepartmentModel>>($"api/v1/departments/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<DepartmentModel?> PatchDepartmentAsync(int id, DepartmentModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PatchAsJsonAsync<DepartmentModel, ResultModel<DepartmentModel>>($"api/v1/departments/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<DepartmentModel?> DeleteDepartmentAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await DeleteAsJsonAsync<ResultModel<DepartmentModel>>($"api/v1/departments/{id}", cancellationToken);
+        CheckResultForError(res);
+        return res?.Payload;
+    }
+
+    #endregion
 
     #region Manufacturers
 

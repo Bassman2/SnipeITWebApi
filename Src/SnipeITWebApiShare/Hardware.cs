@@ -12,6 +12,51 @@ public class Hardware
         PurchaseDate = model.PurchaseDate;
     }
 
+    internal HardwareModel ToCreate()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
+
+    internal HardwareModel ToUpdate()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
+
+    internal HardwareModel ToPatch()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
+
+    internal HardwareModel ToCheckout()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
+
+    internal HardwareModel ToCheckin()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
+
     public string? Name { get; }
 
     public NamedItem? Model { get; }
