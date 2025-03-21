@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace SnipeITWebApi;
+﻿namespace SnipeITWebApi;
 
 public class SnipeIT : IDisposable
 {
@@ -73,33 +71,36 @@ public class SnipeIT : IDisposable
         return res.CastModel<Category>();
     }
 
-    public async Task<Category?> CreateCategoryAsync(Category create, CancellationToken cancellationToken = default)
+    public async Task<Category?> CreateCategoryAsync(Category item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateCategoryAsync(create.ToCreate(), cancellationToken);
+        var res = await service.CreateCategoryAsync(item.ToCreate(), cancellationToken);
         return res.CastModel<Category>();
     }
 
-    public async Task<Category?> UpdateCategoryAsync(Category create, CancellationToken cancellationToken = default)
+    public async Task<Category?> UpdateCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateCategoryAsync(create.ToUpdate(), cancellationToken);
+        var res = await service.UpdateCategoryAsync(id, item.ToUpdate(), cancellationToken);
         return res.CastModel<Category>();
     }
 
-    public async Task<Category?> PatchCategoryAsync(Category patch, CancellationToken cancellationToken = default)
+    public async Task<Category?> PatchCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateCategoryAsync(patch.ToPatch(), cancellationToken);
+        var res = await service.PatchCategoryAsync(id, item.ToPatch(), cancellationToken);
         return res.CastModel<Category>();
     }
 
     public async Task DeleteCategoryAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteCategoryAsync(id, cancellationToken);
     }
@@ -127,33 +128,36 @@ public class SnipeIT : IDisposable
         return res.CastModel<Manufacturer>();
     }
 
-    public async Task<Manufacturer?> CreateManufacturerAsync(Manufacturer create, CancellationToken cancellationToken = default)
+    public async Task<Manufacturer?> CreateManufacturerAsync(Manufacturer item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateManufacturerAsync(create.ToCreate(), cancellationToken);
+        var res = await service.CreateManufacturerAsync(item.ToCreate(), cancellationToken);
         return res.CastModel<Manufacturer>(); 
     }
 
-    public async Task<Manufacturer?> UpdateManufacturerAsync(Manufacturer create, CancellationToken cancellationToken = default)
+    public async Task<Manufacturer?> UpdateManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdatManufacturerAsync(create.ToUpdate(), cancellationToken);
+        var res = await service.UpdatManufacturerAsync(id, item.ToUpdate(), cancellationToken);
         return res.CastModel<Manufacturer>();
     }
 
-    public async Task<Manufacturer?> PatchManufacturerAsync(Manufacturer patch, CancellationToken cancellationToken = default)
+    public async Task<Manufacturer?> PatchManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchManufacturerAsync(patch.ToPatch(), cancellationToken);
+        var res = await service.PatchManufacturerAsync(id, item.ToPatch(), cancellationToken);
         return res.CastModel<Manufacturer>();
     }
 
     public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteManufacturerAsync(id, cancellationToken);
     }
@@ -176,42 +180,45 @@ public class SnipeIT : IDisposable
     public async Task<Model?> GetModelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.GetModelAsync(id, cancellationToken);
         return res.CastModel<Model>();
     }
 
-    public async Task<Model?> CreateModelAsync(Model create, CancellationToken cancellationToken = default)
+    public async Task<Model?> CreateModelAsync(Model item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateModelAsync(create.ToCreate(), cancellationToken);
+        var res = await service.CreateModelAsync(item.ToCreate(), cancellationToken);
         return res.CastModel<Model>();
     }
 
-    public async Task<Model?> UpdateModelAsync(Model create, CancellationToken cancellationToken = default)
+    public async Task<Model?> UpdateModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateModelAsync(create.ToUpdate(), cancellationToken);
+        var res = await service.UpdateModelAsync(id, item.ToUpdate(), cancellationToken);
         return res.CastModel<Model>();
     }
 
-    public async Task<Model?> PatchModelAsync(Model patch, CancellationToken cancellationToken = default)
+    public async Task<Model?> PatchModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchModelAsync(patch.ToPatch(), cancellationToken);
+        var res = await service.PatchModelAsync(id, item.ToPatch(), cancellationToken);
         return res.CastModel<Model>();
     }
 
     public async Task DeleteModelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteModelAsync(id, cancellationToken);
     }
 
     #endregion
-
 }

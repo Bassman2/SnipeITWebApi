@@ -110,11 +110,13 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        string name = Guid.NewGuid().ToString();
-        
+        string createName = Guid.NewGuid().ToString();
+        string updateName = Guid.NewGuid().ToString();
+        string patchName = Guid.NewGuid().ToString();
+
         var create = await snipeIT.CreateManufacturerAsync(new()
         {
-            Name = name,
+            Name = createName,
             Url = "https://test.com",
             //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
             SupportUrl = "https://support.test.com",
@@ -124,16 +126,17 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
             Notes = "Dummy Note"
         });
         Assert.IsNotNull(create);
-        
-        var update = await snipeIT.UpdateManufacturerAsync(new()
+        Assert.IsTrue(create.Id > 0, "create.Id");
+
+        var update = await snipeIT.UpdateManufacturerAsync(create.Id, new()
         {
-            Name = Guid.NewGuid().ToString()
+            Name = updateName
         });
         Assert.IsNotNull(update);
 
-        var patch = await snipeIT.PatchManufacturerAsync(new() 
+        var patch = await snipeIT.PatchManufacturerAsync(create.Id, new() 
         {
-            Name = Guid.NewGuid().ToString()
+            Name = patchName
         });
         Assert.IsNotNull(patch);
 
@@ -142,7 +145,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         var del = await snipeIT.GetManufacturerAsync(create.Id);
 
         Assert.AreNotEqual(0, create.Id, "create.Id");
-        Assert.AreEqual(name, create.Name, "create.Name");
+        Assert.AreEqual(createName, create.Name, "create.Name");
         Assert.AreEqual("https://test.com", create.Url, "create.Url");
         //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", create.Image, nameof(create.Image));
         Assert.AreEqual("https://support.test.com", create.SupportUrl, "create.SupportUrl");
@@ -152,7 +155,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("Dummy Note", create.Notes, "create.Notes");
 
         Assert.AreNotEqual(0, update.Id, "create.Id");
-        Assert.AreEqual(name, update.Name, "update.Name");
+        Assert.AreEqual(updateName, update.Name, "update.Name");
         Assert.AreEqual("https://test.com", update.Url, "update.Url");
         //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", update.Image, nameof(update.Image));
         Assert.AreEqual("https://support.test.com", update.SupportUrl, "update.SupportUrl");
@@ -162,7 +165,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("Dummy Note", update.Notes, "update.Notes");
 
         Assert.AreNotEqual(0, patch.Id, "patch.Id");
-        Assert.AreEqual(name, patch.Name, "patch.Name");
+        Assert.AreEqual(patchName, patch.Name, "patch.Name");
         Assert.AreEqual("https://test.com", patch.Url, "patch.Url");
         //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", patch.Image, nameof(patch.Image));
         Assert.AreEqual("https://support.test.com", patch.SupportUrl, "patch.SupportUrl");
