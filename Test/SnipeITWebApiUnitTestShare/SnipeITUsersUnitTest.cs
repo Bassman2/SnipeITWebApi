@@ -16,10 +16,13 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
-        var item = list.FirstOrDefault();
+        var item = list.FirstOrDefault(i => i.Id == 1);
         Assert.IsNotNull(item);
-        Assert.AreEqual(1, item.Id, nameof(item.Id));
-        Assert.AreEqual("Laptops", item.Name, nameof(item.Name));
+        Assert.AreEqual(1, item.Id, "item.Id");
+        Assert.AreEqual("Account Demo", item.Name, "item.Name");
+        Assert.AreEqual("Demo", item.FirstName, "item.FirstName");
+        Assert.AreEqual("Account", item.LastName, "item.LastName");
+        Assert.AreEqual("admin", item.Username, "item.Username");
 
 
     }
@@ -32,8 +35,12 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         var item = await snipeIT.GetUserMeAsync();
 
         Assert.IsNotNull(item);
-        Assert.AreEqual(1, item.Id, nameof(item.Id));
-        Assert.AreEqual("Account Demo", item.Name, nameof(item.Name));
+        Assert.AreEqual(1, item.Id, "item.Id");
+        Assert.AreEqual("Account Demo", item.Name, "item.Name");
+        Assert.AreEqual("Demo", item.FirstName, "item.FirstName");
+        Assert.AreEqual("Account", item.LastName, "item.LastName");
+        Assert.AreEqual("admin", item.Username, "item.Username");
+
 
 
     }
