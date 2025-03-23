@@ -331,6 +331,72 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #endregion
 
+    #region Users
+
+    public IAsyncEnumerable<UserModel> GetUsersAsync(CancellationToken cancellationToken)
+    {
+        var res = GetListAsync<UserModel>("api/v1/users", cancellationToken);
+        return res;
+    }
+
+    public async Task<UserModel?> GetUserAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await GetFromJsonAsync<UserModel>($"api/v1/users/{id}", cancellationToken);
+        return res;
+    }
+
+    public async Task<UserModel?> CreateUserAsync(UserModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+
+        var res = await PostAsJsonAsync<UserModel, ResultModel<UserModel>>("api/v1/users", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<UserModel?> UpdateUserAsync(int id, UserModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PutAsJsonAsync<UserModel, ResultModel<UserModel>>($"api/v1/users/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<UserModel?> PatchUserAsync(int id, UserModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PatchAsJsonAsync<UserModel, ResultModel<UserModel>>($"api/v1/users/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<UserModel?> DeleteUserAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await DeleteAsJsonAsync<ResultModel<UserModel>>($"api/v1/users/{id}", cancellationToken);
+        CheckResultForError(res);
+        return res?.Payload;
+    }
+
+    public async Task<UserModel?> GetUserMeAsync(CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+
+        var res = await GetFromJsonAsync<UserModel>("api/v1/users/me", cancellationToken);
+        return res;
+    }
+
+    #endregion
+
     #region Private
 
     private async IAsyncEnumerable<T> GetListAsync<T>(string requestUri, [EnumeratorCancellation] CancellationToken cancellationToken, [CallerMemberName] string memberName = "") //where T : class

@@ -30,8 +30,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\NamedItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ManufacturerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SourceGenerationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\UserModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\SnipeITService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeIT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
   </ItemGroup>
 </Project>

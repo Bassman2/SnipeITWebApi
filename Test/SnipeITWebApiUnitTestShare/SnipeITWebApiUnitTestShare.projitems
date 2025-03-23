@@ -9,12 +9,14 @@
     <Import_RootNamespace>SnipeITWebApiUnitTest</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITDepartmentsUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITBaseUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITInternUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITHardwareUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITManufacturersUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITModelsUnitTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SniprITCategoriesUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITCategoriesUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITUsersUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
   </ItemGroup>
 </Project>

@@ -10,4 +10,7 @@ internal class ActionsModel
 
     [JsonPropertyName("delete")]
     public bool Delete { get; set; }
+
+    [JsonPropertyName("clone")]
+    public bool Clone { get; set; }
 }

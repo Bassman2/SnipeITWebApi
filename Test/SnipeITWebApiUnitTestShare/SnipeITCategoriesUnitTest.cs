@@ -1,7 +1,7 @@
 ﻿namespace SnipeITWebApiUnitTest;
 
 [TestClass]
-public class SniprITCategoriesUnitTest : SnipeITBaseUnitTest
+public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
 {
 
     [TestMethod]

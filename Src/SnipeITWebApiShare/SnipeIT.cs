@@ -30,26 +30,22 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetHardwareListAsync(cancellationToken);
-
         await foreach (var item in res)
         {
             yield return item.CastModel<Hardware>()!;
         }
-
     }
 
     public async IAsyncEnumerable<Hardware> GetHardwareListByCategoryAsync(int category, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(category, 0, nameof(category));
 
         var res = service.GetHardwareListByCategoryAsync(category, cancellationToken);
-
         await foreach (var item in res)
         {
             yield return item.CastModel<Hardware>()!;
         }
-        
-
     }
 
     public async Task<Hardware?> GetHardwareAsync(int id, CancellationToken cancellationToken = default)
@@ -61,7 +57,7 @@ public class SnipeIT : IDisposable
         return res.CastModel<Hardware>();
     }
 
-    public async Task<Hardware?> CreateCategoryAsync(Hardware item, CancellationToken cancellationToken = default)
+    public async Task<Hardware?> CreateHardwareAsync(Hardware item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
@@ -92,7 +88,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteCategoryAsync(id, cancellationToken);
+        var res = await service.DeleteHardwareAsync(id, cancellationToken);
         return res.CastModel<Hardware>();
     }
 
@@ -345,6 +341,73 @@ public class SnipeIT : IDisposable
 
         var res = await service.DeleteModelAsync(id, cancellationToken);
         return res.CastModel<Model>();
+    }
+
+    #endregion
+
+    #region Users
+
+    public async IAsyncEnumerable<User> GetUsersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = service.GetUsersAsync(cancellationToken);
+        await foreach (var item in res)
+        {
+            yield return item.CastModel<User>()!;
+        }
+    }
+
+    public async Task<User?> GetUserAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.GetUserAsync(id, cancellationToken);
+        return res.CastModel<User>();
+    }
+
+    public async Task<User?> CreateUserAsync(User item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.CreateUserAsync(item.ToCreate(), cancellationToken);
+        return res.CastModel<User>();
+    }
+
+    public async Task<User?> UpdateUserAsync(int id, User item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.UpdateUserAsync(id, item.ToUpdate(), cancellationToken);
+        return res.CastModel<User>();
+    }
+
+    public async Task<User?> PatchUserAsync(int id, User item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.PatchUserAsync(id, item.ToPatch(), cancellationToken);
+        return res.CastModel<User>();
+    }
+
+    public async Task<User?> DeleteUserAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.DeleteUserAsync(id, cancellationToken);
+        return res.CastModel<User>();
+    }
+
+    public async Task<User?> GetUserMeAsync(CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.GetUserMeAsync(cancellationToken);
+        return res.CastModel<User>();
     }
 
     #endregion

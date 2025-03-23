@@ -7,11 +7,13 @@
 [JsonSerializable(typeof(ListModel<CategoryModel>))]
 [JsonSerializable(typeof(ListModel<ManufacturerModel>))]
 [JsonSerializable(typeof(ListModel<ModelModel>))]
+[JsonSerializable(typeof(ListModel<UserModel>))]
 
 [JsonSerializable(typeof(ResultModel<HardwareModel>))]
 [JsonSerializable(typeof(ResultModel<CategoryModel>))]
 [JsonSerializable(typeof(ResultModel<ManufacturerModel>))]
 [JsonSerializable(typeof(ResultModel<ModelModel>))]
+[JsonSerializable(typeof(ResultModel<UserModel>))]
 
 internal partial class SourceGenerationContext  : JsonSerializerContext
 { }
