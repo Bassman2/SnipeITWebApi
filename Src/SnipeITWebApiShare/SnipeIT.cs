@@ -170,6 +170,64 @@ public class SnipeIT : IDisposable
 
     #endregion
 
+    #region Companies
+
+    public async IAsyncEnumerable<Company> GetCompaniesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = service.GetCompaniesAsync(cancellationToken);
+        await foreach (var item in res)
+        {
+            yield return item.CastModel<Company>()!;
+        }
+    }
+
+    public async Task<Company?> GetCompanyAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.GetCompanyAsync(id, cancellationToken);
+        return res.CastModel<Company>();
+    }
+
+    public async Task<Company?> CreateCompanyAsync(Company item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.CreateCompanyAsync(item.ToCreate(), cancellationToken);
+        return res.CastModel<Company>();
+    }
+
+    public async Task<Company?> UpdateCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.UpdateCompanyAsync(id, item.ToUpdate(), cancellationToken);
+        return res.CastModel<Company>();
+    }
+
+    public async Task<Company?> PatchCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.PatchCompanyAsync(id, item.ToPatch(), cancellationToken);
+        return res.CastModel<Company>();
+    }
+
+    public async Task<Company?> DeleteCompanyAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.DeleteCompanyAsync(id, cancellationToken);
+        return res.CastModel<Company>();
+    }
+
+    #endregion
+
     #region Departments
 
     public async IAsyncEnumerable<Department> GetDepartmentsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)

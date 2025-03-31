@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Actions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assigned.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Company.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Department.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hardware.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NamedItem.cs" />
@@ -22,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ActionsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AssignedModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CategoryModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CompanyModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\DepartmentModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ModelModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ResultModel.cs" />

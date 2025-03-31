@@ -1,31 +1,31 @@
 ﻿namespace SnipeITWebApi;
 
-public class Department
+public class Company
 {
-    public Department()
+    public Company()
     { }
 
-    internal Department(DepartmentModel model)
+    internal Company(CompanyModel model)
     {
         Id = model.Id;
         Name = model.Name;
         Phone = model.Phone;
         Fax = model.Fax;
+        Email = model.Email;
         Image = model.Image;
-        Company = model.Company;
-        Manager = model.Manager;
-        Location = model.Location.CastModel<NamedItem>();
-        if (int.TryParse(model.UsersCount, out var usersCount))
-        {
-            UsersCount = usersCount;
-        }
+        AssetsCount = model.AssetsCount;
+        AccessoriesCount = model.AccessoriesCount;
+        ConsumablesCount = model.ConsumablesCount;
+        ComponentsCount = model.ComponentsCount;
+        UsersCount = model.UsersCount;
+        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
         Notes = model.Notes;
         CreatedAt = model.CreatedAt;
         UpdatedAt = model.UpdatedAt;
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal DepartmentModel ToCreate()
+    internal CompanyModel ToCreate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -37,7 +37,7 @@ public class Department
         };
     }
 
-    internal DepartmentModel ToUpdate()
+    internal CompanyModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -49,7 +49,7 @@ public class Department
         };
     }
 
-    internal DepartmentModel ToPatch()
+    internal CompanyModel ToPatch()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -69,15 +69,21 @@ public class Department
 
     public string? Fax { get; set; }
 
+    public string? Email { get; set; }
+
     public string? Image { get; set; }
 
-    public string? Company { get; set; }
+    public int AssetsCount { get; set; }
 
-    public string? Manager { get; set; }
-
-    public NamedItem? Location { get; set; }
-
-    public int? UsersCount { get; set; }
+    public int AccessoriesCount { get; set; }
+    
+    public int ConsumablesCount { get; set; }
+    
+    public int ComponentsCount { get; set; }
+    
+    public int UsersCount { get; set; }
+    
+    public NamedItem? CreatedBy { get; set; }
 
     public string? Notes { get; set; }
 

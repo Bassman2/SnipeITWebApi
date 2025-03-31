@@ -54,11 +54,11 @@ internal class CategoryModel
     public string? Notes { get; set; }
 
     [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(JsonDateTimeConverter))]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
     public DateTime? CreatedAt { get; set; }
 
     [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(JsonDateTimeConverter))]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
     public DateTime? UpdatedAt { get; set; }
 
     [JsonPropertyName("available_actions")]

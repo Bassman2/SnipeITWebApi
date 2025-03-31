@@ -157,6 +157,64 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #endregion
 
+    #region Companies
+
+    public IAsyncEnumerable<CompanyModel> GetCompaniesAsync(CancellationToken cancellationToken)
+    {
+        var res = GetListAsync<CompanyModel>("api/v1/companies", cancellationToken);
+        return res;
+    }
+
+    public async Task<CompanyModel?> GetCompanyAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await GetFromJsonAsync<CompanyModel>($"api/v1/companies/{id}", cancellationToken);
+        return res;
+    }
+
+    public async Task<CompanyModel?> CreateCompanyAsync(CompanyModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+
+        var res = await PostAsJsonAsync<CompanyModel, ResultModel<CompanyModel>>("api/v1/companies", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<CompanyModel?> UpdateCompanyAsync(int id, CompanyModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PutAsJsonAsync<CompanyModel, ResultModel<CompanyModel>>($"api/v1/companies/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<CompanyModel?> PatchCompanyAsync(int id, CompanyModel model, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await PatchAsJsonAsync<CompanyModel, ResultModel<CompanyModel>>($"api/v1/companies/{id}", model, cancellationToken);
+        CheckResultForError(res);
+        return res!.Payload;
+    }
+
+    public async Task<CompanyModel?> DeleteCompanyAsync(int id, CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await DeleteAsJsonAsync<ResultModel<CompanyModel>>($"api/v1/companies/{id}", cancellationToken);
+        CheckResultForError(res);
+        return res?.Payload;
+    }
+
+    #endregion
+
     #region Departments
 
     public IAsyncEnumerable<DepartmentModel> GetDepartmentsAsync(CancellationToken cancellationToken)

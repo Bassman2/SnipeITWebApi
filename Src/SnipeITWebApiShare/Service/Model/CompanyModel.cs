@@ -1,6 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class DepartmentModel
+internal class CompanyModel
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
@@ -14,20 +14,29 @@ internal class DepartmentModel
     [JsonPropertyName("fax")]
     public string? Fax { get; set; }
 
+    [JsonPropertyName("email")]
+    public string? Email { get; set; }
+
     [JsonPropertyName("image")]
     public string? Image { get; set; }
 
-    [JsonPropertyName("company")]
-    public string? Company { get; set; }
+    [JsonPropertyName("assets_count")]
+    public int AssetsCount { get; set; }
 
-    [JsonPropertyName("manager")]
-    public string? Manager { get; set; }
+    [JsonPropertyName("accessories_count")]
+    public int AccessoriesCount { get; set; }
 
-    [JsonPropertyName("location")]
-    public NamedItemModel? Location { get; set; }
+    [JsonPropertyName("consumables_count")]
+    public int ConsumablesCount { get; set; }
+
+    [JsonPropertyName("components_count")]
+    public int ComponentsCount { get; set; }
 
     [JsonPropertyName("users_count")]
-    public string? UsersCount { get; set; }
+    public int UsersCount { get; set; }
+
+    [JsonPropertyName("created_by")]
+    public NamedItemModel? CreatedBy { get; set; }
 
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
@@ -43,4 +52,3 @@ internal class DepartmentModel
     [JsonPropertyName("available_actions")]
     public ActionsModel? AvailableActions { get; set; }
 }
-
