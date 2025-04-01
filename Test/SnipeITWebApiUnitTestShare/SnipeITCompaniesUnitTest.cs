@@ -83,6 +83,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
             Name = createName,
             Phone = phoneCreate,
             Fax = faxCreate,
+            Email = emailCreate,
+            //Image = imageCreate,    
             Notes = notesCreate,
         });
         Assert.IsNotNull(create);
@@ -94,6 +96,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
             Name = updateName,
             Phone = phoneUpdate,
             Fax = faxUpdate,
+            Email = emailUpdate,
+            //Image = imageUpdate,
             Notes = notesUpdate,
 
         });
@@ -104,6 +108,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
             Name = patchName,
             Phone = phonePatch,
             Fax = faxPatch,
+            Email = emailPatch,
+            //Image = imagePatch,
             Notes = notesPatch,
 
         });
@@ -117,18 +123,24 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(createName, create.Name, "create.Name");
         Assert.AreEqual(phoneCreate, create.Phone, "create.Phone");
         Assert.AreEqual(faxCreate, create.Fax, "create.Fax");
+        Assert.AreEqual(emailCreate, create.Email, "create.Email");
+        //Assert.AreEqual(imageCreate, create.Image, "create.Image");
         Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
         Assert.AreEqual(id, update.Id, "update.Id");
         Assert.AreEqual(updateName, update.Name, "update.Name");
         Assert.AreEqual(phoneUpdate, update.Phone, "update.Phone");
         Assert.AreEqual(faxUpdate, update.Fax, "update.Fax");
+        Assert.AreEqual(emailUpdate, update.Email, "update.Email");
+        //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
         Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
         Assert.AreEqual(id, patch.Id, "patch.Id");
         Assert.AreEqual(patchName, patch.Name, "patch.Name");
         Assert.AreEqual(phonePatch, patch.Phone, "patch.Phone");
         Assert.AreEqual(faxPatch, patch.Fax, "patch.Fax");
+        Assert.AreEqual(emailPatch, patch.Email, "patch.Email");
+        //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
         Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
     }
 
@@ -137,7 +149,7 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        var create = new Company() { Name = departmentName };
+        var create = new Company() { Name = companyName };
 
         await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateCompanyAsync(create));
     }

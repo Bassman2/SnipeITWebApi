@@ -20,6 +20,12 @@ internal class UserModel
     [JsonPropertyName("username")]
     public string? Username { get; set; }
 
+    [JsonPropertyName("password")]
+    public string? Password { get; set; }
+
+    [JsonPropertyName("password_confirmation")]
+    public string? PasswordConfirmation { get; set; }
+    
     [JsonPropertyName("remote")]
     public bool Remote { get; set; }
 
@@ -65,7 +71,47 @@ internal class UserModel
     [JsonPropertyName("department")]
     public NamedItemModel? Department { get; set; }
 
-    // TODO ...
+    [JsonPropertyName("location")]
+    public NamedItemModel? Location { get; set; }
+
+    [JsonPropertyName("notes")]
+    public string? Notes { get; set; }
+
+    [JsonPropertyName("permissions")]
+    public NamedItemModel? Permissions { get; set; }
+
+    [JsonPropertyName("activated")]
+    public bool? Activated { get; set; }
+
+    [JsonPropertyName("autoassign_licenses")]
+    public bool? AutoassignLicenses { get; set; }
+
+    [JsonPropertyName("ldap_import")]
+    public bool? LdapImport { get; set; }
+
+    [JsonPropertyName("two_factor_enrolled")]
+    public bool? TwoFactorEnrolled { get; set; }
+
+    [JsonPropertyName("two_factor_optin")]
+    public bool? TwoFactorOptin { get; set; }
+
+    [JsonPropertyName("assets_count")]
+    public int AssetsCount { get; set; }
+
+    [JsonPropertyName("licenses_count")]
+    public int LicensesCount { get; set; }
+
+    [JsonPropertyName("accessories_count")]
+    public int AccessoriesCount { get; set; }
+
+    [JsonPropertyName("consumables_count")]
+    public int ConsumablesCount { get; set; }
+
+    [JsonPropertyName("manages_users_count")]
+    public int ManagesUsersCount { get; set; }
+
+    [JsonPropertyName("manages_locations_count")]
+    public int ManagesLocationsCount { get; set; }
 
     [JsonPropertyName("company")]
     public NamedItemModel? Company { get; set; }
@@ -73,18 +119,33 @@ internal class UserModel
     [JsonPropertyName("created_by")]
     public NamedItemModel? CreatedBy { get; set; }
 
-    //[JsonPropertyName("created_at")]
-    //[JsonConverter(typeof(JsonDateTimeConverter))]
-    //public DateTime? CreatedAt { get; set; }
+    [JsonPropertyName("created_at")]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? CreatedAt { get; set; }
 
-    //[JsonPropertyName("updated_at")]
-    //[JsonConverter(typeof(JsonDateTimeConverter))]
-    //public DateTime? UpdatedAt { get; set; }
+    [JsonPropertyName("updated_at")]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? UpdatedAt { get; set; }
 
-    //[JsonPropertyName("deleted_at")]
-    //[JsonConverter(typeof(JsonDateTimeConverter))]
-    //public DateTime? DeletedAt { get; set; }
+    [JsonPropertyName("start_date")]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? StartDate { get; set; }
+
+    [JsonPropertyName("end_date")]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? EndDate { get; set; }
+
+    [JsonPropertyName("last_login")]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? LastLogin { get; set; }
+
+    [JsonPropertyName("deleted_at")]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? DeletedAt { get; set; }
 
     [JsonPropertyName("available_actions")]
     public ActionsModel? AvailableActions { get; set; }
+
+    [JsonPropertyName("groups")]
+    public string? Groups { get; set; }
 }

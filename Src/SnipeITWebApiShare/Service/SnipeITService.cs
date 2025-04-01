@@ -2,6 +2,8 @@
 
 // https://snipe-it.readme.io/reference/api-overview
 
+// Image: https://github.com/snipe/snipe-it/issues/12350
+
 internal class SnipeITService(Uri host, IAuthenticator? authenticator, string appName) 
     : JsonService(host, authenticator, appName, SourceGenerationContext.Default)
 {

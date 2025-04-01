@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Manufacturer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Enums\Status.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ActionsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AssignedModel.cs" />

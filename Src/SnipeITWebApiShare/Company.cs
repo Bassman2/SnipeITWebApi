@@ -33,6 +33,8 @@ public class Company
             Name = Name,
             Phone = Phone,
             Fax = Fax,
+            Email = Email,
+            Image = ImageConverter.ConvertImageToBase64(Image),
             Notes = Notes,
         };
     }
@@ -45,6 +47,8 @@ public class Company
             Name = Name,
             Phone = Phone,
             Fax = Fax,
+            Email = Email,
+            Image = Image,
             Notes = Notes,
         };
     }
@@ -57,6 +61,8 @@ public class Company
             Name = Name,
             Phone = Phone,
             Fax = Fax,
+            Email = Email,
+            Image = Image,
             Notes = Notes,
         };
     }
