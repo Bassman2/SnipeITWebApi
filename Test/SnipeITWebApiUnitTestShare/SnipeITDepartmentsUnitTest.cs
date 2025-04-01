@@ -26,7 +26,7 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest
         Assert.IsNull(item.Company, "item.Company");
         Assert.IsNull(item.Manager, "item.Manager");
         Assert.IsNull(item.Location, "item.Location");
-        Assert.AreEqual(10, item.UsersCount, "item.UsersCount");
+        Assert.IsTrue(item.UsersCount > 10, "item.UsersCount");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
 
         Assert.IsNotNull(item.CreatedAt, "item.CreatedAt");

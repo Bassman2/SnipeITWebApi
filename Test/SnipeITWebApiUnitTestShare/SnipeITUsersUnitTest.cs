@@ -19,10 +19,30 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         var item = list.FirstOrDefault(i => i.Id == userId);
         Assert.IsNotNull(item);
         Assert.AreEqual(userId, item.Id, "item.Id");
+        Assert.AreEqual("https://develop.snipeitapp.com/uploads/default.png", item.Avatar, "item.Avatar");
         Assert.AreEqual(userName, item.Name, "item.Name");
         Assert.AreEqual("Demo", item.FirstName, "item.FirstName");
         Assert.AreEqual("Account", item.LastName, "item.LastName");
         Assert.AreEqual("admin", item.Username, "item.Username");
+        Assert.AreEqual(false, item.Remote, "item.Remote");
+        Assert.AreEqual("en-US", item.Locale, "item.Locale");
+        Assert.AreEqual("32200", item.EmployeeNum, "item.EmployeeNum");
+        Assert.IsNull(item.Manager, "item.Manager");
+        Assert.AreEqual("Athletic Trainer", item.Jobtitle, "item.Jobtitle");
+        Assert.AreEqual(false, item.Vip, "item.Vip");
+        Assert.IsNull(item.Phone, "item.Phone");
+        Assert.IsNull(item.Website, "item.Website");
+        Assert.AreEqual("10832 Carter Lodge\nWest Clara, NE 46598", item.Address, "item.Address");
+        Assert.AreEqual("Kuhnberg", item.City, "item.City");
+        Assert.AreEqual("ID", item.State, "item.State");
+        Assert.AreEqual("French Guiana", item.Country, "item.Country");
+        Assert.AreEqual("19022-7426", item.Zip, "item.Zip");
+        Assert.AreEqual("bgoyette@example.net", item.Email, "item.Email");
+        Assert.IsNotNull(item.Department, "item.Department");
+        Assert.AreEqual(1, item.Department.Id, "item.Department.Id");
+        Assert.AreEqual("Human Resources", item.Department.Name, "item.Department.Name");
+        Assert.IsNull(item.Location, "item.Location");
+        Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
     }
 
     [TestMethod]
@@ -34,10 +54,30 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
 
         Assert.IsNotNull(item);
         Assert.AreEqual(userId, item.Id, "item.Id");
+        Assert.AreEqual("https://develop.snipeitapp.com/uploads/default.png", item.Avatar, "item.Avatar");
         Assert.AreEqual(userName, item.Name, "item.Name");
         Assert.AreEqual("Demo", item.FirstName, "item.FirstName");
         Assert.AreEqual("Account", item.LastName, "item.LastName");
         Assert.AreEqual("admin", item.Username, "item.Username");
+        Assert.AreEqual(false, item.Remote, "item.Remote");
+        Assert.AreEqual("en-US", item.Locale, "item.Locale");
+        Assert.AreEqual("32200", item.EmployeeNum, "item.EmployeeNum");
+        Assert.IsNull(item.Manager, "item.Manager");
+        Assert.AreEqual("Athletic Trainer", item.Jobtitle, "item.Jobtitle");
+        Assert.AreEqual(false, item.Vip, "item.Vip");
+        Assert.IsNull(item.Phone, "item.Phone");
+        Assert.IsNull(item.Website, "item.Website");
+        Assert.AreEqual("10832 Carter Lodge\nWest Clara, NE 46598", item.Address, "item.Address");
+        Assert.AreEqual("Kuhnberg", item.City, "item.City");
+        Assert.AreEqual("ID", item.State, "item.State");
+        Assert.AreEqual("French Guiana", item.Country, "item.Country");
+        Assert.AreEqual("19022-7426", item.Zip, "item.Zip");
+        Assert.AreEqual("bgoyette@example.net", item.Email, "item.Email");
+        Assert.IsNotNull(item.Department, "item.Department");
+        Assert.AreEqual(1, item.Department.Id, "item.Department.Id");
+        Assert.AreEqual("Human Resources", item.Department.Name, "item.Department.Name");
+        Assert.IsNull(item.Location, "item.Location");
+        Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
     }
 
     [TestMethod]
@@ -49,10 +89,30 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
 
         Assert.IsNotNull(item);
         Assert.AreEqual(userId, item.Id, "item.Id");
+        Assert.AreEqual("https://develop.snipeitapp.com/uploads/default.png", item.Avatar, "item.Avatar");
         Assert.AreEqual(userName, item.Name, "item.Name");
         Assert.AreEqual("Demo", item.FirstName, "item.FirstName");
         Assert.AreEqual("Account", item.LastName, "item.LastName");
         Assert.AreEqual("admin", item.Username, "item.Username");
+        Assert.AreEqual(false, item.Remote, "item.Remote");
+        Assert.AreEqual("en-US", item.Locale, "item.Locale");
+        Assert.AreEqual("32200", item.EmployeeNum, "item.EmployeeNum");
+        Assert.IsNull(item.Manager, "item.Manager");
+        Assert.AreEqual("Athletic Trainer", item.Jobtitle, "item.Jobtitle");
+        Assert.AreEqual(false, item.Vip, "item.Vip");
+        Assert.IsNull(item.Phone, "item.Phone");
+        Assert.IsNull(item.Website, "item.Website");
+        Assert.AreEqual("10832 Carter Lodge\nWest Clara, NE 46598", item.Address, "item.Address");
+        Assert.AreEqual("Kuhnberg", item.City, "item.City");
+        Assert.AreEqual("ID", item.State, "item.State");
+        Assert.AreEqual("French Guiana", item.Country, "item.Country");
+        Assert.AreEqual("19022-7426", item.Zip, "item.Zip");
+        Assert.AreEqual("bgoyette@example.net", item.Email, "item.Email");
+        Assert.IsNotNull(item.Department, "item.Department");
+        Assert.AreEqual(1, item.Department.Id, "item.Department.Id");
+        Assert.AreEqual("Human Resources", item.Department.Name, "item.Department.Name");
+        Assert.IsNull(item.Location, "item.Location");
+        Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
     }
 
     [TestMethod]
