@@ -31,9 +31,9 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
         Assert.IsNull(item.CreatedBy, "item.CreatedBy");
         Assert.AreEqual("edftgyhjkl", item.Notes, "item.Notes");
         Assert.IsNotNull(item.CreatedAt, "item.CreatedAt");
-        Assert.AreEqual("2025-02-27", item.CreatedAt.Value.ToString("yyyy-MM-dd"), "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-27", item.CreatedAt, "item.CreatedAt");
         Assert.IsNotNull(item.UpdatedAt, "item.UpdatedAt");
-        Assert.AreEqual("2025-03-19", item.UpdatedAt.Value.ToString("yyyy-MM-dd"), "item.UpdatedAt");
+        DateTimeAssert.AreEqual("2025-03-19", item.UpdatedAt, "item.UpdatedAt");
         Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
         Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
         Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");

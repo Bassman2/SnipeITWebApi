@@ -1,4 +1,6 @@
-﻿namespace SnipeITWebApiUnitTest;
+﻿using System.Xml.Linq;
+
+namespace SnipeITWebApiUnitTest;
 
 [TestClass]
 public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
@@ -15,50 +17,27 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
-        var item = list.FirstOrDefault(i => i.Name == "Surface");
+        var item = list.FirstOrDefault(i => i.Id == modelId);
         Assert.IsNotNull(item);
-        Assert.AreEqual(3, item.Id, nameof(item.Id));
-        Assert.AreEqual("Surface", item.Name, nameof(item.Name));
-
-        Assert.IsNotNull(item.Manufacturer);
-        Assert.AreEqual(2, item.Manufacturer.Id, "Manufacturer.Id");
-        Assert.AreEqual("Microsoft", item.Manufacturer.Name, "Manufacturer.Name");
-
-        Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, nameof(item.Image));
-
-        //Assert.AreEqual("https://support.apple.com", item.SupportUrl, nameof(item.SupportUrl));
-        //Assert.AreEqual("https://checkcoverage.apple.com", item.WarrantyLookupUrl, nameof(item.WarrantyLookupUrl));
-        //Assert.AreEqual("+12725858512", item.SupportPhone, nameof(item.SupportPhone));
-        //Assert.AreEqual("marlee46@example.com", item.SupportEmail, nameof(item.SupportEmail));
-
-        //Assert.AreNotEqual(0, item.AssetsCount, nameof(item.AssetsCount));
-        //Assert.AreEqual(0, item.LicensesCount, nameof(item.LicensesCount));
-        //Assert.AreEqual(0, item.ConsumablesCount, nameof(item.ConsumablesCount));
-        //Assert.AreEqual(0, item.AccessoriesCount, nameof(item.AccessoriesCount));
-        //Assert.AreEqual(0, item.ComponentsCount, nameof(item.ComponentsCount));
-        //Assert.AreEqual("Created by DB seeder", item.Notes, nameof(item.Notes));
-
-        ////Assert.IsNotNull(item.CreatedBy, nameof(item.CreatedBy));
-        ////Assert.AreEqual(1, item.CreatedBy.Id, "CreatedBy.Id");
-        ////Assert.AreEqual("Alf Shumway", item.CreatedBy.Name, "CreatedBy.Name");
-
-        ////Assert.IsNotNull(item.CreatedAt, nameof(item.CreatedAt));
-        ////Assert.IsNull(item.CreatedAt.Date, "CreatedAt.Date");
-        ////Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.CreatedAt.Formatted, "CreatedAt.Formatted");
-
-        ////Assert.IsNotNull(item.UpdatedAt);
-        ////Assert.IsNull(item.UpdatedAt.Date, "UpdatedAt.Date");
-        ////Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.UpdatedAt.Formatted, "UpdatedAt.Formatted");
-
-        //Assert.IsNull(item.DeletedAt, nameof(item.DeletedAt));
-        ////Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Date, "DeletedAt.Date");
-        ////Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Formatted, "DeletedAt.Formatted");
-
-        //Assert.IsNotNull(item.AvailableActions, nameof(item.AvailableActions));
-        //Assert.AreEqual(true, item.AvailableActions.Update, "AvailableActions.Update");
-        //Assert.AreEqual(false, item.AvailableActions.Restore, "AvailableActions.Restore");
-        //Assert.AreEqual(false, item.AvailableActions.Delete, "AvailableActions.Delete");
-
+        Assert.AreEqual(modelId, item.Id, "item.Id");
+        Assert.AreEqual(modelName, item.Name, "item.Name");
+        Assert.AreEqual(new NamedItem(2, "Microsoft"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, "item.Image");
+        Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(51, item.Remaining, "item.Remaining");
+        Assert.AreEqual(new NamedItem(1, "Computer Depreciation"), item.Depreciation, "item.Depreciation");
+        Assert.AreEqual(51, item.AssetsCount, "item.AssetsCount");
+        Assert.AreEqual(new NamedItem(1, "Laptops"), item.Category, "item.Category");
+        Assert.AreEqual(new NamedItem(1, "test"), item.Fieldset, "item.Fieldset");
+        Assert.AreEqual("36 months", item.Eol, "item.Eol");
+        Assert.AreEqual(false, item.Requestable, "item.Requestable");
+        Assert.AreEqual("Created by demo seeder", item.Notes, "item.Notes");
+        Assert.AreEqual(new NamedItem(1, "Demo Account"), item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual("2025-02-20", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-20", item.UpdatedAt, "item.UpdatedAt");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
     [TestMethod]
@@ -66,51 +45,28 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        var item = await snipeIT.GetModelAsync(3);
+        var item = await snipeIT.GetModelAsync(modelId);
 
         Assert.IsNotNull(item);
-        Assert.AreEqual(3, item.Id, nameof(item.Id));
-        Assert.AreEqual("Surface", item.Name, nameof(item.Name));
-
-        Assert.IsNotNull(item.Manufacturer);
-        Assert.AreEqual(2, item.Manufacturer.Id, "Manufacturer.Id");
-        Assert.AreEqual("Microsoft", item.Manufacturer.Name, "Manufacturer.Name");
-
-        Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, nameof(item.Image));
-
-        //Assert.AreEqual("https://support.apple.com", item.SupportUrl, nameof(item.SupportUrl));
-        //Assert.AreEqual("https://checkcoverage.apple.com", item.WarrantyLookupUrl, nameof(item.WarrantyLookupUrl));
-        //Assert.AreEqual("+12725858512", item.SupportPhone, nameof(item.SupportPhone));
-        //Assert.AreEqual("marlee46@example.com", item.SupportEmail, nameof(item.SupportEmail));
-
-        //Assert.AreNotEqual(0, item.AssetsCount, nameof(item.AssetsCount));
-        //Assert.AreEqual(0, item.LicensesCount, nameof(item.LicensesCount));
-        //Assert.AreEqual(0, item.ConsumablesCount, nameof(item.ConsumablesCount));
-        //Assert.AreEqual(0, item.AccessoriesCount, nameof(item.AccessoriesCount));
-        //Assert.AreEqual(0, item.ComponentsCount, nameof(item.ComponentsCount));
-        //Assert.AreEqual("Created by DB seeder", item.Notes, nameof(item.Notes));
-
-        //Assert.IsNull(item.CreatedBy, nameof(item.CreatedBy));
-        //Assert.AreEqual(1, item.CreatedBy.Id, "CreatedBy.Id");
-        //Assert.AreEqual("Alf Shumway", item.CreatedBy.Name, "CreatedBy.Name");
-
-        //Assert.IsNull(item.CreatedAt, nameof(item.CreatedAt));
-        //Assert.IsNull(item.CreatedAt.Date, "CreatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.CreatedAt.Formatted, "CreatedAt.Formatted");
-
-        //Assert.IsNotNull(item.UpdatedAt);
-        //Assert.IsNull(item.UpdatedAt.Date, "UpdatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", item.UpdatedAt.Formatted, "UpdatedAt.Formatted");
-
-        //Assert.IsNull(item.DeletedAt, nameof(item.DeletedAt));
-        //Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Date, "DeletedAt.Date");
-        //Assert.AreEqual("2021-09-29 00:00:00", item.DeletedAt.Formatted, "DeletedAt.Formatted");
-
-        //Assert.IsNotNull(item.AvailableActions, nameof(item.AvailableActions));
-        //Assert.AreEqual(true, item.AvailableActions.Update, "AvailableActions.Update");
-        //Assert.AreEqual(false, item.AvailableActions.Restore, "AvailableActions.Restore");
-        //Assert.AreEqual(false, item.AvailableActions.Delete, "AvailableActions.Delete");
-
+        Assert.AreEqual(modelId, item.Id, "item.Id");
+        Assert.AreEqual(modelName, item.Name, "item.Name");
+        Assert.AreEqual(new NamedItem(2, "Microsoft"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, "item.Image");
+        Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(51, item.Remaining, "item.Remaining");
+        Assert.AreEqual(new NamedItem(1, "Computer Depreciation"), item.Depreciation, "item.Depreciation");
+        Assert.AreEqual(51, item.AssetsCount, "item.AssetsCount");
+        Assert.AreEqual(new NamedItem(1, "Laptops"), item.Category, "item.Category");
+        Assert.AreEqual(new NamedItem(1, "test"), item.Fieldset, "item.Fieldset");
+        Assert.AreEqual("36 months", item.Eol, "item.Eol");
+        Assert.AreEqual(false, item.Requestable, "item.Requestable");
+        Assert.AreEqual("Created by demo seeder", item.Notes, "item.Notes");
+        Assert.AreEqual(new NamedItem(1, "Demo Account"), item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual("2025-02-20", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-20", item.UpdatedAt, "item.UpdatedAt");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
     [TestMethod]
@@ -118,10 +74,14 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        string name = Guid.NewGuid().ToString();
-        var create = new Model()
+        string createName = Guid.NewGuid().ToString();
+        string updateName = Guid.NewGuid().ToString();
+        string patchName = Guid.NewGuid().ToString();
+
+        var create = await snipeIT.CreateModelAsync(new Model()
         {
-            Name = name,
+            Name = createName,
+            Category = categoryId,
             //Url = "https://test.com",
             //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
             //SupportUrl = "https://support.test.com",
@@ -129,34 +89,55 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
             //SupportPhone = "+12725858512",
             //SupportEmail = "unknown@microsoft.com",
             //Notes = "Dummy Note"
-        };
+        });
+        Assert.IsNotNull(create);
+        Assert.IsTrue(create.Id > 0, "create.Id");
+        int id = create.Id;
 
+        var update = await snipeIT.UpdateModelAsync(id, new()
+        {
+            Name = updateName,
+            Category = categoryId,
+            //Phone = phoneUpdate,
+            //Fax = faxUpdate,
+            //Email = emailUpdate,
+            ////Image = imageUpdate,
+            Notes = notesUpdate,
 
-        var item = await snipeIT.CreateModelAsync(create);
-        Assert.IsNotNull(item);
+        });
+        Assert.IsNotNull(update);
 
-        await snipeIT.DeleteModelAsync(item.Id);
+        var patch = await snipeIT.PatchModelAsync(id, new()
+        {
+            Name = patchName,
+            Category = categoryId,
+            //Phone = phonePatch,
+            //Fax = faxPatch,
+            //Email = emailPatch,
+            //Image = imagePatch,
+            Notes = notesPatch,
 
+        });
+        Assert.IsNotNull(patch);
 
-        var del = await snipeIT.GetModelAsync(item.Id);
+        await snipeIT.DeleteModelAsync(id);
 
-        Assert.AreNotEqual(0, item.Id, nameof(item.Id));
-        Assert.AreEqual(name, item.Name, nameof(item.Name));
+        var del = await snipeIT.GetModelAsync(id);
+        
+        Assert.AreEqual(id, create.Id, "create.id");
+        Assert.AreEqual(createName, create.Name, "create.Name");
+        //Assert.AreEqual(new NamedItem(2, ""), create.Manufacturer, "create.Manufacturer");
+        Assert.AreEqual(null, create.Image, "create.Image");
 
-        Assert.IsNotNull(item.Manufacturer);
-        Assert.AreEqual(2, item.Manufacturer.Id, "Manufacturer.Id");
-        Assert.AreEqual("", item.Manufacturer.Name, "Manufacturer.Name");
+        Assert.AreEqual(id, update.Id, "update.id");
+        Assert.AreEqual(updateName, update.Name, "update.Name");
+        //Assert.AreEqual(new NamedItem(2, ""), update.Manufacturer, "update.Manufacturer");
+        Assert.AreEqual(null, update.Image, "update.Image");
 
-        Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", item.Image, nameof(item.Image));
-
-
-        //Assert.AreEqual("https://test.com", item.Url, nameof(item.Url));
-        ////Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", item.Image, nameof(item.Image));
-        //Assert.AreEqual("https://support.test.com", item.SupportUrl, nameof(item.SupportUrl));
-        //Assert.AreEqual("https://checkcoverage.test.com", item.WarrantyLookupUrl, nameof(item.WarrantyLookupUrl));
-        //Assert.AreEqual("+12725858512", item.SupportPhone, nameof(item.SupportPhone));
-        //Assert.AreEqual("unknown@microsoft.com", item.SupportEmail, nameof(item.SupportEmail));
-        //Assert.AreEqual("Dummy Note", item.Notes, nameof(item.Notes));
+        Assert.AreEqual(id, patch.Id, "patch.id");
+        Assert.AreEqual(patchName, patch.Name, "patch.Name");
+        //Assert.AreEqual(new NamedItem(2, ""), patch.Manufacturer, "patch.Manufacturer");
+        Assert.AreEqual(null, patch.Image, "patch.Image");
     }
 
     [TestMethod]
@@ -164,10 +145,10 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-
         var create = new Model()
         {
-            Name = "Surface",
+            Name = modelName,
+            Category = categoryId
         };
 
         await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateModelAsync(create));

@@ -34,22 +34,10 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(0, item.AccessoriesCount, nameof(item.AccessoriesCount));
         Assert.AreEqual(0, item.ComponentsCount, nameof(item.ComponentsCount));
         Assert.AreEqual("Created by DB seeder", item.Notes, nameof(item.Notes));
-
-        //Assert.IsNotNull(create.CreatedBy, nameof(create.CreatedBy));
-        //Assert.AreEqual(1, create.CreatedBy.Id, "CreatedBy.Id");
-        //Assert.AreEqual("Alf Shumway", create.CreatedBy.Name, "CreatedBy.Name");
-
-        //Assert.IsNotNull(create.CreatedAt, nameof(create.CreatedAt));
-        //Assert.IsNull(create.CreatedAt.Date, "CreatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.CreatedAt.Formatted, "CreatedAt.Formatted");
-
-        //Assert.IsNotNull(create.UpdatedAt);
-        //Assert.IsNull(create.UpdatedAt.Date, "UpdatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.UpdatedAt.Formatted, "UpdatedAt.Formatted");
-
-        Assert.IsNull(item.DeletedAt, nameof(item.DeletedAt));
-        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Date, "DeletedAt.Date");
-        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Formatted, "DeletedAt.Formatted");
+        Assert.AreEqual(new NamedItem(1, "Demo Account"), item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual("2025-02-20", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-20", item.UpdatedAt, "item.UpdatedAt");
+        DateTimeAssert.AreEqual(null, item.DeletedAt, "item.DeletedAt");
 
         Assert.IsNotNull(item.AvailableActions, nameof(item.AvailableActions));
         Assert.AreEqual(true, item.AvailableActions.Update, "AvailableActions.Update");
@@ -82,21 +70,10 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(0, item.ComponentsCount, nameof(item.ComponentsCount));
         Assert.AreEqual("Created by DB seeder", item.Notes, nameof(item.Notes));
 
-        //Assert.IsNull(create.CreatedBy, nameof(create.CreatedBy));
-        //Assert.AreEqual(1, create.CreatedBy.Id, "CreatedBy.Id");
-        //Assert.AreEqual("Alf Shumway", create.CreatedBy.Name, "CreatedBy.Name");
-
-        //Assert.IsNull(create.CreatedAt, nameof(create.CreatedAt));
-        //Assert.IsNull(create.CreatedAt.Date, "CreatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.CreatedAt.Formatted, "CreatedAt.Formatted");
-
-        //Assert.IsNotNull(create.UpdatedAt);
-        //Assert.IsNull(create.UpdatedAt.Date, "UpdatedAt.Date");
-        //Assert.AreEqual("Thu Feb 20, 2025 11:59AM", create.UpdatedAt.Formatted, "UpdatedAt.Formatted");
-
-        Assert.IsNull(item.DeletedAt, nameof(item.DeletedAt));
-        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Date, "DeletedAt.Date");
-        //Assert.AreEqual("2021-09-29 00:00:00", create.DeletedAt.Formatted, "DeletedAt.Formatted");
+        Assert.AreEqual(new NamedItem(1, "Demo Account"), item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual("2025-02-20", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-20", item.UpdatedAt, "item.UpdatedAt");
+        DateTimeAssert.AreEqual(null, item.DeletedAt, "item.DeletedAt");
 
         Assert.IsNotNull(item.AvailableActions, nameof(item.AvailableActions));
         Assert.AreEqual(true, item.AvailableActions.Update, "AvailableActions.Update");
@@ -179,7 +156,6 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
     public async Task TestMethodCreateDuplicateManufacturerAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
-
 
         var create = new Manufacturer()
         {

@@ -1,6 +1,4 @@
-﻿
-
-namespace SnipeITWebApi.Service.Converter;
+﻿namespace SnipeITWebApi.Service.Converter;
 
 internal class DateTimeJsonConverter : JsonConverter<DateTime?>
 {

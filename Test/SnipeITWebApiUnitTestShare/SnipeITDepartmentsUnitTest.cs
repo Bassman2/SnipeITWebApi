@@ -28,13 +28,8 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest
         Assert.IsNull(item.Location, "item.Location");
         Assert.IsTrue(item.UsersCount > 10, "item.UsersCount");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
-
-        Assert.IsNotNull(item.CreatedAt, "item.CreatedAt");
-        Assert.AreEqual("2025-02-20", item.CreatedAt.Value.ToString("yyyy-MM-dd"), "item.CreatedAt");
-
-        Assert.IsNotNull(item.UpdatedAt, "item.UpdatedAt");
-        Assert.AreEqual("2025-02-20", item.UpdatedAt.Value.ToString("yyyy-MM-dd"), "item.UpdatedAt");
-
+        DateTimeAssert.AreEqual("2025-02-20", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-20", item.UpdatedAt, "item.UpdatedAt");
         Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
         Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
         Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
@@ -58,13 +53,8 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest
         Assert.IsNull(item.Location, "item.Location");
         Assert.IsNull(item.UsersCount, "item.UsersCount");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
-
-        Assert.IsNotNull(item.CreatedAt, "item.CreatedAt");
-        Assert.AreEqual("2025-02-20", item.CreatedAt.Value.ToString("yyyy-MM-dd"), "item.CreatedAt");
-
-        Assert.IsNotNull(item.UpdatedAt, "item.UpdatedAt");
-        Assert.AreEqual("2025-02-20", item.UpdatedAt.Value.ToString("yyyy-MM-dd"), "item.UpdatedAt");
-
+        DateTimeAssert.AreEqual("2025-02-20", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-20", item.UpdatedAt, "item.UpdatedAt");
         Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
         Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
         Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");

@@ -38,9 +38,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("French Guiana", item.Country, "item.Country");
         Assert.AreEqual("19022-7426", item.Zip, "item.Zip");
         Assert.AreEqual("bgoyette@example.net", item.Email, "item.Email");
-        Assert.IsNotNull(item.Department, "item.Department");
-        Assert.AreEqual(1, item.Department.Id, "item.Department.Id");
-        Assert.AreEqual("Human Resources", item.Department.Name, "item.Department.Name");
+        Assert.AreEqual(new NamedItem(1, "Human Resources"), item.Department, "item.Department");
         Assert.IsNull(item.Location, "item.Location");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
     }
@@ -73,9 +71,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("French Guiana", item.Country, "item.Country");
         Assert.AreEqual("19022-7426", item.Zip, "item.Zip");
         Assert.AreEqual("bgoyette@example.net", item.Email, "item.Email");
-        Assert.IsNotNull(item.Department, "item.Department");
-        Assert.AreEqual(1, item.Department.Id, "item.Department.Id");
-        Assert.AreEqual("Human Resources", item.Department.Name, "item.Department.Name");
+        Assert.AreEqual(new NamedItem(1, "Human Resources"), item.Department, "item.Department");
         Assert.IsNull(item.Location, "item.Location");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
     }
@@ -108,9 +104,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("French Guiana", item.Country, "item.Country");
         Assert.AreEqual("19022-7426", item.Zip, "item.Zip");
         Assert.AreEqual("bgoyette@example.net", item.Email, "item.Email");
-        Assert.IsNotNull(item.Department, "item.Department");
-        Assert.AreEqual(1, item.Department.Id, "item.Department.Id");
-        Assert.AreEqual("Human Resources", item.Department.Name, "item.Department.Name");
+        Assert.AreEqual(new NamedItem(1, "Human Resources"), item.Department, "item.Department");
         Assert.IsNull(item.Location, "item.Location");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
     }

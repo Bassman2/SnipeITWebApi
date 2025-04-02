@@ -18,6 +18,6 @@ internal class HardwareModel
     public AssignedModel? AssignedTo { get; set; }
 
     [JsonPropertyName("purchase_date")]
-    [JsonConverter(typeof(JsonDateTimeConverter))]  
+    [JsonConverter(typeof(DateTimeJsonConverter))]  
     public DateTime? PurchaseDate { get; set; }
 }

@@ -9,12 +9,19 @@ public abstract class SnipeITBaseUnitTest
 
     protected const int notExistingId = 65000;
 
+    protected const int categoryId = 1;
+    protected const string categoryName = "Laptops";
+
     protected const int companyId = 10;
     protected const string companyName = "Google, inc.";
 
 
     protected const int departmentId = 1;
     protected const string departmentName = "Human Resources";
+
+    protected const int modelId = 3;
+    protected const string modelName = "Surface";
+
 
     protected const int userId = 1;
     protected const string userName = "Account Demo";
