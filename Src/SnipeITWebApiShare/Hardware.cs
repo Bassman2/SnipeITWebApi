@@ -4,11 +4,12 @@ public class Hardware
 {
     internal Hardware(HardwareModel model)
     {
+        Id = model.Id;
         Name = model.Name;
         Model = model.Model.CastModel<NamedItem>();
         Manufacturer = model.Manufacturer.CastModel<NamedItem>();
         Category = model.Category.CastModel<NamedItem>();
-        AssignedTo = model.AssignedTo.CastModel<Assigned>();
+        AssignedTo = model.AssignedTo.CastModel<NamedItem>();
         PurchaseDate = model.PurchaseDate;
     }
 
@@ -56,6 +57,7 @@ public class Hardware
             Name = Name,
         };
     }
+    public int Id { get; }
 
     public string? Name { get; }
 
@@ -65,7 +67,7 @@ public class Hardware
 
     public NamedItem? Category { get; }
 
-    public Assigned? AssignedTo { get; }
+    public NamedItem? AssignedTo { get; }
 
     public DateTime? PurchaseDate { get; }
 }

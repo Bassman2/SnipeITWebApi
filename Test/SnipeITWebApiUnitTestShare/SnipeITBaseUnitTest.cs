@@ -9,6 +9,9 @@ public abstract class SnipeITBaseUnitTest
 
     protected const int notExistingId = 65000;
 
+    protected const int hardwareId = 7;
+    protected const string hardwareName = "newasset1";
+    
     protected const int categoryId = 1;
     protected const string categoryName = "Laptops";
 
