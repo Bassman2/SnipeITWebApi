@@ -9,17 +9,23 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
+        int count = await snipeIT.GetNumberOfHardwaresAsync();
+
         var asyncList = snipeIT.GetHardwaresAsync();
 
         var list = await asyncList.ToListAsync();
+
+        Assert.AreEqual(count, list.Count, "list.Count");
+
+        var sort = list.OrderBy(i => i.Id).ToList();
 
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
         var item = list.FirstOrDefault(d => d.Id == hardwareId);
         Assert.IsNotNull(item);
-        Assert.AreEqual(departmentId, item.Id, "item.Id");
-        Assert.AreEqual(departmentName, item.Name, "item.Name");
+        Assert.AreEqual(hardwareId, item.Id, "item.Id");
+        Assert.AreEqual(hardwareName, item.Name, "item.Name");
         //Assert.IsNull(item.Phone, "item.Phone");
         //Assert.IsNull(item.Fax, "item.Fax");
         //Assert.IsNull(item.Image, "item.Image");

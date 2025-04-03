@@ -1,4 +1,6 @@
-﻿namespace SnipeITWebApi;
+﻿using System.Diagnostics;
+
+namespace SnipeITWebApi;
 
 public class SnipeIT : IDisposable
 {
@@ -25,15 +27,26 @@ public class SnipeIT : IDisposable
 
     #region Assets
 
+    public async Task<int> GetNumberOfHardwaresAsync(CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.GetNumberOfHardwaresAsync(cancellationToken);
+        return res;
+    }
+
     public async IAsyncEnumerable<Hardware> GetHardwaresAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
         var res = service.GetHardwaresAsync(cancellationToken);
+        int i = 0;
         await foreach (var item in res)
         {
+            i++;
             yield return item.CastModel<Hardware>()!;
         }
+        //Debug.WriteLine($"GetHardwaresAsync: {i}");
     }
 
     public async IAsyncEnumerable<Hardware> GetHardwaresByCategoryAsync(int category, [EnumeratorCancellation] CancellationToken cancellationToken = default)

@@ -1,4 +1,6 @@
-﻿namespace SnipeITWebApi.Service;
+﻿using System.Diagnostics;
+
+namespace SnipeITWebApi.Service;
 
 // https://snipe-it.readme.io/reference/api-overview
 
@@ -7,7 +9,7 @@
 internal class SnipeITService(Uri host, IAuthenticator? authenticator, string appName) 
     : JsonService(host, authenticator, appName, SourceGenerationContext.Default)
 {
-    private const int limit = 1000;
+    private const int limit = 500;
 
     protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
 
@@ -19,6 +21,16 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #region Assets
 
+    public async Task<int> GetNumberOfHardwaresAsync(CancellationToken cancellationToken)
+    {
+        WebServiceException.ThrowIfNotConnected(client);
+        var res = await GetFromJsonAsync<ListModel<HardwareModel>>("api/v1/hardware?limit=1&offset=0", cancellationToken);
+        if (res != null && res.Rows != null)
+        {
+            return res.Total;
+        }
+        return 0;
+    }
     public IAsyncEnumerable<HardwareModel> GetHardwaresAsync(CancellationToken cancellationToken)
     {
         var res = GetListAsync<HardwareModel>("api/v1/hardware", cancellationToken);
@@ -464,23 +476,33 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         ArgumentRequestUriException.ThrowIfNullOrWhiteSpace(requestUri, nameof(requestUri));
         WebServiceException.ThrowIfNotConnected(client);
 
-        int count = 1;
+        int total = 1;
         int offset = 0;
-        while (count > offset)
+        while (offset < total)
         {
             
-            //var res = await GetFromJsonAsync<ListModel<T>>($"{requestUri}limit={limit}&offset={offset}", cancellationToken);
             var res = await GetFromJsonAsync<ListModel<T>>(CombineUrl(requestUri, ("limit", limit), ("offset", offset)), cancellationToken, memberName);
             if (res != null && res.Rows != null)
             {
+
+                //Debug.WriteLine($"Offset {offset} Limit {limit} ListModel total {res.Total} rows {res.Rows.Count}");
+
                 foreach (var item in res.Rows)
                 {
                     yield return item;
                 }
+
+                total = res.Total;
+                offset += res.Rows.Count;
             }
-            count = res?.Total ?? 0;
-            offset += limit;
+            else
+            {
+                //Debug.WriteLine("Else");
+                break;
+            }
         }
+
+        //Debug.WriteLine("End");
     }
 
     private static void CheckResultForError<T>(ResultModel<T>? result)

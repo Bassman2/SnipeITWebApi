@@ -1,5 +1,8 @@
-﻿namespace SnipeITWebApi;
+﻿using System.Diagnostics;
 
+namespace SnipeITWebApi;
+
+[DebuggerDisplay("{Id} : {Name} : {AssetTag}")]
 public class Hardware
 {
     internal Hardware(HardwareModel model)
