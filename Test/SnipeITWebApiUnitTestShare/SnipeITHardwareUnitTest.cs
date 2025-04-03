@@ -3,7 +3,6 @@
 [TestClass]
 public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
 {
-
     [TestMethod]
     public async Task TestMethodGetHardwaresAsync()
     {

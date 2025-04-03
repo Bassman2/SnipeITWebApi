@@ -10,14 +10,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DateTimeAssert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITAccessoriesUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITCompaniesUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITComponentsUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITConsumablesUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITDepartmentsUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITBaseUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITFieldsetsUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITFieldsUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITGroupsUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITInternUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITHardwareUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITLicensesUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITLocationsUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITMaintenancesUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITManufacturersUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITModelsUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITCategoriesUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITStatusLabelsUnitTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeITSuppliersUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITUsersUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
   </ItemGroup>
