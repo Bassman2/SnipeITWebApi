@@ -19,13 +19,13 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #region Assets
 
-    public IAsyncEnumerable<HardwareModel> GetHardwareListAsync(CancellationToken cancellationToken)
+    public IAsyncEnumerable<HardwareModel> GetHardwaresAsync(CancellationToken cancellationToken)
     {
         var res = GetListAsync<HardwareModel>("api/v1/hardware", cancellationToken);
         return res;
     }
 
-    public IAsyncEnumerable<HardwareModel> GetHardwareListByCategoryAsync(int category, CancellationToken cancellationToken)
+    public IAsyncEnumerable<HardwareModel> GetHardwaresByCategoryAsync(int category, CancellationToken cancellationToken)
     {
         var res = GetListAsync<HardwareModel>(CombineUrl("api/v1/hardware", ("category_id", category)), cancellationToken);
         return res;

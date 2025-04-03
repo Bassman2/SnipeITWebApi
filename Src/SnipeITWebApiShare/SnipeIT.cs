@@ -25,23 +25,23 @@ public class SnipeIT : IDisposable
 
     #region Assets
 
-    public async IAsyncEnumerable<Hardware> GetHardwareListAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Hardware> GetHardwaresAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = service.GetHardwareListAsync(cancellationToken);
+        var res = service.GetHardwaresAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Hardware>()!;
         }
     }
 
-    public async IAsyncEnumerable<Hardware> GetHardwareListByCategoryAsync(int category, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Hardware> GetHardwaresByCategoryAsync(int category, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(category, 0, nameof(category));
 
-        var res = service.GetHardwareListByCategoryAsync(category, cancellationToken);
+        var res = service.GetHardwaresByCategoryAsync(category, cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Hardware>()!;

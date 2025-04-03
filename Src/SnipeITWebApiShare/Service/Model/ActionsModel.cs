@@ -2,6 +2,12 @@
 
 internal class ActionsModel
 {
+    [JsonPropertyName("checkout")]
+    public bool Checkout { get; set; }
+
+    [JsonPropertyName("checkin")]
+    public bool Checkin { get; set; }
+    
     [JsonPropertyName("update")]
     public bool Update { get; set; }
 

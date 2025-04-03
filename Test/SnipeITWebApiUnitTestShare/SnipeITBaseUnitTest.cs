@@ -7,16 +7,19 @@ public abstract class SnipeITBaseUnitTest
 
     protected const string appName = "UnitTest";
 
+    protected const string lastUpdate = "2025-04-03";
+
+
     protected const int notExistingId = 65000;
 
-    protected const int hardwareId = 7;
-    protected const string hardwareName = "newasset1";
+    protected const int hardwareId = 1;
+    protected const string hardwareName = "";
     
     protected const int categoryId = 1;
     protected const string categoryName = "Laptops";
 
-    protected const int companyId = 10;
-    protected const string companyName = "Google, inc.";
+    protected const int companyId = 1;
+    protected const string companyName = "Quigley-Luettgen";
 
 
     protected const int departmentId = 1;
@@ -25,9 +28,12 @@ public abstract class SnipeITBaseUnitTest
     protected const int modelId = 3;
     protected const string modelName = "Surface";
 
+    protected const int manufacturerId = 1;
+    protected const string manufacturerName = "Apple";
+
 
     protected const int userId = 1;
-    protected const string userName = "Account Demo";
+    protected const string userName = "User Admin";
 
 
     protected const string phoneCreate = "+11114711";
@@ -66,4 +72,14 @@ public abstract class SnipeITBaseUnitTest
     protected const string passwordUpdate = "5~g=?=m7JPDg";
     protected const string passwordPatch = "py4Nx/r$!,zQ";
 
+    protected const string notes = "Created by DB seeder";
+    protected static readonly NamedItem adminUser = new(1, "Admin User");
+
+    protected const string adminAvatar = "https://develop.snipeitapp.com/uploads/avatars/1.jpg";
+    protected const string adminAddress = "87374 Cummings Centers\nNorth Camron, AZ 89719-4068";
+    protected const string adminCity = "East Hectorfurt";
+    protected const string adminState = "MN";
+    protected const string adminCountry = "Saint Pierre and Miquelon";
+    protected const string adminZip = "04529-0110";
+    protected const string adminEmail = "herzog.earl@example.org";
 }

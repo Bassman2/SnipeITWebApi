@@ -34,7 +34,7 @@ internal class HardwareModel
     public DateTime? AssetEolDate { get; set; }
 
     [JsonPropertyName("status_label")]
-    public NamedItemModel? status_label { get; set; }
+    public NamedItemModel? StatusLabel { get; set; }
 
     [JsonPropertyName("category")]
     public NamedItemModel? Category { get; set; }
@@ -118,4 +118,32 @@ internal class HardwareModel
     public DateTime? LastCheckin { get; set; }
 
     // TODO
+
+    [JsonPropertyName("expected_checkin")]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? ExpectedCheckin { get; set; }
+
+    [JsonPropertyName("purchase_cost")]
+    public string? PurchaseCost { get; set; }
+
+    [JsonPropertyName("checkin_counter")]
+    public int? CheckinCounter { get; set; }
+
+    [JsonPropertyName("checkout_counter")]
+    public int? CheckoutCounter { get; set; }
+
+    [JsonPropertyName("requests_counter")]
+    public int? RequestsCounter { get; set; }
+
+    [JsonPropertyName("user_can_checkout")]
+    public bool? UserCanCheckout { get; set; }
+
+    [JsonPropertyName("book_value")]
+    public string? BookValue { get; set; }
+
+    [JsonPropertyName("custom_fields")]
+    public Dictionary<string, CustomFieldModel>? CustomFields { get; set; }
+
+    [JsonPropertyName("available_actions")]
+    public ActionsModel? AvailableActions { get; set; }
 }

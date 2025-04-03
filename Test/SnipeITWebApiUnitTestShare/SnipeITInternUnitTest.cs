@@ -9,7 +9,7 @@ public class SnipeITInternUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(internalStoreKey, appName);
 
-        var asyncList = snipeIT.GetHardwareListAsync();
+        var asyncList = snipeIT.GetHardwaresAsync();
 
         var list = await asyncList.ToListAsync();
 
@@ -24,7 +24,7 @@ public class SnipeITInternUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(internalStoreKey, appName);
 
-        var asyncList = snipeIT.GetHardwareListByCategoryAsync(2);
+        var asyncList = snipeIT.GetHardwaresByCategoryAsync(2);
 
         var list = await asyncList.ToListAsync();
 
