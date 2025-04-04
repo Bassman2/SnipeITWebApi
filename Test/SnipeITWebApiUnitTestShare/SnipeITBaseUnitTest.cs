@@ -19,31 +19,44 @@ public abstract class SnipeITBaseUnitTest
     protected const int categoryId = 1;
     protected const string categoryName = "Laptops";
 
-    protected const int componentId = 1;
-    protected const string componentName = "Crucial 4GB DDR3L-1600 SODIMM";
-
-
-
-
-
-
-    protected const int hardwareId = 1;
-    protected const string hardwareName = "";
-    
-
     protected const int companyId = 1;
     protected const string companyName = "Quigley-Luettgen";
 
+    protected const int componentId = 1;
+    protected const string componentName = "Crucial 4GB DDR3L-1600 SODIMM";
+
+    protected const int consumableId = 1;
+    protected const string consumableName = "Cardstock (White)";
 
     protected const int departmentId = 1;
     protected const string departmentName = "Human Resources";
 
-    protected const int modelId = 3;
-    protected const string modelName = "Surface";
+    protected const int groupId = 1;
+    protected const string groupName = "hoge";
+
+    protected const int hardwareId = 1;
+    protected const string hardwareName = "";
+
+    protected const int licenseId = 1;
+    protected const string licenseName = "Photoshop";
+
+    protected const int locationId = 1;
+    protected const string locationName = "East Alex";
+
+    protected const int maintenanceId = 1;
+    protected const string? maintenanceName = null;
 
     protected const int manufacturerId = 1;
     protected const string manufacturerName = "Apple";
 
+    protected const int modelId = 3;
+    protected const string modelName = "Surface";
+
+    protected const int statusLabelId = 1;
+    protected const string statusLabelName = "Ready to Deploy";
+
+    protected const int supplierId = 1;
+    protected const string supplierName = "Bernhard PLC";
 
     protected const int userId = 1;
     protected const string userName = "User Admin";

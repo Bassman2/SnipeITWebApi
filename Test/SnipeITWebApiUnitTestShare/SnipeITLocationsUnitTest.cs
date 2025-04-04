@@ -16,9 +16,9 @@ public class SnipeITLocationsUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
-        var item = list.FirstOrDefault(d => d.Id == hardwareId);
+        var item = list.FirstOrDefault(d => d.Id == locationId);
         Assert.IsNotNull(item);
-        Assert.AreEqual(hardwareId, item.Id, "item.Id");
-        Assert.AreEqual(hardwareName, item.Name, "item.Name");
+        Assert.AreEqual(locationId, item.Id, "item.Id");
+        Assert.AreEqual(locationName, item.Name, "item.Name");
     }
 }

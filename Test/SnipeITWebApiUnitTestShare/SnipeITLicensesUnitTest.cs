@@ -15,9 +15,9 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
-        var item = list.FirstOrDefault(d => d.Id == hardwareId);
+        var item = list.FirstOrDefault(d => d.Id == licenseId);
         Assert.IsNotNull(item);
-        Assert.AreEqual(hardwareId, item.Id, "item.Id");
-        Assert.AreEqual(hardwareName, item.Name, "item.Name");
+        Assert.AreEqual(licenseId, item.Id, "item.Id");
+        Assert.AreEqual(licenseName, item.Name, "item.Name");
     }
 }

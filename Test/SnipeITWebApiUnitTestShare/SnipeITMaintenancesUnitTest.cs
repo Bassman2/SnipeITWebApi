@@ -17,9 +17,9 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
-        var item = list.FirstOrDefault(d => d.Id == hardwareId);
+        var item = list.FirstOrDefault(d => d.Id == maintenanceId);
         Assert.IsNotNull(item);
-        Assert.AreEqual(hardwareId, item.Id, "item.Id");
-        Assert.AreEqual(hardwareName, item.Name, "item.Name");
+        Assert.AreEqual(maintenanceId, item.Id, "item.Id");
+        Assert.AreEqual(maintenanceName, item.Name, "item.Name");
     }
 }

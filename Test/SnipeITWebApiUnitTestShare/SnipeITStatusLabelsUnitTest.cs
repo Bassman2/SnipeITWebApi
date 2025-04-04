@@ -15,10 +15,10 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
-        var item = list.FirstOrDefault(d => d.Id == hardwareId);
+        var item = list.FirstOrDefault(d => d.Id == statusLabelId);
         Assert.IsNotNull(item);
-        Assert.AreEqual(hardwareId, item.Id, "item.Id");
-        Assert.AreEqual(hardwareName, item.Name, "item.Name");
+        Assert.AreEqual(statusLabelId, item.Id, "item.Id");
+        Assert.AreEqual(statusLabelName, item.Name, "item.Name");
       
     }
 }
