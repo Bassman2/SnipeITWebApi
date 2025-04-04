@@ -521,7 +521,7 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #region Fields
 
-    public IAsyncEnumerable<FieldModel> GetFieldAsync(CancellationToken cancellationToken)
+    public IAsyncEnumerable<FieldModel> GetFieldsAsync(CancellationToken cancellationToken)
     {
         var res = GetListAsync<FieldModel>("api/v1/fields", cancellationToken);
         return res;

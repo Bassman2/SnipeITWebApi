@@ -14,9 +14,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Assigned.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Company.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Component.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Consumable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomField.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Department.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Field.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fieldset.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Group.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hardware.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)License.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Location.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Maintenance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NamedItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Manufacturer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model.cs" />
@@ -51,6 +59,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\UserModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\SnipeITService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeIT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatusLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Supplier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Usings.cs" />
   </ItemGroup>
