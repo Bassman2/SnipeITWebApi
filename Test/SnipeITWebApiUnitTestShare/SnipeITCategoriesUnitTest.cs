@@ -16,10 +16,10 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(list);
         Assert.IsNotEmpty(list);
 
-        var item = list.FirstOrDefault();
+        var item = list.FirstOrDefault(i => i.Id == categoryId);
         Assert.IsNotNull(item);
-        Assert.AreEqual(1, item.Id, nameof(item.Id));
-        Assert.AreEqual("Laptops", item.Name, nameof(item.Name));
+        Assert.AreEqual(categoryId, item.Id, nameof(item.Id));
+        Assert.AreEqual(categoryName, item.Name, nameof(item.Name));
 
 
     }

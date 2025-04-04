@@ -12,11 +12,24 @@ public abstract class SnipeITBaseUnitTest
 
     protected const int notExistingId = 65000;
 
+
+    protected const int accessorId = 1;
+    protected const string accessorName = "USB Keyboard";
+
+    protected const int categoryId = 1;
+    protected const string categoryName = "Laptops";
+
+    protected const int componentId = 1;
+    protected const string componentName = "Crucial 4GB DDR3L-1600 SODIMM";
+
+
+
+
+
+
     protected const int hardwareId = 1;
     protected const string hardwareName = "";
     
-    protected const int categoryId = 1;
-    protected const string categoryName = "Laptops";
 
     protected const int companyId = 1;
     protected const string companyName = "Quigley-Luettgen";
