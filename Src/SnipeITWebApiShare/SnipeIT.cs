@@ -125,6 +125,64 @@ public class SnipeIT : IDisposable
 
     #endregion
 
+    #region Accessories
+
+    public async IAsyncEnumerable<Accessory> GetAccessoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = service.GetAccessoriesAsync(cancellationToken);
+        await foreach (var item in res)
+        {
+            yield return item.CastModel<Accessory>()!;
+        }
+    }
+
+    public async Task<Accessory?> GetAccessoryAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.GetAccessoryAsync(id, cancellationToken);
+        return res.CastModel<Accessory>();
+    }
+
+    public async Task<Accessory?> CreateAccessoryAsync(Accessory item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = await service.CreateAccessoryAsync(item.ToCreate(), cancellationToken);
+        return res.CastModel<Accessory>();
+    }
+
+    public async Task<Accessory?> UpdateAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.UpdateAccessoryAsync(id, item.ToUpdate(), cancellationToken);
+        return res.CastModel<Accessory>();
+    }
+
+    public async Task<Accessory?> PatchAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.PatchAccessoryAsync(id, item.ToPatch(), cancellationToken);
+        return res.CastModel<Accessory>();
+    }
+
+    public async Task<Accessory?> DeleteAccessoryAsync(int id, CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+
+        var res = await service.DeleteAccessoryAsync(id, cancellationToken);
+        return res.CastModel<Accessory>();
+    }
+
+    #endregion
+
     #region Categories
 
     public async IAsyncEnumerable<Category> GetCategoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)

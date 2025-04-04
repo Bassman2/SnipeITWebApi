@@ -9,6 +9,7 @@
     <Import_RootNamespace>SnipeITWebApi</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Accessory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Actions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assigned.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
@@ -23,12 +24,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Enums\Status.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AccessoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ActionsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AssignedModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CategoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CompanyModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ComponentModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ConsumableModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CustomFieldModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\DepartmentModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\FieldModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\FieldsetModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\GroupModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\LicenseModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\LocationModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\MaintenanceModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ModelModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ResultModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ListModel.cs" />
@@ -36,6 +46,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\NamedItemModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ManufacturerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SourceGenerationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\StatusLabelModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SupplierModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\UserModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\SnipeITService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeIT.cs" />
