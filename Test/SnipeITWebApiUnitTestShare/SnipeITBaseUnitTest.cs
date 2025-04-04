@@ -31,6 +31,12 @@ public abstract class SnipeITBaseUnitTest
     protected const int departmentId = 1;
     protected const string departmentName = "Human Resources";
 
+    protected const int fieldsetId = 1;
+    protected const string fieldsetName = "Mobile Devices";
+
+    protected const int fieldId = 1;
+    protected const string fieldName = "IMEI";
+
     protected const int groupId = 1;
     protected const string groupName = "hoge";
 

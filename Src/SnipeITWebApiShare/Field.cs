@@ -78,7 +78,7 @@ public class Field
     public string? DbColumnName { get; set; }
     public string? Format { get; set; }
     public string? FieldValues { get; set; }
-    public string? FieldValuesArray { get; set; }
+    public List<string>? FieldValuesArray { get; set; }
     public string? Type { get; set; }
     public bool? Required { get; set; }
     public bool? DisplayInUserView { get; set; }

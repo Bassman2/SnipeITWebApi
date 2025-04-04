@@ -18,7 +18,7 @@ internal class FieldModel
     public string? FieldValues { get; set; }
 
     [JsonPropertyName("field_values_array")]
-    public string? FieldValuesArray { get; set; }
+    public List<string>? FieldValuesArray { get; set; }
 
     [JsonPropertyName("type")]
     public string? Type { get; set; }
