@@ -19,4 +19,7 @@ internal class ActionsModel
 
     [JsonPropertyName("clone")]
     public bool Clone { get; set; }
+
+    [JsonPropertyName("bulk_selectable")]
+    public ActionsModel? BulkSelectable { get; set; }
 }

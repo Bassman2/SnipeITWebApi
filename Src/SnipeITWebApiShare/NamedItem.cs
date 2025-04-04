@@ -1,7 +1,4 @@
-﻿
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace SnipeITWebApi;
+﻿namespace SnipeITWebApi;
 
 public class NamedItem 
 {
@@ -17,14 +14,38 @@ public class NamedItem
         Name = model.Name;
     }
 
-    public int Id { get; }
+    internal NamedItemModel ToCreate()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
 
+    internal NamedItemModel ToUpdate()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
+
+    internal NamedItemModel ToPatch()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Name = Name,
+        };
+    }
+
+    public int Id { get; }
     public string? Name { get; }
 
     public override string ToString() => $"{Id} : {Name}";
-
     public override bool Equals(object? obj) => obj is NamedItem item && Id == item.Id && Name == item.Name;
-
     public override int GetHashCode() => base.GetHashCode();
 
     public static implicit operator NamedItem(int id) => new(id);
