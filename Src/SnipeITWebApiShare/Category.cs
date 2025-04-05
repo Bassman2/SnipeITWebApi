@@ -31,10 +31,12 @@ public class Category
 
     internal CategoryModel ToCreate()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNull(CategoryType, nameof(CategoryType));
         return new()
         {
             Name = Name,
+            CategoryType = CategoryType,
             //Url = Url,
             //Image = Image,
             //SupportUrl = SupportUrl,
@@ -46,7 +48,7 @@ public class Category
             //ConsumablesCount = ConsumablesCount,
             //AccessoriesCount = AccessoriesCount,
             //ComponentsCount = ComponentsCount,
-            //Notes = Notes,
+            Notes = Notes,
             //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
             //CreatedAt = model.CreatedAt.CastModel<DateItem>();
             //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
@@ -72,7 +74,7 @@ public class Category
             //ConsumablesCount = ConsumablesCount,
             //AccessoriesCount = AccessoriesCount,
             //ComponentsCount = ComponentsCount,
-            //Notes = Notes,
+            Notes = Notes,
             //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
             //CreatedAt = model.CreatedAt.CastModel<DateItem>();
             //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
@@ -98,7 +100,7 @@ public class Category
             //ConsumablesCount = ConsumablesCount,
             //AccessoriesCount = AccessoriesCount,
             //ComponentsCount = ComponentsCount,
-            //Notes = Notes,
+            Notes = Notes,
             //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
             //CreatedAt = model.CreatedAt.CastModel<DateItem>();
             //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
@@ -113,7 +115,7 @@ public class Category
 
     public string? Image { get; set; }
 
-    public string? CategoryType { get; set; }
+    public CategoryType? CategoryType { get; set; }
 
     public bool HasEula { get; set; }
 
@@ -121,7 +123,7 @@ public class Category
 
     public string? Eula { get; set; }
 
-    public bool CheckinEmail { get; set; }
+    public bool? CheckinEmail { get; set; }
 
     public bool RequireAcceptance { get; set; }
 

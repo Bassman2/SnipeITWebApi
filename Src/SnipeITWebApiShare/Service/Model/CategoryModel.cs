@@ -12,7 +12,7 @@ internal class CategoryModel
     public string? Image { get; set; }
 
     [JsonPropertyName("category_type")]
-    public string? CategoryType { get; set; }
+    public CategoryType? CategoryType { get; set; }
 
     [JsonPropertyName("has_eula")]
     public bool HasEula { get; set; }
@@ -24,7 +24,8 @@ internal class CategoryModel
     public string? Eula { get; set; }
 
     [JsonPropertyName("checkin_email")]
-    public bool CheckinEmail { get; set; }
+    [JsonConverter(typeof(BoolJsonConverter))]
+    public bool? CheckinEmail { get; set; }
 
     [JsonPropertyName("require_acceptance")]
     public bool RequireAcceptance { get; set; }

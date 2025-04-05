@@ -47,6 +47,8 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest
         var create = await snipeIT.CreateAccessoryAsync(new()
         {
             Name = createName,
+            Qty = 1,
+            Category = 8,
             //Image = imageCreate,    
             Notes = notesCreate,
         });
@@ -72,9 +74,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteAccessoryAsync(id);
-
-        var del = await snipeIT.GetAccessoryAsync(id);
+        var del = await snipeIT.DeleteAccessoryAsync(id);
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");
@@ -92,13 +92,16 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateDuplicateAccessoryAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateAccessoryAsync(new() { Name = accessoryName }));
-    }
+    // Can be duplicate 
+
+    //[TestMethod]
+    //public async Task TestMethodCreateDuplicateAccessoryAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateAccessoryAsync(new() { Name = accessoryName, Qty = 1, Category = 8 }));
+    //}
 
     [TestMethod]
     public async Task TestMethodGetNotExistingAccessoryAsync()

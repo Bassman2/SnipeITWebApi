@@ -34,12 +34,15 @@ public class Accessory
 
     internal AccessoryModel ToCreate()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
+        ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
         return new()
         {
             Name = Name,
             Image = Image,
             ModelNumber = ModelNumber,
+            CategoryId = Category?.Id,
             Notes = Notes,
             Qty = Qty,
             PurchaseDate = PurchaseDate,

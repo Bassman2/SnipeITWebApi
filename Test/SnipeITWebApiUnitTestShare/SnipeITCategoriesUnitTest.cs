@@ -48,6 +48,7 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
         var create = await snipeIT.CreateCategoryAsync(new()
         {
             Name = createName,
+            CategoryType = CategoryType.Asset,
             //Image = imageCreate,    
             Notes = notesCreate,
         });
@@ -73,9 +74,7 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteCategoryAsync(id);
-
-        var del = await snipeIT.GetCategoryAsync(id);
+        var del = await snipeIT.DeleteCategoryAsync(id);
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");
@@ -98,7 +97,7 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateCategoryAsync(new () { Name = categoryName }));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateCategoryAsync(new () { Name = categoryName, CategoryType = CategoryType.Asset }));
     }
 
     [TestMethod]
