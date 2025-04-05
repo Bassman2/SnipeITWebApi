@@ -12,12 +12,18 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
     private const int limit = 500;
 
     protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
+       
+    protected override async Task ErrorCheckAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
+    {
+        await base.ErrorCheckAsync(response, memberName, cancellationToken);
 
-    //protected override async Task ErrorHandlingAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
-    //{
-    //    var errorMessage = await ReadFromJsonAsync<ErrorMessageModel>(response, cancellationToken);
-    //    throw new WebServiceException(errorMessage?.Messages, response.RequestMessage?.RequestUri, response.StatusCode, response.ReasonPhrase, memberName);
-    //}
+        string str = await response.Content.ReadAsStringAsync(cancellationToken);
+        if (str.StartsWith("{\"status\":\"error\""))
+        {
+            var res = await ReadFromJsonAsync<ResultModel>(response, cancellationToken);
+            throw new WebServiceException(res!.Messages);
+        }
+    }
 
     #region Assets
 

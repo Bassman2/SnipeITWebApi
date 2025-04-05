@@ -2,6 +2,8 @@
 
 [JsonSourceGenerationOptions(DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = true, AllowTrailingCommas = true)]
 
+[JsonSerializable(typeof(ResultModel))]
+
 [JsonSerializable(typeof(ListModel<AccessoryModel>))]
 [JsonSerializable(typeof(ListModel<AssignedModel>))]
 [JsonSerializable(typeof(ListModel<CategoryModel>))]
