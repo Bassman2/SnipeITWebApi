@@ -71,9 +71,9 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteStatusLabelAsync(id);
+        var del = await snipeIT.DeleteStatusLabelAsync(id);
 
-        var del = await snipeIT.GetStatusLabelAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetStatusLabelAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

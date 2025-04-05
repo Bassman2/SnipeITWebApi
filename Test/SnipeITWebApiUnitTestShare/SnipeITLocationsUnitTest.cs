@@ -76,9 +76,9 @@ public class SnipeITLocationsUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteLocationAsync(id);
+        var del = await snipeIT.DeleteLocationAsync(id);
 
-        var del = await snipeIT.GetLocationAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetLocationAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

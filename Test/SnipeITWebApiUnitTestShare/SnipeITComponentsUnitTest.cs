@@ -45,7 +45,9 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest
         var create = await snipeIT.CreateComponentAsync(new()
         {
             Name = createName,
-            //Image = imageCreate,    
+            Qty = 5,
+            Category = categoryId,
+            
             //Notes = notesCreate,
         });
         Assert.IsNotNull(create);
@@ -70,9 +72,7 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteComponentAsync(id);
-
-        var del = await snipeIT.GetComponentAsync(id);
+        var del = await snipeIT.DeleteComponentAsync(id);
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");
@@ -90,13 +90,15 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest
         //Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateDuplicateComponentAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    // Duplicate component name allowed
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateComponentAsync(new() { Name = componentName }));
-    }
+    //[TestMethod]
+    //public async Task TestMethodCreateDuplicateComponentAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateComponentAsync(new() { Name = componentName, Qty = 5, Category = categoryId }));
+    //}
 
     [TestMethod]
     public async Task TestMethodGetNotExistingComponentAsync()

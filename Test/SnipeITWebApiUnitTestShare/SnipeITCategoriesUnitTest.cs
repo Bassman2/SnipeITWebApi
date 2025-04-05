@@ -76,18 +76,23 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
 
         var del = await snipeIT.DeleteCategoryAsync(id);
 
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetCategoryAsync(id));
+
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");
+        Assert.AreEqual(CategoryType.Asset, create.CategoryType, "create.CategoryType");
         //Assert.AreEqual(imageCreate, create.Image, "create.Image");
         Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
         Assert.AreEqual(id, update.Id, "update.Id");
         Assert.AreEqual(updateName, update.Name, "update.Name");
+        //Assert.AreEqual(CategoryType.Accessory, update.CategoryType, "update.CategoryType");
         //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
         Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
         Assert.AreEqual(id, patch.Id, "patch.Id");
         Assert.AreEqual(patchName, patch.Name, "patch.Name");
+        //Assert.AreEqual(CategoryType.Component, patch.CategoryType, "patch.CategoryType");
         //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
         Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
     }

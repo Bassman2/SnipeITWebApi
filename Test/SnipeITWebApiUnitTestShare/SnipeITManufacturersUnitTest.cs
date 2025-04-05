@@ -102,22 +102,24 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(create);
         Assert.IsTrue(create.Id > 0, "create.Id");
+        int id = create.Id;
 
-        var update = await snipeIT.UpdateManufacturerAsync(create.Id, new()
+
+        var update = await snipeIT.UpdateManufacturerAsync(id, new()
         {
             Name = updateName
         });
         Assert.IsNotNull(update);
 
-        var patch = await snipeIT.PatchManufacturerAsync(create.Id, new() 
+        var patch = await snipeIT.PatchManufacturerAsync(id, new() 
         {
             Name = patchName
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteManufacturerAsync(create.Id);
+        var del = await snipeIT.DeleteManufacturerAsync(id);
 
-        var del = await snipeIT.GetManufacturerAsync(create.Id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetManufacturerAsync(id));
 
         Assert.AreNotEqual(0, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

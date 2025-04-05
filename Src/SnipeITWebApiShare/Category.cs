@@ -37,6 +37,7 @@ public class Category
         {
             Name = Name,
             CategoryType = CategoryType,
+
             //Url = Url,
             //Image = Image,
             //SupportUrl = SupportUrl,
@@ -60,6 +61,7 @@ public class Category
     internal CategoryModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        if (CategoryType != null) throw new ArgumentException("You cannot change the category type once it has been created");
         return new()
         {
             Name = Name,
@@ -86,9 +88,12 @@ public class Category
     internal CategoryModel ToPatch()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        if (CategoryType != null) throw new ArgumentException("You cannot change the category type once it has been created");
+
         return new()
         {
             Name = Name,
+
             //Url = Url,
             //Image = Image,
             //SupportUrl = SupportUrl,

@@ -9,20 +9,26 @@ public class Component
     {
         Id = model.Id;
         Name = model.Name;
+        Qty = model.Qty;
+        Category = model.Category?.CastModel<NamedItem>();
     }
 
     internal ComponentModel ToCreate()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
+        ArgumentNullException.ThrowIfNull(Category, nameof(Category));
         return new()
         {
             Name = Name,
+            Qty = Qty,
+            CategoryId = Category?.Id,
         };
     }
 
     internal ComponentModel ToUpdate()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
             Name = Name,
@@ -31,7 +37,7 @@ public class Component
 
     internal ComponentModel ToPatch()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
             Name = Name,
@@ -41,4 +47,9 @@ public class Component
     public int Id { get; set; }
 
     public string? Name { get; set; }
+
+    public int? Qty { get; set; }
+
+    public NamedItem? Category { get; set; }
+
 }

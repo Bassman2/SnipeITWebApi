@@ -47,6 +47,9 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest
         var create = await snipeIT.CreateConsumableAsync(new()
         {
             Name = createName,
+            Qty = 5,
+            Category = 10,
+
             //Image = imageCreate,    
             //Notes = notesCreate,
         });
@@ -72,9 +75,9 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteConsumableAsync(id);
+        var del = await snipeIT.DeleteConsumableAsync(id);
 
-        var del = await snipeIT.GetConsumableAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetConsumableAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");
@@ -92,13 +95,15 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest
         //Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateDuplicateConsumableAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    // Duplicate consumable name allowed
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateConsumableAsync(new() { Name = consumableName }));
-    }
+    //[TestMethod]
+    //public async Task TestMethodCreateDuplicateConsumableAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateConsumableAsync(new() { Name = consumableName, Qty = 5, Category = 10 }));
+    //}
 
     [TestMethod]
     public async Task TestMethodGetNotExistingConsumableAsync()

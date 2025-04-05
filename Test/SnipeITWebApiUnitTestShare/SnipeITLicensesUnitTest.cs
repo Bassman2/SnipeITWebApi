@@ -70,9 +70,9 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteLicenseAsync(id);
+        var del =  await snipeIT.DeleteLicenseAsync(id);
 
-        var del = await snipeIT.GetLicenseAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetLicenseAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

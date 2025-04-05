@@ -166,9 +166,9 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteUserAsync(id);
+        var del = await snipeIT.DeleteUserAsync(id);
 
-        var del = await snipeIT.GetUserAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetUserAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual($"{lastNameCreate} {firstNameCreate}", create.Name, "create.Name");

@@ -70,9 +70,9 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteGroupAsync(id);
+        var del = await snipeIT.DeleteGroupAsync(id);
 
-        var del = await snipeIT.GetGroupAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetGroupAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

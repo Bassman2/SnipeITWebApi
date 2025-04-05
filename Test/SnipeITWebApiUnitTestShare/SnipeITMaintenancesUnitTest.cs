@@ -71,9 +71,9 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteMaintenanceAsync(id);
+        var del = await snipeIT.DeleteMaintenanceAsync(id);
 
-        var del = await snipeIT.GetMaintenanceAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetMaintenanceAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

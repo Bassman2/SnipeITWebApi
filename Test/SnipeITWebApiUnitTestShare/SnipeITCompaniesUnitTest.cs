@@ -112,9 +112,9 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteCompanyAsync(id);
+        var del = await snipeIT.DeleteCompanyAsync(id);
 
-        var del = await snipeIT.GetCompanyAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetCompanyAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

@@ -165,9 +165,9 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteHardwareAsync(id);
+        var del = await snipeIT.DeleteHardwareAsync(id);
 
-        var del = await snipeIT.GetHardwareAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetHardwareAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

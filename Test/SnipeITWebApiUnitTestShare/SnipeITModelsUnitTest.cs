@@ -120,10 +120,10 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteModelAsync(id);
+        var del = await snipeIT.DeleteModelAsync(id);
 
-        var del = await snipeIT.GetModelAsync(id);
-        
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetModelAsync(id));
+
         Assert.AreEqual(id, create.Id, "create.id");
         Assert.AreEqual(createName, create.Name, "create.Name");
         //Assert.AreEqual(new NamedItem(2, ""), create.Manufacturer, "create.Manufacturer");

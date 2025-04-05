@@ -76,6 +76,9 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest
 
         var del = await snipeIT.DeleteAccessoryAsync(id);
 
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetAccessoryAsync(id));
+
+
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");
         //Assert.AreEqual(imageCreate, create.Image, "create.Image");

@@ -79,9 +79,9 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteSupplierAsync(id);
+        var del = await snipeIT.DeleteSupplierAsync(id);
 
-        var del = await snipeIT.GetSupplierAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetSupplierAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

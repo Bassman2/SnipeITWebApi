@@ -100,9 +100,9 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteDepartmentAsync(id);
+        var del = await snipeIT.DeleteDepartmentAsync(id);
 
-        var del = await snipeIT.GetDepartmentAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetDepartmentAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");

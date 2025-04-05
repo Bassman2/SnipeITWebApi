@@ -79,9 +79,9 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest
         });
         Assert.IsNotNull(patch);
 
-        await snipeIT.DeleteFieldAsync(id);
+        var del = await snipeIT.DeleteFieldAsync(id);
 
-        var del = await snipeIT.GetFieldAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetFieldAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
         Assert.AreEqual(createName, create.Name, "create.Name");
