@@ -803,7 +803,7 @@ public class SnipeIT : IDisposable
         return res.CastModel<Maintenance>();
     }
 
-    public async Task<Maintenance?> PatchMaintenanceyAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
+    public async Task<Maintenance?> PatchMaintenanceAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));

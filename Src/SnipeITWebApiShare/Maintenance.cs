@@ -2,6 +2,9 @@
 
 public class Maintenance
 {
+    public Maintenance() 
+    { }
+
     internal Maintenance(MaintenanceModel model)
     {
         Id = model.Id;
@@ -36,6 +39,6 @@ public class Maintenance
     }
 
     public int Id { get; set; }
-
     public string? Name { get; set; }
+    public string? Notes { get; set; }
 }

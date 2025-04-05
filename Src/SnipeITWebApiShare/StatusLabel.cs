@@ -2,6 +2,9 @@
 
 public class StatusLabel
 {
+    public StatusLabel()
+    { }
+
     internal StatusLabel(StatusLabelModel model)
     {
         Id = model.Id;
@@ -38,4 +41,6 @@ public class StatusLabel
     public int Id { get; set; }
 
     public string? Name { get; set; }
+
+    public string? Notes { get; set; }
 }

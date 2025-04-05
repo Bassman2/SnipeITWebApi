@@ -2,6 +2,9 @@
 
 public class Field
 {
+    public Field()
+    { } 
+
     internal Field(FieldModel model)
     {
         Id = model.Id;

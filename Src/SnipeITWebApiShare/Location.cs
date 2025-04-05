@@ -2,6 +2,9 @@
 
 public class Location
 {
+    public Location()
+    { }   
+
     internal Location(LocationModel model)
     {
         Id = model.Id;

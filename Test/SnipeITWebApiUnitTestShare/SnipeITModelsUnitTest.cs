@@ -145,13 +145,7 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        var create = new Model()
-        {
-            Name = modelName,
-            Category = categoryId
-        };
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateModelAsync(create));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateModelAsync(new () { Name = modelName, Category = categoryId }));
     }
 
     [TestMethod]
@@ -159,6 +153,6 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteModelAsync(65000));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteModelAsync(notExistingId));
     }
 }

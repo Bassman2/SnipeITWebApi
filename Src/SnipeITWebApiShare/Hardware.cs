@@ -5,6 +5,9 @@ namespace SnipeITWebApi;
 [DebuggerDisplay("{Id} : {Name} : {AssetTag}")]
 public class Hardware
 {
+    public Hardware()
+    { }
+
     internal Hardware(HardwareModel model)
     {
         Id = model.Id;

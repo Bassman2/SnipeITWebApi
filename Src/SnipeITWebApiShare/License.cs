@@ -2,6 +2,9 @@
 
 public class License
 {
+    public License()
+    { }
+
     internal License(LicenseModel model)
     {
         Id = model.Id;
@@ -38,4 +41,5 @@ public class License
     public int Id { get; set; }
 
     public string? Name { get; set; }
+    public string? Notes { get; set; }
 }

@@ -1,6 +1,5 @@
 ﻿namespace SnipeITWebApiUnitTest;
 
-
 [TestClass]
 public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
 {
@@ -156,12 +155,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        var create = new Manufacturer()
-        {
-            Name = "Apple",
-        };
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateManufacturerAsync(create));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateManufacturerAsync(new () { Name = manufacturerName }));
     }
 
     [TestMethod]
@@ -169,6 +163,6 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteManufacturerAsync(65000));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteManufacturerAsync(notExistingId));
     }
 }
