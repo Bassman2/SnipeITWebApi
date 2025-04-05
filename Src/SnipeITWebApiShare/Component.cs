@@ -2,6 +2,9 @@
 
 public class Component
 {
+    public Component()
+    { }
+
     internal Component(ComponentModel model)
     {
         Id = model.Id;

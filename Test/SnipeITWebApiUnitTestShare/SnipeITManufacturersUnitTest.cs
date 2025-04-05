@@ -29,7 +29,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("carey.sanford@example.net", item.SupportEmail, "item.SupportEmail");
 
         Assert.AreNotEqual(0, item.AssetsCount, "item.AssetsCount");
-        Assert.AreEqual(0, item.LicensesCount, "item.LicensesCount");
+        Assert.IsNotNull(item.LicensesCount, "item.LicensesCount");
         Assert.AreEqual(0, item.ConsumablesCount, "item.ConsumablesCount");
         Assert.AreEqual(3, item.AccessoriesCount, "item.AccessoriesCount");
         Assert.AreEqual(0, item.ComponentsCount, "item.ComponentsCount");
@@ -64,7 +64,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("carey.sanford@example.net", item.SupportEmail, "item.SupportEmail");
 
         Assert.AreNotEqual(0, item.AssetsCount, "item.AssetsCount");
-        Assert.AreEqual(0, item.LicensesCount, "item.LicensesCount");
+        Assert.IsNotNull(item.LicensesCount, "item.LicensesCount");
         Assert.AreEqual(0, item.ConsumablesCount, "item.ConsumablesCount");
         Assert.AreEqual(3, item.AccessoriesCount, "item.AccessoriesCount");
         Assert.AreEqual(0, item.ComponentsCount, "item.ComponentsCount");

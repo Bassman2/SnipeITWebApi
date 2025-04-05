@@ -2,6 +2,9 @@
 
 public class Fieldset
 {
+    public Fieldset()
+    { }   
+
     internal Fieldset(FieldsetModel model)
     {
         Id = model.Id;

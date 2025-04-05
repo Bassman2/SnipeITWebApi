@@ -2,6 +2,9 @@
 
 public class Consumable
 {
+    public Consumable()
+    { }   
+
     internal Consumable(ConsumableModel model)
     {
         Id = model.Id;
