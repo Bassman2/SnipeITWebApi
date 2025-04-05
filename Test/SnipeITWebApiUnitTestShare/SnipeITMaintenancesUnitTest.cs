@@ -100,6 +100,14 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
+    public async Task TestMethodGetNotExistingMaintenanceAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetMaintenanceAsync(notExistingId));
+    }
+
+    [TestMethod]
     public async Task TestMethodDeleteNotExistingMaintenanceAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);

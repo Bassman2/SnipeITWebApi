@@ -19,7 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITFieldsetsUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITFieldsUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITGroupsUnitTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SnipeITInternUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITHardwareUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITLicensesUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITLocationsUnitTest.cs" />

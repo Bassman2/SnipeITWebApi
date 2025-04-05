@@ -149,6 +149,14 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
+    public async Task TestMethodGetNotExistingModelAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetModelAsync(notExistingId));
+    }
+
+    [TestMethod]
     public async Task TestMethodDeleteNotExistingModelAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);

@@ -101,6 +101,14 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
+    public async Task TestMethodGetNotExistingConsumableAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetConsumableAsync(notExistingId));
+    }
+
+    [TestMethod]
     public async Task TestMethodDeleteNotExistingConsumableAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);

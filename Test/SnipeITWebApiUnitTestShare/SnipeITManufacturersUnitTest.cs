@@ -159,6 +159,14 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
+    public async Task TestMethodGetNotExistingManufacturerAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetManufacturerAsync(notExistingId));
+    }
+
+    [TestMethod]
     public async Task TestMethodDeleteNotExistingManufacturerAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);

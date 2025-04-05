@@ -136,6 +136,14 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest
     //}
 
     [TestMethod]
+    public async Task TestMethodGetNotExistingDepartmentAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetDepartmentAsync(notExistingId));
+    }
+
+    [TestMethod]
     public async Task TestMethodDeleteNotExistingDepartmentAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);

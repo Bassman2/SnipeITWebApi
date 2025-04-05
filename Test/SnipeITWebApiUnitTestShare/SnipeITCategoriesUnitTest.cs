@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace SnipeITWebApiUnitTest;
+﻿namespace SnipeITWebApiUnitTest;
 
 [TestClass]
 public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
@@ -101,6 +99,14 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
         await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateCategoryAsync(new () { Name = categoryName }));
+    }
+
+    [TestMethod]
+    public async Task TestMethodGetNotExistingCategoryAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetCategoryAsync(notExistingId));
     }
 
     [TestMethod]

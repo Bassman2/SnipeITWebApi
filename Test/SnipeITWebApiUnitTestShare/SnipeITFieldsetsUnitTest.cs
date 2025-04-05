@@ -95,7 +95,7 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
-    public async Task TestMethodCreateDuplicateCompanyAsync()
+    public async Task TestMethodCreateDuplicateFieldsetAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
@@ -103,7 +103,15 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
-    public async Task TestMethodDeleteNotExistingCompanyAsync()
+    public async Task TestMethodGetNotExistingFieldsetAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetFieldsetAsync(notExistingId));
+    }
+
+    [TestMethod]
+    public async Task TestMethodDeleteNotExistingFieldsetAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 

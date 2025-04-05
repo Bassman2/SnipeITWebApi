@@ -100,6 +100,14 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
+    public async Task TestMethodGetNotExistingStatusLabelAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetStatusLabelAsync(notExistingId));
+    }
+
+    [TestMethod]
     public async Task TestMethodDeleteNotExistingCompanyAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);

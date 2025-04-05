@@ -117,7 +117,15 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest
     }
 
     [TestMethod]
-    public async Task TestMethodDeleteNotExistingCompanyAsync()
+    public async Task TestMethodGetNotExistingFieldAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetFieldAsync(notExistingId));
+    }
+
+    [TestMethod]
+    public async Task TestMethodDeleteNotExistingFieldAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
