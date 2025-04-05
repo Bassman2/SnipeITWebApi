@@ -2,6 +2,9 @@
 
 public class Accessory
 {
+    public Accessory()
+    { }
+
     internal Accessory(AccessoryModel model)
     {
         Id = model.Id;

@@ -146,9 +146,7 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        var create = new Company() { Name = companyName };
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateCompanyAsync(create));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateCompanyAsync(new () { Name = companyName }));
     }
 
     [TestMethod]

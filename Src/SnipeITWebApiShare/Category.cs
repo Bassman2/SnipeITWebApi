@@ -2,6 +2,9 @@
 
 public class Category
 {
+    public Category()
+    { } 
+
     internal Category(CategoryModel model)
     {
         Id = model.Id;

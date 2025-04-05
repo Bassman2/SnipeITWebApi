@@ -13,8 +13,8 @@ public abstract class SnipeITBaseUnitTest
     protected const int notExistingId = 65000;
 
 
-    protected const int accessorId = 1;
-    protected const string accessorName = "USB Keyboard";
+    protected const int accessoryId = 1;
+    protected const string accessoryName = "USB Keyboard";
 
     protected const int categoryId = 1;
     protected const string categoryName = "Laptops";
