@@ -49,6 +49,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\LocationModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\MaintenanceModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ModelModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\PermissionsModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ResultModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ListModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\HardwareModel.cs" />

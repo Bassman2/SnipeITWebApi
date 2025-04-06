@@ -5,7 +5,7 @@
 [JsonSerializable(typeof(ResultModel))]
 
 [JsonSerializable(typeof(ListModel<AccessoryModel>))]
-[JsonSerializable(typeof(ListModel<AssignedModel>))]
+//[JsonSerializable(typeof(ListModel<AssignedModel>))]
 [JsonSerializable(typeof(ListModel<CategoryModel>))]
 [JsonSerializable(typeof(ListModel<CompanyModel>))]
 [JsonSerializable(typeof(ListModel<ComponentModel>))]
@@ -25,7 +25,7 @@
 [JsonSerializable(typeof(ListModel<UserModel>))]
 
 [JsonSerializable(typeof(ResultModel<AccessoryModel>))]
-[JsonSerializable(typeof(ResultModel<AssignedModel>))]
+//[JsonSerializable(typeof(ResultModel<AssignedModel>))]
 [JsonSerializable(typeof(ResultModel<CategoryModel>))]
 [JsonSerializable(typeof(ResultModel<CompanyModel>))]
 [JsonSerializable(typeof(ResultModel<ComponentModel>))]
