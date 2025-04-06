@@ -1,0 +1,218 @@
+{
+  "total": 3,
+  "rows": [
+    {
+      "id": 3,
+      "asset": {
+        "id": 2291,
+        "name": null,
+        "asset_tag": "372822380",
+        "serial": "ae40caf9-fc14-34d5-bf30-60b0cdd41126",
+        "deleted_at": null,
+        "created_at": {
+          "datetime": "2025-04-03 04:33:12",
+          "formatted": "Thu Apr 03, 2025 4:33AM"
+        },
+        "updated_at": {
+          "datetime": "2025-04-04 14:55:45",
+          "formatted": "Fri Apr 04, 2025 2:55PM"
+        }
+      },
+      "model": {
+        "id": 8,
+        "name": "iMac Pro 2513339576994220"
+      },
+      "status_label": {
+        "id": 1,
+        "name": "Ready to Deploy",
+        "status_type": "deployable",
+        "status_meta": "deployable"
+      },
+      "company": null,
+      "title": "furkan3",
+      "location": {
+        "id": 1,
+        "name": "East Alex"
+      },
+      "rtd_location": null,
+      "notes": "furkan",
+      "supplier": {
+        "id": 6,
+        "name": "Schulist-Daugherty"
+      },
+      "cost": "333,00",
+      "asset_maintenance_type": "Repair",
+      "start_date": {
+        "date": "2025-04-01",
+        "formatted": "Tue Apr 01, 2025"
+      },
+      "asset_maintenance_time": null,
+      "completion_date": {
+        "date": "2025-04-02",
+        "formatted": "Wed Apr 02, 2025"
+      },
+      "user_id": {
+        "id": 1,
+        "name": "Admin User"
+      },
+      "created_by": {
+        "id": 1,
+        "name": "Admin User"
+      },
+      "created_at": {
+        "datetime": "2025-04-03 08:00:53",
+        "formatted": "Thu Apr 03, 2025 8:00AM"
+      },
+      "updated_at": {
+        "datetime": "2025-04-03 08:00:53",
+        "formatted": "Thu Apr 03, 2025 8:00AM"
+      },
+      "is_warranty": 0,
+      "available_actions": {
+        "update": true,
+        "delete": true
+      }
+    },
+    {
+      "id": 2,
+      "asset": {
+        "id": 2291,
+        "name": null,
+        "asset_tag": "372822380",
+        "serial": "ae40caf9-fc14-34d5-bf30-60b0cdd41126",
+        "deleted_at": null,
+        "created_at": {
+          "datetime": "2025-04-03 04:33:12",
+          "formatted": "Thu Apr 03, 2025 4:33AM"
+        },
+        "updated_at": {
+          "datetime": "2025-04-04 14:55:45",
+          "formatted": "Fri Apr 04, 2025 2:55PM"
+        }
+      },
+      "model": {
+        "id": 8,
+        "name": "iMac Pro 2513339576994220"
+      },
+      "status_label": {
+        "id": 1,
+        "name": "Ready to Deploy",
+        "status_type": "deployable",
+        "status_meta": "deployable"
+      },
+      "company": null,
+      "title": "furkan 2",
+      "location": {
+        "id": 1,
+        "name": "East Alex"
+      },
+      "rtd_location": null,
+      "notes": null,
+      "supplier": {
+        "id": 6,
+        "name": "Schulist-Daugherty"
+      },
+      "cost": "120,00",
+      "asset_maintenance_type": "Maintenance",
+      "start_date": {
+        "date": "2025-04-03",
+        "formatted": "Thu Apr 03, 2025"
+      },
+      "asset_maintenance_time": null,
+      "completion_date": {
+        "date": "2025-04-03",
+        "formatted": "Thu Apr 03, 2025"
+      },
+      "user_id": {
+        "id": 1,
+        "name": "Admin User"
+      },
+      "created_by": {
+        "id": 1,
+        "name": "Admin User"
+      },
+      "created_at": {
+        "datetime": "2025-04-03 08:00:06",
+        "formatted": "Thu Apr 03, 2025 8:00AM"
+      },
+      "updated_at": {
+        "datetime": "2025-04-03 08:00:06",
+        "formatted": "Thu Apr 03, 2025 8:00AM"
+      },
+      "is_warranty": 0,
+      "available_actions": {
+        "update": true,
+        "delete": true
+      }
+    },
+    {
+      "id": 1,
+      "asset": {
+        "id": 2291,
+        "name": null,
+        "asset_tag": "372822380",
+        "serial": "ae40caf9-fc14-34d5-bf30-60b0cdd41126",
+        "deleted_at": null,
+        "created_at": {
+          "datetime": "2025-04-03 04:33:12",
+          "formatted": "Thu Apr 03, 2025 4:33AM"
+        },
+        "updated_at": {
+          "datetime": "2025-04-04 14:55:45",
+          "formatted": "Fri Apr 04, 2025 2:55PM"
+        }
+      },
+      "model": {
+        "id": 8,
+        "name": "iMac Pro 2513339576994220"
+      },
+      "status_label": {
+        "id": 1,
+        "name": "Ready to Deploy",
+        "status_type": "deployable",
+        "status_meta": "deployable"
+      },
+      "company": null,
+      "title": "furkan",
+      "location": {
+        "id": 1,
+        "name": "East Alex"
+      },
+      "rtd_location": null,
+      "notes": null,
+      "supplier": {
+        "id": 6,
+        "name": "Schulist-Daugherty"
+      },
+      "cost": "22,00",
+      "asset_maintenance_type": "Maintenance",
+      "start_date": {
+        "date": "2025-04-03",
+        "formatted": "Thu Apr 03, 2025"
+      },
+      "asset_maintenance_time": null,
+      "completion_date": null,
+      "user_id": {
+        "id": 1,
+        "name": "Admin User"
+      },
+      "created_by": {
+        "id": 1,
+        "name": "Admin User"
+      },
+      "created_at": {
+        "datetime": "2025-04-03 07:58:57",
+        "formatted": "Thu Apr 03, 2025 7:58AM"
+      },
+      "updated_at": {
+        "datetime": "2025-04-03 07:58:57",
+        "formatted": "Thu Apr 03, 2025 7:58AM"
+      },
+      "is_warranty": 0,
+      "available_actions": {
+        "update": true,
+        "delete": true
+      }
+    }
+  ]
+}

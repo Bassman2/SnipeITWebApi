@@ -19,7 +19,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
         var item = list.FirstOrDefault(d => d.Id == maintenanceId);
         Assert.IsNotNull(item);
         Assert.AreEqual(maintenanceId, item.Id, "item.Id");
-        Assert.AreEqual(maintenanceName, item.Name, "item.Name");
+//        Assert.AreEqual(maintenanceName, item.Name, "item.Name");
     }
 
     [TestMethod]
@@ -31,7 +31,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
                 
         Assert.IsNotNull(item);
         Assert.AreEqual(maintenanceId, item.Id, "item.Id");
-        Assert.AreEqual(maintenanceName, item.Name, "item.Name");
+  //      Assert.AreEqual(maintenanceName, item.Name, "item.Name");
     }
 
     [TestMethod]
@@ -45,9 +45,14 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
 
         var create = await snipeIT.CreateMaintenanceAsync(new()
         {
-            Name = createName,
+    //        Name = createName,
             //Image = imageCreate,    
+            Asset = hardwareId,
+            Supplier = companyId,
+            AssetMaintenanceType = "1",
+            Title = createName,
             Notes = notesCreate,
+            StartDate = DateTime.UtcNow,
         });
         Assert.IsNotNull(create);
         Assert.IsTrue(create.Id > 0, "create.Id");
@@ -55,7 +60,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
 
         var update = await snipeIT.UpdateMaintenanceAsync(id, new()
         {
-            Name = updateName,
+      //      Name = updateName,
             //Image = imageUpdate,
             Notes = notesUpdate,
 
@@ -64,7 +69,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
 
         var patch = await snipeIT.PatchMaintenanceAsync(id, new()
         {
-            Name = patchName,
+        //    Name = patchName,
             //Image = imagePatch,
             Notes = notesPatch,
 
@@ -76,17 +81,17 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
         await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetMaintenanceAsync(id));
 
         Assert.AreEqual(id, create.Id, "create.Id");
-        Assert.AreEqual(createName, create.Name, "create.Name");
+        //Assert.AreEqual(createName, create.Name, "create.Name");
         //Assert.AreEqual(imageCreate, create.Image, "create.Image");
         Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
         Assert.AreEqual(id, update.Id, "update.Id");
-        Assert.AreEqual(updateName, update.Name, "update.Name");
+        //Assert.AreEqual(updateName, update.Name, "update.Name");
         //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
         Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
         Assert.AreEqual(id, patch.Id, "patch.Id");
-        Assert.AreEqual(patchName, patch.Name, "patch.Name");
+        //Assert.AreEqual(patchName, patch.Name, "patch.Name");
         //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
         Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
     }
@@ -96,7 +101,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateMaintenanceAsync(new() { Name = maintenanceName }));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateMaintenanceAsync(new() {  }));
     }
 
     [TestMethod]

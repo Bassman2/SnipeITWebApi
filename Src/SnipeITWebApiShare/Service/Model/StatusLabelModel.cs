@@ -8,4 +8,9 @@ internal class StatusLabelModel
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
+    [JsonPropertyName("status_type")]
+    public string? StatusType { get; set; }
+
+    [JsonPropertyName("status_meta")]
+    public string? StatusMeta { get; set; }
 }

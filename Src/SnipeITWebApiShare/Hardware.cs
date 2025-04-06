@@ -5,6 +5,11 @@ namespace SnipeITWebApi;
 [DebuggerDisplay("{Id} : {Name} : {AssetTag}")]
 public class Hardware
 {
+    public Hardware(int id)
+    {
+        Id = id;
+    }
+
     public Hardware()
     { }
 
@@ -183,10 +188,10 @@ public class Hardware
     public int? RequestsCounter { get; set; }
 
     public bool? UserCanCheckout { get; set; }
-
     public string? BookValue { get; set; }
-
     public Dictionary<string, CustomField>? CustomFields { get; set; }
-
     public Actions? AvailableActions { get; set; }
+
+    public static implicit operator Hardware(int id) => new(id);
+
 }

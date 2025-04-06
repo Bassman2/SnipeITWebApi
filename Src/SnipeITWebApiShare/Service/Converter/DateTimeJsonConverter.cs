@@ -35,6 +35,13 @@ internal class DateTimeJsonConverter : JsonConverter<DateTime?>
 
     public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
     {
-        
+        if (value != null)
+        {
+            writer.WriteStringValue(value.Value.ToString("yyyy-MM-dd"));
+        }
+        else
+        {
+            writer.WriteNullValue();
+        }
     }
 }
