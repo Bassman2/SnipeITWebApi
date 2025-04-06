@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NamedItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Manufacturer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Permissions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\BoolJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ImageConverter.cs" />

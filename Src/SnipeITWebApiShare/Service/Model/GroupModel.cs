@@ -9,7 +9,7 @@ internal class GroupModel
     public string? Name { get; set; }
 
     [JsonPropertyName("permissions")]
-    public PermissionsModel? permissions { get; set; }
+    public PermissionsModel? Permissions { get; set; }
 
     [JsonPropertyName("users_count")]
     public int? UsersCount { get; set; }
