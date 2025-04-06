@@ -142,6 +142,8 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
             
             //Image = imageCreate,    
             Notes = notesCreate,
+            Model = modelId,
+            StatusLabel = statusLabelId,
         });
         Assert.IsNotNull(create);
         Assert.IsTrue(create.Id > 0, "create.Id");

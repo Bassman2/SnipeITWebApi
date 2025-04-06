@@ -62,6 +62,8 @@ public class Hardware
         return new()
         {
             Name = Name,
+            ModelId = Model?.Id,
+            StatusId = StatusLabel?.Id,
         };
     }
 

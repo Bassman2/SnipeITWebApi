@@ -17,6 +17,9 @@ internal class HardwareModel
     [JsonPropertyName("model")]
     public NamedItemModel? Model { get; set; }
 
+    [JsonPropertyName("model_id")]
+    public int? ModelId { get; set; }
+
     [JsonPropertyName("byod")]
     public bool? Byod { get; set; }
 
@@ -35,6 +38,9 @@ internal class HardwareModel
 
     [JsonPropertyName("status_label")]
     public NamedItemModel? StatusLabel { get; set; }
+
+    [JsonPropertyName("status_id")]
+    public int? StatusId { get; set; }
 
     [JsonPropertyName("category")]
     public NamedItemModel? Category { get; set; }
@@ -80,6 +86,7 @@ internal class HardwareModel
     public DateTime? WarrantyExpires { get; set; }
 
     [JsonPropertyName("created_by")]
+    [JsonConverter(typeof(NamedItemConverter))]
     public NamedItemModel? CreatedBy { get; set; }
 
     [JsonPropertyName("created_at")]

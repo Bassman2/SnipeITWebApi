@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\BoolJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\NamedItemConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\PermissionsConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Enums\Status.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AccessoryModel.cs" />
