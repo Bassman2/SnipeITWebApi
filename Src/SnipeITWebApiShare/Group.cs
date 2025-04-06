@@ -24,6 +24,7 @@ public class Group
         return new()
         {
             Name = Name,
+            Notes = Notes,
         };
     }
 
@@ -33,6 +34,7 @@ public class Group
         return new()
         {
             Name = Name,
+            Notes = Notes,
         };
     }
 
@@ -42,6 +44,7 @@ public class Group
         return new()
         {
             Name = Name,
+            Notes = Notes,
         };
     }
 
