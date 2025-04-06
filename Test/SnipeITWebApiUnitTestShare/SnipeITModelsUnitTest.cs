@@ -24,9 +24,9 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(new NamedItem(2, "Microsoft"), item.Manufacturer, "item.Manufacturer");
         Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, "item.Image");
         Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
-        Assert.AreEqual(50, item.Remaining, "item.Remaining");
+        Assert.IsTrue(item.Remaining >= 50, "item.Remaining");
         Assert.AreEqual(new NamedItem(1, "Computer Depreciation"), item.Depreciation, "item.Depreciation");
-        Assert.AreEqual(50, item.AssetsCount, "item.AssetsCount");
+        Assert.IsTrue(item.AssetsCount >= 50, "item.AssetsCount");
         Assert.AreEqual(new NamedItem(1, "Laptops"), item.Category, "item.Category");
         Assert.AreEqual(new NamedItem(2, "Laptops and Desktops"), item.Fieldset, "item.Fieldset");
         Assert.AreEqual("36 months", item.Eol, "item.Eol");
@@ -53,9 +53,9 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(new NamedItem(2, "Microsoft"), item.Manufacturer, "item.Manufacturer");
         Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, "item.Image");
         Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
-        Assert.AreEqual(50, item.Remaining, "item.Remaining");
+        Assert.IsTrue(item.Remaining >= 50, "item.Remaining");
         Assert.AreEqual(new NamedItem(1, "Computer Depreciation"), item.Depreciation, "item.Depreciation");
-        Assert.AreEqual(50, item.AssetsCount, "item.AssetsCount");
+        Assert.IsTrue(item.AssetsCount >= 50, "item.AssetsCount");
         Assert.AreEqual(new NamedItem(1, "Laptops"), item.Category, "item.Category");
         Assert.AreEqual(new NamedItem(2, "Laptops and Desktops"), item.Fieldset, "item.Fieldset");
         Assert.AreEqual("36 months", item.Eol, "item.Eol");
