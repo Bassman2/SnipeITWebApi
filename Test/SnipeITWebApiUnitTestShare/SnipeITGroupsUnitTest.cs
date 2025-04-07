@@ -19,6 +19,15 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(groupId, item.Id, "item.Id");
         Assert.AreEqual(groupName, item.Name, "item.Name");
+        Assert.IsNotNull(item.Permissions, "item.Permissions");
+        Assert.AreEqual(0, item.UsersCount, "item.UsersCount");
+        Assert.IsNull(item.Notes, "item.Notes");
+        Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual("2025-02-25", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-25", item.UpdatedAt, "item.UpdatedAt");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
     [TestMethod]
@@ -31,6 +40,15 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(groupId, item.Id, "item.Id");
         Assert.AreEqual(groupName, item.Name, "item.Name");
+        Assert.IsNotNull(item.Permissions, "item.Permissions");
+        Assert.AreEqual(0, item.UsersCount, "item.UsersCount");
+        Assert.IsNull(item.Notes, "item.Notes");
+        Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual("2025-02-25", item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual("2025-02-25", item.UpdatedAt, "item.UpdatedAt");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
     [TestMethod]

@@ -19,6 +19,39 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(licenseId, item.Id, "item.Id");
         Assert.AreEqual(licenseName, item.Name, "item.Name");
+        Assert.AreEqual(null, item.Company, "item.Company");
+        Assert.AreEqual(new NamedItem(9, "Adobe"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual("f267bf5d-f8dd-35fd-a43a-a657b20be330", item.ProductKey, "item.ProductKey");
+        Assert.AreEqual("11504574", item.OrderNumber, "item.OrderNumber");
+        Assert.AreEqual("13503Q", item.PurchaseOrder, "item.PurchaseOrder");
+        DateTimeAssert.AreEqual(null, item.PurchaseDate, "item.PurchaseDate");
+        DateTimeAssert.AreEqual(null, item.TerminationDate, "item.TerminationDate");
+        Assert.AreEqual(null, item.Depreciation, "item.Depreciation");
+        Assert.AreEqual("29.999,00", item.PurchaseCost, "item.PurchaseCost");
+        Assert.AreEqual("29999.00", item.PurchaseCostNumeric, "item.PurchaseCostNumeric");
+        Assert.AreEqual(notes, item.Notes, "item.Notes");
+        DateTimeAssert.AreEqual(null, item.ExpirationDate, "item.ExpirationDate");
+        Assert.AreEqual(10, item.Seats, "item.Seats");
+        Assert.AreEqual(4, item.FreeSeatsCount, "item.FreeSeatsCount");
+        Assert.AreEqual(4, item.Remaining, "item.Remaining");
+        Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(null, item.LicenseName, "item.LicenseName");
+        Assert.AreEqual("zbatz@example.net", item.LicenseEmail, "item.LicenseEmail");
+        Assert.AreEqual(true, item.Reassignable, "item.Reassignable");
+        Assert.AreEqual(true, item.Maintained, "item.Maintained");
+        Assert.AreEqual(new NamedItem(2, "Collier, Dibbert and Cronin"), item.Supplier, "item.Supplier");
+        Assert.AreEqual(new NamedItem(14, "Graphics Software"), item.Category, "item.Category");
+        Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        DateTimeAssert.AreEqual(null, item.DeletedAt, "item.DeletedAt");
+        Assert.AreEqual(true, item.UserCanCheckout, "item.UserCanCheckout");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Checkin, "item.AvailableActions.Checkin");
+        Assert.IsTrue(item.AvailableActions.Checkout, "item.AvailableActions.Checkout");
+        Assert.IsTrue(item.AvailableActions.Clone, "item.AvailableActions.Clone");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
     [TestMethod]
@@ -31,6 +64,39 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(licenseId, item.Id, "item.Id");
         Assert.AreEqual(licenseName, item.Name, "item.Name");
+        Assert.AreEqual(null, item.Company, "item.Company");
+        Assert.AreEqual(new NamedItem(9, "Adobe"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual("f267bf5d-f8dd-35fd-a43a-a657b20be330", item.ProductKey, "item.ProductKey");
+        Assert.AreEqual("11504574", item.OrderNumber, "item.OrderNumber");
+        Assert.AreEqual("13503Q", item.PurchaseOrder, "item.PurchaseOrder");
+        DateTimeAssert.AreEqual(null, item.PurchaseDate, "item.PurchaseDate");
+        DateTimeAssert.AreEqual(null, item.TerminationDate, "item.TerminationDate");
+        Assert.AreEqual(null, item.Depreciation, "item.Depreciation");
+        Assert.AreEqual("29.999,00", item.PurchaseCost, "item.PurchaseCost");
+        Assert.AreEqual("29999.00", item.PurchaseCostNumeric, "item.PurchaseCostNumeric");
+        Assert.AreEqual(notes, item.Notes, "item.Notes");
+        DateTimeAssert.AreEqual(null, item.ExpirationDate, "item.ExpirationDate");
+        Assert.AreEqual(10, item.Seats, "item.Seats");
+        Assert.AreEqual(4, item.FreeSeatsCount, "item.FreeSeatsCount");
+        Assert.AreEqual(4, item.Remaining, "item.Remaining");
+        Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(null, item.LicenseName, "item.LicenseName");
+        Assert.AreEqual("zbatz@example.net", item.LicenseEmail, "item.LicenseEmail");
+        Assert.AreEqual(true, item.Reassignable, "item.Reassignable");
+        Assert.AreEqual(true, item.Maintained, "item.Maintained");
+        Assert.AreEqual(new NamedItem(2, "Collier, Dibbert and Cronin"), item.Supplier, "item.Supplier");
+        Assert.AreEqual(new NamedItem(14, "Graphics Software"), item.Category, "item.Category");
+        Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        DateTimeAssert.AreEqual(null, item.DeletedAt, "item.DeletedAt");
+        Assert.AreEqual(true, item.UserCanCheckout, "item.UserCanCheckout");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Checkin, "item.AvailableActions.Checkin");
+        Assert.IsTrue(item.AvailableActions.Checkout, "item.AvailableActions.Checkout");
+        Assert.IsTrue(item.AvailableActions.Clone, "item.AvailableActions.Clone");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
     [TestMethod]
