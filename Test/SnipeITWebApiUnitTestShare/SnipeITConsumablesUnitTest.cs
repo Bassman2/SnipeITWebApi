@@ -21,6 +21,31 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(consumableId, item.Id, "item.Id");
         Assert.AreEqual(consumableName, item.Name, "item.Name");
+        Assert.AreEqual(null, item.Image, "item.Image");
+        Assert.AreEqual(new NamedItem(10, "Printer Paper"), item.Category, "item.Category");
+        Assert.AreEqual(new NamedItem(5, "Heidenreich, Russel and McClure"), item.Company, "item.Company");
+        Assert.AreEqual("20459216", item.ItemNo, "item.ItemNo");
+        Assert.AreEqual(null, item.Location, "item.Location");
+        Assert.AreEqual(new NamedItem(10, "Avery"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual(new NamedItem(10, "Larson-Mitchell"), item.Supplier, "item.Supplier");
+        Assert.AreEqual(2, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(null, item.ModelNumber, "item.ModelNumber");
+        Assert.AreEqual(10, item.Remaining, "item.Remaining");
+        Assert.AreEqual("10318081", item.OrderNumber, "item.OrderNumber");
+        Assert.AreEqual("6,95", item.PurchaseCost, "item.PurchaseCost");
+        DateTimeAssert.AreEqual(null, item.PurchaseDate, "item.PurchaseDate");
+        Assert.AreEqual(10, item.Qty, "item.Qty");
+        Assert.AreEqual(null, item.Notes, "item.Notes");
+        Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        Assert.IsTrue(item.UserCanCheckout, "item.UserCanCheckout");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Checkout, "item.AvailableActions.Checkout");
+        Assert.IsTrue(item.AvailableActions.Checkin, "item.AvailableActions.Checkin");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
+        Assert.IsTrue(item.AvailableActions.Clone, "item.AvailableActions.Clone");
     }
 
     [TestMethod]
@@ -33,6 +58,31 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(consumableId, item.Id, "item.Id");
         Assert.AreEqual(consumableName, item.Name, "item.Name");
+        Assert.AreEqual(null, item.Image, "item.Image");
+        Assert.AreEqual(new NamedItem(10, "Printer Paper"), item.Category, "item.Category");
+        Assert.AreEqual(new NamedItem(5, "Heidenreich, Russel and McClure"), item.Company, "item.Company");
+        Assert.AreEqual("20459216", item.ItemNo, "item.ItemNo");
+        Assert.AreEqual(null, item.Location, "item.Location");
+        Assert.AreEqual(new NamedItem(10, "Avery"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual(new NamedItem(10, "Larson-Mitchell"), item.Supplier, "item.Supplier");
+        Assert.AreEqual(2, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(null, item.ModelNumber, "item.ModelNumber");
+        Assert.AreEqual(10, item.Remaining, "item.Remaining");
+        Assert.AreEqual("10318081", item.OrderNumber, "item.OrderNumber");
+        Assert.AreEqual("6,95", item.PurchaseCost, "item.PurchaseCost");
+        DateTimeAssert.AreEqual(null, item.PurchaseDate, "item.PurchaseDate");
+        Assert.AreEqual(10, item.Qty, "item.Qty");
+        Assert.AreEqual(null, item.Notes, "item.Notes");
+        Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        Assert.IsTrue(item.UserCanCheckout, "item.UserCanCheckout");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Checkout, "item.AvailableActions.Checkout");
+        Assert.IsTrue(item.AvailableActions.Checkin, "item.AvailableActions.Checkin");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
+        Assert.IsTrue(item.AvailableActions.Clone, "item.AvailableActions.Clone");
     }
 
     [TestMethod]
