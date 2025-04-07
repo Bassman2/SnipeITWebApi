@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace SnipeITWebApi.Service;
+﻿namespace SnipeITWebApi.Service;
 
 // https://snipe-it.readme.io/reference/api-overview
 
@@ -295,9 +293,16 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #region Components
 
-    public IAsyncEnumerable<ComponentModel> GetComponentsAsync(CancellationToken cancellationToken)
+    //public IAsyncEnumerable<ComponentModel> GetComponentsAsync(CancellationToken cancellationToken)
+    //{
+    //    var res = GetListAsync<ComponentModel>("api/v1/components", cancellationToken);
+    //    return res;
+    //}
+
+    public IAsyncEnumerable<ComponentModel> GetComponentsAsync(string? name, string? search, string? orderNumber, CancellationToken cancellationToken)
     {
-        var res = GetListAsync<ComponentModel>("api/v1/components", cancellationToken);
+        string req = CombineUrl("api/v1/components", ("name", name), ("search", search), ("order_number", orderNumber));
+        var res = GetListAsync<ComponentModel>(req, cancellationToken);
         return res;
     }
 

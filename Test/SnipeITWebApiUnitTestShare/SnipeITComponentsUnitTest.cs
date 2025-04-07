@@ -1,4 +1,9 @@
-﻿namespace SnipeITWebApiUnitTest;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Data.Common;
+using System;
+
+namespace SnipeITWebApiUnitTest;
 
 [TestClass]
 public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest
@@ -19,6 +24,49 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(componentId, item.Id, "item.Id");
         Assert.AreEqual(componentName, item.Name, "item.Name");
+        Assert.AreEqual(null, item.Image, "item.Image");
+        Assert.AreEqual("9a659795-2c29-31a8-a066-60da4cf28b53", item.Serial, "item.Serial");
+        Assert.AreEqual(new NamedItem(3, "Jarrellport"), item.Location, "item.Location");
+        Assert.AreEqual(10, item.Qty, "item.Qty");
+        Assert.AreEqual(2, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(new NamedItem(13, "RAM"), item.Category, "item.Category");
+        Assert.AreEqual(new NamedItem(6, "Schulist-Daugherty"), item.Supplier, "item.Supplier");
+        Assert.AreEqual(new NamedItem(11, "Crucial"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual("11525744", item.ModelNumber, "item.ModelNumber");
+        Assert.AreEqual("49148111", item.OrderNumber, "item.OrderNumber");
+        DateTimeAssert.AreEqual(null, item.PurchaseDate, "item.PurchaseDate");
+        Assert.AreEqual("2,40", item.PurchaseCost, "item.PurchaseCost");
+        Assert.AreEqual(9, item.Remaining, "item.Remaining");
+        Assert.AreEqual(new NamedItem(1, "Quigley-Luettgen"), item.Company, "item.Company");
+        Assert.AreEqual(null, item.Notes, "item.Notes");
+        Assert.AreEqual(null, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        Assert.AreEqual(1, item.UserCanCheckout, "item.UserCanCheckout");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Checkout, "item.AvailableActions.Checkout");
+        Assert.IsTrue(item.AvailableActions.Checkin, "item.AvailableActions.Checkin");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
+    }
+
+    [TestMethod]
+    public async Task TestMethodGetComponentsQueryAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        int numAll = await snipeIT.GetComponentsAsync(CancellationToken.None).CountAsync();
+
+        int numName = await snipeIT.GetComponentsAsync(name: "Crucial 4GB DDR3L-1600 SODIMM").CountAsync();
+
+        int numSearch = await snipeIT.GetComponentsAsync(search: "Laptops").CountAsync();
+
+        int numOrderNumber = await snipeIT.GetComponentsAsync(orderNumber: "30959123").CountAsync();
+        
+        Assert.AreEqual(9, numAll, "numAll");
+        Assert.AreEqual(2, numName, "numName");
+        //Assert.AreEqual(1, numSearch, "numSearch");
+        Assert.AreEqual(10, numOrderNumber, "numOrderNumber");
     }
 
     [TestMethod]
@@ -31,6 +79,30 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(componentId, item.Id, "item.Id");
         Assert.AreEqual(componentName, item.Name, "item.Name");
+        Assert.AreEqual(null, item.Image, "item.Image");
+        Assert.AreEqual("9a659795-2c29-31a8-a066-60da4cf28b53", item.Serial, "item.Serial");
+        Assert.AreEqual(new NamedItem(3, "Jarrellport"), item.Location, "item.Location");
+        Assert.AreEqual(10, item.Qty, "item.Qty");
+        Assert.AreEqual(2, item.MinAmt, "item.MinAmt");
+        Assert.AreEqual(new NamedItem(13, "RAM"), item.Category, "item.Category");
+        Assert.AreEqual(new NamedItem(6, "Schulist-Daugherty"), item.Supplier, "item.Supplier");
+        Assert.AreEqual(new NamedItem(11, "Crucial"), item.Manufacturer, "item.Manufacturer");
+        Assert.AreEqual("11525744", item.ModelNumber, "item.ModelNumber");
+        Assert.AreEqual("49148111", item.OrderNumber, "item.OrderNumber");
+        DateTimeAssert.AreEqual(null, item.PurchaseDate, "item.PurchaseDate");
+        Assert.AreEqual("2,40", item.PurchaseCost, "item.PurchaseCost");
+        Assert.AreEqual(9, item.Remaining, "item.Remaining");
+        Assert.AreEqual(new NamedItem(1, "Quigley-Luettgen"), item.Company, "item.Company");
+        Assert.AreEqual(null, item.Notes, "item.Notes");
+        Assert.AreEqual(null, item.CreatedBy, "item.CreatedBy");
+        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        Assert.AreEqual(1, item.UserCanCheckout, "item.UserCanCheckout");
+        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
+        Assert.IsTrue(item.AvailableActions.Checkout, "item.AvailableActions.Checkout");
+        Assert.IsTrue(item.AvailableActions.Checkin, "item.AvailableActions.Checkin");
+        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
+        Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
     [TestMethod]

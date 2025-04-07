@@ -303,11 +303,26 @@ public class SnipeIT : IDisposable
 
     #region Components
 
-    public async IAsyncEnumerable<Component> GetComponentsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<Component> GetComponentsAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = service.GetComponentsAsync(cancellationToken);
+        var res = service.GetComponentsAsync(null, null, null, cancellationToken);
+        await foreach (var item in res)
+        {
+            yield return item.CastModel<Component>()!;
+        }
+    }
+
+    public async IAsyncEnumerable<Component> GetComponentsAsync(
+        string? name = null,
+        string? search = null,
+        string? orderNumber = null,        
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
+
+        var res = service.GetComponentsAsync(name, search, orderNumber, cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Component>()!;
