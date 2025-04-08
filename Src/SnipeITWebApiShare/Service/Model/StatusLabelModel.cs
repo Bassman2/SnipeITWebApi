@@ -9,7 +9,20 @@ internal class StatusLabelModel
     public string? Name { get; set; }
 
     [JsonPropertyName("type")]
+    [JsonConverter(typeof(JsonStringEnumConverter<StatusType>))]
     public StatusType? Type { get; set; }
+
+    [JsonPropertyName("deployable")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
+    public bool? Deployable { get; set; }
+
+    [JsonPropertyName("pending")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
+    public bool? Pending { get; set; }
+
+    [JsonPropertyName("archived")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
+    public bool? Archived { get; set; }
 
     [JsonPropertyName("color")]
     public string? Color { get; set; }

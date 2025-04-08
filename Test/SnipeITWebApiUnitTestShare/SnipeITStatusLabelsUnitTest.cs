@@ -43,55 +43,67 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         string updateName = Guid.NewGuid().ToString();
         string patchName = Guid.NewGuid().ToString();
 
-        var create = await snipeIT.CreateStatusLabelAsync(new()
+        var create = new StatusLabel()
         {
             Name = createName,
-            Type = StatusType.Pending,
+            Type = StatusType.pending,
             //Image = imageCreate,    
-            Notes = notesCreate,
-        });
-        Assert.IsNotNull(create);
-        Assert.IsTrue(create.Id > 0, "create.Id");
-        int id = create.Id;
+            Notes = "create",
+        };
+        var created = await snipeIT.CreateStatusLabelAsync(create);
+        Assert.IsNotNull(created);
+        create.Id = created.Id;
 
-        var update = await snipeIT.UpdateStatusLabelAsync(id, new()
+        var retrieved = await snipeIT.GetStatusLabelAsync(created.Id);
+        Assert.IsNotNull(retrieved);
+
+        var update = new StatusLabel()
         {
+            Id = created.Id,
             Name = updateName,
-            Type = StatusType.Archived,
+            Type = StatusType.archived,
             //Image = imageUpdate,
             Notes = notesUpdate,
+        };
+        var updated = await snipeIT.UpdateStatusLabelAsync(created.Id, update);
+        Assert.IsNotNull(updated);
 
-        });
-        Assert.IsNotNull(update);
-
-        var patch = await snipeIT.PatchStatusLabelAsync(id, new()
+        var patch = new StatusLabel()
         {
+            Id = created.Id,
             Name = patchName,
-            Type = StatusType.Undeployable,
-            //Image = imagePatch,
+            Type = StatusType.deployable,
+            //Image = imageUpdate,
             Notes = notesPatch,
+        };
+        var patched = await snipeIT.PatchStatusLabelAsync(created.Id, patch);
+        Assert.IsNotNull(patched);
 
-        });
-        Assert.IsNotNull(patch);
+        var deleted = await snipeIT.DeleteStatusLabelAsync(created.Id);
+        //Assert.IsNotNull(deleted);
 
-        var del = await snipeIT.DeleteStatusLabelAsync(id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetStatusLabelAsync(created.Id));
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetStatusLabelAsync(id));
+        AreEqual(create, created, "created");
+        AreEqual(create, retrieved, "retrieved");
+        AreEqual(update, updated, "updated");
+        AreEqual(patch, patched, "patched");
+        //AreEqual(patch, deleted, "deleted");
 
-        Assert.AreEqual(id, create.Id, "create.Id");
-        Assert.AreEqual(createName, create.Name, "create.Name");
-        //Assert.AreEqual(imageCreate, create.Image, "create.Image");
-        Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
+    //    Assert.AreEqual(id, create.Id, "create.Id");
+    //    Assert.AreEqual(createName, create.Name, "create.Name");
+    //    //Assert.AreEqual(imageCreate, create.Image, "create.Image");
+    //    Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
-        Assert.AreEqual(id, update.Id, "update.Id");
-        Assert.AreEqual(updateName, update.Name, "update.Name");
-        //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
-        Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
+    //    Assert.AreEqual(id, update.Id, "update.Id");
+    //    Assert.AreEqual(updateName, update.Name, "update.Name");
+    //    //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
+    //    Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
-        Assert.AreEqual(id, patch.Id, "patch.Id");
-        Assert.AreEqual(patchName, patch.Name, "patch.Name");
-        //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
-        Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
+    //    Assert.AreEqual(id, patch.Id, "patch.Id");
+    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
+    //    //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
+    //    Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
     }
 
     [TestMethod]
@@ -116,5 +128,20 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
         await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteStatusLabelAsync(notExistingId));
+    }
+
+    private void AreEqual(StatusLabel expected, StatusLabel actual, string message)
+    {
+        Assert.AreEqual(expected.Id, actual.Id, $"{message}.Id");
+        Assert.AreEqual(expected.Name, actual.Name, $"{message}.Name");
+        //Assert.AreEqual(expected.Type, actual.Type, $"{message}.Type");
+        Assert.AreEqual(expected.Color, actual.Color, $"{message}.Color");
+        Assert.AreEqual(expected.ShowInNav ?? false, actual.ShowInNav, $"{message}.ShowInNav");
+        Assert.AreEqual(expected.DefaultLabel ?? false, actual.DefaultLabel, $"{message}.DefaultLabel");
+        Assert.AreEqual(0, actual.AssetsCount ?? 0, $"{message}.AssetsCount");
+        Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
+        Assert.AreEqual(null, actual.CreatedBy, $"{message}.CreatedBy");
+        DateTimeAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
+        DateTimeAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
     }
 }

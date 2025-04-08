@@ -8,6 +8,7 @@ public abstract class SnipeITBaseUnitTest
     protected const string appName = "UnitTest";
 
     protected const string lastUpdate = "2025-04-03";
+    protected readonly string today = DateTime.Now.ToString("yyyy-MM-dd");
 
 
     protected const int notExistingId = 65000;
@@ -105,6 +106,7 @@ public abstract class SnipeITBaseUnitTest
     protected const string passwordPatch = "py4Nx/r$!,zQ";
 
     protected const string notes = "Created by DB seeder";
+
     protected static readonly NamedItem adminUser = new(1, "Admin User");
 
     protected const string adminAvatar = "https://develop.snipeitapp.com/uploads/avatars/1.jpg";

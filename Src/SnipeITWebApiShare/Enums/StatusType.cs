@@ -4,14 +4,14 @@
 public enum StatusType
 {
     [EnumMember(Value = "deployable")]
-    Deployable,
+    deployable,
 
     [EnumMember(Value = "pending")]
-    Pending,
+    pending,
 
     [EnumMember(Value = "archived")]
-    Archived,
+    archived,
 
     [EnumMember(Value = "undeployable")]
-    Undeployable
+    undeployable
 }

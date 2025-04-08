@@ -9,7 +9,7 @@ public class StatusLabel
     {
         Id = model.Id;
         Name = model.Name;
-        Type = model.Type;
+        //Type = model.Type;
         Color = model.Color;
         ShowInNav = model.ShowInNav;
         DefaultLabel = model.DefaultLabel;
@@ -20,6 +20,26 @@ public class StatusLabel
         UpdatedAt = model.UpdatedAt;
         AvailableActions = model.AvailableActions.CastModel<Actions>();
 
+        if (model.Type != null)
+        {
+            Type = model.Type;
+        }
+        if (model.Deployable == true)
+        {
+            Type = StatusType.deployable;
+        }
+        else if (model.Pending == true)
+        {
+            Type = StatusType.pending;
+        }
+        else if (model.Archived == true)
+        {
+            Type = StatusType.archived;
+        }
+        else
+        {
+            Type = StatusType.undeployable;
+        }
     }
 
     internal StatusLabelModel ToCreate()
