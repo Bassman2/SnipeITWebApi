@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomField.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Department.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\CategoryType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\StatusType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Field.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fieldset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Group.cs" />

@@ -46,6 +46,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         var create = await snipeIT.CreateStatusLabelAsync(new()
         {
             Name = createName,
+            Type = StatusType.Pending,
             //Image = imageCreate,    
             Notes = notesCreate,
         });
@@ -56,6 +57,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         var update = await snipeIT.UpdateStatusLabelAsync(id, new()
         {
             Name = updateName,
+            Type = StatusType.Archived,
             //Image = imageUpdate,
             Notes = notesUpdate,
 
@@ -65,6 +67,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         var patch = await snipeIT.PatchStatusLabelAsync(id, new()
         {
             Name = patchName,
+            Type = StatusType.Undeployable,
             //Image = imagePatch,
             Notes = notesPatch,
 
