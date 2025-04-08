@@ -39,12 +39,15 @@ public class Accessory
         ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
         return new()
         {
+            // required
             Name = Name,
+            Qty = Qty,
+            CategoryId = Category?.Id,
+
+            // optional
             Image = Image,
             ModelNumber = ModelNumber,
-            CategoryId = Category?.Id,
             Notes = Notes,
-            Qty = Qty,
             PurchaseDate = PurchaseDate,
             PurchaseCost = PurchaseCost,
             OrderNumber = OrderNumber,

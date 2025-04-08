@@ -1,5 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
+//[JsonConverter(typeof(NamedItemConverter))]
 internal class NamedItemModel
 {
     [JsonPropertyName("id")]

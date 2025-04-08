@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DateTimeAssert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RangeAssert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITAccessoriesUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITCompaniesUnitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SnipeITComponentsUnitTest.cs" />

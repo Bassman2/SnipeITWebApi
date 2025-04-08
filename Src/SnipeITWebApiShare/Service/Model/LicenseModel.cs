@@ -9,6 +9,7 @@ internal class LicenseModel
     public string? Name { get; set; }
 
     [JsonPropertyName("company")]
+    [JsonConverter(typeof(NamedItemConverter))]
     public NamedItemModel? Company { get; set; }
 
     [JsonPropertyName("manufacturer")]
@@ -66,6 +67,7 @@ internal class LicenseModel
     public string? LicenseEmail { get; set; }
 
     [JsonPropertyName("reassignable")]
+    [JsonConverter(typeof(BoolJsonConverter))]
     public bool? Reassignable { get; set; }
 
     [JsonPropertyName("maintained")]
@@ -76,6 +78,9 @@ internal class LicenseModel
 
     [JsonPropertyName("category")]
     public NamedItemModel? Category { get; set; }
+
+    [JsonPropertyName("category_id")]
+    public int? CategoryId { get; set; }
 
     [JsonPropertyName("created_by")]
     public NamedItemModel? CreatedBy { get; set; }

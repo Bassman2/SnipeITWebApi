@@ -41,28 +41,43 @@ public class License
 
     internal LicenseModel ToCreate()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNull(Seats, nameof(Seats));
+        ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
         return new()
         {
+            // required
             Name = Name,
+            Seats = Seats,
+            CategoryId = Category?.Id,
+            //Category = Category?.ToCreate(),
+
+            // optional
+            Notes = Notes,
         };
     }
 
     internal LicenseModel ToUpdate()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
+            // optional
             Name = Name,
+            Notes = Notes,
+
         };
     }
 
     internal LicenseModel ToPatch()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
+            // optional
             Name = Name,
+            Notes = Notes,
+
         };
     }
 

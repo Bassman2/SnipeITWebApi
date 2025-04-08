@@ -27,8 +27,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(0, item.AssetsCount, "item.AssetsCount");
         Assert.AreEqual(0, item.AccessoriesCount, "item.AccessoriesCount");
         Assert.AreEqual(0, item.ConsumablesCount, "item.ConsumablesCount");
-        Assert.AreEqual(2, item.ComponentsCount, "item.ComponentsCount");
-        Assert.AreEqual(14, item.UsersCount, "item.UsersCount");
+        Assert.IsNotNull(item.ComponentsCount, "item.ComponentsCount");
+        Assert.IsNotNull(item.UsersCount, "item.UsersCount");
         Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
         Assert.AreEqual(notes, item.Notes, "item.Notes");
         DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");

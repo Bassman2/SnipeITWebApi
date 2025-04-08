@@ -22,6 +22,18 @@ internal class NamedItemConverter : JsonConverter<NamedItemModel?>
 
     public override void Write(Utf8JsonWriter writer, NamedItemModel? value, JsonSerializerOptions options)
     {
-
+        throw new NotImplementedException();
     }
+
+    //public override void WriteAsPropertyName(Utf8JsonWriter writer, NamedItemModel? value, JsonSerializerOptions options)
+    //{
+    //    //if (value != null)
+    //    //{
+    //    //    writer.WriteStartObject();
+    //    //    writer.WriteNumber("id", value.Id);
+    //    //    writer.WriteString("name", value.Name);
+    //    //    writer.WriteEndObject();
+    //    //}
+    //}
+
 }
