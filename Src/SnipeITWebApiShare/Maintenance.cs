@@ -32,19 +32,22 @@ public class Maintenance
 
     internal MaintenanceModel ToCreate()
     {
-        //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         ArgumentNullException.ThrowIfNull(Asset?.Id, nameof(Asset.Id));
         ArgumentNullException.ThrowIfNull(Supplier?.Id, nameof(Supplier.Id));
         ArgumentNullException.ThrowIfNull(AssetMaintenanceType, nameof(AssetMaintenanceType));
-        ArgumentNullException.ThrowIfNullOrWhiteSpace(Title, nameof(Title));
+        //ArgumentNullException.ThrowIfNullOrWhiteSpace(Title, nameof(Title));
         ArgumentNullException.ThrowIfNull(StartDate, nameof(StartDate));
         return new()
         {
+            // required
             AssetId = Asset?.Id,
             SupplierId = Supplier?.Id,
             AssetMaintenanceType = AssetMaintenanceType,
             Title = Title,
             StartDate = StartDate,
+
+            // optional
+            Notes = Notes,
         };
     }
 
@@ -53,7 +56,8 @@ public class Maintenance
         //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
-            //Name = Name,
+            // optional
+            Notes = Notes,
         };
     }
 
@@ -62,7 +66,8 @@ public class Maintenance
         //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
-            //Name = Name,
+            // optional
+            Notes = Notes,
         };
     }
 

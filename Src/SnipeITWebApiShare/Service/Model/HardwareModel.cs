@@ -21,6 +21,7 @@ internal class HardwareModel
     public int? ModelId { get; set; }
 
     [JsonPropertyName("byod")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? Byod { get; set; }
 
     [JsonPropertyName("requestable")]

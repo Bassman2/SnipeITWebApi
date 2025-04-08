@@ -45,7 +45,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
 
         var create = await snipeIT.CreateMaintenanceAsync(new()
         {
-    //        Name = createName,
+            //Name = createName,
             //Image = imageCreate,    
             Asset = hardwareId,
             Supplier = companyId,
@@ -60,7 +60,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
 
         var update = await snipeIT.UpdateMaintenanceAsync(id, new()
         {
-      //      Name = updateName,
+            //Name = updateName,
             //Image = imageUpdate,
             Notes = notesUpdate,
 
@@ -101,7 +101,14 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateMaintenanceAsync(new() {  }));
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateMaintenanceAsync(new() {
+            Asset = hardwareId,
+            Supplier = companyId,
+            AssetMaintenanceType = "1",
+            Title = maintenanceName,
+            Notes = notesCreate,
+            StartDate = DateTime.UtcNow,
+        }));
     }
 
     [TestMethod]
