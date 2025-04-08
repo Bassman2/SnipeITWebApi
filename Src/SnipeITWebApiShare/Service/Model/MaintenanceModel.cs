@@ -60,6 +60,7 @@ internal class MaintenanceModel
     public NamedItemModel? UserId { get; set; }
 
     [JsonPropertyName("created_by")]
+    [JsonConverter(typeof(NamedItemJsonConverter))]
     public NamedItemModel? CreatedBy { get; set; }
 
     [JsonPropertyName("created_at")]

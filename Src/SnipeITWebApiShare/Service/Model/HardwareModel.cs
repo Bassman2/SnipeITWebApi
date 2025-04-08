@@ -24,6 +24,7 @@ internal class HardwareModel
     public bool? Byod { get; set; }
 
     [JsonPropertyName("requestable")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? Requestable { get; set; }
 
     [JsonPropertyName("model_number")]
@@ -86,7 +87,7 @@ internal class HardwareModel
     public DateTime? WarrantyExpires { get; set; }
 
     [JsonPropertyName("created_by")]
-    [JsonConverter(typeof(NamedItemConverter))]
+    [JsonConverter(typeof(NamedItemJsonConverter))]
     public NamedItemModel? CreatedBy { get; set; }
 
     [JsonPropertyName("created_at")]

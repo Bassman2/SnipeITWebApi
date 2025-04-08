@@ -24,7 +24,7 @@ internal class CategoryModel
     public string? Eula { get; set; }
 
     [JsonPropertyName("checkin_email")]
-    [JsonConverter(typeof(BoolJsonConverter))]
+    [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? CheckinEmail { get; set; }
 
     [JsonPropertyName("require_acceptance")]

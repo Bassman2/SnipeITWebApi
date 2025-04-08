@@ -50,7 +50,7 @@ internal class ModelModel
     public string? Eol { get; set; }
 
     [JsonPropertyName("requestable")]
-    [JsonConverter(typeof(BoolJsonConverter))]
+    [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? Requestable { get; set; }
 
     [JsonPropertyName("notes")]

@@ -1,6 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Converter;
 
-internal class NamedItemConverter : JsonConverter<NamedItemModel?>
+internal class NamedItemJsonConverter : JsonConverter<NamedItemModel?>
 {
     public override NamedItemModel? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {

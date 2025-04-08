@@ -1,6 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Converter;
 
-internal class PermissionsConverter : JsonConverter<PermissionsModel?>
+internal class PermissionsJsonConverter : JsonConverter<PermissionsModel?>
 {
     public override PermissionsModel? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
