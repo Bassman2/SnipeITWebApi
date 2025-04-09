@@ -134,31 +134,31 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<AccessoryModel?> CreateAccessoryAsync(AccessoryModel model, CancellationToken cancellationToken)
+    public async Task<AccessoryChangeModel?> CreateAccessoryAsync(AccessoryChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<AccessoryModel, ResultModel<AccessoryModel>>("api/v1/accessories", model, cancellationToken);
+        var res = await PostAsJsonAsync<AccessoryChangeModel, ResultModel<AccessoryChangeModel>>("api/v1/accessories", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<AccessoryModel?> UpdateAccessoryAsync(int id, AccessoryModel model, CancellationToken cancellationToken)
+    public async Task<AccessoryChangeModel?> UpdateAccessoryAsync(int id, AccessoryChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<AccessoryModel, ResultModel<AccessoryModel>>($"api/v1/accessories/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<AccessoryChangeModel, ResultModel<AccessoryChangeModel>>($"api/v1/accessories/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<AccessoryModel?> PatchAccessoryAsync(int id, AccessoryModel model, CancellationToken cancellationToken)
+    public async Task<AccessoryChangeModel?> PatchAccessoryAsync(int id, AccessoryChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<AccessoryModel, ResultModel<AccessoryModel>>($"api/v1/accessories/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<AccessoryChangeModel, ResultModel<AccessoryChangeModel>>($"api/v1/accessories/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }

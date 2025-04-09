@@ -117,3 +117,48 @@ public abstract class SnipeITBaseUnitTest
     protected const string adminZip = "04529-0110";
     protected const string adminEmail = "herzog.earl@example.org";
 }
+
+public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : class
+{
+    
+    public abstract Task<T?> GetAsync(SnipeIT snipeIT, int id);
+
+    public abstract Task<int> CreateAsync(SnipeIT snipeIT, T value);
+
+    public abstract Task UpdateAsync(SnipeIT snipeIT, int id, T value);
+
+    public abstract Task PatchAsync(SnipeIT snipeIT, int id, T value);
+
+    public abstract Task DeleteAsync(SnipeIT snipeIT, int id);
+
+    public abstract void AreEqual(int id, T expected, T? actual, string message);
+
+
+    public async Task TestMethodAllAsync(T create, T update, T patch)
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        string createName = Guid.NewGuid().ToString();
+        string updateName = Guid.NewGuid().ToString();
+        string patchName = Guid.NewGuid().ToString();
+                
+        int id = await CreateAsync(snipeIT, create);
+        T? created = await GetAsync(snipeIT, id);
+
+        
+        await UpdateAsync(snipeIT, id, update);
+        T? updated = await GetAsync(snipeIT, id);
+
+        await PatchAsync(snipeIT, id, patch);
+        T? patched = await GetAsync(snipeIT, id);
+
+
+        var deleted = await snipeIT.DeleteAccessoryAsync(id);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetAccessoryAsync(id));
+
+        AreEqual(id, create, created, "created");
+        AreEqual(id, update, updated, "updated");
+        AreEqual(id, patch, patched, "patched");
+    }
+}

@@ -31,6 +31,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Manufacturer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Permissions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\CastExtentions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AccessoryChangeModel.cs" />
     <Compile Include="..\SnipeITWebApiShare\Service\Converter\BooleanJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ImageConverter.cs" />

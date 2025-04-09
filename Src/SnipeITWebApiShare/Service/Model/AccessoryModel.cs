@@ -12,13 +12,13 @@ internal class AccessoryModel
     public string? Image { get; set; }
 
     [JsonPropertyName("company")]
-    public NamedItemModel? Company { get; set; }
+    public NamedItemModel? Company { get; set; }   
 
     [JsonPropertyName("manufacturer")]
-    public NamedItemModel? Manufacturer { get; set; }
+    public NamedItemModel? Manufacturer { get; set; }    
 
     [JsonPropertyName("supplier")]
-    public NamedItemModel? Supplier { get; set; }
+    public NamedItemModel? Supplier { get; set; }   
 
     [JsonPropertyName("model_number")]
     public string? ModelNumber { get; set; }
@@ -26,11 +26,8 @@ internal class AccessoryModel
     [JsonPropertyName("category")]
     public NamedItemModel? Category { get; set; }
 
-    [JsonPropertyName("category_id")]
-    public int? CategoryId { get; set; }
-
     [JsonPropertyName("location")]
-    public NamedItemModel? Location { get; set; }
+    public NamedItemModel? Location { get; set; }    
 
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }

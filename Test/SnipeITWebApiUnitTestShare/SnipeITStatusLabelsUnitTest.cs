@@ -141,7 +141,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(0, actual.AssetsCount ?? 0, $"{message}.AssetsCount");
         Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
         Assert.AreEqual(null, actual.CreatedBy, $"{message}.CreatedBy");
-        DateTimeAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
-        DateTimeAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
+        DateAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
+        DateAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
     }
 }

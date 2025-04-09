@@ -34,9 +34,9 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(0, item.ComponentsCount, "item.ComponentsCount");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
         Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
-        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
-        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
-        DateTimeAssert.AreEqual(null, item.DeletedAt, "item.DeletedAt");
+        DateAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        DateAssert.IsNull(item.DeletedAt, "item.DeletedAt");
 
         Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
         Assert.AreEqual(true, item.AvailableActions.Update, "item.AvailableActions.Update");
@@ -70,9 +70,9 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(notes, item.Notes, "item.Notes");
 
         Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
-        DateTimeAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
-        DateTimeAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
-        DateTimeAssert.AreEqual(null, item.DeletedAt, "item.DeletedAt");
+        DateAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
+        DateAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
+        DateAssert.IsNull(item.DeletedAt, "item.DeletedAt");
 
         Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
         Assert.AreEqual(true, item.AvailableActions.Update, "item.AvailableActions.Update");

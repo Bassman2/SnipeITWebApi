@@ -148,30 +148,30 @@ public class SnipeIT : IDisposable
         return res.CastModel<Accessory>();
     }
 
-    public async Task<Accessory?> CreateAccessoryAsync(Accessory item, CancellationToken cancellationToken = default)
+    public async Task<int> CreateAccessoryAsync(Accessory item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateAccessoryAsync(item.ToCreate(), cancellationToken);
-        return res.CastModel<Accessory>();
+        var res = await service.CreateAccessoryAsync(item.ToChange(), cancellationToken);
+        return res!.Id;
     }
 
-    public async Task<Accessory?> UpdateAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
+    public async Task UpdateAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateAccessoryAsync(id, item.ToUpdate(), cancellationToken);
-        return res.CastModel<Accessory>();
+        var res = await service.UpdateAccessoryAsync(id, item.ToChange(), cancellationToken);
+        //return res.CastModel<Accessory>();
     }
 
-    public async Task<Accessory?> PatchAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
+    public async Task PatchAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchAccessoryAsync(id, item.ToPatch(), cancellationToken);
-        return res.CastModel<Accessory>();
+        var res = await service.PatchAccessoryAsync(id, item.ToChange(), cancellationToken);
+        //return res.CastModel<Accessory>();
     }
 
     public async Task<Accessory?> DeleteAccessoryAsync(int id, CancellationToken cancellationToken = default)

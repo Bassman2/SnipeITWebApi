@@ -30,73 +30,94 @@ public class Accessory
         CreatedAt = model.CreatedAt;
         UpdatedAt = model.UpdatedAt;
         AvailableActions = model.AvailableActions.CastModel<Actions>();
+
+        
     }
 
-    internal AccessoryModel ToCreate()
+    internal AccessoryChangeModel ToChange()
     {
-        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
-        ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
         return new()
         {
             // required
             Name = Name,
             Qty = Qty,
             CategoryId = Category?.Id,
-
-            // optional
-            Image = Image,
-            ModelNumber = ModelNumber,
-            Notes = Notes,
-            PurchaseDate = PurchaseDate,
-            PurchaseCost = PurchaseCost,
             OrderNumber = OrderNumber,
-            MinQty = MinQty,
-            MinAmt = MinAmt,
-            RemainingQty = RemainingQty,
-            Remaining = Remaining,
+            PurchaseCost = PurchaseCost,
+            PurchaseDate = PurchaseDate,
+            ModelNumber = ModelNumber,
+            CompanyId = Company?.Id,
+            LocationId = Location?.Id,
+            ManufacturerId = Manufacturer?.Id,
+            SupplierId = Supplier?.Id,
         };
     }
 
-    internal AccessoryModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Image = Image,
-            ModelNumber = ModelNumber,
-            Notes = Notes,
-            Qty = Qty,
-            PurchaseDate = PurchaseDate,
-            PurchaseCost = PurchaseCost,
-            OrderNumber = OrderNumber,
-            MinQty = MinQty,
-            MinAmt = MinAmt,
-            RemainingQty = RemainingQty,
-            Remaining = Remaining,
-        };
-    }
+    //internal AccessoryModel ToCreate()
+    //{
+    //    ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
+    //    ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
+    //    return new()
+    //    {
+    //        // required
+    //        Name = Name,
+    //        Qty = Qty,
+    //        CategoryId = Category?.Id,
 
-    internal AccessoryModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Image = Image,
-            ModelNumber = ModelNumber,
-            Notes = Notes,
-            Qty = Qty,
-            PurchaseDate = PurchaseDate,
-            PurchaseCost = PurchaseCost,
-            OrderNumber = OrderNumber,
-            MinQty = MinQty,
-            MinAmt = MinAmt,
-            RemainingQty = RemainingQty,
-            Remaining = Remaining,
-        };
-    }
+    //        // optional
+    //        Image = Image,
+    //        ModelNumber = ModelNumber,
+    //        Notes = Notes,
+    //        PurchaseDate = PurchaseDate,
+    //        PurchaseCost = PurchaseCost,
+    //        OrderNumber = OrderNumber,
+    //        MinQty = MinQty,
+    //        MinAmt = MinAmt,
+    //        RemainingQty = RemainingQty,
+    //        Remaining = Remaining,
+    //    };
+    //}
+
+    //internal AccessoryModel ToUpdate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Image = Image,
+    //        ModelNumber = ModelNumber,
+    //        Notes = Notes,
+    //        Qty = Qty,
+    //        PurchaseDate = PurchaseDate,
+    //        PurchaseCost = PurchaseCost,
+    //        OrderNumber = OrderNumber,
+    //        MinQty = MinQty,
+    //        MinAmt = MinAmt,
+    //        RemainingQty = RemainingQty,
+    //        Remaining = Remaining,
+    //    };
+    //}
+
+    //internal AccessoryModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Image = Image,
+    //        ModelNumber = ModelNumber,
+    //        Notes = Notes,
+    //        Qty = Qty,
+    //        PurchaseDate = PurchaseDate,
+    //        PurchaseCost = PurchaseCost,
+    //        OrderNumber = OrderNumber,
+    //        MinQty = MinQty,
+    //        MinAmt = MinAmt,
+    //        RemainingQty = RemainingQty,
+    //        Remaining = Remaining,
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }
