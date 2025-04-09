@@ -130,7 +130,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest
         await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteStatusLabelAsync(notExistingId));
     }
 
-    private void AreEqual(StatusLabel expected, StatusLabel actual, string message)
+    private void AreEqual( StatusLabel expected, StatusLabel actual, string message)
     {
         Assert.AreEqual(expected.Id, actual.Id, $"{message}.Id");
         Assert.AreEqual(expected.Name, actual.Name, $"{message}.Name");
