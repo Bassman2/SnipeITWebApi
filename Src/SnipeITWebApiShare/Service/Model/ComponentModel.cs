@@ -24,16 +24,10 @@ internal class ComponentModel
     public int? MinAmt { get; set; }
 
     [JsonPropertyName("category")]
-    public NamedItemModel? Category { get; set; }
-
-    [JsonPropertyName("category_id")]
-    public int? CategoryId { get; set; }
+    public NamedItemModel? Category { get; set; }   
 
     [JsonPropertyName("supplier")]
     public NamedItemModel? Supplier { get; set; }
-    
-    [JsonPropertyName("supplier_id")]
-    public int? SupplierId { get; set; }
 
     [JsonPropertyName("manufacturer")]
     public NamedItemModel? Manufacturer { get; set; }

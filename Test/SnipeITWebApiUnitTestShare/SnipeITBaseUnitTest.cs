@@ -156,10 +156,8 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
         await PatchAsync(snipeIT, id, patch);
         T? patched = await GetAsync(snipeIT, id);
 
-
-        var deleted = await snipeIT.DeleteAccessoryAsync(id);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetAccessoryAsync(id));
+        await DeleteAsync(snipeIT, id);
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await GetAsync(snipeIT, id));
 
         AreEqual(id, create, created, "created");
         AreEqual(id, update, updated, "updated");

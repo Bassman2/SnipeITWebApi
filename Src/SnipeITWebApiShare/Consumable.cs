@@ -31,11 +31,25 @@ public class Consumable
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal ConsumableModel ToCreate()
+    //internal ConsumableChangeModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
+    //    ArgumentNullException.ThrowIfNull(Category, nameof(Category));
+    //    return new()
+    //    {
+    //        // required
+    //        Name = Name,
+    //        Qty = Qty,
+    //        CategoryId = Category?.Id,
+    //        // optional
+    //    };
+
+    //}
+
+    internal ConsumableChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
-        ArgumentNullException.ThrowIfNull(Category, nameof(Category));
         return new()
         {
             // required
@@ -44,26 +58,16 @@ public class Consumable
             CategoryId = Category?.Id,
             // optional
         };
-
     }
 
-    internal ConsumableModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-        };
-    }
-
-    internal ConsumableModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-        };
-    }
+    //internal ConsumableModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

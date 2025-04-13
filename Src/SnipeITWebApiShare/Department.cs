@@ -25,7 +25,19 @@ public class Department
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal DepartmentModel ToCreate()
+    //internal DepartmentModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Phone = Phone,
+    //        Fax = Fax,
+    //        Notes = Notes,
+    //    };
+    //}
+
+    internal DepartmentChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -37,29 +49,17 @@ public class Department
         };
     }
 
-    internal DepartmentModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Phone = Phone,
-            Fax = Fax,
-            Notes = Notes,
-        };
-    }
-
-    internal DepartmentModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Phone = Phone,
-            Fax = Fax,
-            Notes = Notes,
-        };
-    }
+    //internal DepartmentModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Phone = Phone,
+    //        Fax = Fax,
+    //        Notes = Notes,
+    //    };
+    //}
 
     public int Id { get; set; }
 

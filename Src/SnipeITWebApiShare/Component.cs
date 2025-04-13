@@ -31,7 +31,7 @@ public class Component
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal ComponentModel ToCreate()
+    internal ComponentChangeModel ToCreate()
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
@@ -44,7 +44,7 @@ public class Component
         };
     }
 
-    internal ComponentModel ToUpdate()
+    internal ComponentChangeModel ToUpdate()
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -53,14 +53,14 @@ public class Component
         };
     }
 
-    internal ComponentModel ToPatch()
-    {
-        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-        };
-    }
+    //internal ComponentModel ToPatch()
+    //{
+    //    ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

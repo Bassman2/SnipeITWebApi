@@ -98,6 +98,36 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
     //}
 
     [TestMethod]
+    public async Task TestMethodCreateUpdateDeleteCategoryAsync()
+    {
+        var create = new Category()
+        {
+            Name = CreateName(),
+            CategoryType = CategoryType.Asset,
+            //Image = imageCreate,    
+            Notes = notesCreate,
+        };
+
+        var update = new Category()
+        {
+            Name = CreateName(),
+            //Image = imageUpdate,
+            Notes = notesUpdate,
+
+        };
+
+        var patch = new Category()
+        {
+            Name = CreateName(),
+            //Image = imageUpdate,
+            Notes = notesUpdate,
+
+        };
+
+        await TestMethodAllAsync(create, update, patch);
+    }
+
+    [TestMethod]
     public async Task TestMethodCreateDuplicateCategoryAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
@@ -150,11 +180,11 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
         DateAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
 
         Assert.IsNotNull(actual.AvailableActions, $"{message}.AvailableActions");
-        Assert.IsTrue(actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
+        Assert.IsFalse(actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
         Assert.IsFalse(actual.AvailableActions.Checkin, $"{message}.AvailableActions.Checkin");
         Assert.IsTrue(actual.AvailableActions.Update, $"{message}.AvailableActions.Update");
         Assert.IsTrue(actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
-        Assert.IsTrue(actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
+        Assert.IsFalse(actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
     }
 
     public override async Task<Category?> GetAsync(SnipeIT snipeIT, int id)

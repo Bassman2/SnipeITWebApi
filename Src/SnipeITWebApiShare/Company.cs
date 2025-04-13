@@ -25,21 +25,21 @@ public class Company
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal CompanyModel ToCreate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Phone = Phone,
-            Fax = Fax,
-            Email = Email,
-            Image = ImageConverter.ConvertImageToBase64(Image),
-            Notes = Notes,
-        };
-    }
+    //internal CompanyChangeModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Phone = Phone,
+    //        Fax = Fax,
+    //        Email = Email,
+    //        Image = ImageConverter.ConvertImageToBase64(Image),
+    //        Notes = Notes,
+    //    };
+    //}
 
-    internal CompanyModel ToUpdate()
+    internal CompanyChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -53,19 +53,19 @@ public class Company
         };
     }
 
-    internal CompanyModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Phone = Phone,
-            Fax = Fax,
-            Email = Email,
-            Image = Image,
-            Notes = Notes,
-        };
-    }
+    //internal CompanyChangeModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Phone = Phone,
+    //        Fax = Fax,
+    //        Email = Email,
+    //        Image = Image,
+    //        Notes = Notes,
+    //    };
+    //}
 
     public int Id { get; set; }
 
