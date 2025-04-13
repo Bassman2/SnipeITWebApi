@@ -35,31 +35,31 @@ public class Location
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal LocationModel ToCreate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Image = Image,
-            Address = Address,
-            Address2 = Address2,
-            City = City,
-            State = State,
-            Country = Country,
-            Zip = Zip,
-            Phone = Phone,
-            Fax = Fax,
-            Currency = Currency,
-            LdapOu = LdapOu,
-            Notes = Notes,
-            Parent = Parent?.ToCreate(),
-            Manager = Manager?.ToCreate(),
-            Children = Children?.Select(x => x.ToCreate()).ToList(),
-        };
-    }
+    //internal LocationModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Image = Image,
+    //        Address = Address,
+    //        Address2 = Address2,
+    //        City = City,
+    //        State = State,
+    //        Country = Country,
+    //        Zip = Zip,
+    //        Phone = Phone,
+    //        Fax = Fax,
+    //        Currency = Currency,
+    //        LdapOu = LdapOu,
+    //        Notes = Notes,
+    //        Parent = Parent?.ToCreate(),
+    //        Manager = Manager?.ToCreate(),
+    //        Children = Children?.Select(x => x.ToCreate()).ToList(),
+    //    };
+    //}
 
-    internal LocationModel ToUpdate()
+    internal LocationChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -83,29 +83,29 @@ public class Location
         };
     }
 
-    internal LocationModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Image = Image,
-            Address = Address,
-            Address2 = Address2,
-            City = City,
-            State = State,
-            Country = Country,
-            Zip = Zip,
-            Phone = Phone,
-            Fax = Fax,
-            Currency = Currency,
-            LdapOu = LdapOu,
-            Notes = Notes,
-            Parent = Parent?.ToPatch(),
-            Manager = Manager?.ToPatch(),
-            Children = Children?.Select(x => x.ToPatch()).ToList(),
-        };
-    }
+    //internal LocationModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Image = Image,
+    //        Address = Address,
+    //        Address2 = Address2,
+    //        City = City,
+    //        State = State,
+    //        Country = Country,
+    //        Zip = Zip,
+    //        Phone = Phone,
+    //        Fax = Fax,
+    //        Currency = Currency,
+    //        LdapOu = LdapOu,
+    //        Notes = Notes,
+    //        Parent = Parent?.ToPatch(),
+    //        Manager = Manager?.ToPatch(),
+    //        Children = Children?.Select(x => x.ToPatch()).ToList(),
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

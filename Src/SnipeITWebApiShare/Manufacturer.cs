@@ -28,25 +28,52 @@ public class Manufacturer
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal ManufacturerModel ToCreate()
+    //internal ManufacturerModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        //Id = Id,
+    //        Name = Name,
+    //        Url = Url,
+    //        Image = Image,
+    //        SupportUrl = SupportUrl,
+    //        WarrantyLookupUrl = WarrantyLookupUrl,
+    //        SupportPhone = SupportPhone,
+    //        SupportEmail = SupportEmail,
+    //        AssetsCount = AssetsCount,
+    //        LicensesCount = LicensesCount,
+    //        ConsumablesCount = ConsumablesCount,
+    //        AccessoriesCount = AccessoriesCount,
+    //        ComponentsCount = ComponentsCount,
+    //        Notes = Notes,
+    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    //    };
+    //}
+
+    internal ManufacturerChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
             //Id = Id,
             Name = Name,
-            Url = Url,
-            Image = Image,
-            SupportUrl = SupportUrl,
-            WarrantyLookupUrl = WarrantyLookupUrl,
-            SupportPhone = SupportPhone,
-            SupportEmail = SupportEmail,
-            AssetsCount = AssetsCount,
-            LicensesCount = LicensesCount,
-            ConsumablesCount = ConsumablesCount,
-            AccessoriesCount = AccessoriesCount,
-            ComponentsCount = ComponentsCount,
-            Notes = Notes,
+            //Url = Url,
+            //Image = Image,
+            //SupportUrl = SupportUrl,
+            //WarrantyLookupUrl = WarrantyLookupUrl,
+            //SupportPhone = SupportPhone,
+            //SupportEmail = SupportEmail,
+            //AssetsCount = AssetsCount,
+            //LicensesCount = LicensesCount,
+            //ConsumablesCount = ConsumablesCount,
+            //AccessoriesCount = AccessoriesCount,
+            //ComponentsCount = ComponentsCount,
+            //Notes = Notes,
             //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
             //CreatedAt = model.CreatedAt.CastModel<DateItem>();
             //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
@@ -55,59 +82,32 @@ public class Manufacturer
         };
     }
 
-    internal ManufacturerModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            //Id = Id,
-            Name = Name,
-            Url = Url,
-            Image = Image,
-            SupportUrl = SupportUrl,
-            WarrantyLookupUrl = WarrantyLookupUrl,
-            SupportPhone = SupportPhone,
-            SupportEmail = SupportEmail,
-            AssetsCount = AssetsCount,
-            LicensesCount = LicensesCount,
-            ConsumablesCount = ConsumablesCount,
-            AccessoriesCount = AccessoriesCount,
-            ComponentsCount = ComponentsCount,
-            Notes = Notes,
-            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<Actions>();
-        };
-    }
-
-    internal ManufacturerModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            //Id = Id,
-            Name = Name,
-            Url = Url,
-            Image = Image,
-            SupportUrl = SupportUrl,
-            WarrantyLookupUrl = WarrantyLookupUrl,
-            SupportPhone = SupportPhone,
-            SupportEmail = SupportEmail,
-            AssetsCount = AssetsCount,
-            LicensesCount = LicensesCount,
-            ConsumablesCount = ConsumablesCount,
-            AccessoriesCount = AccessoriesCount,
-            ComponentsCount = ComponentsCount,
-            Notes = Notes,
-            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<Actions>();
-        };
-    }
+    //internal ManufacturerModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        //Id = Id,
+    //        Name = Name,
+    //        Url = Url,
+    //        Image = Image,
+    //        SupportUrl = SupportUrl,
+    //        WarrantyLookupUrl = WarrantyLookupUrl,
+    //        SupportPhone = SupportPhone,
+    //        SupportEmail = SupportEmail,
+    //        AssetsCount = AssetsCount,
+    //        LicensesCount = LicensesCount,
+    //        ConsumablesCount = ConsumablesCount,
+    //        AccessoriesCount = AccessoriesCount,
+    //        ComponentsCount = ComponentsCount,
+    //        Notes = Notes,
+    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    //    };
+    //}
 
 
     public int Id { get; }

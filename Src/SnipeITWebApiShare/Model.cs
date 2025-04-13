@@ -28,65 +28,37 @@ public class Model
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal ModelModel ToCreate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
-        return new()
-        {
+    //internal ModelModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
+    //    return new()
+    //    {
 
-            //Id = Id,
-            Name = Name,
-            CategoryId = Category?.Id,
-            //Url = Url,
-            //Image = Image,
-            //SupportUrl = SupportUrl,
-            //WarrantyLookupUrl = WarrantyLookupUrl,
-            //SupportPhone = SupportPhone,
-            //SupportEmail = SupportEmail,
-            //AssetsCount = AssetsCount,
-            //LicensesCount = LicensesCount,
-            //ConsumablesCount = ConsumablesCount,
-            //AccessoriesCount = AccessoriesCount,
-            //ComponentsCount = ComponentsCount,
-            //Notes = Notes,
-            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<Actions>();
-        };
-    }
+    //        //Id = Id,
+    //        Name = Name,
+    //        CategoryId = Category?.Id,
+    //        //Url = Url,
+    //        //Image = Image,
+    //        //SupportUrl = SupportUrl,
+    //        //WarrantyLookupUrl = WarrantyLookupUrl,
+    //        //SupportPhone = SupportPhone,
+    //        //SupportEmail = SupportEmail,
+    //        //AssetsCount = AssetsCount,
+    //        //LicensesCount = LicensesCount,
+    //        //ConsumablesCount = ConsumablesCount,
+    //        //AccessoriesCount = AccessoriesCount,
+    //        //ComponentsCount = ComponentsCount,
+    //        //Notes = Notes,
+    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    //    };
+    //}
 
-    internal ModelModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
-        return new()
-        {
-            Name = Name,
-            CategoryId = Category?.Id,
-            //Url = Url,
-            //Image = Image,
-            //SupportUrl = SupportUrl,
-            //WarrantyLookupUrl = WarrantyLookupUrl,
-            //SupportPhone = SupportPhone,
-            //SupportEmail = SupportEmail,
-            //AssetsCount = AssetsCount,
-            //LicensesCount = LicensesCount,
-            //ConsumablesCount = ConsumablesCount,
-            //AccessoriesCount = AccessoriesCount,
-            //ComponentsCount = ComponentsCount,
-            //Notes = Notes,
-            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<Actions>();
-        };
-    }
-
-    internal ModelModel ToPatch()
+    internal ModelChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
@@ -113,6 +85,34 @@ public class Model
             //AvailableActions = model.AvailableActions.CastModel<Actions>();
         };
     }
+
+    //internal ModelModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        CategoryId = Category?.Id,
+    //        //Url = Url,
+    //        //Image = Image,
+    //        //SupportUrl = SupportUrl,
+    //        //WarrantyLookupUrl = WarrantyLookupUrl,
+    //        //SupportPhone = SupportPhone,
+    //        //SupportEmail = SupportEmail,
+    //        //AssetsCount = AssetsCount,
+    //        //LicensesCount = LicensesCount,
+    //        //ConsumablesCount = ConsumablesCount,
+    //        //AccessoriesCount = AccessoriesCount,
+    //        //ComponentsCount = ComponentsCount,
+    //        //Notes = Notes,
+    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    //    };
+    //}
 
     public int Id { get; }
 

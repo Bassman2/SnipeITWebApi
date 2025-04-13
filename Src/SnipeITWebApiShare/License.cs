@@ -57,7 +57,7 @@ public class License
     //    };
     //}
 
-    internal LicenseModel ToUpdate()
+    internal LicenseChangeModel ToUpdate()
     {
         //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()

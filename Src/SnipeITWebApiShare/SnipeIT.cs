@@ -749,7 +749,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateLocationAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateLocationAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -767,7 +767,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchLocationAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchLocationAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Location>();
     }
 
@@ -807,7 +807,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateMaintenanceAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateMaintenanceAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -825,7 +825,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchMaintenanceAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchMaintenanceAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Maintenance>();
     }
 
@@ -865,7 +865,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateManufacturerAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateManufacturerAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -883,7 +883,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchManufacturerAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchManufacturerAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Manufacturer>();
     }
 
@@ -924,7 +924,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateModelAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateModelAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -942,7 +942,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchModelAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchModelAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Model>();
     }
 
@@ -982,7 +982,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateStatusLabelAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateStatusLabelAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -1000,7 +1000,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchStatusLabelAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchStatusLabelAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<StatusLabel>();
     }
 

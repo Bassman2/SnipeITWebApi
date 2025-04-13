@@ -42,7 +42,21 @@ public class StatusLabel
         }
     }
 
-    internal StatusLabelModel ToCreate()
+    //internal StatusLabelModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Type = Type,
+    //        Color = Color,
+    //        ShowInNav = ShowInNav,
+    //        DefaultLabel = DefaultLabel,
+    //        Notes = Notes,
+    //    };
+    //}
+
+    internal StatusLabelChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -56,33 +70,19 @@ public class StatusLabel
         };
     }
 
-    internal StatusLabelModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Type = Type,
-            Color = Color,
-            ShowInNav = ShowInNav,
-            DefaultLabel = DefaultLabel,
-            Notes = Notes,
-        };
-    }
-
-    internal StatusLabelModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Type = Type,
-            Color = Color,
-            ShowInNav = ShowInNav,
-            DefaultLabel = DefaultLabel,
-            Notes = Notes,
-        };
-    }
+    //internal StatusLabelModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Type = Type,
+    //        Color = Color,
+    //        ShowInNav = ShowInNav,
+    //        DefaultLabel = DefaultLabel,
+    //        Notes = Notes,
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

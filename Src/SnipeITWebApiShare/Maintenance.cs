@@ -30,38 +30,28 @@ public class Maintenance
         AvailableActions = model.AvailableActions?.CastModel<Actions>();
     }
 
-    internal MaintenanceModel ToCreate()
-    {
-        ArgumentNullException.ThrowIfNull(Asset?.Id, nameof(Asset.Id));
-        ArgumentNullException.ThrowIfNull(Supplier?.Id, nameof(Supplier.Id));
-        ArgumentNullException.ThrowIfNull(AssetMaintenanceType, nameof(AssetMaintenanceType));
-        //ArgumentNullException.ThrowIfNullOrWhiteSpace(Title, nameof(Title));
-        ArgumentNullException.ThrowIfNull(StartDate, nameof(StartDate));
-        return new()
-        {
-            // required
-            AssetId = Asset?.Id,
-            SupplierId = Supplier?.Id,
-            AssetMaintenanceType = AssetMaintenanceType,
-            Title = Title,
-            StartDate = StartDate,
+    //internal MaintenanceModel ToCreate()
+    //{
+    //    ArgumentNullException.ThrowIfNull(Asset?.Id, nameof(Asset.Id));
+    //    ArgumentNullException.ThrowIfNull(Supplier?.Id, nameof(Supplier.Id));
+    //    ArgumentNullException.ThrowIfNull(AssetMaintenanceType, nameof(AssetMaintenanceType));
+    //    //ArgumentNullException.ThrowIfNullOrWhiteSpace(Title, nameof(Title));
+    //    ArgumentNullException.ThrowIfNull(StartDate, nameof(StartDate));
+    //    return new()
+    //    {
+    //        // required
+    //        AssetId = Asset?.Id,
+    //        SupplierId = Supplier?.Id,
+    //        AssetMaintenanceType = AssetMaintenanceType,
+    //        Title = Title,
+    //        StartDate = StartDate,
 
-            // optional
-            Notes = Notes,
-        };
-    }
+    //        // optional
+    //        Notes = Notes,
+    //    };
+    //}
 
-    internal MaintenanceModel ToUpdate()
-    {
-        //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            // optional
-            Notes = Notes,
-        };
-    }
-
-    internal MaintenanceModel ToPatch()
+    internal MaintenanceChangeModel ToUpdate()
     {
         //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -70,6 +60,16 @@ public class Maintenance
             Notes = Notes,
         };
     }
+
+    //internal MaintenanceModel ToPatch()
+    //{
+    //    //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        // optional
+    //        Notes = Notes,
+    //    };
+    //}
 
     public int Id { get; set; }
     public Hardware? Asset { get; set; }

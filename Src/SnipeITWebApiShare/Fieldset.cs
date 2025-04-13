@@ -37,8 +37,8 @@ public class Fieldset
         return new()
         {
             Name = Name,
-            Fields = new ListModel<FieldModel> { Total = fields?.Count ?? 0, Rows = fields },
-            Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
+            //Fields = new ListModel<FieldModel> { Total = fields?.Count ?? 0, Rows = fields },
+            //Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
         };
     }
 
