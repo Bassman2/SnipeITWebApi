@@ -56,61 +56,61 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<HardwareModel?> CreateHardwareAsync(HardwareModel model, CancellationToken cancellationToken)
+    public async Task<HardwareChangeModel?> CreateHardwareAsync(HardwareChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>("api/v1/hardware", model, cancellationToken);
+        var res = await PostAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>("api/v1/hardware", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<HardwareModel?> UpdateHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    public async Task<HardwareChangeModel?> UpdateHardwareAsync(int id, HardwareChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<HardwareModel?> PatchHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    public async Task<HardwareChangeModel?> PatchHardwareAsync(int id, HardwareChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<HardwareModel?> DeleteHardwareAsync(int id, CancellationToken cancellationToken)
+    public async Task<HardwareChangeModel?> DeleteHardwareAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<HardwareModel>>($"api/v1/hardware/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
 
-    public async Task<HardwareModel?> CheckoutHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    public async Task<HardwareChangeModel?> CheckoutHardwareAsync(int id, HardwareChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PostAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}/checkout", model, cancellationToken);
+        var res = await PostAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}/checkout", model, cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
 
-    public async Task<HardwareModel?> CheckinHardwareAsync(int id, HardwareModel model, CancellationToken cancellationToken)
+    public async Task<HardwareChangeModel?> CheckinHardwareAsync(int id, HardwareChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PostAsJsonAsync<HardwareModel, ResultModel<HardwareModel>>($"api/v1/hardware/{id}/checkin", model, cancellationToken);
+        var res = await PostAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}/checkin", model, cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -489,41 +489,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<FieldsetModel?> CreateFieldsetAsync(FieldsetModel model, CancellationToken cancellationToken)
+    public async Task<FieldsetChangeModel?> CreateFieldsetAsync(FieldsetChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<FieldsetModel, ResultModel<FieldsetModel>>("api/v1/fieldsets", model, cancellationToken);
+        var res = await PostAsJsonAsync<FieldsetChangeModel, ResultModel<FieldsetChangeModel>>("api/v1/fieldsets", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<FieldsetModel?> UpdateFieldsetAsync(int id, FieldsetModel model, CancellationToken cancellationToken)
+    public async Task<FieldsetChangeModel?> UpdateFieldsetAsync(int id, FieldsetChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<FieldsetModel, ResultModel<FieldsetModel>>($"api/v1/fieldsets/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<FieldsetChangeModel, ResultModel<FieldsetChangeModel>>($"api/v1/fieldsets/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<FieldsetModel?> PatchFieldsetAsync(int id, FieldsetModel model, CancellationToken cancellationToken)
+    public async Task<FieldsetChangeModel?> PatchFieldsetAsync(int id, FieldsetChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<FieldsetModel, ResultModel<FieldsetModel>>($"api/v1/fieldsets/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<FieldsetChangeModel, ResultModel<FieldsetChangeModel>>($"api/v1/fieldsets/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<FieldsetModel?> DeleteFieldsetAsync(int id, CancellationToken cancellationToken)
+    public async Task<FieldsetChangeModel?> DeleteFieldsetAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<FieldsetModel>>($"api/v1/fieldsets/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<FieldsetChangeModel>>($"api/v1/fieldsets/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -547,41 +547,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<FieldModel?> CreateFieldAsync(FieldModel model, CancellationToken cancellationToken)
+    public async Task<FieldChangeModel?> CreateFieldAsync(FieldChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<FieldModel, ResultModel<FieldModel>>("api/v1/fields", model, cancellationToken);
+        var res = await PostAsJsonAsync<FieldChangeModel, ResultModel<FieldChangeModel>>("api/v1/fields", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<FieldModel?> UpdateFieldAsync(int id, FieldModel model, CancellationToken cancellationToken)
+    public async Task<FieldChangeModel?> UpdateFieldAsync(int id, FieldChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<FieldModel, ResultModel<FieldModel>>($"api/v1/fields/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<FieldChangeModel, ResultModel<FieldChangeModel>>($"api/v1/fields/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<FieldModel?> PatchFieldAsync(int id, FieldModel model, CancellationToken cancellationToken)
+    public async Task<FieldChangeModel?> PatchFieldAsync(int id, FieldChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<FieldModel, ResultModel<FieldModel>>($"api/v1/fields/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<FieldChangeModel, ResultModel<FieldChangeModel>>($"api/v1/fields/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<FieldModel?> DeleteFieldAsync(int id, CancellationToken cancellationToken)
+    public async Task<FieldChangeModel?> DeleteFieldAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<FieldModel>>($"api/v1/fields/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<FieldChangeModel>>($"api/v1/fields/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -605,41 +605,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<GroupModel?> CreateGroupAsync(GroupModel model, CancellationToken cancellationToken)
+    public async Task<GroupChangeModel?> CreateGroupAsync(GroupChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<GroupModel, ResultModel<GroupModel>>("api/v1/groups", model, cancellationToken);
+        var res = await PostAsJsonAsync<GroupChangeModel, ResultModel<GroupChangeModel>>("api/v1/groups", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<GroupModel?> UpdateGroupAsync(int id, GroupModel model, CancellationToken cancellationToken)
+    public async Task<GroupChangeModel?> UpdateGroupAsync(int id, GroupChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<GroupModel, ResultModel<GroupModel>>($"api/v1/groups/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<GroupChangeModel, ResultModel<GroupChangeModel>>($"api/v1/groups/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<GroupModel?> PatchGroupAsync(int id, GroupModel model, CancellationToken cancellationToken)
+    public async Task<GroupChangeModel?> PatchGroupAsync(int id, GroupChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<GroupModel, ResultModel<GroupModel>>($"api/v1/groups/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<GroupChangeModel, ResultModel<GroupChangeModel>>($"api/v1/groups/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<GroupModel?> DeleteGroupAsync(int id, CancellationToken cancellationToken)
+    public async Task<GroupChangeModel?> DeleteGroupAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<GroupModel>>($"api/v1/groups/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<GroupChangeModel>>($"api/v1/groups/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -663,41 +663,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<LicenseModel?> CreateLicenseAsync(LicenseModel model, CancellationToken cancellationToken)
+    public async Task<LicenseChangeModel?> CreateLicenseAsync(LicenseChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<LicenseModel, ResultModel<LicenseModel>>("api/v1/licenses", model, cancellationToken);
+        var res = await PostAsJsonAsync<LicenseChangeModel, ResultModel<LicenseChangeModel>>("api/v1/licenses", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<LicenseModel?> UpdateLicenseAsync(int id, LicenseModel model, CancellationToken cancellationToken)
+    public async Task<LicenseChangeModel?> UpdateLicenseAsync(int id, LicenseChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<LicenseModel, ResultModel<LicenseModel>>($"api/v1/licenses/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<LicenseChangeModel, ResultModel<LicenseChangeModel>>($"api/v1/licenses/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<LicenseModel?> PatchLicenseAsync(int id, LicenseModel model, CancellationToken cancellationToken)
+    public async Task<LicenseChangeModel?> PatchLicenseAsync(int id, LicenseChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<LicenseModel, ResultModel<LicenseModel>>($"api/v1/licenses/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<LicenseChangeModel, ResultModel<LicenseChangeModel>>($"api/v1/licenses/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<LicenseModel?> DeleteLicenseAsync(int id, CancellationToken cancellationToken)
+    public async Task<LicenseChangeModel?> DeleteLicenseAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<LicenseModel>>($"api/v1/licenses/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<LicenseChangeModel>>($"api/v1/licenses/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -721,41 +721,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<LocationModel?> CreateLocationAsync(LocationModel model, CancellationToken cancellationToken)
+    public async Task<LocationChangeModel?> CreateLocationAsync(LocationChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<LocationModel, ResultModel<LocationModel>>("api/v1/locations", model, cancellationToken);
+        var res = await PostAsJsonAsync<LocationChangeModel, ResultModel<LocationChangeModel>>("api/v1/locations", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<LocationModel?> UpdateLocationAsync(int id, LocationModel model, CancellationToken cancellationToken)
+    public async Task<LocationChangeModel?> UpdateLocationAsync(int id, LocationChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<LocationModel, ResultModel<LocationModel>>($"api/v1/locations/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<LocationChangeModel, ResultModel<LocationChangeModel>>($"api/v1/locations/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<LocationModel?> PatchLocationAsync(int id, LocationModel model, CancellationToken cancellationToken)
+    public async Task<LocationChangeModel?> PatchLocationAsync(int id, LocationChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<LocationModel, ResultModel<LocationModel>>($"api/v1/locations/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<LocationChangeModel, ResultModel<LocationChangeModel>>($"api/v1/locations/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<LocationModel?> DeleteLocationAsync(int id, CancellationToken cancellationToken)
+    public async Task<LocationChangeModel?> DeleteLocationAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<LocationModel>>($"api/v1/locations/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<LocationChangeModel>>($"api/v1/locations/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -779,41 +779,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<MaintenanceModel?> CreateMaintenanceAsync(MaintenanceModel model, CancellationToken cancellationToken)
+    public async Task<MaintenanceChangeModel?> CreateMaintenanceAsync(MaintenanceChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<MaintenanceModel, ResultModel<MaintenanceModel>>("api/v1/maintenances", model, cancellationToken);
+        var res = await PostAsJsonAsync<MaintenanceChangeModel, ResultModel<MaintenanceChangeModel>>("api/v1/maintenances", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<MaintenanceModel?> UpdateMaintenanceAsync(int id, MaintenanceModel model, CancellationToken cancellationToken)
+    public async Task<MaintenanceChangeModel?> UpdateMaintenanceAsync(int id, MaintenanceChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<MaintenanceModel, ResultModel<MaintenanceModel>>($"api/v1/maintenances/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<MaintenanceChangeModel, ResultModel<MaintenanceChangeModel>>($"api/v1/maintenances/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<MaintenanceModel?> PatchMaintenanceAsync(int id, MaintenanceModel model, CancellationToken cancellationToken)
+    public async Task<MaintenanceChangeModel?> PatchMaintenanceAsync(int id, MaintenanceChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<MaintenanceModel, ResultModel<MaintenanceModel>>($"api/v1/maintenances/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<MaintenanceChangeModel, ResultModel<MaintenanceChangeModel>>($"api/v1/maintenances/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<MaintenanceModel?> DeleteMaintenanceAsync(int id, CancellationToken cancellationToken)
+    public async Task<MaintenanceChangeModel?> DeleteMaintenanceAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<MaintenanceModel>>($"api/v1/maintenances/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<MaintenanceChangeModel>>($"api/v1/maintenances/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -837,41 +837,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<ManufacturerModel?> CreateManufacturerAsync(ManufacturerModel model, CancellationToken cancellationToken)
+    public async Task<ManufacturerChangeModel?> CreateManufacturerAsync(ManufacturerChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<ManufacturerModel, ResultModel<ManufacturerModel>>("api/v1/manufacturers", model, cancellationToken);
+        var res = await PostAsJsonAsync<ManufacturerChangeModel, ResultModel<ManufacturerChangeModel>>("api/v1/manufacturers", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<ManufacturerModel?> UpdatManufacturerAsync(int id, ManufacturerModel model, CancellationToken cancellationToken)
+    public async Task<ManufacturerChangeModel?> UpdatManufacturerAsync(int id, ManufacturerChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<ManufacturerModel, ResultModel<ManufacturerModel>>($"api/v1/manufacturers/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<ManufacturerChangeModel, ResultModel<ManufacturerChangeModel>>($"api/v1/manufacturers/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<ManufacturerModel?> PatchManufacturerAsync(int id, ManufacturerModel model, CancellationToken cancellationToken)
+    public async Task<ManufacturerChangeModel?> PatchManufacturerAsync(int id, ManufacturerChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<ManufacturerModel, ResultModel<ManufacturerModel>>($"api/v1/manufacturers/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<ManufacturerChangeModel, ResultModel<ManufacturerChangeModel>>($"api/v1/manufacturers/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<ManufacturerModel?> DeleteManufacturerAsync(int id, CancellationToken cancellationToken)
+    public async Task<ManufacturerChangeModel?> DeleteManufacturerAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<ManufacturerModel>> ($"api/v1/manufacturers/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<ManufacturerChangeModel>> ($"api/v1/manufacturers/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -895,41 +895,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<ModelModel?> CreateModelAsync(ModelModel model, CancellationToken cancellationToken)
+    public async Task<ModelChangeModel?> CreateModelAsync(ModelChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<ModelModel, ResultModel<ModelModel>>("api/v1/models", model, cancellationToken);
+        var res = await PostAsJsonAsync<ModelChangeModel, ResultModel<ModelChangeModel>>("api/v1/models", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<ModelModel?> UpdateModelAsync(int id, ModelModel model, CancellationToken cancellationToken)
+    public async Task<ModelChangeModel?> UpdateModelAsync(int id, ModelChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<ModelModel, ResultModel<ModelModel>>($"api/v1/models/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<ModelChangeModel, ResultModel<ModelChangeModel>>($"api/v1/models/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<ModelModel?> PatchModelAsync(int id, ModelModel model, CancellationToken cancellationToken)
+    public async Task<ModelChangeModel?> PatchModelAsync(int id, ModelChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<ModelModel, ResultModel<ModelModel>>($"api/v1/models/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<ModelChangeModel, ResultModel<ModelChangeModel>>($"api/v1/models/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<ModelModel?> DeleteModelAsync(int id, CancellationToken cancellationToken)
+    public async Task<ModelChangeModel?> DeleteModelAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<ModelModel>>($"api/v1/models/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<ModelChangeModel>>($"api/v1/models/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -953,41 +953,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<StatusLabelModel?> CreateStatusLabelAsync(StatusLabelModel model, CancellationToken cancellationToken)
+    public async Task<StatusLabelChangeModel?> CreateStatusLabelAsync(StatusLabelChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<StatusLabelModel, ResultModel<StatusLabelModel>>("api/v1/statuslabels", model, cancellationToken);
+        var res = await PostAsJsonAsync<StatusLabelChangeModel, ResultModel<StatusLabelChangeModel>>("api/v1/statuslabels", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<StatusLabelModel?> UpdateStatusLabelAsync(int id, StatusLabelModel model, CancellationToken cancellationToken)
+    public async Task<StatusLabelChangeModel?> UpdateStatusLabelAsync(int id, StatusLabelChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<StatusLabelModel, ResultModel<StatusLabelModel>>($"api/v1/statuslabels/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<StatusLabelChangeModel, ResultModel<StatusLabelChangeModel>>($"api/v1/statuslabels/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<StatusLabelModel?> PatchStatusLabelAsync(int id, StatusLabelModel model, CancellationToken cancellationToken)
+    public async Task<StatusLabelChangeModel?> PatchStatusLabelAsync(int id, StatusLabelChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<StatusLabelModel, ResultModel<StatusLabelModel>>($"api/v1/statuslabels/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<StatusLabelChangeModel, ResultModel<StatusLabelChangeModel>>($"api/v1/statuslabels/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<StatusLabelModel?> DeleteStatusLabelAsync(int id, CancellationToken cancellationToken)
+    public async Task<StatusLabelChangeModel?> DeleteStatusLabelAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<StatusLabelModel>>($"api/v1/statuslabels/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<StatusLabelChangeModel>>($"api/v1/statuslabels/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -1011,41 +1011,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<SupplierModel?> CreateSupplierAsync(SupplierModel model, CancellationToken cancellationToken)
+    public async Task<SupplierChangeModel?> CreateSupplierAsync(SupplierChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<SupplierModel, ResultModel<SupplierModel>>("api/v1/suppliers", model, cancellationToken);
+        var res = await PostAsJsonAsync<SupplierChangeModel, ResultModel<SupplierChangeModel>>("api/v1/suppliers", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<SupplierModel?> UpdateSupplierAsync(int id, SupplierModel model, CancellationToken cancellationToken)
+    public async Task<SupplierChangeModel?> UpdateSupplierAsync(int id, SupplierChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<SupplierModel, ResultModel<SupplierModel>>($"api/v1/suppliers/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<SupplierChangeModel, ResultModel<SupplierChangeModel>>($"api/v1/suppliers/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<SupplierModel?> PatchSupplierAsync(int id, SupplierModel model, CancellationToken cancellationToken)
+    public async Task<SupplierChangeModel?> PatchSupplierAsync(int id, SupplierChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<SupplierModel, ResultModel<SupplierModel>>($"api/v1/suppliers/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<SupplierChangeModel, ResultModel<SupplierChangeModel>>($"api/v1/suppliers/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<SupplierModel?> DeleteSupplierAsync(int id, CancellationToken cancellationToken)
+    public async Task<SupplierChangeModel?> DeleteSupplierAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<SupplierModel>>($"api/v1/suppliers/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<SupplierChangeModel>>($"api/v1/suppliers/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }
@@ -1069,41 +1069,41 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<UserModel?> CreateUserAsync(UserModel model, CancellationToken cancellationToken)
+    public async Task<UserChangeModel?> CreateUserAsync(UserChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<UserModel, ResultModel<UserModel>>("api/v1/users", model, cancellationToken);
+        var res = await PostAsJsonAsync<UserChangeModel, ResultModel<UserChangeModel>>("api/v1/users", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<UserModel?> UpdateUserAsync(int id, UserModel model, CancellationToken cancellationToken)
+    public async Task<UserChangeModel?> UpdateUserAsync(int id, UserChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<UserModel, ResultModel<UserModel>>($"api/v1/users/{id}", model, cancellationToken);
+        var res = await PutAsJsonAsync<UserChangeModel, ResultModel<UserChangeModel>>($"api/v1/users/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<UserModel?> PatchUserAsync(int id, UserModel model, CancellationToken cancellationToken)
+    public async Task<UserChangeModel?> PatchUserAsync(int id, UserChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<UserModel, ResultModel<UserModel>>($"api/v1/users/{id}", model, cancellationToken);
+        var res = await PatchAsJsonAsync<UserChangeModel, ResultModel<UserChangeModel>>($"api/v1/users/{id}", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }
 
-    public async Task<UserModel?> DeleteUserAsync(int id, CancellationToken cancellationToken)
+    public async Task<UserChangeModel?> DeleteUserAsync(int id, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<UserModel>>($"api/v1/users/{id}", cancellationToken);
+        var res = await DeleteAsJsonAsync<ResultModel<UserChangeModel>>($"api/v1/users/{id}", cancellationToken);
         CheckResultForError(res);
         return res?.Payload;
     }

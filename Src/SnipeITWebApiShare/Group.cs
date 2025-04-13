@@ -18,7 +18,17 @@ public class Group
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal GroupModel ToCreate()
+    //internal GroupModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Notes = Notes,
+    //    };
+    //}
+
+    internal GroupChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -28,25 +38,15 @@ public class Group
         };
     }
 
-    internal GroupModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Notes = Notes,
-        };
-    }
-
-    internal GroupModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Notes = Notes,
-        };
-    }
+    //internal GroupModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Notes = Notes,
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

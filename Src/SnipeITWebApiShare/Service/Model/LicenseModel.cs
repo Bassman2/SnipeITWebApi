@@ -79,9 +79,6 @@ internal class LicenseModel
     [JsonPropertyName("category")]
     public NamedItemModel? Category { get; set; }
 
-    [JsonPropertyName("category_id")]
-    public int? CategoryId { get; set; }
-
     [JsonPropertyName("created_by")]
     public NamedItemModel? CreatedBy { get; set; }
 

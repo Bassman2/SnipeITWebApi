@@ -56,7 +56,28 @@ public class User
         Groups = model.Groups;
     }
 
-    internal UserModel ToCreate()
+    //internal UserModel ToCreate()
+    //{
+    //    if (LdapImport != true)
+    //    {
+    //        ArgumentException.ThrowIfNullOrWhiteSpace(FirstName, nameof(FirstName));
+    //        ArgumentException.ThrowIfNullOrWhiteSpace(Username, nameof(Username));
+    //        ArgumentException.ThrowIfNullOrWhiteSpace(Password, nameof(Password));
+    //    }
+    //    return new()
+    //    {
+    //        FirstName = FirstName,
+    //        LastName = LastName,
+    //        Username = Username,
+    //        Password = Password,
+    //        PasswordConfirmation = Password,
+    //        Phone = Phone,
+    //        Email = Email,
+    //        Notes = Notes,
+    //    };
+    //}
+
+    internal UserChangeModel ToUpdate()
     {
         if (LdapImport != true)
         {
@@ -77,48 +98,27 @@ public class User
         };
     }
 
-    internal UserModel ToUpdate()
-    {
-        if (LdapImport != true)
-        {
-            ArgumentException.ThrowIfNullOrWhiteSpace(FirstName, nameof(FirstName));
-            ArgumentException.ThrowIfNullOrWhiteSpace(Username, nameof(Username));
-            ArgumentException.ThrowIfNullOrWhiteSpace(Password, nameof(Password));
-        }
-        return new()
-        {
-            FirstName = FirstName,
-            LastName = LastName,
-            Username = Username,
-            Password = Password,
-            PasswordConfirmation = Password,
-            Phone = Phone,
-            Email = Email,
-            Notes = Notes,
-        };
-    }
+    //internal UserModel ToPatch()
+    //{
+    //    if (LdapImport != true)
+    //    {
+    //        ArgumentException.ThrowIfNullOrWhiteSpace(FirstName, nameof(FirstName));
+    //        ArgumentException.ThrowIfNullOrWhiteSpace(Username, nameof(Username));
+    //        ArgumentException.ThrowIfNullOrWhiteSpace(Password, nameof(Password));
+    //    }
+    //    return new()
+    //    {
+    //        FirstName = FirstName,
+    //        LastName = LastName,
+    //        Username = Username,
+    //        Password = Password,
+    //        PasswordConfirmation = Password,
+    //        Phone = Phone,
+    //        Email = Email,
+    //        Notes = Notes,
 
-    internal UserModel ToPatch()
-    {
-        if (LdapImport != true)
-        {
-            ArgumentException.ThrowIfNullOrWhiteSpace(FirstName, nameof(FirstName));
-            ArgumentException.ThrowIfNullOrWhiteSpace(Username, nameof(Username));
-            ArgumentException.ThrowIfNullOrWhiteSpace(Password, nameof(Password));
-        }
-        return new()
-        {
-            FirstName = FirstName,
-            LastName = LastName,
-            Username = Username,
-            Password = Password,
-            PasswordConfirmation = Password,
-            Phone = Phone,
-            Email = Email,
-            Notes = Notes,
-
-        };
-    }
+    //    };
+    //}
 
 
     public int Id { get; set; }

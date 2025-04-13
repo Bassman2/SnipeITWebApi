@@ -61,27 +61,18 @@ public class Hardware
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal HardwareModel ToCreate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            ModelId = Model?.Id,
-            StatusId = StatusLabel?.Id,
-        };
-    }
+    //internal HardwareModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        ModelId = Model?.Id,
+    //        StatusId = StatusLabel?.Id,
+    //    };
+    //}
 
-    internal HardwareModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-        };
-    }
-
-    internal HardwareModel ToPatch()
+    internal HardwareChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -90,23 +81,32 @@ public class Hardware
         };
     }
 
-    internal HardwareModel ToCheckout()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-        };
-    }
+    //internal HardwareModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //    };
+    //}
 
-    internal HardwareModel ToCheckin()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-        };
-    }
+    //internal HardwareModel ToCheckout()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //    };
+    //}
+
+    //internal HardwareModel ToCheckin()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //    };
+    //}
     public int Id { get; }
 
     public string? Name { get; set; }

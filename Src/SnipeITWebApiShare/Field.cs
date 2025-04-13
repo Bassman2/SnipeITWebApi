@@ -22,7 +22,25 @@ public class Field
         UpdatedAt = model.UpdatedAt;
     }
 
-    internal FieldModel ToCreate()
+    //internal FieldModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        DbColumnName = DbColumnName,
+    //        Format = Format,
+    //        FieldValues = FieldValues,
+    //        FieldValuesArray = FieldValuesArray,
+    //        Type = Type,
+    //        Required = Required,
+    //        DisplayInUserView = DisplayInUserView,
+    //        AutoAddToFieldsets = AutoAddToFieldsets,
+    //        ShowInListview = ShowInListview
+    //    };
+    //}
+
+    internal FieldChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -40,41 +58,23 @@ public class Field
         };
     }
 
-    internal FieldModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            DbColumnName = DbColumnName,
-            Format = Format,
-            FieldValues = FieldValues,
-            FieldValuesArray = FieldValuesArray,
-            Type = Type,
-            Required = Required,
-            DisplayInUserView = DisplayInUserView,
-            AutoAddToFieldsets = AutoAddToFieldsets,
-            ShowInListview = ShowInListview
-        };
-    }
-
-    internal FieldModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            DbColumnName = DbColumnName,
-            Format = Format,
-            FieldValues = FieldValues,
-            FieldValuesArray = FieldValuesArray,
-            Type = Type,
-            Required = Required,
-            DisplayInUserView = DisplayInUserView,
-            AutoAddToFieldsets = AutoAddToFieldsets,
-            ShowInListview = ShowInListview
-        };
-    }
+    //internal FieldModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        DbColumnName = DbColumnName,
+    //        Format = Format,
+    //        FieldValues = FieldValues,
+    //        FieldValuesArray = FieldValuesArray,
+    //        Type = Type,
+    //        Required = Required,
+    //        DisplayInUserView = DisplayInUserView,
+    //        AutoAddToFieldsets = AutoAddToFieldsets,
+    //        ShowInListview = ShowInListview
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

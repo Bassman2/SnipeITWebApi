@@ -32,7 +32,28 @@ public class Supplier
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal SupplierModel ToCreate()
+    //internal SupplierModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Url = Url,
+    //        Address = Address,
+    //        Address2 = Address2,
+    //        City = City,
+    //        State = State,
+    //        Country = Country,
+    //        Zip = Zip,
+    //        Fax = Fax,
+    //        Phone = Phone,
+    //        Email = Email,
+    //        Contact = Contact,
+    //        Notes = Notes
+    //    };
+    //}
+
+    internal SupplierChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
@@ -53,47 +74,26 @@ public class Supplier
         };
     }
 
-    internal SupplierModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Url = Url,
-            Address = Address,
-            Address2 = Address2,
-            City = City,
-            State = State,
-            Country = Country,
-            Zip = Zip,
-            Fax = Fax,
-            Phone = Phone,
-            Email = Email,
-            Contact = Contact,
-            Notes = Notes
-        };
-    }
-
-    internal SupplierModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            Name = Name,
-            Url = Url,
-            Address = Address,
-            Address2 = Address2,
-            City = City,
-            State = State,
-            Country = Country,
-            Zip = Zip,
-            Fax = Fax,
-            Phone = Phone,
-            Email = Email,
-            Contact = Contact,
-            Notes = Notes
-        };
-    }
+    //internal SupplierModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Url = Url,
+    //        Address = Address,
+    //        Address2 = Address2,
+    //        City = City,
+    //        State = State,
+    //        Country = Country,
+    //        Zip = Zip,
+    //        Fax = Fax,
+    //        Phone = Phone,
+    //        Email = Email,
+    //        Contact = Contact,
+    //        Notes = Notes
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

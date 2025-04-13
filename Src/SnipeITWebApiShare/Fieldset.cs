@@ -16,10 +16,23 @@ public class Fieldset
 
     }
 
-    internal FieldsetModel ToCreate()
+    //internal FieldsetModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    var fields = Fields?.Select(x => x.ToUpdate()).ToList();
+    //    var models = Models?.Select(x => x.ToCreate()).ToList();
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Fields = new ListModel<FieldChangeModel> { Total = fields?.Count ?? 0, Rows = fields },
+    //        Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
+    //    };
+    //}
+
+    internal FieldsetChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        var fields = Fields?.Select(x => x.ToCreate()).ToList();
+        var fields = Fields?.Select(x => x.ToUpdate()).ToList();
         var models = Models?.Select(x => x.ToCreate()).ToList();
         return new()
         {
@@ -29,31 +42,18 @@ public class Fieldset
         };
     }
 
-    internal FieldsetModel ToUpdate()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        var fields = Fields?.Select(x => x.ToCreate()).ToList();
-        var models = Models?.Select(x => x.ToCreate()).ToList();
-        return new()
-        {
-            Name = Name,
-            Fields = new ListModel<FieldModel> { Total = fields?.Count ?? 0, Rows = fields },
-            Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
-        };
-    }
-
-    internal FieldsetModel ToPatch()
-    {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        var fields = Fields?.Select(x => x.ToCreate()).ToList();
-        var models = Models?.Select(x => x.ToCreate()).ToList();
-        return new()
-        {
-            Name = Name,
-            Fields = new ListModel<FieldModel> { Total = fields?.Count ?? 0, Rows = fields },
-            Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
-        };
-    }
+    //internal FieldsetModel ToPatch()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    var fields = Fields?.Select(x => x.ToUpdate()).ToList();
+    //    var models = Models?.Select(x => x.ToCreate()).ToList();
+    //    return new()
+    //    {
+    //        Name = Name,
+    //        Fields = new ListModel<FieldModel> { Total = fields?.Count ?? 0, Rows = fields },
+    //        Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }

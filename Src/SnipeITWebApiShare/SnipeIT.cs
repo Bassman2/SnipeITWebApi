@@ -78,7 +78,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateHardwareAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateHardwareAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -96,7 +96,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchHardwareAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchHardwareAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Hardware>();
     }
 
@@ -114,7 +114,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.CheckoutHardwareAsync(id, item.ToCheckout(), cancellationToken);
+        var res = await service.CheckoutHardwareAsync(id, item.ToUpdate(), cancellationToken);
         return res.CastModel<Hardware>();
     }
 
@@ -123,7 +123,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.CheckinHardwareAsync(id, item.ToCheckin(), cancellationToken);
+        var res = await service.CheckinHardwareAsync(id, item.ToUpdate(), cancellationToken);
         return res.CastModel<Hardware>();
     }
 
@@ -517,7 +517,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateFieldsetAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateFieldsetAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -535,7 +535,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchFieldsetAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchFieldsetAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Fieldset>();
     }
 
@@ -575,7 +575,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateFieldAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateFieldAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -593,7 +593,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchFieldAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchFieldAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Field>();
     }
 
@@ -633,7 +633,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateGroupAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateGroupAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -651,7 +651,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchGroupAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchGroupAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Group>();
     }
 
@@ -691,7 +691,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateLicenseAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateLicenseAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -709,7 +709,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchLicenseAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchLicenseAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<License>();
     }
 
@@ -1040,7 +1040,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateSupplierAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateSupplierAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -1058,7 +1058,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchSupplierAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchSupplierAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<Supplier>();
     }
 
@@ -1099,7 +1099,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateUserAsync(item.ToCreate(), cancellationToken);
+        var res = await service.CreateUserAsync(item.ToUpdate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
@@ -1117,7 +1117,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchUserAsync(id, item.ToPatch(), cancellationToken);
+        var res = await service.PatchUserAsync(id, item.ToUpdate(), cancellationToken);
         //return res.CastModel<User>();
     }
 

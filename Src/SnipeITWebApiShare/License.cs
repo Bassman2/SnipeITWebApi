@@ -39,23 +39,23 @@ public class License
         AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
-    internal LicenseModel ToCreate()
-    {
-        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        ArgumentNullException.ThrowIfNull(Seats, nameof(Seats));
-        ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
-        return new()
-        {
-            // required
-            Name = Name,
-            Seats = Seats,
-            CategoryId = Category?.Id,
-            //Category = Category?.ToCreate(),
+    //internal LicenseModel ToCreate()
+    //{
+    //    ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    ArgumentNullException.ThrowIfNull(Seats, nameof(Seats));
+    //    ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
+    //    return new()
+    //    {
+    //        // required
+    //        Name = Name,
+    //        Seats = Seats,
+    //        CategoryId = Category?.Id,
+    //        //Category = Category?.ToCreate(),
 
-            // optional
-            Notes = Notes,
-        };
-    }
+    //        // optional
+    //        Notes = Notes,
+    //    };
+    //}
 
     internal LicenseModel ToUpdate()
     {
@@ -69,17 +69,17 @@ public class License
         };
     }
 
-    internal LicenseModel ToPatch()
-    {
-        //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
-        {
-            // optional
-            Name = Name,
-            Notes = Notes,
+    //internal LicenseModel ToPatch()
+    //{
+    //    //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new()
+    //    {
+    //        // optional
+    //        Name = Name,
+    //        Notes = Notes,
 
-        };
-    }
+    //    };
+    //}
 
     public int Id { get; set; }
     public string? Name { get; set; }
