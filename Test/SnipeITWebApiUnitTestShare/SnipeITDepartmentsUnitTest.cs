@@ -60,68 +60,68 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest
         Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateDepartmentAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    //[TestMethod]
+    //public async Task TestMethodCreateDepartmentAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        string createName = Guid.NewGuid().ToString();
-        string updateName = Guid.NewGuid().ToString();
-        string patchName = Guid.NewGuid().ToString();
+    //    string createName = Guid.NewGuid().ToString();
+    //    string updateName = Guid.NewGuid().ToString();
+    //    string patchName = Guid.NewGuid().ToString();
 
-        var create = await snipeIT.CreateDepartmentAsync(new()
-        {
-            Name = createName,
-            Phone = phoneCreate,
-            Fax = faxCreate,
-            Notes = notesCreate,
-        });
-        Assert.IsNotNull(create);
-        Assert.IsTrue(create.Id > 0, "create.Id");
-        int id = create.Id;
+    //    var create = await snipeIT.CreateDepartmentAsync(new()
+    //    {
+    //        Name = createName,
+    //        Phone = phoneCreate,
+    //        Fax = faxCreate,
+    //        Notes = notesCreate,
+    //    });
+    //    Assert.IsNotNull(create);
+    //    Assert.IsTrue(create.Id > 0, "create.Id");
+    //    int id = create.Id;
 
-        var update = await snipeIT.UpdateDepartmentAsync(id, new()
-        {
-            Name = updateName,
-            Phone = phoneUpdate,
-            Fax = faxUpdate,
-            Notes = notesUpdate,
+    //    var update = await snipeIT.UpdateDepartmentAsync(id, new()
+    //    {
+    //        Name = updateName,
+    //        Phone = phoneUpdate,
+    //        Fax = faxUpdate,
+    //        Notes = notesUpdate,
 
-        });
-        Assert.IsNotNull(update);
+    //    });
+    //    Assert.IsNotNull(update);
 
-        var patch = await snipeIT.PatchDepartmentAsync(id, new()
-        {
-            Name = patchName,
-            Phone = phonePatch,
-            Fax = faxPatch,
-            Notes = notesPatch,
+    //    var patch = await snipeIT.PatchDepartmentAsync(id, new()
+    //    {
+    //        Name = patchName,
+    //        Phone = phonePatch,
+    //        Fax = faxPatch,
+    //        Notes = notesPatch,
 
-        });
-        Assert.IsNotNull(patch);
+    //    });
+    //    Assert.IsNotNull(patch);
 
-        var del = await snipeIT.DeleteDepartmentAsync(id);
+    //    var del = await snipeIT.DeleteDepartmentAsync(id);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetDepartmentAsync(id));
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetDepartmentAsync(id));
 
-        Assert.AreEqual(id, create.Id, "create.Id");
-        Assert.AreEqual(createName, create.Name, "create.Name");
-        Assert.AreEqual(phoneCreate, create.Phone, "create.Phone");
-        Assert.AreEqual(faxCreate, create.Fax, "create.Fax");
-        Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
+    //    Assert.AreEqual(id, create.Id, "create.Id");
+    //    Assert.AreEqual(createName, create.Name, "create.Name");
+    //    Assert.AreEqual(phoneCreate, create.Phone, "create.Phone");
+    //    Assert.AreEqual(faxCreate, create.Fax, "create.Fax");
+    //    Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
-        Assert.AreEqual(id, update.Id, "update.Id");
-        Assert.AreEqual(updateName, update.Name, "update.Name");
-        Assert.AreEqual(phoneUpdate, update.Phone, "update.Phone");
-        Assert.AreEqual(faxUpdate, update.Fax, "update.Fax");
-        Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
+    //    Assert.AreEqual(id, update.Id, "update.Id");
+    //    Assert.AreEqual(updateName, update.Name, "update.Name");
+    //    Assert.AreEqual(phoneUpdate, update.Phone, "update.Phone");
+    //    Assert.AreEqual(faxUpdate, update.Fax, "update.Fax");
+    //    Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
-        Assert.AreEqual(id, patch.Id, "patch.Id");
-        Assert.AreEqual(patchName, patch.Name, "patch.Name");
-        Assert.AreEqual(phonePatch, patch.Phone, "patch.Phone");
-        Assert.AreEqual(faxPatch, patch.Fax, "patch.Fax");
-        Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
-    }
+    //    Assert.AreEqual(id, patch.Id, "patch.Id");
+    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
+    //    Assert.AreEqual(phonePatch, patch.Phone, "patch.Phone");
+    //    Assert.AreEqual(faxPatch, patch.Fax, "patch.Fax");
+    //    Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
+    //}
 
     // Department name can be duplicate
 

@@ -38,4 +38,7 @@ internal class AccessoryChangeModel
 
     [JsonPropertyName("supplier_id")]
     public int? SupplierId { get; set; }
+
+    [JsonPropertyName("notes")]
+    public string? Notes { get; set; }
 }

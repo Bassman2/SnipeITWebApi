@@ -49,4 +49,7 @@ public class NamedItem
     public override int GetHashCode() => base.GetHashCode();
 
     public static implicit operator NamedItem(int id) => new(id);
+
+    public static implicit operator NamedItem((int, string) item) => new(item.Item1, item.Item2);
+
 }

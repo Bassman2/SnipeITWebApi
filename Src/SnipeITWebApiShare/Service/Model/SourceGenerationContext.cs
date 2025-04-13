@@ -45,5 +45,7 @@
 [JsonSerializable(typeof(ResultModel<SupplierModel>))]
 [JsonSerializable(typeof(ResultModel<UserModel>))]
 
+[JsonSerializable(typeof(ResultModel<AccessoryChangeModel>))]
+
 internal partial class SourceGenerationContext  : JsonSerializerContext
 { }

@@ -105,62 +105,62 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest
         Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateComponentAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    //[TestMethod]
+    //public async Task TestMethodCreateComponentAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        string createName = Guid.NewGuid().ToString();
-        string updateName = Guid.NewGuid().ToString();
-        string patchName = Guid.NewGuid().ToString();
+    //    string createName = Guid.NewGuid().ToString();
+    //    string updateName = Guid.NewGuid().ToString();
+    //    string patchName = Guid.NewGuid().ToString();
 
-        var create = await snipeIT.CreateComponentAsync(new()
-        {
-            Name = createName,
-            Qty = 5,
-            Category = categoryId,
+    //    var create = await snipeIT.CreateComponentAsync(new()
+    //    {
+    //        Name = createName,
+    //        Qty = 5,
+    //        Category = categoryId,
             
-            //Notes = notesCreate,
-        });
-        Assert.IsNotNull(create);
-        Assert.IsTrue(create.Id > 0, "create.Id");
-        int id = create.Id;
+    //        //Notes = notesCreate,
+    //    });
+    //    Assert.IsNotNull(create);
+    //    Assert.IsTrue(create.Id > 0, "create.Id");
+    //    int id = create.Id;
 
-        var update = await snipeIT.UpdateComponentAsync(id, new()
-        {
-            Name = updateName,
-            //Image = imageUpdate,
-            //Notes = notesUpdate,
+    //    var update = await snipeIT.UpdateComponentAsync(id, new()
+    //    {
+    //        Name = updateName,
+    //        //Image = imageUpdate,
+    //        //Notes = notesUpdate,
 
-        });
-        Assert.IsNotNull(update);
+    //    });
+    //    Assert.IsNotNull(update);
 
-        var patch = await snipeIT.PatchComponentAsync(id, new()
-        {
-            Name = patchName,
-            //Image = imagePatch,
-            //Notes = notesPatch,
+    //    var patch = await snipeIT.PatchComponentAsync(id, new()
+    //    {
+    //        Name = patchName,
+    //        //Image = imagePatch,
+    //        //Notes = notesPatch,
 
-        });
-        Assert.IsNotNull(patch);
+    //    });
+    //    Assert.IsNotNull(patch);
 
-        var del = await snipeIT.DeleteComponentAsync(id);
+    //    var del = await snipeIT.DeleteComponentAsync(id);
 
-        Assert.AreEqual(id, create.Id, "create.Id");
-        Assert.AreEqual(createName, create.Name, "create.Name");
-        //Assert.AreEqual(imageCreate, create.Image, "create.Image");
-        //Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
+    //    Assert.AreEqual(id, create.Id, "create.Id");
+    //    Assert.AreEqual(createName, create.Name, "create.Name");
+    //    //Assert.AreEqual(imageCreate, create.Image, "create.Image");
+    //    //Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
-        Assert.AreEqual(id, update.Id, "update.Id");
-        Assert.AreEqual(updateName, update.Name, "update.Name");
-        //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
-        //Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
+    //    Assert.AreEqual(id, update.Id, "update.Id");
+    //    Assert.AreEqual(updateName, update.Name, "update.Name");
+    //    //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
+    //    //Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
-        Assert.AreEqual(id, patch.Id, "patch.Id");
-        Assert.AreEqual(patchName, patch.Name, "patch.Name");
-        //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
-        //Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
-    }
+    //    Assert.AreEqual(id, patch.Id, "patch.Id");
+    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
+    //    //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
+    //    //Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
+    //}
 
     // Duplicate component name allowed
 

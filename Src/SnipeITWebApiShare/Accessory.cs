@@ -30,8 +30,6 @@ public class Accessory
         CreatedAt = model.CreatedAt;
         UpdatedAt = model.UpdatedAt;
         AvailableActions = model.AvailableActions.CastModel<Actions>();
-
-        
     }
 
     internal AccessoryChangeModel ToChange()
@@ -50,6 +48,7 @@ public class Accessory
             LocationId = Location?.Id,
             ManufacturerId = Manufacturer?.Id,
             SupplierId = Supplier?.Id,
+            Notes = Notes
         };
     }
 

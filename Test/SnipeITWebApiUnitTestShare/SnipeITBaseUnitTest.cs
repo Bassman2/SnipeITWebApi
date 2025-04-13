@@ -107,7 +107,7 @@ public abstract class SnipeITBaseUnitTest
 
     protected const string notes = "Created by DB seeder";
 
-    protected static readonly NamedItem adminUser = new(1, "Admin User");
+    protected static readonly NamedItem adminUser = (1, "Admin User");
 
     protected const string adminAvatar = "https://develop.snipeitapp.com/uploads/avatars/1.jpg";
     protected const string adminAddress = "87374 Cummings Centers\nNorth Camron, AZ 89719-4068";
@@ -116,6 +116,10 @@ public abstract class SnipeITBaseUnitTest
     protected const string adminCountry = "Saint Pierre and Miquelon";
     protected const string adminZip = "04529-0110";
     protected const string adminEmail = "herzog.earl@example.org";
+
+    protected static readonly NamedItem createAccessoryCategory = (8, "Keyboards");
+    protected static readonly NamedItem updateAccessoryCategory = (9, "Mouse");
+    protected static readonly NamedItem patchAccessoryCategory = (8, "Keyboards");
 }
 
 public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : class
@@ -138,9 +142,9 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        string createName = Guid.NewGuid().ToString();
-        string updateName = Guid.NewGuid().ToString();
-        string patchName = Guid.NewGuid().ToString();
+        //string createName = Guid.NewGuid().ToString();
+        //string updateName = Guid.NewGuid().ToString();
+        //string patchName = Guid.NewGuid().ToString();
                 
         int id = await CreateAsync(snipeIT, create);
         T? created = await GetAsync(snipeIT, id);
@@ -161,4 +165,6 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
         AreEqual(id, update, updated, "updated");
         AreEqual(id, patch, patched, "patched");
     }
+
+    public string CreateName() => Guid.NewGuid().ToString();
 }

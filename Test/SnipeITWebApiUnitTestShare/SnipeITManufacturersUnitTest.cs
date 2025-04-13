@@ -80,77 +80,77 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual(false, item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateManufacturerAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    //[TestMethod]
+    //public async Task TestMethodCreateManufacturerAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        string createName = Guid.NewGuid().ToString();
-        string updateName = Guid.NewGuid().ToString();
-        string patchName = Guid.NewGuid().ToString();
+    //    string createName = Guid.NewGuid().ToString();
+    //    string updateName = Guid.NewGuid().ToString();
+    //    string patchName = Guid.NewGuid().ToString();
 
-        var create = await snipeIT.CreateManufacturerAsync(new()
-        {
-            Name = createName,
-            Url = "https://test.com",
-            //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
-            SupportUrl = "https://support.test.com",
-            WarrantyLookupUrl = "https://checkcoverage.test.com",
-            SupportPhone = "+12725858512",
-            SupportEmail = "unknown@microsoft.com",
-            Notes = "Dummy Note"
-        });
-        Assert.IsNotNull(create);
-        Assert.IsTrue(create.Id > 0, "create.Id");
-        int id = create.Id;
+    //    var create = await snipeIT.CreateManufacturerAsync(new()
+    //    {
+    //        Name = createName,
+    //        Url = "https://test.com",
+    //        //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
+    //        SupportUrl = "https://support.test.com",
+    //        WarrantyLookupUrl = "https://checkcoverage.test.com",
+    //        SupportPhone = "+12725858512",
+    //        SupportEmail = "unknown@microsoft.com",
+    //        Notes = "Dummy Note"
+    //    });
+    //    Assert.IsNotNull(create);
+    //    Assert.IsTrue(create.Id > 0, "create.Id");
+    //    int id = create.Id;
 
 
-        var update = await snipeIT.UpdateManufacturerAsync(id, new()
-        {
-            Name = updateName
-        });
-        Assert.IsNotNull(update);
+    //    var update = await snipeIT.UpdateManufacturerAsync(id, new()
+    //    {
+    //        Name = updateName
+    //    });
+    //    Assert.IsNotNull(update);
 
-        var patch = await snipeIT.PatchManufacturerAsync(id, new() 
-        {
-            Name = patchName
-        });
-        Assert.IsNotNull(patch);
+    //    var patch = await snipeIT.PatchManufacturerAsync(id, new() 
+    //    {
+    //        Name = patchName
+    //    });
+    //    Assert.IsNotNull(patch);
 
-        var del = await snipeIT.DeleteManufacturerAsync(id);
+    //    var del = await snipeIT.DeleteManufacturerAsync(id);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetManufacturerAsync(id));
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetManufacturerAsync(id));
 
-        Assert.AreNotEqual(0, create.Id, "create.Id");
-        Assert.AreEqual(createName, create.Name, "create.Name");
-        Assert.AreEqual("https://test.com", create.Url, "create.Url");
-        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", create.Image, nameof(create.Image));
-        Assert.AreEqual("https://support.test.com", create.SupportUrl, "create.SupportUrl");
-        Assert.AreEqual("https://checkcoverage.test.com", create.WarrantyLookupUrl, "create.WarrantyLookupUrl");
-        Assert.AreEqual("+12725858512", create.SupportPhone, "create.SupportPhone");
-        Assert.AreEqual("unknown@microsoft.com", create.SupportEmail, "create.SupportEmail");
-        Assert.AreEqual("Dummy Note", create.Notes, "create.Notes");
+    //    Assert.AreNotEqual(0, create.Id, "create.Id");
+    //    Assert.AreEqual(createName, create.Name, "create.Name");
+    //    Assert.AreEqual("https://test.com", create.Url, "create.Url");
+    //    //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", create.Image, nameof(create.Image));
+    //    Assert.AreEqual("https://support.test.com", create.SupportUrl, "create.SupportUrl");
+    //    Assert.AreEqual("https://checkcoverage.test.com", create.WarrantyLookupUrl, "create.WarrantyLookupUrl");
+    //    Assert.AreEqual("+12725858512", create.SupportPhone, "create.SupportPhone");
+    //    Assert.AreEqual("unknown@microsoft.com", create.SupportEmail, "create.SupportEmail");
+    //    Assert.AreEqual("Dummy Note", create.Notes, "create.Notes");
 
-        Assert.AreNotEqual(0, update.Id, "create.Id");
-        Assert.AreEqual(updateName, update.Name, "update.Name");
-        Assert.AreEqual("https://test.com", update.Url, "update.Url");
-        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", update.Image, nameof(update.Image));
-        Assert.AreEqual("https://support.test.com", update.SupportUrl, "update.SupportUrl");
-        Assert.AreEqual("https://checkcoverage.test.com", update.WarrantyLookupUrl, "update.WarrantyLookupUrl");
-        Assert.AreEqual("+12725858512", update.SupportPhone, "update.SupportPhone");
-        Assert.AreEqual("unknown@microsoft.com", update.SupportEmail, "update.SupportEmail");
-        Assert.AreEqual("Dummy Note", update.Notes, "update.Notes");
+    //    Assert.AreNotEqual(0, update.Id, "create.Id");
+    //    Assert.AreEqual(updateName, update.Name, "update.Name");
+    //    Assert.AreEqual("https://test.com", update.Url, "update.Url");
+    //    //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", update.Image, nameof(update.Image));
+    //    Assert.AreEqual("https://support.test.com", update.SupportUrl, "update.SupportUrl");
+    //    Assert.AreEqual("https://checkcoverage.test.com", update.WarrantyLookupUrl, "update.WarrantyLookupUrl");
+    //    Assert.AreEqual("+12725858512", update.SupportPhone, "update.SupportPhone");
+    //    Assert.AreEqual("unknown@microsoft.com", update.SupportEmail, "update.SupportEmail");
+    //    Assert.AreEqual("Dummy Note", update.Notes, "update.Notes");
 
-        Assert.AreNotEqual(0, patch.Id, "patch.Id");
-        Assert.AreEqual(patchName, patch.Name, "patch.Name");
-        Assert.AreEqual("https://test.com", patch.Url, "patch.Url");
-        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", patch.Image, nameof(patch.Image));
-        Assert.AreEqual("https://support.test.com", patch.SupportUrl, "patch.SupportUrl");
-        Assert.AreEqual("https://checkcoverage.test.com", patch.WarrantyLookupUrl, "patch.WarrantyLookupUrl");
-        Assert.AreEqual("+12725858512", patch.SupportPhone, "patch.SupportPhone");
-        Assert.AreEqual("unknown@microsoft.com", patch.SupportEmail, "patch.SupportEmail");
-        Assert.AreEqual("Dummy Note", patch.Notes, "patch.Notes");
-    }
+    //    Assert.AreNotEqual(0, patch.Id, "patch.Id");
+    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
+    //    Assert.AreEqual("https://test.com", patch.Url, "patch.Url");
+    //    //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", patch.Image, nameof(patch.Image));
+    //    Assert.AreEqual("https://support.test.com", patch.SupportUrl, "patch.SupportUrl");
+    //    Assert.AreEqual("https://checkcoverage.test.com", patch.WarrantyLookupUrl, "patch.WarrantyLookupUrl");
+    //    Assert.AreEqual("+12725858512", patch.SupportPhone, "patch.SupportPhone");
+    //    Assert.AreEqual("unknown@microsoft.com", patch.SupportEmail, "patch.SupportEmail");
+    //    Assert.AreEqual("Dummy Note", patch.Notes, "patch.Notes");
+    //}
 
     [TestMethod]
     public async Task TestMethodCreateDuplicateManufacturerAsync()

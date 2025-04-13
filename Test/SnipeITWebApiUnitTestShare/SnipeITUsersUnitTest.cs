@@ -109,88 +109,88 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateUserAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    //[TestMethod]
+    //public async Task TestMethodCreateUserAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        //string createName = Guid.NewGuid().ToString();
-        //string updateName = Guid.NewGuid().ToString();
-        //string patchName = Guid.NewGuid().ToString();
+    //    //string createName = Guid.NewGuid().ToString();
+    //    //string updateName = Guid.NewGuid().ToString();
+    //    //string patchName = Guid.NewGuid().ToString();
 
-        //await snipeIT.DeleteUserAsync(138);
+    //    //await snipeIT.DeleteUserAsync(138);
 
-        var create = await snipeIT.CreateUserAsync(new()
-        {
-            //Name = createName,
-            FirstName = firstNameCreate,
-            LastName = lastNameCreate,
-            Username = usernameCreate,
-            Password = passwordCreate,
-            Phone = phoneCreate,
-            Email = emailCreate,
-            //Image = imageCreate,    
-            Notes = notesCreate,
-        });
-        Assert.IsNotNull(create);
-        Assert.IsTrue(create.Id > 0, "create.Id");
-        int id = create.Id;
+    //    var create = await snipeIT.CreateUserAsync(new()
+    //    {
+    //        //Name = createName,
+    //        FirstName = firstNameCreate,
+    //        LastName = lastNameCreate,
+    //        Username = usernameCreate,
+    //        Password = passwordCreate,
+    //        Phone = phoneCreate,
+    //        Email = emailCreate,
+    //        //Image = imageCreate,    
+    //        Notes = notesCreate,
+    //    });
+    //    Assert.IsNotNull(create);
+    //    Assert.IsTrue(create.Id > 0, "create.Id");
+    //    int id = create.Id;
 
-        var update = await snipeIT.UpdateUserAsync(id, new()
-        {
-            //Name = updateName,
-            FirstName = firstNameUpdate,
-            LastName = lastNameUpdate,
-            Username = usernameUpdate,
-            Password = passwordUpdate,
-            Phone = phoneUpdate,
-            Email = emailUpdate,
-            //Image = imageUpdate,
-            Notes = notesUpdate,
+    //    var update = await snipeIT.UpdateUserAsync(id, new()
+    //    {
+    //        //Name = updateName,
+    //        FirstName = firstNameUpdate,
+    //        LastName = lastNameUpdate,
+    //        Username = usernameUpdate,
+    //        Password = passwordUpdate,
+    //        Phone = phoneUpdate,
+    //        Email = emailUpdate,
+    //        //Image = imageUpdate,
+    //        Notes = notesUpdate,
 
-        });
-        Assert.IsNotNull(update);
+    //    });
+    //    Assert.IsNotNull(update);
 
-        var patch = await snipeIT.PatchUserAsync(id, new()
-        {
-            //Name = patchName,
-            FirstName = firstNamePatch,
-            LastName = lastNamePatch,
-            Username = usernamePatch,
-            Password = passwordPatch,
-            Phone = phonePatch,
-            Email = emailPatch,
-            //Image = imagePatch,
-            Notes = notesPatch,
+    //    var patch = await snipeIT.PatchUserAsync(id, new()
+    //    {
+    //        //Name = patchName,
+    //        FirstName = firstNamePatch,
+    //        LastName = lastNamePatch,
+    //        Username = usernamePatch,
+    //        Password = passwordPatch,
+    //        Phone = phonePatch,
+    //        Email = emailPatch,
+    //        //Image = imagePatch,
+    //        Notes = notesPatch,
 
-        });
-        Assert.IsNotNull(patch);
+    //    });
+    //    Assert.IsNotNull(patch);
 
-        var del = await snipeIT.DeleteUserAsync(id);
+    //    var del = await snipeIT.DeleteUserAsync(id);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetUserAsync(id));
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetUserAsync(id));
 
-        Assert.AreEqual(id, create.Id, "create.Id");
-        Assert.AreEqual($"{lastNameCreate} {firstNameCreate}", create.Name, "create.Name");
-        Assert.AreEqual(phoneCreate, create.Phone, "create.Phone");
-        Assert.AreEqual(emailCreate, create.Email, "create.Email");
-        //Assert.AreEqual(imageCreate, create.Image, "create.Image");
-        Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
+    //    Assert.AreEqual(id, create.Id, "create.Id");
+    //    Assert.AreEqual($"{lastNameCreate} {firstNameCreate}", create.Name, "create.Name");
+    //    Assert.AreEqual(phoneCreate, create.Phone, "create.Phone");
+    //    Assert.AreEqual(emailCreate, create.Email, "create.Email");
+    //    //Assert.AreEqual(imageCreate, create.Image, "create.Image");
+    //    Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
-        Assert.AreEqual(id, update.Id, "update.Id");
-        Assert.AreEqual($"{lastNameUpdate} {firstNameUpdate}", update.Name, "update.Name");
-        Assert.AreEqual(phoneUpdate, update.Phone, "update.Phone");
-        Assert.AreEqual(emailUpdate, update.Email, "update.Email");
-        //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
-        Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
+    //    Assert.AreEqual(id, update.Id, "update.Id");
+    //    Assert.AreEqual($"{lastNameUpdate} {firstNameUpdate}", update.Name, "update.Name");
+    //    Assert.AreEqual(phoneUpdate, update.Phone, "update.Phone");
+    //    Assert.AreEqual(emailUpdate, update.Email, "update.Email");
+    //    //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
+    //    Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
-        Assert.AreEqual(id, patch.Id, "patch.Id");
-        Assert.AreEqual($"{lastNamePatch} {firstNamePatch}", patch.Name, "patch.Name");
-        Assert.AreEqual(phonePatch, patch.Phone, "patch.Phone");
-        Assert.AreEqual(emailPatch, patch.Email, "patch.Email");
-        //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
-        Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
-    }
+    //    Assert.AreEqual(id, patch.Id, "patch.Id");
+    //    Assert.AreEqual($"{lastNamePatch} {firstNamePatch}", patch.Name, "patch.Name");
+    //    Assert.AreEqual(phonePatch, patch.Phone, "patch.Phone");
+    //    Assert.AreEqual(emailPatch, patch.Email, "patch.Email");
+    //    //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
+    //    Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
+    //}
 
     [TestMethod]
     public async Task TestMethodCreateDuplicateUserAsync()

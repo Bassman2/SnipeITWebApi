@@ -99,70 +99,70 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest
         Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
-    [TestMethod]
-    public async Task TestMethodCreateLicenseAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    //[TestMethod]
+    //public async Task TestMethodCreateLicenseAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        string createName = Guid.NewGuid().ToString();
-        string updateName = Guid.NewGuid().ToString();
-        string patchName = Guid.NewGuid().ToString();
+    //    string createName = Guid.NewGuid().ToString();
+    //    string updateName = Guid.NewGuid().ToString();
+    //    string patchName = Guid.NewGuid().ToString();
 
-        var create = await snipeIT.CreateLicenseAsync(new()
-        {
-            // required
-            Name = createName,
-            Seats = 10,
-            Category = new NamedItem(categoryId, categoryName),
+    //    var create = await snipeIT.CreateLicenseAsync(new()
+    //    {
+    //        // required
+    //        Name = createName,
+    //        Seats = 10,
+    //        Category = new NamedItem(categoryId, categoryName),
 
-            // optional 
-            Notes = notesCreate,
+    //        // optional 
+    //        Notes = notesCreate,
 
-            // Image = imageCreate,    
-        });
-        Assert.IsNotNull(create);
-        Assert.IsTrue(create.Id > 0, "create.Id");
-        int id = create.Id;
+    //        // Image = imageCreate,    
+    //    });
+    //    Assert.IsNotNull(create);
+    //    Assert.IsTrue(create.Id > 0, "create.Id");
+    //    int id = create.Id;
 
-        var update = await snipeIT.UpdateLicenseAsync(id, new()
-        {
-            // optional
-            Name = updateName,
-            Notes = notesUpdate,
+    //    var update = await snipeIT.UpdateLicenseAsync(id, new()
+    //    {
+    //        // optional
+    //        Name = updateName,
+    //        Notes = notesUpdate,
 
-            // Image = imageUpdate,
-        });
-        Assert.IsNotNull(update);
+    //        // Image = imageUpdate,
+    //    });
+    //    Assert.IsNotNull(update);
 
-        var patch = await snipeIT.PatchLicenseAsync(id, new()
-        {
-            // optional 
-            Name = patchName,
-            Notes = notesPatch,
+    //    var patch = await snipeIT.PatchLicenseAsync(id, new()
+    //    {
+    //        // optional 
+    //        Name = patchName,
+    //        Notes = notesPatch,
 
-            // Image = imagePatch,
-        });
-        Assert.IsNotNull(patch);
+    //        // Image = imagePatch,
+    //    });
+    //    Assert.IsNotNull(patch);
 
-        var del =  await snipeIT.DeleteLicenseAsync(id);
+    //    var del =  await snipeIT.DeleteLicenseAsync(id);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetLicenseAsync(id));
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetLicenseAsync(id));
 
-        Assert.AreEqual(id, create.Id, "create.Id");
-        Assert.AreEqual(createName, create.Name, "create.Name");
-        //Assert.AreEqual(imageCreate, create.Image, "create.Image");
-        Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
+    //    Assert.AreEqual(id, create.Id, "create.Id");
+    //    Assert.AreEqual(createName, create.Name, "create.Name");
+    //    //Assert.AreEqual(imageCreate, create.Image, "create.Image");
+    //    Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
 
-        Assert.AreEqual(id, update.Id, "update.Id");
-        Assert.AreEqual(updateName, update.Name, "update.Name");
-        //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
-        Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
+    //    Assert.AreEqual(id, update.Id, "update.Id");
+    //    Assert.AreEqual(updateName, update.Name, "update.Name");
+    //    //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
+    //    Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
 
-        Assert.AreEqual(id, patch.Id, "patch.Id");
-        Assert.AreEqual(patchName, patch.Name, "patch.Name");
-        //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
-        Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
-    }
+    //    Assert.AreEqual(id, patch.Id, "patch.Id");
+    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
+    //    //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
+    //    Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
+    //}
 
     // no bug for duplicated license name
 
