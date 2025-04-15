@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class StatusLabelModel
+internal class StatusLabelModel : BaseModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("type")]
     [JsonConverter(typeof(JsonStringEnumConverter<StatusType>))]
     public StatusType? Type { get; set; }
@@ -37,21 +31,4 @@ internal class StatusLabelModel
 
     [JsonPropertyName("assets_count")]
     public int? AssetsCount { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
-    [JsonPropertyName("created_by")]
-    public NamedItemModel? CreatedBy { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
-
-    [JsonPropertyName("available_actions")]
-    public ActionsModel? AvailableActions { get; set; }
 }

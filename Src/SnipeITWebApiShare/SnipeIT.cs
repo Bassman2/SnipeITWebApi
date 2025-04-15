@@ -100,13 +100,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Hardware>();
     }
 
-    public async Task<Hardware?> DeleteHardwareAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteHardwareAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteHardwareAsync(id, cancellationToken);
-        return res.CastModel<Hardware>();
     }
 
     public async Task<Hardware?> CheckoutHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
@@ -176,13 +175,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Accessory>();
     }
 
-    public async Task<Accessory?> DeleteAccessoryAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteAccessoryAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteAccessoryAsync(id, cancellationToken);
-        return res.CastModel<Accessory>();
     }
 
     #endregion
@@ -234,13 +232,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Category>();
     }
 
-    public async Task<Category?> DeleteCategoryAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteCategoryAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteCategoryAsync(id, cancellationToken);
-        return res.CastModel<Category>();
     }
 
     #endregion
@@ -292,13 +289,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Company>();
     }
 
-    public async Task<Company?> DeleteCompanyAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteCompanyAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteCompanyAsync(id, cancellationToken);
-        return res.CastModel<Company>();
     }
 
     #endregion
@@ -365,13 +361,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Component>();
     }
 
-    public async Task<Component?> DeleteComponentAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteComponentAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteComponentAsync(id, cancellationToken);
-        return res.CastModel<Component>();
     }
 
     #endregion
@@ -423,13 +418,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Consumable>();
     }
 
-    public async Task<Consumable?> DeleteConsumableAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteConsumableAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteConsumableAsync(id, cancellationToken);
-        return res.CastModel<Consumable>();
     }
 
     #endregion
@@ -481,13 +475,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Department>();
     }
 
-    public async Task<Department?> DeleteDepartmentAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteDepartmentAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteDepartmentAsync(id, cancellationToken);
-        return res.CastModel<Department>();
     }
 
     #endregion
@@ -539,13 +532,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Fieldset>();
     }
 
-    public async Task<Fieldset?> DeleteFieldsetAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteFieldsetAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteFieldsetAsync(id, cancellationToken);
-        return res.CastModel<Fieldset>();
     }
 
     #endregion
@@ -597,13 +589,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Field>();
     }
 
-    public async Task<Field?> DeleteFieldAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteFieldAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteFieldAsync(id, cancellationToken);
-        return res.CastModel<Field>();
     }
 
     #endregion
@@ -655,13 +646,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Group>();
     }
 
-    public async Task<Group?> DeleteGroupAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteGroupAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteGroupAsync(id, cancellationToken);
-        return res.CastModel<Group>();
     }
 
     #endregion
@@ -713,13 +703,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<License>();
     }
 
-    public async Task<License?> DeleteLicenseAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteLicenseAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteLicenseAsync(id, cancellationToken);
-        return res.CastModel<License>();
     }
 
     #endregion
@@ -771,13 +760,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Location>();
     }
 
-    public async Task<Location?> DeleteLocationAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteLocationAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteLocationAsync(id, cancellationToken);
-        return res.CastModel<Location>();
     }
 
     #endregion
@@ -829,13 +817,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Maintenance>();
     }
 
-    public async Task<Maintenance?> DeleteMaintenanceAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteMaintenanceAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteMaintenanceAsync(id, cancellationToken);
-        return res.CastModel<Maintenance>();
     }
 
     #endregion
@@ -887,13 +874,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Manufacturer>();
     }
 
-    public async Task<Manufacturer?> DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteManufacturerAsync(id, cancellationToken);
-        return res.CastModel<Manufacturer>();
     }
 
     #endregion
@@ -946,13 +932,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Model>();
     }
 
-    public async Task<Model?> DeleteModelAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteModelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteModelAsync(id, cancellationToken);
-        return res.CastModel<Model>();
     }
 
     #endregion
@@ -1004,13 +989,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<StatusLabel>();
     }
 
-    public async Task<StatusLabel?> DeleteStatusLabelAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteStatusLabelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteStatusLabelAsync(id, cancellationToken);
-        return res.CastModel<StatusLabel>();
     }
 
     #endregion
@@ -1062,13 +1046,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Supplier>();
     }
 
-    public async Task<Supplier?> DeleteSupplierAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteSupplierAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteSupplierAsync(id, cancellationToken);
-        return res.CastModel<Supplier>();
     }
 
     #endregion
@@ -1121,13 +1104,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<User>();
     }
 
-    public async Task<User?> DeleteUserAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteUserAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.DeleteUserAsync(id, cancellationToken);
-        return res.CastModel<User>();
     }
 
     public async Task<User?> GetUserMeAsync(CancellationToken cancellationToken = default)

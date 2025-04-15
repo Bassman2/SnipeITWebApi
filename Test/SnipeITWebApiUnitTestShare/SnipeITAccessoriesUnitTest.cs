@@ -34,76 +34,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
         Assert.AreEqual(accessoryId, item.Id, "item.Id");
         Assert.AreEqual(accessoryName, item.Name, "item.Name");
     }
-
-    //[TestMethod]
-    //public async Task TestMethodCreateAccessoryAsync()
-    //{
-    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-    //    string createName = Guid.NewGuid().ToString();
-    //    string updateName = Guid.NewGuid().ToString();
-    //    string patchName = Guid.NewGuid().ToString();
-
-    //    var create = new Accessory()
-    //    {
-    //        // update
-    //        Name = createName,
-    //        Qty = 1,
-    //        Category = createAccessoryCategory,
-    //        //Image = imageCreate,    
-    //        Notes = "create",
-
-    //        // check
-    //        RemainingQty = 1,
-    //        Remaining = 1,
-    //    };
-    //    int id = await snipeIT.CreateAccessoryAsync(create);
-    //    var created = await snipeIT.GetAccessoryAsync(id);
-
-    //    var update = new Accessory()
-    //    {
-    //        // update
-    //        Name = updateName,
-    //        Qty = 2,
-    //        Category = updateAccessoryCategory,
-    //        //Image = imageUpdate,
-    //        Notes = notesUpdate,
-
-    //        // check
-    //        RemainingQty = 2,
-    //        Remaining = 2,
-
-    //    };
-    //    await snipeIT.UpdateAccessoryAsync(id, update);
-    //    var updated = await snipeIT.GetAccessoryAsync(id);
-
-    //    var patch = new Accessory()
-    //    {
-    //        // update
-    //        Name = patchName,
-    //        Qty = 3,
-    //        Category = patchAccessoryCategory,
-    //        //Image = imageUpdate,
-    //        Notes = notesPatch,
-
-    //        // check
-    //        RemainingQty = 3,
-    //        Remaining = 3,
-    //    };
-    //    await snipeIT.PatchAccessoryAsync(id, patch);
-    //    var patched = await snipeIT.GetAccessoryAsync(id);
-
-
-    //    var deleted = await snipeIT.DeleteAccessoryAsync(id);
-
-    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetAccessoryAsync(id));
-
-    //    AreEqual(id, create, created, "created");
-    //    AreEqual(id, update, updated, "updated");
-    //    AreEqual(id, patch, patched, "patched");
-    //    //AreEqual(id, patch, deleted, "deleted");
-    //}
-
+    
     [TestMethod]
     public async Task TestMethodCreateUpdateDeleteAccessoryAsync()
     {

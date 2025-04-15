@@ -1,6 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Converter;
 
-internal class DateTimeJsonConverter : JsonConverter<DateTime?>
+internal class DateJsonConverter : JsonConverter<DateTime?>
 {
     public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
@@ -16,7 +16,7 @@ internal class DateTimeJsonConverter : JsonConverter<DateTime?>
         else if (reader.TokenType == JsonTokenType.StartObject)
         {
             // Handle "created_at": { "datetime": "2025-02-20 11:59:38", "formatted": "Thu Feb 20, 2025 11:59AM" }
-
+            
             using (JsonDocument document = JsonDocument.ParseValue(ref reader))
             {
                 if (document.RootElement.TryGetProperty("datetime", out JsonElement datetimeElement) &&
@@ -37,7 +37,7 @@ internal class DateTimeJsonConverter : JsonConverter<DateTime?>
     {
         if (value != null)
         {
-            writer.WriteStringValue(value.Value.ToString("yyyy-MM-dd HH:mm:ss"));
+            writer.WriteStringValue(value.Value.ToString("yyyy-MM-dd"));
         }
         else
         {

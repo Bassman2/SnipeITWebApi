@@ -32,7 +32,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Permissions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\CastExtentions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AccessoryChangeModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\BaseModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CategoryChangeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CompanyChangeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ComponentChangeModel.cs" />
@@ -51,7 +53,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SupplierChangeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\UserChangeModel.cs" />
     <Compile Include="..\SnipeITWebApiShare\Service\Converter\BooleanJsonConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\NamedItemJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\PermissionsJsonConverter.cs" />

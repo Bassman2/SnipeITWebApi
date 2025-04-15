@@ -1,6 +1,10 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-[JsonSourceGenerationOptions(DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = true, AllowTrailingCommas = true)]
+[JsonSourceGenerationOptions(
+    JsonSerializerDefaults.Web,
+    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
+    WriteIndented = true, 
+    AllowTrailingCommas = true)]
 
 [JsonSerializable(typeof(ResultModel))]
 [JsonSerializable(typeof(PermissionsModel))]

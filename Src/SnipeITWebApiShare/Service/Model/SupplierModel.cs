@@ -1,16 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class SupplierModel
+internal class SupplierModel : BaseModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
-
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 
@@ -58,20 +49,6 @@ internal class SupplierModel
 
     [JsonPropertyName("components_count")]
     public int? ComponentsCount { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
-
-    [JsonPropertyName("available_actions")]
-    public ActionsModel? AvailableActions { get; set; }
 }
 
 

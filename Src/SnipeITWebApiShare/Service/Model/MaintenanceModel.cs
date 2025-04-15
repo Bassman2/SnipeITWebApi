@@ -1,10 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class MaintenanceModel
+internal class MaintenanceModel : BaseModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
     [JsonPropertyName("asset")]
     public HardwareModel? Asset { get; set; }
 
@@ -29,9 +26,6 @@ internal class MaintenanceModel
     [JsonPropertyName("rtd_location")]
     public NamedItemModel? RtdLocation { get; set; }
 
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
     [JsonPropertyName("supplier")]
     public NamedItemModel? Supplier { get; set; }
 
@@ -45,36 +39,20 @@ internal class MaintenanceModel
     public string? AssetMaintenanceType { get; set; }
 
     [JsonPropertyName("start_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? StartDate { get; set; }
 
     [JsonPropertyName("asset_maintenance_time")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? AssetMaintenanceTime { get; set; }
 
     [JsonPropertyName("completion_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? CompletionDate { get; set; }
 
     [JsonPropertyName("user_id")]
     public NamedItemModel? UserId { get; set; }
 
-    [JsonPropertyName("created_by")]
-    [JsonConverter(typeof(NamedItemJsonConverter))]
-    public NamedItemModel? CreatedBy { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
-
     [JsonPropertyName("is_warranty")]
     public int? IsWarranty { get; set; }
-
-    [JsonPropertyName("available_actions")]
-    public ActionsModel? AvailableActions { get; set; }
-
 }

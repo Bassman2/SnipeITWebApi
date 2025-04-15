@@ -1,7 +1,7 @@
 ﻿namespace SnipeITWebApiUnitTest;
 
 [TestClass]
-public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
+public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
 {
     [TestMethod]
     public async Task TestMethodGetHardwaresAsync()
@@ -25,20 +25,6 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(hardwareId, item.Id, "item.Id");
         Assert.AreEqual(hardwareName, item.Name, "item.Name");
-        //Assert.IsNull(item.Phone, "item.Phone");
-        //Assert.IsNull(item.Fax, "item.Fax");
-        //Assert.IsNull(item.Image, "item.Image");
-        //Assert.IsNull(item.Company, "item.Company");
-        //Assert.IsNull(item.Manager, "item.Manager");
-        //Assert.IsNull(item.Location, "item.Location");
-        //Assert.IsTrue(item.UsersCount > 10, "item.UsersCount");
-        //Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
-        //DateAssert.AreEqual("2025-02-20", item.CreatedAt, "item.CreatedAt");
-        //DateAssert.AreEqual("2025-02-20", item.UpdatedAt, "item.UpdatedAt");
-        //Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
-        //Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
-        //Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
- 
     }
 
     [TestMethod]
@@ -65,127 +51,145 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
         Assert.IsNotNull(item);
         Assert.AreEqual(hardwareId, item.Id, "item.Id");
         Assert.AreEqual(hardwareName, item.Name, "item.Name");
-        Assert.AreEqual("283896877", item.AssetTag, "item.AssetTag");
-        Assert.AreEqual("632aeacb-a1ff-30f6-838f-9f639e036dda", item.Serial, "item.Serial");
-        Assert.AreEqual(new NamedItem(1, "Macbook Pro 13&quot;"), item.Model, "item.Model"); 
-        Assert.AreEqual(false, item.Byod, "item.Byod");
-        Assert.AreEqual(false, item.Requestable, "item.Requestable");
-        Assert.AreEqual("4532230160393106", item.ModelNumber, "item.ModelNumber");
-        Assert.AreEqual("36 months", item.Eol, "item.Eol");
-        DateAssert.IsNull(item.AssetEolDate, "item.AssetEolDate");
-        Assert.AreEqual(new NamedItem(2, "Pending"), item.StatusLabel, "item.StatusLabel");
-        Assert.AreEqual(new NamedItem(1, "Laptops"), item.Category, "item.Category");
-        Assert.AreEqual(null, item.Manufacturer, "item.Manufacturer");
-        Assert.AreEqual(new NamedItem(3, "Jast PLC"), item.Supplier, "item.Supplier");
-        Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
-        Assert.AreEqual("28492477", item.OrderNumber, "item.OrderNumber");
-        Assert.AreEqual(null, item.Company, "item.Company");
-        Assert.AreEqual(new NamedItem(2, "Port Camrynland"), item.Location, "item.Location");
-        Assert.AreEqual(null, item.RtdLocation, "item.RtdLocation");
-        Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/mbp.jpg", item.Image, "item.Image");
-        Assert.AreEqual(null, item.Qr, "item.Qr");
-        Assert.AreEqual(null, item.AltBarcode, "item.AltBarcode");
-        Assert.AreEqual(null, item.AssignedTo, "item.AssignedTo");
-        Assert.AreEqual(null, item.WarrantyMonths, "item.WarrantyMonths");
-        DateAssert.IsNull(item.WarrantyExpires, "item.WarrantyExpires");
-        Assert.AreEqual(new NamedItem(1, "Admin User"), item.CreatedBy, "item.CreatedBy");
-        DateAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
-        DateAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
-        DateAssert.IsNull(item.LastAuditDate, "item.LastAuditDate");
-        DateAssert.IsNull(item.NextAuditDate, "item.NextAuditDate");
-        DateAssert.IsNull(item.DeletedAt, "item.DeletedAt");
-        DateAssert.IsNull(item.PurchaseDate, "item.PurchaseDate");
-        Assert.AreEqual("9 months ago", item.Age, "item.Age");
-        DateAssert.IsNull(item.LastCheckout, "item.LastCheckout");
-        DateAssert.IsNull(item.LastCheckin, "item.LastCheckin");
-        DateAssert.IsNull(item.ExpectedCheckin, "item.ExpectedCheckin");
-        Assert.AreEqual(null, item.PurchaseCost, "item.PurchaseCost");
-        Assert.AreEqual(0, item.CheckinCounter, "item.CheckinCounter");
-        Assert.AreEqual(0, item.CheckoutCounter, "item.CheckoutCounter");
-        Assert.AreEqual(0, item.RequestsCounter, "item.RequestsCounter");
-        Assert.AreEqual(false, item.UserCanCheckout, "item.UserCanCheckout");
-        Assert.AreEqual("0,00", item.BookValue, "item.BookValue");
-
-        Assert.IsNotNull(item.CustomFields, "item.CustomFields");
-        Assert.IsTrue(item.CustomFields.Count > 0, "item.CustomFields");
-
-        var customFiledMACAddress = item.CustomFields["MAC Address"];
-        Assert.IsNotNull(customFiledMACAddress, "customFiledMACAddress");
-        Assert.AreEqual("_snipeit_mac_address_5", customFiledMACAddress.Field, "customFiledMACAddress.Field");
-        Assert.AreEqual("", customFiledMACAddress.Value, "customFiledMACAddress.Value");
-        Assert.AreEqual("regex:/^([0-9a-fA-F]{2}[:-]){5}[0-9a-fA-F]{2}$/", customFiledMACAddress.FieldFormat, "customFiledMACAddress.FieldFormat");
-        Assert.AreEqual("text", customFiledMACAddress.Element, "customFiledMACAddress.Element");
-
-        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
-        Assert.IsTrue(item.AvailableActions.Checkout, "item.AvailableActions.Checkout");
-        Assert.IsTrue(item.AvailableActions.Checkin, "item.AvailableActions.Checkin");
-        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
-        Assert.IsFalse(item.AvailableActions.Restore, "item.AvailableActions.Restore");
-        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
-        Assert.IsTrue(item.AvailableActions.Clone, "item.AvailableActions.Clone");
-
-
     }
 
-    //[TestMethod]
-    //public async Task TestMethodCreateHardwareAsync()
-    //{
-    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+    [TestMethod]
+    public async Task TestMethodCreateUpdateDeleteHardwareAsync()
+    {
+        var create = new Hardware()
+        {
+            // required
+            AssetTag = CreateName(),
+            StatusLabel = (2, "Pending"),
+            Model = (modelCreateId, modelCreateName),
 
-    //    string createName = Guid.NewGuid().ToString();
-    //    string updateName = Guid.NewGuid().ToString();
-    //    string patchName = Guid.NewGuid().ToString();
+            // optional
+            Name = CreateName(),
+            Image = null,    // "data:@[mime];base64,[base64encodeddata]"
+            Serial = CreateName(),
+            PurchaseDate = DateTime.Now,
+            //PurchaseCost = 500.0,
+            OrderNumber = CreateName(),
+            Notes = notesCreate,
+            //Archived = false,
+            //WarrantyMonths = 12,
+            //Depreciate = false,
+            Supplier = (3, "Jast PLC"),
+            Requestable = false,
+            RtdLocation = (2, "Port Camrynland"),
+            LastAuditDate = DateTime.Now,
+            Location = (2, "Port Camrynland"),
+            Byod = false,
 
-    //    var create = await snipeIT.CreateHardwareAsync(new()
-    //    {
-    //        Name = createName,
-            
-    //        //Image = imageCreate,    
-    //        Notes = notesCreate,
-    //        Model = modelId,
-    //        StatusLabel = statusLabelId,
-    //    });
-    //    Assert.IsNotNull(create);
-    //    Assert.IsTrue(create.Id > 0, "create.Id");
-    //    int id = create.Id;
+            // test
+            Manufacturer = modelCreateManufacturer,
+            ModelNumber = modelCreateNumber,
+            Category = (modelCreateCategoryId, modelCreateCategoryName),
+            CreatedBy = adminUser,
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
+            AvailableActions = new Actions()
+            {
+                Checkout = true,
+                Checkin = true,
+                Update = true,
+                Restore = false,
+                Delete = true,
+                Clone = true,
+            }
+        };
 
-    //    var update = await snipeIT.UpdateHardwareAsync(id, new()
-    //    {
-    //        Name = updateName,
-    //        //Image = imageUpdate,
-    //        Notes = notesUpdate,
+        var update = new Hardware()
+        {
+            // required
+            AssetTag = CreateName(),
+            StatusLabel = (2, "Pending"),
+            Model = (modelUpdateId, modelUpdateName),
 
-    //    });
-    //    Assert.IsNotNull(update);
+            // optional
+            Name = CreateName(),
+            Image = null,    // "data:@[mime];base64,[base64encodeddata]"
+            Serial = CreateName(),
+            PurchaseDate = DateTime.Now,
+            //PurchaseCost = 500.0,
+            OrderNumber = CreateName(),
+            Notes = notesCreate,
+            //Archived = false,
+            //WarrantyMonths = 12,
+            //Depreciate = false,
+            Supplier = (3, "Jast PLC"),
+            Requestable = false,
+            RtdLocation = (2, "Port Camrynland"),
+            LastAuditDate = DateTime.Now,
+            Location = (2, "Port Camrynland"),
+            Byod = false,
 
-    //    var patch = await snipeIT.PatchHardwareAsync(id, new()
-    //    {
-    //        Name = patchName,
-    //        //Image = imagePatch,
-    //        Notes = notesPatch,
+            // test
+            Manufacturer = modelUpdateManufacturer,
+            ModelNumber = modelUpdateNumber,
+            Category = (modelUpdateCategoryId, modelUpdateCategoryName),
+            CreatedBy = adminUser,
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
+            AvailableActions = new Actions()
+            {
+                Checkout = true,
+                Checkin = true,
+                Update = true,
+                Restore = false,
+                Delete = true,
+                Clone = true,
+            }
+        };
 
-    //    });
-    //    Assert.IsNotNull(patch);
+        var patch = new Hardware()
+        {
+            // required
+            Name = CreateName(),
+            Model = (modelPatchId, modelPatchName),
 
-    //    var del = await snipeIT.DeleteHardwareAsync(id);
+            // optional
+            AssetTag = CreateName(),
+            StatusLabel = (2, "Pending"),
 
-    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetHardwareAsync(id));
 
-    //    Assert.AreEqual(id, create.Id, "create.Id");
-    //    Assert.AreEqual(createName, create.Name, "create.Name");
-    //    //Assert.AreEqual(imageCreate, create.Image, "create.Image");
-    //    Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
+            //Name = CreateName(),
+            Image = null,    // "data:@[mime];base64,[base64encodeddata]"
+            Serial = CreateName(),
+            PurchaseDate = DateTime.Now,
+            //PurchaseCost = 500.0,
+            OrderNumber = CreateName(),
+            Notes = notesCreate,
+            //Archived = false,
+            //WarrantyMonths = 12,
+            //Depreciate = false,
+            Supplier = (3, "Jast PLC"),
+            Requestable = false,
+            RtdLocation = (2, "Port Camrynland"),
+            LastAuditDate = DateTime.Now,
+            Location = (2, "Port Camrynland"),
+            Byod = false,
 
-    //    Assert.AreEqual(id, update.Id, "update.Id");
-    //    Assert.AreEqual(updateName, update.Name, "update.Name");
-    //    //Assert.AreEqual(imageUpdate, update.Image, "update.Image");
-    //    Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
+            // test
+            Manufacturer = modelPatchManufacturer,
+            ModelNumber = modelPatchNumber,
+            Category = (modelPatchCategoryId, modelPatchCategoryName),
+            CreatedBy = adminUser,
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
+            AvailableActions = new Actions()
+            {
+                Checkout = true,
+                Checkin = true,
+                Update = true,
+                Restore = false,
+                Delete = true,
+                Clone = true,
+            }
+        };
 
-    //    Assert.AreEqual(id, patch.Id, "patch.Id");
-    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
-    //    //Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
-    //    Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
-    //}
+        await TestMethodAllAsync(create, update, patch, false);
+    }
 
     [TestMethod]
     public async Task TestMethodCreateDuplicateHardwareAsync()
@@ -211,4 +215,68 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest
         await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteHardwareAsync(notExistingId));
     }
 
+    public override void AreEqual(int id, Hardware expected, Hardware? actual, string message)
+    {
+        Assert.IsNotNull(actual, $"{message}.actual");
+
+        Assert.AreEqual(id, actual.Id, $"{message}.Id");
+        Assert.AreEqual(expected.Name, actual.Name, $"{message}.Name");
+        Assert.AreEqual(expected.AssetTag, actual.AssetTag, $"{message}.AssetTag");
+        Assert.AreEqual(expected.Serial, actual.Serial, $"{message}.Serial");
+        Assert.AreEqual(expected.Model, actual.Model, $"{message}.Model");
+        Assert.AreEqual(expected.Byod, actual.Byod, $"{message}.Byod");
+        Assert.AreEqual(expected.Requestable, actual.Requestable, $"{message}.Requestable");
+        Assert.AreEqual(expected.ModelNumber, actual.ModelNumber, $"{message}.ModelNumber");
+        //Assert.AreEqual(expected.Eol, actual.Eol, $"{message}.Eol");
+        DateAssert.AreEqual(expected.AssetEolDate, actual.AssetEolDate, $"{message}.AssetEolDate");
+        Assert.AreEqual(expected.StatusLabel, actual.StatusLabel, $"{message}.StatusLabel");
+        Assert.AreEqual(expected.Category, actual.Category, $"{message}.Category");
+        Assert.AreEqual(expected.Manufacturer, actual.Manufacturer, $"{message}.Manufacturer");
+        Assert.AreEqual(expected.Supplier, actual.Supplier, $"{message}.Supplier");
+        Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
+        Assert.AreEqual(expected.OrderNumber, actual.OrderNumber, $"{message}.OrderNumber");
+        Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
+        Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
+        Assert.AreEqual(expected.RtdLocation, actual.RtdLocation, $"{message}.RtdLocation");
+        //Assert.AreEqual(expected.Image, actual.Image, $"{message}.Image");
+        Assert.AreEqual(expected.Qr, actual.Qr, $"{message}.Qr");
+        Assert.AreEqual(expected.AltBarcode, actual.AltBarcode, $"{message}.AltBarcode");
+        Assert.AreEqual(expected.AssignedTo, actual.AssignedTo, $"{message}.AssignedTo");
+        Assert.AreEqual(expected.WarrantyMonths, actual.WarrantyMonths, $"{message}.WarrantyMonths");
+        Assert.AreEqual(expected.WarrantyExpires, actual.WarrantyExpires, $"{message}.WarrantyExpires");
+
+        Assert.AreEqual(expected.CreatedBy, actual.CreatedBy, $"{message}.CreatedBy");
+        DateAssert.AreEqual(expected.CreatedAt, actual.CreatedAt, $"{message}.CreatedAt");
+        DateAssert.AreEqual(expected.UpdatedAt, actual.UpdatedAt, $"{message}.UpdatedAt");
+        DateAssert.AreEqual(expected.LastAuditDate, actual.LastAuditDate, $"{message}.LastAuditDate");
+        DateAssert.AreEqual(expected.NextAuditDate, actual.NextAuditDate, $"{message}.NextAuditDate");
+        DateAssert.AreEqual(expected.DeletedAt, actual.DeletedAt, $"{message}.DeletedAt");
+
+        //DateAssert.AreEqual(expected.PurchaseDate, actual.PurchaseDate, $"{message}.PurchaseDate");
+        //Assert.AreEqual(expected.Age, actual.Age, $"{message}.Age");
+        DateAssert.AreEqual(expected.LastCheckout, actual.LastCheckout, $"{message}.LastCheckout");
+        DateAssert.AreEqual(expected.LastCheckin, actual.LastCheckin, $"{message}.LastCheckin");
+        //Assert.AreEqual(expected.RequestsCounter, actual.RequestsCounter, $"{message}.RequestsCounter");
+        //Assert.AreEqual(expected.UserCanCheckout, actual.UserCanCheckout, $"{message}.UserCanCheckout");
+        //Assert.AreEqual(expected.BookValue, actual.BookValue, $"{message}.BookValue");
+
+        // custom fields
+
+        ActionAssert.AreEqual(expected.AvailableActions, actual.AvailableActions, $"{message}.AvailableActions");
+    }
+
+    public override async Task<Hardware?> GetAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.GetHardwareAsync(id);
+
+    public override async Task<int> CreateAsync(SnipeIT snipeIT, Hardware value)
+        => await snipeIT.CreateHardwareAsync(value);
+
+    public override async Task UpdateAsync(SnipeIT snipeIT, int id, Hardware value)
+        => await snipeIT.UpdateHardwareAsync(id, value);
+
+    public override async Task PatchAsync(SnipeIT snipeIT, int id, Hardware value)
+        => await snipeIT.PatchHardwareAsync(id, value);
+
+    public override async Task DeleteAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.DeleteHardwareAsync(id);
 }

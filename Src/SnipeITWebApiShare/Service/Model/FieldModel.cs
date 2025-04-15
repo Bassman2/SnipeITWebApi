@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class FieldModel
+internal class FieldModel : BaseModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("db_column_name")]
     public string? DbColumnName { get; set; }
 
@@ -34,12 +28,4 @@ internal class FieldModel
 
     [JsonPropertyName("show_in_listview")]
     public bool? ShowInListview { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
 }

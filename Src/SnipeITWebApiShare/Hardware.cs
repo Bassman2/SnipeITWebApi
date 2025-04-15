@@ -77,7 +77,29 @@ public class Hardware
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
+            AssetTag = AssetTag,
+            StatusId = StatusLabel?.Id,
+            ModelId = Model?.Id,
             Name = Name,
+            Image = Image,
+            Serial = Serial,
+            PurchaseDate = PurchaseDate,
+            PurchaseCost = float.TryParse(PurchaseCost, out float res) ? res : null,
+            OrderNumber = OrderNumber,
+            Notes = Notes,
+            //Archived = ,
+            //WarrantyMonths = WarrantyMonths,
+            //Depreciate = Depr
+            SupplierId = Supplier?.Id,
+            Requestable = Requestable,
+            RtdLocationId = RtdLocation?.Id,
+            LastAuditDate = LastAuditDate,
+            LocationId = Location?.Id,
+            Byod = Byod,
+
+
+            // free
+            
         };
     }
 
@@ -107,7 +129,7 @@ public class Hardware
     //        Name = Name,
     //    };
     //}
-    public int Id { get; }
+    public int Id { get; internal set; }
 
     public string? Name { get; set; }
 
@@ -119,19 +141,27 @@ public class Hardware
 
     public bool? Byod { get; set; }
 
-    public bool? Requestable { get; set; }
+    public bool? Requestable { get; internal set; }
 
-    public string? ModelNumber { get; set; }
+    /// <summary>
+    /// Model number of the hardware. 
+    /// </summary>
+    /// <remarks>Readonly! This can only be set in the selected model.</remarks>
+    public string? ModelNumber { get; internal set; } 
 
-    public string? Eol { get; set; }
+    public string? Eol { get; internal set; }
 
-    public DateTime? AssetEolDate { get; set; }
+    public DateTime? AssetEolDate { get; internal set; }
 
-    public NamedItem? StatusLabel { get; set; }
+    public NamedItem? StatusLabel { get; internal set; }
 
-    public NamedItem? Category { get; set; }
+    /// <summary>
+    /// Category of the hardware.
+    /// </summary>
+    /// <remarks>Readonly! This can only be set in the selected model.</remarks>
+    public NamedItem? Category { get; internal set; }
 
-    public NamedItem? Manufacturer { get; }
+    public NamedItem? Manufacturer { get; internal set; }
 
     public NamedItem? Supplier { get; set; }
 
@@ -139,58 +169,58 @@ public class Hardware
 
     public string? OrderNumber { get; set; }
 
-    public NamedItem? Company { get; set; }
+    public NamedItem? Company { get; internal set; }
 
     public NamedItem? Location { get; set; }
 
-    public NamedItem? RtdLocation { get; set; }
+    public NamedItem? RtdLocation { get; internal set; }
 
     public string? Image { get; set; }
 
-    public string? Qr { get; set; }
+    public string? Qr { get; internal set; }
 
-    public string? AltBarcode { get; set; }
+    public string? AltBarcode { get; internal set; }
 
-    public NamedItem? AssignedTo { get; }
+    public NamedItem? AssignedTo { get; internal set; }
 
-    public string? WarrantyMonths { get; set; }
+    public string? WarrantyMonths { get; internal set; }
 
-    public DateTime? WarrantyExpires { get; set; }
+    public DateTime? WarrantyExpires { get; internal set; }
 
-    public NamedItem? CreatedBy { get; set; }
+    public NamedItem? CreatedBy { get; internal set; }
 
-    public DateTime? CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; internal set; }
 
-    public DateTime? UpdatedAt { get; set; }
+    public DateTime? UpdatedAt { get; internal set; }
 
     public DateTime? LastAuditDate { get; set; }
 
-    public DateTime? NextAuditDate { get; set; }
+    public DateTime? NextAuditDate { get; internal set; }
 
-    public DateTime? DeletedAt { get; set; }
+    public DateTime? DeletedAt { get; internal set; }
 
-    public DateTime? PurchaseDate { get; }
+    public DateTime? PurchaseDate { get; set; }
 
-    public string? Age { get; set; }
+    public string? Age { get; internal set; }
 
-    public DateTime? LastCheckout { get; set; }
+    public DateTime? LastCheckout { get; internal set; }
 
-    public DateTime? LastCheckin { get; set; }
+    public DateTime? LastCheckin { get; internal set; }
 
-    public DateTime? ExpectedCheckin { get; set; }
+    public DateTime? ExpectedCheckin { get; internal set; }
 
     public string? PurchaseCost { get; set; }
 
-    public int? CheckinCounter { get; set; }
+    public int? CheckinCounter { get; internal set; }
 
-    public int? CheckoutCounter { get; set; }
+    public int? CheckoutCounter { get; internal set; }
 
-    public int? RequestsCounter { get; set; }
+    public int? RequestsCounter { get; internal set; }
 
-    public bool? UserCanCheckout { get; set; }
-    public string? BookValue { get; set; }
-    public Dictionary<string, CustomField>? CustomFields { get; set; }
-    public Actions? AvailableActions { get; set; }
+    public bool? UserCanCheckout { get; internal set; }
+    public string? BookValue { get; internal set; }
+    public Dictionary<string, CustomField>? CustomFields { get; internal set; }
+    public Actions? AvailableActions { get; internal set; }
 
     public static implicit operator Hardware(int id) => new(id);
 

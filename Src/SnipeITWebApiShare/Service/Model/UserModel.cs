@@ -1,15 +1,9 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class UserModel
+internal class UserModel : BaseModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
     [JsonPropertyName("avatar")]
     public string? Avatar { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
 
     [JsonPropertyName("first_name")]
     public string? FirstName { get; set; }
@@ -74,9 +68,6 @@ internal class UserModel
     [JsonPropertyName("location")]
     public NamedItemModel? Location { get; set; }
 
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
     [JsonPropertyName("permissions")]
     public NamedItemModel? Permissions { get; set; }
 
@@ -116,35 +107,17 @@ internal class UserModel
     [JsonPropertyName("company")]
     public NamedItemModel? Company { get; set; }
 
-    [JsonPropertyName("created_by")]
-    public NamedItemModel? CreatedBy { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
-
     [JsonPropertyName("start_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? StartDate { get; set; }
 
     [JsonPropertyName("end_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? EndDate { get; set; }
 
     [JsonPropertyName("last_login")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? LastLogin { get; set; }
-
-    [JsonPropertyName("deleted_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? DeletedAt { get; set; }
-
-    [JsonPropertyName("available_actions")]
-    public ActionsModel? AvailableActions { get; set; }
 
     [JsonPropertyName("groups")]
     public string? Groups { get; set; }

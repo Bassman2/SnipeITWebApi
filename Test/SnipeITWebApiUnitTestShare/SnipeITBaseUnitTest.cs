@@ -1,4 +1,6 @@
-﻿namespace SnipeITWebApiUnitTest;
+﻿using System.Diagnostics;
+
+namespace SnipeITWebApiUnitTest;
 
 public abstract class SnipeITBaseUnitTest
 {
@@ -58,6 +60,7 @@ public abstract class SnipeITBaseUnitTest
 
     protected const int modelId = 3;
     protected const string modelName = "Surface";
+    protected const string modelNumber = "5268087447872907";
 
     protected const int statusLabelId = 1;
     protected const string statusLabelName = "Ready to Deploy";
@@ -105,6 +108,27 @@ public abstract class SnipeITBaseUnitTest
     protected const string passwordUpdate = "5~g=?=m7JPDg";
     protected const string passwordPatch = "py4Nx/r$!,zQ";
 
+    protected const int modelCreateId = 1;
+    protected const string modelCreateName = "Macbook Pro 13&quot;";
+    protected const string modelCreateNumber = "4532230160393106";
+    protected const int modelCreateCategoryId = 1;
+    protected const string modelCreateCategoryName = "Laptops";
+    protected readonly NamedItem? modelCreateManufacturer = null;
+
+    protected const int modelUpdateId = 2;
+    protected const string modelUpdateName = "Macbook Air";
+    protected const string modelUpdateNumber = "3528835919718805";
+    protected const int modelUpdateCategoryId = 1;
+    protected const string modelUpdateCategoryName = "Laptops";
+    protected readonly NamedItem? modelUpdateManufacturer = (1, "example");
+
+    protected const int modelPatchId = 4;
+    protected const string modelPatchName = "XPS 13";
+    protected const string modelPatchNumber = "4164654283655320";
+    protected const int modelPatchCategoryId = 1;
+    protected const string modelPatchCategoryName = "Laptops";
+    protected readonly NamedItem? modelPatchManufacturer = (3, "Dell");
+
     protected const string notes = "Created by DB seeder";
 
     protected static readonly NamedItem adminUser = (1, "Admin User");
@@ -124,7 +148,6 @@ public abstract class SnipeITBaseUnitTest
 
 public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : class
 {
-    
     public abstract Task<T?> GetAsync(SnipeIT snipeIT, int id);
 
     public abstract Task<int> CreateAsync(SnipeIT snipeIT, T value);
@@ -137,19 +160,15 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
 
     public abstract void AreEqual(int id, T expected, T? actual, string message);
 
-
-    public async Task TestMethodAllAsync(T create, T update, T patch)
+    public async Task TestMethodAllAsync(T create, T update, T patch, bool checkDeleted = true)
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        //string createName = Guid.NewGuid().ToString();
-        //string updateName = Guid.NewGuid().ToString();
-        //string patchName = Guid.NewGuid().ToString();
-                
         int id = await CreateAsync(snipeIT, create);
         T? created = await GetAsync(snipeIT, id);
 
-        
+        Trace.WriteLine($"Created {typeof(T).Name}: {id}");
+
         await UpdateAsync(snipeIT, id, update);
         T? updated = await GetAsync(snipeIT, id);
 
@@ -157,7 +176,11 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
         T? patched = await GetAsync(snipeIT, id);
 
         await DeleteAsync(snipeIT, id);
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await GetAsync(snipeIT, id));
+
+        if (checkDeleted)
+        {
+            await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await GetAsync(snipeIT, id));
+        }
 
         AreEqual(id, create, created, "created");
         AreEqual(id, update, updated, "updated");

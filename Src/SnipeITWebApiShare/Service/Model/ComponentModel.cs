@@ -1,16 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class ComponentModel
+internal class ComponentModel : BaseModel   
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
-
     [JsonPropertyName("serial")]
     public string? Serial { get; set; }
 
@@ -39,7 +30,7 @@ internal class ComponentModel
     public string? OrderNumber { get; set; }
 
     [JsonPropertyName("purchase_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("purchase_cost")]
@@ -51,24 +42,7 @@ internal class ComponentModel
     [JsonPropertyName("company")]
     public NamedItemModel? Company { get; set; }
     
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
-    [JsonPropertyName("created_by")]
-    public NamedItemModel? CreatedBy { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
-
     [JsonPropertyName("user_can_checkout")]
     public int? UserCanCheckout { get; set; }
-
-    [JsonPropertyName("available_actions")]
-    public ActionsModel? AvailableActions { get; set; }
 }
 

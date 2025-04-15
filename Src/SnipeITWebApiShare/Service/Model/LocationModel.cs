@@ -1,16 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class LocationModel
+internal class LocationModel : BaseModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
-
     [JsonPropertyName("address")]
     public string? Address { get; set; }
 
@@ -59,17 +50,6 @@ internal class LocationModel
     [JsonPropertyName("ldap_ou")]
     public string? LdapOu { get; set; }
 
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
-
     [JsonPropertyName("parent")]
     public NamedItemModel? Parent { get; set; }
 
@@ -78,7 +58,4 @@ internal class LocationModel
 
     [JsonPropertyName("children")]
     public List<NamedItemModel>? Children { get; set; }
-
-    [JsonPropertyName("available_actions")]
-    public ActionsModel? AvailableActions { get; set; }
 }

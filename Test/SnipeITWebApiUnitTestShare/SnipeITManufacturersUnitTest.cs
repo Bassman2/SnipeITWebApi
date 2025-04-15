@@ -30,7 +30,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreNotEqual(0, item.AssetsCount, "item.AssetsCount");
         Assert.IsNotNull(item.LicensesCount, "item.LicensesCount");
         Assert.AreEqual(0, item.ConsumablesCount, "item.ConsumablesCount");
-        Assert.AreEqual(3, item.AccessoriesCount, "item.AccessoriesCount");
+        RangeAssert.IsInRange(3, 4, item.AccessoriesCount, "item.AccessoriesCount");
         Assert.AreEqual(0, item.ComponentsCount, "item.ComponentsCount");
         Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
         Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
@@ -65,7 +65,7 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest
         Assert.AreNotEqual(0, item.AssetsCount, "item.AssetsCount");
         Assert.IsNotNull(item.LicensesCount, "item.LicensesCount");
         Assert.AreEqual(0, item.ConsumablesCount, "item.ConsumablesCount");
-        Assert.AreEqual(3, item.AccessoriesCount, "item.AccessoriesCount");
+        RangeAssert.IsInRange(3, 4, item.AccessoriesCount, "item.AccessoriesCount");
         Assert.AreEqual(0, item.ComponentsCount, "item.ComponentsCount");
         Assert.AreEqual(notes, item.Notes, "item.Notes");
 

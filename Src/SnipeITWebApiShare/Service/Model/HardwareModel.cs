@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class HardwareModel
+internal class HardwareModel : BaseModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("asset_tag")]
     public string? AssetTag { get; set; }
 
@@ -35,7 +29,7 @@ internal class HardwareModel
     public string? Eol { get; set; }
 
     [JsonPropertyName("asset_eol_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? AssetEolDate { get; set; }
 
     [JsonPropertyName("status_label")]
@@ -53,9 +47,6 @@ internal class HardwareModel
     [JsonPropertyName("supplier")]
     public NamedItemModel? Supplier { get; set; }
 
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
     [JsonPropertyName("order_number")]
     public string? OrderNumber { get; set; }
 
@@ -67,9 +58,6 @@ internal class HardwareModel
 
     [JsonPropertyName("rtd_location")]
     public NamedItemModel? RtdLocation { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
 
     [JsonPropertyName("qr")]
     public string? Qr { get; set; }
@@ -84,52 +72,36 @@ internal class HardwareModel
     public string? WarrantyMonths { get; set; }
 
     [JsonPropertyName("warranty_expires")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? WarrantyExpires { get; set; }
 
-    [JsonPropertyName("created_by")]
-    [JsonConverter(typeof(NamedItemJsonConverter))]
-    public NamedItemModel? CreatedBy { get; set; }
-
-    [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? CreatedAt { get; set; }
-
-    [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? UpdatedAt { get; set; }
-
     [JsonPropertyName("last_audit_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? LastAuditDate { get; set; }
 
     [JsonPropertyName("next_audit_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? NextAuditDate { get; set; }
 
-    [JsonPropertyName("deleted_at")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
-    public DateTime? DeletedAt { get; set; }
-
     [JsonPropertyName("purchase_date")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]  
+    [JsonConverter(typeof(DateJsonConverter))]  
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("age")]
     public string? Age { get; set; }
 
     [JsonPropertyName("last_checkout")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? LastCheckout { get; set; }
 
     [JsonPropertyName("last_checkin")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? LastCheckin { get; set; }
 
     // TODO
 
     [JsonPropertyName("expected_checkin")]
-    [JsonConverter(typeof(DateTimeJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? ExpectedCheckin { get; set; }
 
     [JsonPropertyName("purchase_cost")]
@@ -152,7 +124,4 @@ internal class HardwareModel
 
     [JsonPropertyName("custom_fields")]
     public Dictionary<string, CustomFieldModel>? CustomFields { get; set; }
-
-    [JsonPropertyName("available_actions")]
-    public ActionsModel? AvailableActions { get; set; }
 }

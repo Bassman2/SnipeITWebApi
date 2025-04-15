@@ -21,7 +21,7 @@ internal class AccessoryChangeModel
     public string? PurchaseCost { get; set; }
 
     [JsonPropertyName("purchase_date")]
-    //[JsonConverter(typeof(DateTimeJsonConverter))]
+    //[JsonConverter(typeof(DateJsonConverter))]
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("model_number")]

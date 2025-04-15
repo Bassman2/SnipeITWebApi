@@ -47,7 +47,7 @@ public static class DateAssert
 
     public static void IsNull(DateTime? actual, string? message)
     {
-        if (actual == null)
+        if (actual != null)
         {
             throw new AssertFailedException($"DateAssert.IsNull failed. Expected:<null>. Actual:<{actual}>. {message}");
         }

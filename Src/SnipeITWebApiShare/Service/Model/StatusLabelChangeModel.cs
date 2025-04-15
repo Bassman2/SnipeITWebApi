@@ -1,6 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class StatusLabelChangeModel
+internal class StatusLabelChangeModel 
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }

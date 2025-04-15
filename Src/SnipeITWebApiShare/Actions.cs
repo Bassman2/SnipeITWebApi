@@ -2,6 +2,8 @@
 
 public class Actions
 {
+    public Actions() { }
+
     internal Actions(ActionsModel model)
     {
         Checkout = model.Checkout;
@@ -12,16 +14,15 @@ public class Actions
         Clone = model.Clone;
     }
 
-    public bool Checkout { get;}
+    public bool Checkout { get; set; }
 
-    public bool Checkin { get; }
+    public bool Checkin { get; set; }
 
-    public bool Update { get; }
+    public bool Update { get; set; }
 
-    public bool Restore { get; }
+    public bool Restore { get; set; }
 
-    public bool Delete { get; }
+    public bool Delete { get; set; }
 
-    public bool Clone { get; }
-
+    public bool Clone { get; set; }
 }
