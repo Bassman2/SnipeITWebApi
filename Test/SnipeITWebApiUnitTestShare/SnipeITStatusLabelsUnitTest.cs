@@ -11,6 +11,8 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest<StatusLabel>
             Type = StatusType.pending,
             //Image = imageCreate,    
             Notes = "create",
+
+            AvailableActions = Actions.Delete | Actions.Update 
         };
 
         update = new StatusLabel()
@@ -19,6 +21,8 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest<StatusLabel>
             Type = StatusType.archived,
             //Image = imageUpdate,
             Notes = notesUpdate,
+
+            AvailableActions = Actions.Delete | Actions.Update
         };
 
         patch = new StatusLabel()
@@ -27,6 +31,8 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest<StatusLabel>
             Type = StatusType.deployable,
             //Image = imageUpdate,
             Notes = notesPatch,
+
+            AvailableActions = Actions.Delete | Actions.Update
         };
     }
 

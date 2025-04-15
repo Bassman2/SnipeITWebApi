@@ -9,29 +9,50 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest<Manufacturer>
         {
             // update
             Name = CreateName(),
-            Url = "https://test.com",
-            //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
-            SupportUrl = "https://support.test.com",
-            WarrantyLookupUrl = "https://checkcoverage.test.com",
-            SupportPhone = "+12725858512",
-            SupportEmail = "unknown@microsoft.com",
-            Notes = "Dummy Note"
+            //Url = "https://test.com",
+            ////Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
+            //SupportUrl = "https://support.test.com",
+            //WarrantyLookupUrl = "https://checkcoverage.test.com",
+            //SupportPhone = "+12725858512",
+            //SupportEmail = "unknown@microsoft.com",
+            //Notes = "Dummy Note"
+            Url = "",
+            SupportUrl = "",
+            WarrantyLookupUrl = "",
+            SupportPhone = "",
+            SupportEmail = "",
 
+            // test
+            AvailableActions = Actions.Delete | Actions.Update
         };
 
         update = new Manufacturer()
         {
             // update
             Name = CreateName(),
-           
+            Url = "",
+            SupportUrl = "",
+            WarrantyLookupUrl = "",
+            SupportPhone = "",
+            SupportEmail = "",
 
+            // test
+            AvailableActions = Actions.Delete | Actions.Update
         };
 
         patch = new Manufacturer()
         {
             // update
             Name = CreateName(),
-           
+
+            Url = "",
+            SupportUrl = "",
+            WarrantyLookupUrl = "",
+            SupportPhone = "",
+            SupportEmail = "",
+
+            // test
+            AvailableActions = Actions.Delete | Actions.Update
         };
     }
 

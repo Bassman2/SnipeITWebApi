@@ -13,6 +13,16 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Email = emailCreate,
             //Image = imageCreate,    
             Notes = notesCreate,
+
+            Url = "",
+            Address = "",
+            Address2 = "",
+            City = "",
+            State = "",
+            Country = "",
+            Zip = "",
+            Contact = "",
+            AvailableActions = Actions.Delete | Actions.Update
         };
 
         update = new()
@@ -23,6 +33,16 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Email = emailUpdate,
             //Image = imageUpdate,
             Notes = notesUpdate,
+
+            Url = "",
+            Address = "",
+            Address2 = "",
+            City = "",
+            State = "",
+            Country = "",
+            Zip = "",
+            Contact = "",
+            AvailableActions = Actions.Delete | Actions.Update
         };
 
         patch = new()
@@ -33,6 +53,16 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Email = emailPatch,
             //Image = imagePatch,
             Notes = notesPatch,
+
+            Url = "",
+            Address = "",
+            Address2 = "",
+            City = "",
+            State = "",
+            Country = "",
+            Zip = "",
+            Contact = "",
+            AvailableActions = Actions.Delete | Actions.Update
         };
     }
 

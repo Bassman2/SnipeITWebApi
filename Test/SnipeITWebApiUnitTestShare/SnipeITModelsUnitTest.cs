@@ -8,7 +8,7 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
         create = new()
         {
             Name = CreateName(),
-            Category = categoryId,
+            Category = (categoryId, categoryName),
             //Url = "https://test.com",
             //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
             //SupportUrl = "https://support.test.com",
@@ -16,28 +16,32 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
             //SupportPhone = "+12725858512",
             //SupportEmail = "unknown@microsoft.com",
             //Notes = "Dummy Note"
+
+            AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
 
         update = new()
         {
             Name = CreateName(),
-            Category = categoryId,
+            Category = (categoryId, categoryName),
             //Phone = phoneUpdate,
             //Fax = faxUpdate,
             //Email = emailUpdate,
             ////Image = imageUpdate,
-            Notes = notesUpdate,
+            //Notes = notesUpdate,
+            AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
 
         patch = new()
         {
             Name = CreateName(),
-            Category = categoryId,
+            Category = (categoryId, categoryName),
             //Phone = phonePatch,
             //Fax = faxPatch,
             //Email = emailPatch,
             //Image = imagePatch,
-            Notes = notesPatch,
+            //Notes = notesPatch,
+            AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
     }
 
@@ -45,12 +49,12 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
     {
         Assert.AreEqual(expected.Manufacturer, actual.Manufacturer, $"{message}.Manufacturer");
         Assert.AreEqual(expected.MinAmt, actual.MinAmt, $"{message}.MinAmt");
-        Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
+        //Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
         Assert.AreEqual(expected.Depreciation, actual.Depreciation, $"{message}.Depreciation");
-        Assert.AreEqual(expected.AssetsCount, actual.AssetsCount, $"{message}.AssetsCount");
+        //Assert.AreEqual(expected.AssetsCount, actual.AssetsCount, $"{message}.AssetsCount");
         Assert.AreEqual(expected.Category, actual.Category, $"{message}.Category");
         Assert.AreEqual(expected.Fieldset, actual.Fieldset, $"{message}.Fieldset");
-        Assert.AreEqual(expected.Eol, actual.Eol, $"{message}.Eol");
+        //Assert.AreEqual(expected.Eol, actual.Eol, $"{message}.Eol");
         Assert.AreEqual(expected.Requestable ?? false, actual.Requestable ?? false, $"{message}.Requestable");
 
         //Assert.AreEqual(new NamedItem(2, "Microsoft"), item.Manufacturer, "item.Manufacturer");

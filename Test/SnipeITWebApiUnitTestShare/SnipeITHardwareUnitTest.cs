@@ -14,7 +14,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
 
             // optional
             Name = CreateName(),
-            Image = null,    // "data:@[mime];base64,[base64encodeddata]"
+            //Image = "https://develop.snipeitapp.com/uploads/models/mbp.jpg",    // "data:@[mime];base64,[base64encodeddata]"
             Serial = CreateName(),
             PurchaseDate = DateTime.Now,
             //PurchaseCost = 500.0,
@@ -37,15 +37,8 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             CreatedBy = adminUser,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
-            AvailableActions = new AvailableActions()
-            {
-                Checkout = true,
-                Checkin = true,
-                Update = true,
-                Restore = false,
-                Delete = true,
-                Clone = true,
-            }
+
+            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone
         };
 
         update = new Hardware()
