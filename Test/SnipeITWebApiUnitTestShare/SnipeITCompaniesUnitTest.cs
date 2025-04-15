@@ -13,6 +13,9 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Email = emailCreate,
             //Image = imageCreate,    
             Notes = notesCreate,
+
+            // test
+            AvailableActions = Actions.Update | Actions.Delete
         };
 
         update = new Company()
@@ -24,6 +27,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             //Image = imageUpdate,
             Notes = notesUpdate,
 
+            // test
+            AvailableActions = Actions.Update | Actions.Delete
         };
 
         patch = new Company()
@@ -34,6 +39,9 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Email = emailPatch,
             //Image = imagePatch,
             Notes = notesPatch,
+
+            // test
+            AvailableActions = Actions.Update | Actions.Delete
         };
     }
 

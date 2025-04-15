@@ -3,6 +3,7 @@
 [Flags]
 public enum Actions
 {
+    Empty = 0x00,
     Checkout = 0x01,
     Checkin = 0x02,
     Update = 0x04,

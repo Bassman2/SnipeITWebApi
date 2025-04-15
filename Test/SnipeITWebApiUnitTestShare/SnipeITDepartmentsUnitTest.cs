@@ -11,6 +11,9 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Phone = phoneCreate,
             Fax = faxCreate,
             Notes = notesCreate,
+
+            // test
+            AvailableActions = Actions.Update | Actions.Delete
         };
         
         update = new()
@@ -20,6 +23,8 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Fax = faxUpdate,
             Notes = notesUpdate,
 
+            // test
+            AvailableActions = Actions.Update | Actions.Delete
         };
         
         patch = new()
@@ -29,6 +34,8 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Fax = faxPatch,
             Notes = notesPatch,
 
+            // test
+            AvailableActions = Actions.Update | Actions.Delete
         };
     }
 

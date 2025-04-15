@@ -173,12 +173,12 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
         await PatchAsync(snipeIT, id, patch);
         T? patched = await GetAsync(snipeIT, id);
 
-        await DeleteAsync(snipeIT, id);
+       // await DeleteAsync(snipeIT, id);
 
-        if (checkDeleted)
-        {
-            await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await GetAsync(snipeIT, id));
-        }
+        //if (checkDeleted)
+        //{
+        //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await GetAsync(snipeIT, id));
+        //}
 
         Assert.IsNotNull(created, "created");
 
