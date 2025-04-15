@@ -11,6 +11,9 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
 
             //Image = imageCreate,    
             //Notes = notesCreate,
+
+            // test
+            AvailableActions = null,
         };
 
         update = new()
@@ -20,6 +23,8 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
             //Image = imageUpdate,
             //Notes = notesUpdate,
 
+            // test
+            AvailableActions = null,
         };
 
 
@@ -30,6 +35,8 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
             //Image = imagePatch,
             //Notes = notesPatch,
 
+            // test
+            AvailableActions = null,
         };
     }
 

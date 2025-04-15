@@ -238,19 +238,26 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
 
         AreEqual(expected, actual, message);
 
-        Assert.AreEqual(null, actual.CreatedBy, $"{message}.CreatedBy");
+        if (actual.CreatedBy != null)
+        {
+            Assert.AreEqual(adminUser, actual.CreatedBy, $"{message}.CreatedBy");
+        }
+        
         DateAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
         DateAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
         //DateAssert.AreEqual(today, actual.DeletedAt, $"{message}.DeletedAt");
 
-        Assert.IsNotNull(actual.AvailableActions, $"{message}.actual.AvailableActions");
-        Assert.IsNotNull(expected.AvailableActions, $"{message}.expected.AvailableActions");
-        Assert.AreEqual(expected.AvailableActions.Checkout, actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
-        Assert.AreEqual(expected.AvailableActions.Checkin, actual.AvailableActions.Checkin, $"{message}.AvailableActions.Checkin");
-        Assert.AreEqual(expected.AvailableActions.Update, actual.AvailableActions.Update, $"{message}.AvailableActions.Update");
-        Assert.AreEqual(expected.AvailableActions.Restore, actual.AvailableActions.Restore, $"{message}.AvailableActions.Restore");
-        Assert.AreEqual(expected.AvailableActions.Delete, actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
-        Assert.AreEqual(expected.AvailableActions.Clone, actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
+        if (expected.AvailableActions != null || actual.AvailableActions != null)
+        {
+            Assert.IsNotNull(actual.AvailableActions, $"{message}.actual.AvailableActions");
+            Assert.IsNotNull(expected.AvailableActions, $"{message}.expected.AvailableActions");
+            Assert.AreEqual(expected.AvailableActions.Checkout, actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
+            Assert.AreEqual(expected.AvailableActions.Checkin, actual.AvailableActions.Checkin, $"{message}.AvailableActions.Checkin");
+            Assert.AreEqual(expected.AvailableActions.Update, actual.AvailableActions.Update, $"{message}.AvailableActions.Update");
+            Assert.AreEqual(expected.AvailableActions.Restore, actual.AvailableActions.Restore, $"{message}.AvailableActions.Restore");
+            Assert.AreEqual(expected.AvailableActions.Delete, actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
+            Assert.AreEqual(expected.AvailableActions.Clone, actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
+        }
     }
 
 

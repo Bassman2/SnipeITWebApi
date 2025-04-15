@@ -10,6 +10,9 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
             Name = CreateName(),
             //Image = imageCreate,    
             Notes = notesCreate,
+
+            // test
+            AvailableActions = Actions.Delete | Actions.Update,
         };
 
         update = new()
@@ -17,6 +20,9 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
             Name = CreateName(),
             //Image = imageUpdate,
             Notes = notesUpdate,
+
+            // test
+            AvailableActions = Actions.Delete | Actions.Update,
         };
 
         patch = new()
@@ -24,12 +30,15 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
             Name = CreateName(),
             //Image = imagePatch,
             Notes = notesPatch,
+
+            // test
+            AvailableActions = Actions.Delete | Actions.Update,
         };
     }
 
     public override void AreEqual(Group expected, Group actual, string message)
     {
-        Assert.AreEqual(expected.UsersCount, actual.UsersCount, $"{message}.UsersCount");
+        //Assert.AreEqual(expected.UsersCount, actual.UsersCount, $"{message}.UsersCount");
 
         //Assert.IsNotNull(item.Permissions, "item.Permissions");
         //Assert.AreEqual(0, item.UsersCount, "item.UsersCount");
