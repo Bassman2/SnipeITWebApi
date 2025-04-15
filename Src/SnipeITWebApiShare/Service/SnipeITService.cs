@@ -1134,7 +1134,7 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
             if (res != null && res.Rows != null)
             {
 
-                //Debug.WriteLine($"Offset {offset} Limit {limit} ListModel total {res.Total} rows {res.Rows.Count}");
+                Debug.WriteLine($"Offset {offset} Limit {limit} ListModel total {res.Total} rows {res.Rows.Count}");
 
                 foreach (var item in res.Rows)
                 {

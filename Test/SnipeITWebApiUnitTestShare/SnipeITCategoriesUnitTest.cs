@@ -11,6 +11,9 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
             CategoryType = CategoryType.Asset,
             //Image = imageCreate,    
             Notes = notesCreate,
+
+            // test
+            AvailableActions = Actions.Update | Actions.Delete,
         };
 
         update = new Category()
@@ -19,6 +22,8 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
             //Image = imageUpdate,
             Notes = notesUpdate,
 
+            // test
+            AvailableActions = Actions.Update | Actions.Delete,
         };
 
         patch = new Category()
@@ -27,6 +32,8 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
             //Image = imageUpdate,
             Notes = notesUpdate,
 
+            // test
+            AvailableActions = Actions.Update | Actions.Delete,
         };
     }
 

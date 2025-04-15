@@ -17,6 +17,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             // check
             RemainingQty = 1,
             Remaining = 1,
+            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
 
         update = new Accessory()
@@ -31,7 +32,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             // check
             RemainingQty = 2,
             Remaining = 2,
-
+            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
 
         patch = new Accessory()
@@ -46,6 +47,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             // check
             RemainingQty = 3,
             Remaining = 3,
+            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
     }
 

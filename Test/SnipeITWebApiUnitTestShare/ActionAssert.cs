@@ -2,7 +2,7 @@
 
 public static class ActionAssert
 {
-    public static void AreEqual(Actions? expected, Actions? actual, string? message, [CallerMemberName] string memberName = "")
+    public static void AreEqual(AvailableActions? expected, AvailableActions? actual, string? message, [CallerMemberName] string memberName = "")
     {
 
         if (actual == null && expected == null)

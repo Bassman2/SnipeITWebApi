@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Accessory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Actions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AvailableActions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assigned.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Consumable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomField.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Department.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Actions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\CategoryType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\StatusType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Field.cs" />

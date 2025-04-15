@@ -21,34 +21,34 @@ public class Category : BaseItem
         LicensesCount = model.LicensesCount;
     }
 
-    //internal CategoryModel ToCreate()
-    //{
-    //    ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    ArgumentNullException.ThrowIfNull(CategoryType, nameof(CategoryType));
-    //    return new()
-    //    {
-    //        Name = Name,
-    //        CategoryType = CategoryType,
+    internal CategoryChangeModel ToCreate()
+    {
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        ArgumentNullException.ThrowIfNull(CategoryType, nameof(CategoryType));
+        return new()
+        {
+            Name = Name,
+            CategoryType = CategoryType,
 
-    //        //Url = Url,
-    //        //Image = Image,
-    //        //SupportUrl = SupportUrl,
-    //        //WarrantyLookupUrl = WarrantyLookupUrl,
-    //        //SupportPhone = SupportPhone,
-    //        //SupportEmail = SupportEmail,
-    //        //AssetsCount = AssetsCount,
-    //        //LicensesCount = LicensesCount,
-    //        //ConsumablesCount = ConsumablesCount,
-    //        //AccessoriesCount = AccessoriesCount,
-    //        //ComponentsCount = ComponentsCount,
-    //        Notes = Notes,
-    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
-    //    };
-    //}
+            //Url = Url,
+            //Image = Image,
+            //SupportUrl = SupportUrl,
+            //WarrantyLookupUrl = WarrantyLookupUrl,
+            //SupportPhone = SupportPhone,
+            //SupportEmail = SupportEmail,
+            //AssetsCount = AssetsCount,
+            //LicensesCount = LicensesCount,
+            //ConsumablesCount = ConsumablesCount,
+            //AccessoriesCount = AccessoriesCount,
+            //ComponentsCount = ComponentsCount,
+            Notes = Notes,
+            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
+            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
+            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
+            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
+            //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
+        };
+    }
 
     internal CategoryChangeModel ToUpdate()
     {
@@ -73,7 +73,7 @@ public class Category : BaseItem
             //CreatedAt = model.CreatedAt.CastModel<DateItem>();
             //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
             //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<Actions>();
+            //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
         };
     }
 
@@ -102,7 +102,7 @@ public class Category : BaseItem
     //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
     //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
     //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    //        //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
     //    };
     //}
 

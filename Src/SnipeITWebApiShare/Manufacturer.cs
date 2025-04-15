@@ -42,7 +42,7 @@ public class Manufacturer : BaseItem
     //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
     //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
     //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    //        //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
     //    };
     //}
 
@@ -69,7 +69,7 @@ public class Manufacturer : BaseItem
             //CreatedAt = model.CreatedAt.CastModel<DateItem>();
             //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
             //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<Actions>();
+            //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
         };
     }
 
@@ -96,7 +96,7 @@ public class Manufacturer : BaseItem
     //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
     //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
     //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-    //        //AvailableActions = model.AvailableActions.CastModel<Actions>();
+    //        //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
     //    };
     //}
 

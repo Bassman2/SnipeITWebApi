@@ -37,7 +37,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             CreatedBy = adminUser,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
-            AvailableActions = new Actions()
+            AvailableActions = new AvailableActions()
             {
                 Checkout = true,
                 Checkin = true,
@@ -80,7 +80,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             CreatedBy = adminUser,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
-            AvailableActions = new Actions()
+            AvailableActions = new AvailableActions()
             {
                 Checkout = true,
                 Checkin = true,
@@ -126,7 +126,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             CreatedBy = adminUser,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
-            AvailableActions = new Actions()
+            AvailableActions = new AvailableActions()
             {
                 Checkout = true,
                 Checkin = true,

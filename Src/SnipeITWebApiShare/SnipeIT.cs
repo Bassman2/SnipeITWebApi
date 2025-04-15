@@ -210,7 +210,7 @@ public class SnipeIT : IDisposable
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await service.CreateCategoryAsync(item.ToUpdate(), cancellationToken);
+        var res = await service.CreateCategoryAsync(item.ToCreate(), cancellationToken);
         return res?.Id ?? 0;
     }
 
