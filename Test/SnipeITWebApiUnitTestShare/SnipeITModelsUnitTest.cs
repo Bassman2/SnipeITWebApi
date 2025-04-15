@@ -1,26 +1,58 @@
-﻿using System.Xml.Linq;
-
-namespace SnipeITWebApiUnitTest;
+﻿namespace SnipeITWebApiUnitTest;
 
 [TestClass]
-public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
+public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
 {
-    [TestMethod]
-    public async Task TestMethodGetModelsAsync()
+    public SnipeITModelsUnitTest()
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+        create = new()
+        {
+            Name = CreateName(),
+            Category = categoryId,
+            //Url = "https://test.com",
+            //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
+            //SupportUrl = "https://support.test.com",
+            //WarrantyLookupUrl = "https://checkcoverage.test.com",
+            //SupportPhone = "+12725858512",
+            //SupportEmail = "unknown@microsoft.com",
+            //Notes = "Dummy Note"
+        };
 
-        var asyncList = snipeIT.GetModelsAsync();
+        update = new()
+        {
+            Name = CreateName(),
+            Category = categoryId,
+            //Phone = phoneUpdate,
+            //Fax = faxUpdate,
+            //Email = emailUpdate,
+            ////Image = imageUpdate,
+            Notes = notesUpdate,
+        };
 
-        var list = await asyncList.ToListAsync();
+        patch = new()
+        {
+            Name = CreateName(),
+            Category = categoryId,
+            //Phone = phonePatch,
+            //Fax = faxPatch,
+            //Email = emailPatch,
+            //Image = imagePatch,
+            Notes = notesPatch,
+        };
+    }
 
-        Assert.IsNotNull(list);
-        Assert.IsNotEmpty(list);
+    public override void AreEqual(Model expected, Model actual, string message)
+    {
+        Assert.AreEqual(expected.Manufacturer, actual.Manufacturer, $"{message}.Manufacturer");
+        Assert.AreEqual(expected.MinAmt, actual.MinAmt, $"{message}.MinAmt");
+        Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
+        Assert.AreEqual(expected.Depreciation, actual.Depreciation, $"{message}.Depreciation");
+        Assert.AreEqual(expected.AssetsCount, actual.AssetsCount, $"{message}.AssetsCount");
+        Assert.AreEqual(expected.Category, actual.Category, $"{message}.Category");
+        Assert.AreEqual(expected.Fieldset, actual.Fieldset, $"{message}.Fieldset");
+        Assert.AreEqual(expected.Eol, actual.Eol, $"{message}.Eol");
+        Assert.AreEqual(expected.Requestable ?? false, actual.Requestable ?? false, $"{message}.Requestable");
 
-        var item = list.FirstOrDefault(i => i.Id == modelId);
-        Assert.IsNotNull(item);
-        Assert.AreEqual(modelId, item.Id, "item.Id");
-        Assert.AreEqual(modelName, item.Name, "item.Name");
         //Assert.AreEqual(new NamedItem(2, "Microsoft"), item.Manufacturer, "item.Manufacturer");
         //Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, "item.Image");
         //Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
@@ -32,135 +64,23 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest
         //Assert.AreEqual("36 months", item.Eol, "item.Eol");
         //Assert.AreEqual(false, item.Requestable, "item.Requestable");
         //Assert.AreEqual("Created by demo seeder", item.Notes, "item.Notes");
-        //Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
-        //DateAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
-        //DateAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
-        //Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
-        //Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
-        //Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
     }
 
-    [TestMethod]
-    public async Task TestMethodGetModelAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+    public override IAsyncEnumerable<Model> GetAsync(SnipeIT snipeIT)
+        => snipeIT.GetModelsAsync();
 
-        var item = await snipeIT.GetModelAsync(modelId);
+    public override async Task<Model?> GetAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.GetModelAsync(id);
 
-        Assert.IsNotNull(item);
-        Assert.AreEqual(modelId, item.Id, "item.Id");
-        Assert.AreEqual(modelName, item.Name, "item.Name");
-        //Assert.AreEqual(new NamedItem(2, "Microsoft"), item.Manufacturer, "item.Manufacturer");
-        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/models/surface.jpg", item.Image, "item.Image");
-        //Assert.AreEqual(null, item.MinAmt, "item.MinAmt");
-        //Assert.IsTrue(item.Remaining >= 50, "item.Remaining");
-        //Assert.AreEqual(new NamedItem(1, "Computer Depreciation"), item.Depreciation, "item.Depreciation");
-        //Assert.IsTrue(item.AssetsCount >= 50, "item.AssetsCount");
-        //Assert.AreEqual(new NamedItem(1, "Laptops"), item.Category, "item.Category");
-        //Assert.AreEqual(new NamedItem(2, "Laptops and Desktops"), item.Fieldset, "item.Fieldset");
-        //Assert.AreEqual("36 months", item.Eol, "item.Eol");
-        //Assert.AreEqual(false, item.Requestable, "item.Requestable");
-        //Assert.AreEqual("Created by demo seeder", item.Notes, "item.Notes");
-        //Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
-        //DateAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
-        //DateAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
-        //Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
-        //Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
-        //Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
-    }
+    public override async Task<int> CreateAsync(SnipeIT snipeIT, Model value)
+        => await snipeIT.CreateModelAsync(value);
 
-    //[TestMethod]
-    //public async Task TestMethodCreateModelAsync()
-    //{
-    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+    public override async Task UpdateAsync(SnipeIT snipeIT, int id, Model value)
+        => await snipeIT.UpdateModelAsync(id, value);
 
-    //    string createName = Guid.NewGuid().ToString();
-    //    string updateName = Guid.NewGuid().ToString();
-    //    string patchName = Guid.NewGuid().ToString();
+    public override async Task PatchAsync(SnipeIT snipeIT, int id, Model value)
+        => await snipeIT.PatchModelAsync(id, value);
 
-    //    var create = await snipeIT.CreateModelAsync(new Model()
-    //    {
-    //        Name = createName,
-    //        Category = categoryId,
-    //        //Url = "https://test.com",
-    //        //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
-    //        //SupportUrl = "https://support.test.com",
-    //        //WarrantyLookupUrl = "https://checkcoverage.test.com",
-    //        //SupportPhone = "+12725858512",
-    //        //SupportEmail = "unknown@microsoft.com",
-    //        //Notes = "Dummy Note"
-    //    });
-    //    Assert.IsNotNull(create);
-    //    Assert.IsTrue(create.Id > 0, "create.Id");
-    //    int id = create.Id;
-
-    //    var update = await snipeIT.UpdateModelAsync(id, new()
-    //    {
-    //        Name = updateName,
-    //        Category = categoryId,
-    //        //Phone = phoneUpdate,
-    //        //Fax = faxUpdate,
-    //        //Email = emailUpdate,
-    //        ////Image = imageUpdate,
-    //        Notes = notesUpdate,
-
-    //    });
-    //    Assert.IsNotNull(update);
-
-    //    var patch = await snipeIT.PatchModelAsync(id, new()
-    //    {
-    //        Name = patchName,
-    //        Category = categoryId,
-    //        //Phone = phonePatch,
-    //        //Fax = faxPatch,
-    //        //Email = emailPatch,
-    //        //Image = imagePatch,
-    //        Notes = notesPatch,
-
-    //    });
-    //    Assert.IsNotNull(patch);
-
-    //    var del = await snipeIT.DeleteModelAsync(id);
-
-    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetModelAsync(id));
-
-    //    Assert.AreEqual(id, create.Id, "create.id");
-    //    Assert.AreEqual(createName, create.Name, "create.Name");
-    //    //Assert.AreEqual(new NamedItem(2, ""), create.Manufacturer, "create.Manufacturer");
-    //    Assert.AreEqual(null, create.Image, "create.Image");
-
-    //    Assert.AreEqual(id, update.Id, "update.id");
-    //    Assert.AreEqual(updateName, update.Name, "update.Name");
-    //    //Assert.AreEqual(new NamedItem(2, ""), update.Manufacturer, "update.Manufacturer");
-    //    Assert.AreEqual(null, update.Image, "update.Image");
-
-    //    Assert.AreEqual(id, patch.Id, "patch.id");
-    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
-    //    //Assert.AreEqual(new NamedItem(2, ""), patch.Manufacturer, "patch.Manufacturer");
-    //    Assert.AreEqual(null, patch.Image, "patch.Image");
-    //}
-
-    [TestMethod]
-    public async Task TestMethodCreateDuplicateModelAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateModelAsync(new () { Name = modelName, Category = categoryId }));
-    }
-
-    [TestMethod]
-    public async Task TestMethodGetNotExistingModelAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetModelAsync(notExistingId));
-    }
-
-    [TestMethod]
-    public async Task TestMethodDeleteNotExistingModelAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteModelAsync(notExistingId));
-    }
+    public override async Task DeleteAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.DeleteModelAsync(id);
 }

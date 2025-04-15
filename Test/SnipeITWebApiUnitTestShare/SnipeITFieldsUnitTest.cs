@@ -1,134 +1,63 @@
 ﻿namespace SnipeITWebApiUnitTest;
 
 [TestClass]
-public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest
+public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
 {
-    [TestMethod]
-    public async Task TestMethodGetFieldsAsync()
+    public SnipeITFieldsUnitTest()
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+        create = new()
+        {
+            Name = CreateName(),
+            //Phone = phoneCreate,
+            //Fax = faxCreate,
+            //Email = emailCreate,
+            ////Image = imageCreate,    
+            //Notes = notesCreate,
+        };
 
-        var asyncList = snipeIT.GetFieldsAsync();
+        update = new()
+        {
+            Name = CreateName(),
+            //Phone = phoneUpdate,
+            //Fax = faxUpdate,
+            //Email = emailUpdate,
+            ////Image = imageUpdate,
+            //Notes = notesUpdate,
+        };
 
-        var list = await asyncList.ToListAsync();
-
-        Assert.IsNotNull(list);
-        Assert.IsNotEmpty(list);
-
-        var item = list.FirstOrDefault(d => d.Id == fieldId);
-        Assert.IsNotNull(item);
-        Assert.AreEqual(fieldId, item.Id, "item.Id");
-        Assert.AreEqual(fieldName, item.Name, "item.Name");
+        patch = new()
+        {
+            Name = CreateName(),
+            //Phone = phonePatch,
+            //Fax = faxPatch,
+            //Email = emailPatch,
+            ////Image = imagePatch,
+            //Notes = notesPatch,
+        };
     }
 
-    [TestMethod]
-    public async Task TestMethodGetFieldsAync()
+    public override void AreEqual(Field expected, Field actual, string message)
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        var item = await snipeIT.GetFieldAsync(fieldId);
-                
-        Assert.IsNotNull(item);
-        Assert.AreEqual(fieldId, item.Id, "item.Id");
-        Assert.AreEqual(fieldName, item.Name, "item.Name");
+        Assert.AreEqual(expected.Type, actual.Type, $"{message}.Type");
+        Assert.AreEqual(expected.Required, actual.Required, $"{message}.Required");
+        //Assert.AreEqual(expected.DefaultValue, actual.DefaultValue, $"{message}.DefaultValue");
     }
 
-    //[TestMethod]
-    //public async Task TestMethodCreateFieldAsync()
-    //{
-    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+    public override IAsyncEnumerable<Field> GetAsync(SnipeIT snipeIT)
+        => snipeIT.GetFieldsAsync();
 
-    //    string createName = Guid.NewGuid().ToString();
-    //    string updateName = Guid.NewGuid().ToString();
-    //    string patchName = Guid.NewGuid().ToString();
+    public override async Task<Field?> GetAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.GetFieldAsync(id);
 
-    //    var create = await snipeIT.CreateFieldAsync(new()
-    //    {
-    //        Name = createName,
-    //        //Phone = phoneCreate,
-    //        //Fax = faxCreate,
-    //        //Email = emailCreate,
-    //        ////Image = imageCreate,    
-    //        //Notes = notesCreate,
-    //    });
-    //    Assert.IsNotNull(create);
-    //    Assert.IsTrue(create.Id > 0, "create.Id");
-    //    int id = create.Id;
+    public override async Task<int> CreateAsync(SnipeIT snipeIT, Field value)
+        => await snipeIT.CreateFieldAsync(value);
 
-    //    var update = await snipeIT.UpdateFieldAsync(id, new()
-    //    {
-    //        Name = updateName,
-    //        //Phone = phoneUpdate,
-    //        //Fax = faxUpdate,
-    //        //Email = emailUpdate,
-    //        ////Image = imageUpdate,
-    //        //Notes = notesUpdate,
+    public override async Task UpdateAsync(SnipeIT snipeIT, int id, Field value)
+        => await snipeIT.UpdateFieldAsync(id, value);
 
-    //    });
-    //    Assert.IsNotNull(update);
+    public override async Task PatchAsync(SnipeIT snipeIT, int id, Field value)
+        => await snipeIT.PatchFieldAsync(id, value);
 
-    //    var patch = await snipeIT.PatchFieldAsync(id, new()
-    //    {
-    //        Name = patchName,
-    //        //Phone = phonePatch,
-    //        //Fax = faxPatch,
-    //        //Email = emailPatch,
-    //        ////Image = imagePatch,
-    //        //Notes = notesPatch,
-
-    //    });
-    //    Assert.IsNotNull(patch);
-
-    //    var del = await snipeIT.DeleteFieldAsync(id);
-
-    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetFieldAsync(id));
-
-    //    Assert.AreEqual(id, create.Id, "create.Id");
-    //    Assert.AreEqual(createName, create.Name, "create.Name");
-    //    //Assert.AreEqual(phoneCreate, create.Phone, "create.Phone");
-    //    //Assert.AreEqual(faxCreate, create.Fax, "create.Fax");
-    //    //Assert.AreEqual(emailCreate, create.Email, "create.Email");
-    //    ////Assert.AreEqual(imageCreate, create.Image, "create.Image");
-    //    //Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
-
-    //    Assert.AreEqual(id, update.Id, "update.Id");
-    //    Assert.AreEqual(updateName, update.Name, "update.Name");
-    //    //Assert.AreEqual(phoneUpdate, update.Phone, "update.Phone");
-    //    //Assert.AreEqual(faxUpdate, update.Fax, "update.Fax");
-    //    //Assert.AreEqual(emailUpdate, update.Email, "update.Email");
-    //    ////Assert.AreEqual(imageUpdate, update.Image, "update.Image");
-    //    //Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
-
-    //    Assert.AreEqual(id, patch.Id, "patch.Id");
-    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
-    //    //Assert.AreEqual(phonePatch, patch.Phone, "patch.Phone");
-    //    //Assert.AreEqual(faxPatch, patch.Fax, "patch.Fax");
-    //    //Assert.AreEqual(emailPatch, patch.Email, "patch.Email");
-    //    ////Assert.AreEqual(imagePatch, patch.Image, "patch.Image");
-    //    //Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
-    //}
-
-    [TestMethod]
-    public async Task TestMethodCreateDuplicateFieldAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateFieldAsync(new() { Name = fieldName }));
-    }
-
-    [TestMethod]
-    public async Task TestMethodGetNotExistingFieldAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetFieldAsync(notExistingId));
-    }
-
-    [TestMethod]
-    public async Task TestMethodDeleteNotExistingFieldAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteFieldAsync(notExistingId));
-    }
+    public override async Task DeleteAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.DeleteFieldAsync(id);
 }

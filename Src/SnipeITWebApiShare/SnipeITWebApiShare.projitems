@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Accessory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Actions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Assigned.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BaseItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Company.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Component.cs" />

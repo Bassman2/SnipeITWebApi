@@ -3,7 +3,7 @@
 namespace SnipeITWebApi;
 
 [DebuggerDisplay("{Id} : {Name} : {AssetTag}")]
-public class Hardware
+public class Hardware : BaseItem
 {
     public Hardware(int id)
     {
@@ -13,10 +13,8 @@ public class Hardware
     public Hardware()
     { }
 
-    internal Hardware(HardwareModel model)
+    internal Hardware(HardwareModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
         AssetTag = model.AssetTag;
         Serial = model.Serial;
         Model = model.Model.CastModel<NamedItem>();
@@ -29,23 +27,17 @@ public class Hardware
         Category = model.Category.CastModel<NamedItem>();
         Manufacturer = model.Manufacturer.CastModel<NamedItem>();
         Supplier = model.Supplier.CastModel<NamedItem>();
-        Notes = model.Notes;
         OrderNumber = model.OrderNumber;
         Company = model.Company.CastModel<NamedItem>();
         Location = model.Location.CastModel<NamedItem>();
         RtdLocation = model.RtdLocation.CastModel<NamedItem>();
-        Image = model.Image;
         Qr = model.Qr;
         AltBarcode = model.AltBarcode;
         AssignedTo = model.AssignedTo.CastModel<NamedItem>();
         WarrantyMonths = model.WarrantyMonths;
         WarrantyExpires = model.WarrantyExpires;
-        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
         LastAuditDate = model.LastAuditDate;
         NextAuditDate = model.NextAuditDate;
-        DeletedAt = model.DeletedAt;
         PurchaseDate = model.PurchaseDate;
         Age = model.Age;
         LastCheckout = model.LastCheckout;
@@ -58,7 +50,6 @@ public class Hardware
         UserCanCheckout = model.UserCanCheckout;
         BookValue = model.BookValue;
         CustomFields = model.CustomFields.CastModel<CustomField>();
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
     //internal HardwareModel ToCreate()
@@ -129,10 +120,7 @@ public class Hardware
     //        Name = Name,
     //    };
     //}
-    public int Id { get; internal set; }
-
-    public string? Name { get; set; }
-
+  
     public string? AssetTag { get; set; }
 
     public string? Serial { get; set; }
@@ -165,7 +153,6 @@ public class Hardware
 
     public NamedItem? Supplier { get; set; }
 
-    public string? Notes { get; set; }
 
     public string? OrderNumber { get; set; }
 
@@ -174,8 +161,6 @@ public class Hardware
     public NamedItem? Location { get; set; }
 
     public NamedItem? RtdLocation { get; internal set; }
-
-    public string? Image { get; set; }
 
     public string? Qr { get; internal set; }
 
@@ -187,18 +172,11 @@ public class Hardware
 
     public DateTime? WarrantyExpires { get; internal set; }
 
-    public NamedItem? CreatedBy { get; internal set; }
-
-    public DateTime? CreatedAt { get; internal set; }
-
-    public DateTime? UpdatedAt { get; internal set; }
-
     public DateTime? LastAuditDate { get; set; }
 
     public DateTime? NextAuditDate { get; internal set; }
 
-    public DateTime? DeletedAt { get; internal set; }
-
+    
     public DateTime? PurchaseDate { get; set; }
 
     public string? Age { get; internal set; }
@@ -220,7 +198,6 @@ public class Hardware
     public bool? UserCanCheckout { get; internal set; }
     public string? BookValue { get; internal set; }
     public Dictionary<string, CustomField>? CustomFields { get; internal set; }
-    public Actions? AvailableActions { get; internal set; }
 
     public static implicit operator Hardware(int id) => new(id);
 

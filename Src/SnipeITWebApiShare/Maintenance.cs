@@ -1,13 +1,12 @@
 ﻿namespace SnipeITWebApi;
 
-public class Maintenance
+public class Maintenance : BaseItem
 {
     public Maintenance() 
     { }
 
-    internal Maintenance(MaintenanceModel model)
+    internal Maintenance(MaintenanceModel model) : base(model)
     {
-        Id = model.Id;
         Asset = model.Asset?.CastModel<Hardware>();
         Model = model.Model?.CastModel<NamedItem>();
         StatusLabel = model.StatusLabel?.CastModel<StatusLabel>();
@@ -15,7 +14,6 @@ public class Maintenance
         Title = model.Title;
         Location = model.Location?.CastModel<NamedItem>();
         RtdLocation = model.RtdLocation?.CastModel<NamedItem>();
-        Notes = model.Notes;
         Supplier = model.Supplier?.CastModel<NamedItem>();
         Cost = model.Cost;
         AssetMaintenanceType = model.AssetMaintenanceType;
@@ -23,11 +21,7 @@ public class Maintenance
         AssetMaintenanceTime = model.AssetMaintenanceTime;
         CompletionDate = model.CompletionDate;
         UserId = model.UserId?.CastModel<NamedItem>();
-        CreatedBy = model.CreatedBy?.CastModel<NamedItem>();
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
         IsWarranty = model.IsWarranty;
-        AvailableActions = model.AvailableActions?.CastModel<Actions>();
     }
 
     //internal MaintenanceModel ToCreate()
@@ -71,7 +65,6 @@ public class Maintenance
     //    };
     //}
 
-    public int Id { get; set; }
     public Hardware? Asset { get; set; }
     public NamedItem? Model { get; set; }
     public StatusLabel? StatusLabel { get; set; }
@@ -79,7 +72,6 @@ public class Maintenance
     public string? Title { get; set; }
     public NamedItem? Location { get; set; }
     public NamedItem? RtdLocation { get; set; }
-    public string? Notes { get; set; }
     public NamedItem? Supplier { get; set; }
     public string? Cost { get; set; }
     public string? AssetMaintenanceType { get; set; }
@@ -87,9 +79,5 @@ public class Maintenance
     public DateTime? AssetMaintenanceTime { get; set; }
     public DateTime? CompletionDate { get; set; }
     public NamedItem? UserId { get; set; }
-    public NamedItem? CreatedBy { get; set; }
-    public DateTime? CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
     public int? IsWarranty { get; set; }
-    public Actions? AvailableActions { get; set; }   
 }

@@ -1,17 +1,14 @@
 ﻿namespace SnipeITWebApi;
 
-public class Department
+public class Department : BaseItem
 {
     public Department()
     { }
 
-    internal Department(DepartmentModel model)
+    internal Department(DepartmentModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
         Phone = model.Phone;
         Fax = model.Fax;
-        Image = model.Image;
         Company = model.Company;
         Manager = model.Manager;
         Location = model.Location.CastModel<NamedItem>();
@@ -19,10 +16,6 @@ public class Department
         {
             UsersCount = usersCount;
         }
-        Notes = model.Notes;
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
     //internal DepartmentModel ToCreate()
@@ -61,15 +54,11 @@ public class Department
     //    };
     //}
 
-    public int Id { get; set; }
-
-    public string? Name { get; set; }
 
     public string? Phone { get; set; }
 
     public string? Fax { get; set; }
 
-    public string? Image { get; set; }
 
     public string? Company { get; set; }
 
@@ -79,11 +68,5 @@ public class Department
 
     public int? UsersCount { get; set; }
 
-    public string? Notes { get; set; }
-
-    public DateTime? CreatedAt { get; }
-
-    public DateTime? UpdatedAt { get; }
-
-    public Actions? AvailableActions { get; }
+    
 }

@@ -3,60 +3,9 @@
 [TestClass]
 public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
 {
-    [TestMethod]
-    public async Task TestMethodGetHardwaresAsync()
+    public SnipeITHardwareUnitTest()
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        int count = await snipeIT.GetNumberOfHardwaresAsync();
-
-        var asyncList = snipeIT.GetHardwaresAsync();
-
-        var list = await asyncList.ToListAsync();
-
-        Assert.AreEqual(count, list.Count, "list.Count");
-
-        var sort = list.OrderBy(i => i.Id).ToList();
-
-        Assert.IsNotNull(list);
-        Assert.IsNotEmpty(list);
-
-        var item = list.FirstOrDefault(d => d.Id == hardwareId);
-        Assert.IsNotNull(item);
-        Assert.AreEqual(hardwareId, item.Id, "item.Id");
-        Assert.AreEqual(hardwareName, item.Name, "item.Name");
-    }
-
-    [TestMethod]
-    public async Task TestMethodGetHardwaresByCategoryAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        var asyncList = snipeIT.GetHardwaresByCategoryAsync(2);
-
-        var list = await asyncList.ToListAsync();
-
-        Assert.IsNotNull(list);
-        Assert.IsNotEmpty(list);
-
-    }
-
-    [TestMethod]
-    public async Task TestMethodGetHardwareAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        var item = await snipeIT.GetHardwareAsync(hardwareId);
-                
-        Assert.IsNotNull(item);
-        Assert.AreEqual(hardwareId, item.Id, "item.Id");
-        Assert.AreEqual(hardwareName, item.Name, "item.Name");
-    }
-
-    [TestMethod]
-    public async Task TestMethodCreateUpdateDeleteHardwareAsync()
-    {
-        var create = new Hardware()
+        create = new Hardware()
         {
             // required
             AssetTag = CreateName(),
@@ -99,7 +48,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             }
         };
 
-        var update = new Hardware()
+        update = new Hardware()
         {
             // required
             AssetTag = CreateName(),
@@ -142,7 +91,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             }
         };
 
-        var patch = new Hardware()
+        patch = new Hardware()
         {
             // required
             Name = CreateName(),
@@ -187,40 +136,23 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
                 Clone = true,
             }
         };
-
-        await TestMethodAllAsync(create, update, patch, false);
     }
 
     [TestMethod]
-    public async Task TestMethodCreateDuplicateHardwareAsync()
+    public async Task TestMethodGetHardwaresByCategoryAsync()
     {
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateHardwareAsync(new() { Name = hardwareName }));
+        var asyncList = snipeIT.GetHardwaresByCategoryAsync(2);
+
+        var list = await asyncList.ToListAsync();
+
+        Assert.IsNotNull(list);
+        Assert.IsNotEmpty(list);
     }
 
-    [TestMethod]
-    public async Task TestMethodGetNotExistingHardwareAsync()
+    public override void AreEqual(Hardware expected, Hardware actual, string message)
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetHardwareAsync(notExistingId));
-    }
-
-    [TestMethod]
-    public async Task TestMethodDeleteNotExistingHardwareAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteHardwareAsync(notExistingId));
-    }
-
-    public override void AreEqual(int id, Hardware expected, Hardware? actual, string message)
-    {
-        Assert.IsNotNull(actual, $"{message}.actual");
-
-        Assert.AreEqual(id, actual.Id, $"{message}.Id");
-        Assert.AreEqual(expected.Name, actual.Name, $"{message}.Name");
         Assert.AreEqual(expected.AssetTag, actual.AssetTag, $"{message}.AssetTag");
         Assert.AreEqual(expected.Serial, actual.Serial, $"{message}.Serial");
         Assert.AreEqual(expected.Model, actual.Model, $"{message}.Model");
@@ -233,7 +165,6 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
         Assert.AreEqual(expected.Category, actual.Category, $"{message}.Category");
         Assert.AreEqual(expected.Manufacturer, actual.Manufacturer, $"{message}.Manufacturer");
         Assert.AreEqual(expected.Supplier, actual.Supplier, $"{message}.Supplier");
-        Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
         Assert.AreEqual(expected.OrderNumber, actual.OrderNumber, $"{message}.OrderNumber");
         Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
         Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
@@ -245,12 +176,8 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
         Assert.AreEqual(expected.WarrantyMonths, actual.WarrantyMonths, $"{message}.WarrantyMonths");
         Assert.AreEqual(expected.WarrantyExpires, actual.WarrantyExpires, $"{message}.WarrantyExpires");
 
-        Assert.AreEqual(expected.CreatedBy, actual.CreatedBy, $"{message}.CreatedBy");
-        DateAssert.AreEqual(expected.CreatedAt, actual.CreatedAt, $"{message}.CreatedAt");
-        DateAssert.AreEqual(expected.UpdatedAt, actual.UpdatedAt, $"{message}.UpdatedAt");
         DateAssert.AreEqual(expected.LastAuditDate, actual.LastAuditDate, $"{message}.LastAuditDate");
         DateAssert.AreEqual(expected.NextAuditDate, actual.NextAuditDate, $"{message}.NextAuditDate");
-        DateAssert.AreEqual(expected.DeletedAt, actual.DeletedAt, $"{message}.DeletedAt");
 
         //DateAssert.AreEqual(expected.PurchaseDate, actual.PurchaseDate, $"{message}.PurchaseDate");
         //Assert.AreEqual(expected.Age, actual.Age, $"{message}.Age");
@@ -261,8 +188,6 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
         //Assert.AreEqual(expected.BookValue, actual.BookValue, $"{message}.BookValue");
 
         // custom fields
-
-        ActionAssert.AreEqual(expected.AvailableActions, actual.AvailableActions, $"{message}.AvailableActions");
     }
 
     public override IAsyncEnumerable<Hardware> GetAsync(SnipeIT snipeIT)

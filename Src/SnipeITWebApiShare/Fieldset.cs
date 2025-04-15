@@ -1,19 +1,14 @@
 ﻿namespace SnipeITWebApi;
 
-public class Fieldset
+public class Fieldset : BaseItem
 {
     public Fieldset()
     { }   
 
-    internal Fieldset(FieldsetModel model)
+    internal Fieldset(FieldsetModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
         Fields = model.Fields?.Rows.CastModel<Field>();
         Models = model.Models?.Rows.CastModel<NamedItem>();
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
-
     }
 
     //internal FieldsetModel ToCreate()
@@ -55,10 +50,7 @@ public class Fieldset
     //    };
     //}
 
-    public int Id { get; set; }
-    public string? Name { get; set; }
+    
     public List<Field>? Fields { get; set; }
     public List<NamedItem>? Models { get; set; }
-    public DateTime? CreatedAt { get; }
-    public DateTime? UpdatedAt { get; }
 }

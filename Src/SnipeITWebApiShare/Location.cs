@@ -1,15 +1,12 @@
 ﻿namespace SnipeITWebApi;
 
-public class Location
+public class Location : BaseItem
 {
     public Location()
     { }   
 
-    internal Location(LocationModel model)
+    internal Location(LocationModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
-        Image = model.Image;
         Address = model.Address;
         Address2 = model.Address2;
         City = model.City;
@@ -26,13 +23,9 @@ public class Location
         UsersCount = model.UsersCount;
         Currency = model.Currency;
         LdapOu = model.LdapOu;
-        Notes = model.Notes;
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
         Parent = model.Parent.CastModel<NamedItem>();
         Manager = model.Manager.CastModel<NamedItem>();
         Children = model.Children.CastModel<NamedItem>(); 
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
     //internal LocationModel ToCreate()
@@ -107,9 +100,7 @@ public class Location
     //    };
     //}
 
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? Image { get; set; }
+
     public string? Address { get; set; }
     public string? Address2 { get; set; }
     public string? City { get; set; }
@@ -126,11 +117,7 @@ public class Location
     public int? UsersCount { get; }
     public string? Currency { get; set; }
     public string? LdapOu { get; set; }
-    public string? Notes { get; set; }
-    public DateTime? CreatedAt { get; }
-    public DateTime? UpdatedAt { get; }
     public NamedItem? Parent { get; set; }
     public NamedItem? Manager { get; set; }
     public List<NamedItem>? Children { get; set; }
-    public Actions? AvailableActions { get; }
 }

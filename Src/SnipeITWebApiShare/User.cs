@@ -1,17 +1,13 @@
-﻿using System.ComponentModel;
+﻿namespace SnipeITWebApi;
 
-namespace SnipeITWebApi;
-
-public class User
+public class User : BaseItem
 {
     public User()
     { }
 
-    internal User(UserModel model)
+    internal User(UserModel model) : base(model)
     {
-        Id = model.Id;
         Avatar = model.Avatar;
-        Name = model.Name;
         FirstName = model.FirstName;
         LastName = model.LastName;
         Username = model.Username;
@@ -31,7 +27,6 @@ public class User
         Email = model.Email;
         Department = model.Department.CastModel<NamedItem>();
         Location = model.Location.CastModel<NamedItem>();
-        Notes = model.Notes;
         Permissions = model.Permissions.CastModel<NamedItem>();
         Activated = model.Activated;
         AutoassignLicenses = model.AutoassignLicenses;
@@ -45,14 +40,9 @@ public class User
         ManagesUsersCount = model.AssetsCount;
         ManagesLocationsCount = model.AssetsCount;
         Company = model.Company.CastModel<NamedItem>();
-        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
         StartDate = model.StartDate;
         EndDate = model.EndDate;
         LastLogin = model.LastLogin;
-        DeletedAt = model.DeletedAt;
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
         Groups = model.Groups;
     }
 
@@ -120,12 +110,7 @@ public class User
     //    };
     //}
 
-
-    public int Id { get; set; }
-
     public string? Avatar { get; set; }
-
-    public string? Name { get; }
 
     public string? FirstName { get; set; }
 
@@ -167,8 +152,6 @@ public class User
 
     public NamedItem? Location { get; set; }
 
-    public string? Notes { get; set; }
-
     public NamedItem? Permissions { get; set; }
 
     public bool? Activated { get; set; }
@@ -195,21 +178,11 @@ public class User
 
     public NamedItem? Company { get; }
 
-    public NamedItem? CreatedBy { get; }
-
-    public DateTime? CreatedAt { get; }
-
-    public DateTime? UpdatedAt { get; }
-
     public DateTime? StartDate { get; }
 
     public DateTime? EndDate { get; }
 
     public DateTime? LastLogin { get; }
-
-    public DateTime? DeletedAt { get; }
-
-    public Actions? AvailableActions { get; }
 
     public string? Groups { get; set; }
 }

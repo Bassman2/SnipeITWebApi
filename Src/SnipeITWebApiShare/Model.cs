@@ -1,16 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
-public class Model
+public class Model : BaseItem
 {
     public Model()
     { }
 
-    internal Model(ModelModel model)
+    internal Model(ModelModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
         Manufacturer = model.Manufacturer.CastModel<NamedItem>();
-        Image = model.Image;
         ModelNumber = model.ModelNumber;
         MinAmt = model.MinAmt;
         Remaining = model.Remaining;
@@ -20,12 +17,6 @@ public class Model
         Fieldset = model.Fieldset.CastModel<NamedItem>();
         Eol = model.Eol;
         Requestable = model.Requestable;
-        Notes = model.Notes;
-        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
-        DeletedAt = model.DeletedAt;
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
     //internal ModelModel ToCreate()
@@ -114,13 +105,7 @@ public class Model
     //    };
     //}
 
-    public int Id { get; }
-
-    public string? Name { get; set; }
-
     public NamedItem? Manufacturer { get; set; }
-
-    public string? Image { get; set; }
 
     public string? ModelNumber { get; set; }
 
@@ -141,16 +126,4 @@ public class Model
     public string? Eol { get; set; }
 
     public bool? Requestable { get; set; }
-
-    public string? Notes { get; set; }
-
-    public NamedItem? CreatedBy { get; set; }
-
-    public DateTime? CreatedAt { get; }
-
-    public DateTime? UpdatedAt { get; }
-
-    public DateTime? DeletedAt { get; }
-
-    public Actions? AvailableActions { get; }
 }

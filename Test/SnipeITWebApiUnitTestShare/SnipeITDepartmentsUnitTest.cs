@@ -1,153 +1,62 @@
 ﻿namespace SnipeITWebApiUnitTest;
 
 [TestClass]
-public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest
+public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
 {
-
-    [TestMethod]
-    public async Task TestMethodGetDepartmentsAsync()
+    public SnipeITDepartmentsUnitTest()
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
+        create = new()
+        {
+            Name = CreateName(),
+            Phone = phoneCreate,
+            Fax = faxCreate,
+            Notes = notesCreate,
+        };
+        
+        update = new()
+        {
+            Name = CreateName(),
+            Phone = phoneUpdate,
+            Fax = faxUpdate,
+            Notes = notesUpdate,
 
-        var asyncList = snipeIT.GetDepartmentsAsync();
+        };
+        
+        patch = new()
+        {
+            Name = CreateName(),
+            Phone = phonePatch,
+            Fax = faxPatch,
+            Notes = notesPatch,
 
-        var list = await asyncList.ToListAsync();
-
-        Assert.IsNotNull(list);
-        Assert.IsNotEmpty(list);
-
-        var item = list.FirstOrDefault(d => d.Id == departmentId);
-        Assert.IsNotNull(item);
-        Assert.AreEqual(departmentId, item.Id, "item.Id");
-        Assert.AreEqual(departmentName, item.Name, "item.Name");
-        Assert.IsNull(item.Phone, "item.Phone");
-        Assert.IsNull(item.Fax, "item.Fax");
-        Assert.IsNull(item.Image, "item.Image");
-        Assert.IsNull(item.Company, "item.Company");
-        Assert.IsNull(item.Manager, "item.Manager");
-        Assert.AreEqual(new NamedItem(9, "South Braden"), item.Location, "item.Location");
-        Assert.IsTrue(item.UsersCount > 1, "item.UsersCount");
-        Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
-        DateAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
-        DateAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
-        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
-        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
-        Assert.IsFalse(item.AvailableActions.Delete, "item.AvailableActions.Delete");
+        };
     }
 
-    [TestMethod]
-    public async Task TestMethodGetDepartmentAsync()
+    public override void AreEqual(Department expected, Department actual, string message)
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        var item = await snipeIT.GetDepartmentAsync(departmentId);
-
-        Assert.IsNotNull(item);
-        Assert.AreEqual(departmentId, item.Id, "item.Id");
-        Assert.AreEqual(departmentName, item.Name, "item.Name");
-        Assert.IsNull(item.Phone, "item.Phone");
-        Assert.IsNull(item.Fax, "item.Fax");
-        Assert.IsNull(item.Image, "item.Image");
-        Assert.IsNull(item.Company, "item.Company");
-        Assert.IsNull(item.Manager, "item.Manager");
-        Assert.AreEqual(new NamedItem(9, "South Braden"), item.Location, "item.Location");
-        Assert.IsNull(item.UsersCount, "item.UsersCount");
-        Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
-        DateAssert.AreEqual(lastUpdate, item.CreatedAt, "item.CreatedAt");
-        DateAssert.AreEqual(lastUpdate, item.UpdatedAt, "item.UpdatedAt");
-        Assert.IsNotNull(item.AvailableActions, "item.AvailableActions");
-        Assert.IsTrue(item.AvailableActions.Update, "item.AvailableActions.Update");
-        Assert.IsTrue(item.AvailableActions.Delete, "item.AvailableActions.Delete");
+        Assert.AreEqual(expected.Phone, actual.Phone, $"{message}.Phone");
+        Assert.AreEqual(expected.Fax, actual.Fax, $"{message}.Fax");
+        Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
+        Assert.AreEqual(expected.Manager, actual.Manager, $"{message}.Manager");
+        Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
+        Assert.AreEqual(expected.UsersCount, actual.UsersCount, $"{message}.UsersCount");
     }
 
-    //[TestMethod]
-    //public async Task TestMethodCreateDepartmentAsync()
-    //{
-    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+    public override IAsyncEnumerable<Department> GetAsync(SnipeIT snipeIT)
+        => snipeIT.GetDepartmentsAsync();
 
-    //    string createName = Guid.NewGuid().ToString();
-    //    string updateName = Guid.NewGuid().ToString();
-    //    string patchName = Guid.NewGuid().ToString();
+    public override async Task<Department?> GetAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.GetDepartmentAsync(id);
 
-    //    var create = await snipeIT.CreateDepartmentAsync(new()
-    //    {
-    //        Name = createName,
-    //        Phone = phoneCreate,
-    //        Fax = faxCreate,
-    //        Notes = notesCreate,
-    //    });
-    //    Assert.IsNotNull(create);
-    //    Assert.IsTrue(create.Id > 0, "create.Id");
-    //    int id = create.Id;
+    public override async Task<int> CreateAsync(SnipeIT snipeIT, Department value)
+        => await snipeIT.CreateDepartmentAsync(value);
 
-    //    var update = await snipeIT.UpdateDepartmentAsync(id, new()
-    //    {
-    //        Name = updateName,
-    //        Phone = phoneUpdate,
-    //        Fax = faxUpdate,
-    //        Notes = notesUpdate,
+    public override async Task UpdateAsync(SnipeIT snipeIT, int id, Department value)
+        => await snipeIT.UpdateDepartmentAsync(id, value);
 
-    //    });
-    //    Assert.IsNotNull(update);
+    public override async Task PatchAsync(SnipeIT snipeIT, int id, Department value)
+        => await snipeIT.PatchDepartmentAsync(id, value);
 
-    //    var patch = await snipeIT.PatchDepartmentAsync(id, new()
-    //    {
-    //        Name = patchName,
-    //        Phone = phonePatch,
-    //        Fax = faxPatch,
-    //        Notes = notesPatch,
-
-    //    });
-    //    Assert.IsNotNull(patch);
-
-    //    var del = await snipeIT.DeleteDepartmentAsync(id);
-
-    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetDepartmentAsync(id));
-
-    //    Assert.AreEqual(id, create.Id, "create.Id");
-    //    Assert.AreEqual(createName, create.Name, "create.Name");
-    //    Assert.AreEqual(phoneCreate, create.Phone, "create.Phone");
-    //    Assert.AreEqual(faxCreate, create.Fax, "create.Fax");
-    //    Assert.AreEqual(notesCreate, create.Notes, "create.Notes");
-
-    //    Assert.AreEqual(id, update.Id, "update.Id");
-    //    Assert.AreEqual(updateName, update.Name, "update.Name");
-    //    Assert.AreEqual(phoneUpdate, update.Phone, "update.Phone");
-    //    Assert.AreEqual(faxUpdate, update.Fax, "update.Fax");
-    //    Assert.AreEqual(notesUpdate, update.Notes, "update.Notes");
-
-    //    Assert.AreEqual(id, patch.Id, "patch.Id");
-    //    Assert.AreEqual(patchName, patch.Name, "patch.Name");
-    //    Assert.AreEqual(phonePatch, patch.Phone, "patch.Phone");
-    //    Assert.AreEqual(faxPatch, patch.Fax, "patch.Fax");
-    //    Assert.AreEqual(notesPatch, patch.Notes, "patch.Notes");
-    //}
-
-    // Department name can be duplicate
-
-    //[TestMethod]
-    //public async Task TestMethodCreateDuplicateDepartmentAsync()
-    //{
-    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-    //    var create = new Department() { Name = departmentName };
-
-    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateDepartmentAsync(create));
-    //}
-
-    [TestMethod]
-    public async Task TestMethodGetNotExistingDepartmentAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetDepartmentAsync(notExistingId));
-    }
-
-    [TestMethod]
-    public async Task TestMethodDeleteNotExistingDepartmentAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteDepartmentAsync(notExistingId));
-    }
+    public override async Task DeleteAsync(SnipeIT snipeIT, int id)
+        => await snipeIT.DeleteDepartmentAsync(id);
 }

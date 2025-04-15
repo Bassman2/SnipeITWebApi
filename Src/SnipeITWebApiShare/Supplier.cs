@@ -1,15 +1,12 @@
 ﻿namespace SnipeITWebApi;
 
-public class Supplier
+public class Supplier : BaseItem
 {
     public Supplier() 
     { }
 
-    internal Supplier(SupplierModel model)
+    internal Supplier(SupplierModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
-        Image = model.Image;
         Url = model.Url;
         Address = model.Address;
         Address2 = model.Address2;
@@ -26,10 +23,6 @@ public class Supplier
         LicensesCount = model.LicensesCount;
         ConsumablesCount = model.ConsumablesCount;
         ComponentsCount = model.ComponentsCount;
-        Notes = model.Notes;
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
     //internal SupplierModel ToCreate()
@@ -95,9 +88,6 @@ public class Supplier
     //    };
     //}
 
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public string? Image { get; set; }
     public string? Url { get; set; }
     public string? Address { get; set; }
     public string? Address2 { get; set; }
@@ -114,8 +104,4 @@ public class Supplier
     public int? LicensesCount { get; set; }
     public int? ConsumablesCount { get; set; }
     public int? ComponentsCount { get; set; }
-    public string? Notes { get; set; }
-    public DateTime? CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
-    public Actions? AvailableActions { get; set; }
 }

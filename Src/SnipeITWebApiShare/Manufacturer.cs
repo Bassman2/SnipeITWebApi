@@ -1,16 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
-public class Manufacturer
+public class Manufacturer : BaseItem
 {
     public Manufacturer()
     { }
 
-    internal Manufacturer(ManufacturerModel model)
+    internal Manufacturer(ManufacturerModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
         Url = model.Url;
-        Image = model.Image;
         SupportUrl = model.SupportUrl;
         WarrantyLookupUrl = model.WarrantyLookupUrl;
         SupportPhone = model.SupportPhone;
@@ -20,12 +17,6 @@ public class Manufacturer
         ConsumablesCount = model.ConsumablesCount;
         AccessoriesCount = model.AccessoriesCount;
         ComponentsCount = model.ComponentsCount;
-        Notes = model.Notes;
-        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
-        DeletedAt = model.DeletedAt;
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
     //internal ManufacturerModel ToCreate()
@@ -110,14 +101,8 @@ public class Manufacturer
     //}
 
 
-    public int Id { get; }
-
-    public string? Name { get; set; }
-
     public string? Url { get; set; }
-
-    public string? Image { get; set; }
-
+        
     public string? SupportUrl { get; set; }
 
     public string? WarrantyLookupUrl { get; set; }
@@ -135,16 +120,4 @@ public class Manufacturer
     public int AccessoriesCount { get; }
 
     public int ComponentsCount { get; }
-
-    public string? Notes { get; set; }
-
-    public NamedItem? CreatedBy { get; set; }
-
-    public DateTime? CreatedAt { get; }
-
-    public DateTime? UpdatedAt { get; }
-
-    public DateTime? DeletedAt { get; }
-
-    public Actions? AvailableActions { get; }
 }

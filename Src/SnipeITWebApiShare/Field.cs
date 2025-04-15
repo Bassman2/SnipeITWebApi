@@ -1,14 +1,12 @@
 ﻿namespace SnipeITWebApi;
 
-public class Field
+public class Field : BaseItem
 {
     public Field()
     { } 
 
-    internal Field(FieldModel model)
+    internal Field(FieldModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
         DbColumnName = model.DbColumnName;
         Format = model.Format;
         FieldValues = model.FieldValues;
@@ -18,8 +16,6 @@ public class Field
         DisplayInUserView = model.DisplayInUserView;
         AutoAddToFieldsets = model.AutoAddToFieldsets;
         ShowInListview = model.ShowInListview;
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
     }
 
     //internal FieldModel ToCreate()
@@ -76,8 +72,6 @@ public class Field
     //    };
     //}
 
-    public int Id { get; set; }
-    public string? Name { get; set; }
     public string? DbColumnName { get; set; }
     public string? Format { get; set; }
     public string? FieldValues { get; set; }
@@ -87,6 +81,4 @@ public class Field
     public bool? DisplayInUserView { get; set; }
     public bool? AutoAddToFieldsets { get; set; }
     public bool? ShowInListview { get; set; }
-    public DateTime? CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
 }

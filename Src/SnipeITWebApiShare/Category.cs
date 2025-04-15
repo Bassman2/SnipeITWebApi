@@ -1,15 +1,12 @@
 ﻿namespace SnipeITWebApi;
 
-public class Category
+public class Category : BaseItem
 {
     public Category()
     { } 
 
-    internal Category(CategoryModel model)
+    internal Category(CategoryModel model) : base(model)
     {
-        Id = model.Id;
-        Name = model.Name;
-        Image = model.Image;
         CategoryType = model.CategoryType;
         HasEula = model.HasEula;
         UseDefaultEula = model.UseDefaultEula;
@@ -22,11 +19,6 @@ public class Category
         ConsumablesCount = model.ConsumablesCount;
         ComponentsCount = model.ComponentsCount;
         LicensesCount = model.LicensesCount;
-        CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-        Notes = model.Notes;
-        CreatedAt = model.CreatedAt;
-        UpdatedAt = model.UpdatedAt;
-        AvailableActions = model.AvailableActions.CastModel<Actions>();
     }
 
     //internal CategoryModel ToCreate()
@@ -114,12 +106,6 @@ public class Category
     //    };
     //}
 
-    public int Id { get; set; }
-
-    public string? Name { get; set; }
-
-    public string? Image { get; set; }
-
     public CategoryType? CategoryType { get; set; }
 
     public bool HasEula { get; set; }
@@ -143,14 +129,4 @@ public class Category
     public int ComponentsCount { get; set; }
 
     public int LicensesCount { get; set; }
-
-    public NamedItem? CreatedBy { get; set; }
-
-    public string? Notes { get; set; }
-
-    public DateTime? CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    public Actions? AvailableActions { get; set; }
 }

@@ -146,24 +146,16 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem patchAccessoryCategory = (8, "Keyboards");
 }
 
-public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : class
+public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : BaseItem
 {
-    public abstract IAsyncEnumerable<T> GetAsync(SnipeIT snipeIT);
+    public required T create;
+    public required T update;
+    public required T patch;
+    public bool checkDeleted = true;
 
-    public abstract Task<T?> GetAsync(SnipeIT snipeIT, int id);
-
-    public abstract Task<int> CreateAsync(SnipeIT snipeIT, T value);
-
-    public abstract Task UpdateAsync(SnipeIT snipeIT, int id, T value);
-
-    public abstract Task PatchAsync(SnipeIT snipeIT, int id, T value);
-
-    public abstract Task DeleteAsync(SnipeIT snipeIT, int id);
-
-    public abstract void AreEqual(int id, T expected, T? actual, string message);
-
-    public async Task TestMethodAllAsync(T create, T update, T patch, bool checkDeleted = true)
-    {
+    [TestMethod]
+    public async Task TestMethodWorkAsync()
+    { 
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
         int id = await CreateAsync(snipeIT, create);
@@ -190,10 +182,75 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
 
         Assert.IsNotNull(created, "created");
 
-        AreEqual(id, create, created, "created");
-        AreEqual(id, update, updated, "updated");
-        AreEqual(id, patch, patched, "patched");
+        AreEqualIternal(id, create, created, "created");
+        AreEqualIternal(id, update, updated, "updated");
+        AreEqualIternal(id, patch, patched, "patched");
     }
+
+    //[TestMethod]
+    //public async Task TestMethodCreateDuplicateAsync()
+    //{
+    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await CreateAsync(snipeIT, default));
+    //}
+
+    [TestMethod]
+    public async Task TestMethodGetNotExistingAsync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await GetAsync(snipeIT, notExistingId));
+    }
+
+    [TestMethod]
+    public async Task TestMethodDeleteNotExistingasync()
+    {
+        using var snipeIT = new SnipeIT(developStoreKey, appName);
+
+        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await DeleteAsync(snipeIT, notExistingId));
+    }
+
+    public abstract IAsyncEnumerable<T> GetAsync(SnipeIT snipeIT);
+
+    public abstract Task<T?> GetAsync(SnipeIT snipeIT, int id);
+
+    public abstract Task<int> CreateAsync(SnipeIT snipeIT, T value);
+
+    public abstract Task UpdateAsync(SnipeIT snipeIT, int id, T value);
+
+    public abstract Task PatchAsync(SnipeIT snipeIT, int id, T value);
+
+    public abstract Task DeleteAsync(SnipeIT snipeIT, int id);
+
+    public abstract void AreEqual(T expected, T actual, string message);
+
+    
+
+    public void AreEqualIternal(int id, T expected, T? actual, string message)
+    {
+        Assert.IsNotNull(actual, $"{message}.actual");
+
+        Assert.AreEqual(id, actual.Id, $"{message}.Id");
+        Assert.AreEqual(expected.Name, actual.Name, $"{message}.Name");
+        Assert.AreEqual(expected.Image, actual.Image, $"{message}.Image");
+        Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
+
+        AreEqual(expected, actual, message);
+
+        Assert.AreEqual(null, actual.CreatedBy, $"{message}.CreatedBy");
+        DateAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
+        DateAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
+        //DateAssert.AreEqual(today, actual.DeletedAt, $"{message}.DeletedAt");
+
+        Assert.IsNotNull(actual.AvailableActions, $"{message}.AvailableActions");
+        Assert.IsTrue(actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
+        Assert.IsFalse(actual.AvailableActions.Checkin, $"{message}.AvailableActions.Checkin");
+        Assert.IsTrue(actual.AvailableActions.Update, $"{message}.AvailableActions.Update");
+        Assert.IsTrue(actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
+        Assert.IsTrue(actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
+    }
+
 
     public string CreateName() => Guid.NewGuid().ToString();
 }

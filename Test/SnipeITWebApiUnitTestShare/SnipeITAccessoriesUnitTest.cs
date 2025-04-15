@@ -3,10 +3,9 @@
 [TestClass]
 public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
 {
-    [TestMethod]
-    public async Task TestMethodCreateUpdateDeleteAccessoryAsync()
+    public SnipeITAccessoriesUnitTest()
     {
-        var create = new Accessory()
+        create = new Accessory()
         {
             // update
             Name = CreateName(),
@@ -19,8 +18,8 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             RemainingQty = 1,
             Remaining = 1,
         };
-        
-        var update = new Accessory()
+
+        update = new Accessory()
         {
             // update
             Name = CreateName(),
@@ -34,8 +33,8 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Remaining = 2,
 
         };
-        
-        var patch = new Accessory()
+
+        patch = new Accessory()
         {
             // update
             Name = CreateName(),
@@ -48,51 +47,16 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             RemainingQty = 3,
             Remaining = 3,
         };
-
-        await TestMethodAllAsync(create, update, patch);
     }
 
-
-    // Can be duplicate 
-
-    //[TestMethod]
-    //public async Task TestMethodCreateDuplicateAccessoryAsync()
-    //{
-    //    using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-    //    await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.CreateAccessoryAsync(new() { Name = accessoryName, Qty = 1, Category = 8 }));
-    //}
-
-    [TestMethod]
-    public async Task TestMethodGetNotExistingAccessoryAsync()
+    public override void AreEqual(Accessory expected, Accessory actual, string message)
     {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.GetAccessoryAsync(notExistingId));
-    }
-
-    [TestMethod]
-    public async Task TestMethodDeleteNotExistingAccessoryAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await snipeIT.DeleteAccessoryAsync(notExistingId));
-    }
-
-    public override void AreEqual(int id, Accessory expected, Accessory? actual, string message)
-    {
-        Assert.IsNotNull(actual, $"{message}.actual");
-
-        Assert.AreEqual(id, actual.Id, $"{message}.Id");
-        Assert.AreEqual(expected.Name, actual.Name, $"{message}.Name");
-        Assert.AreEqual(expected.Image, actual.Image, $"{message}.Image");
         Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
         Assert.AreEqual(expected.Manufacturer, actual.Manufacturer, $"{message}.Manufacturer");
         Assert.AreEqual(expected.Supplier, actual.Supplier, $"{message}.Supplier");
         Assert.AreEqual(expected.ModelNumber, actual.ModelNumber, $"{message}.ModelNumber");
         Assert.AreEqual(expected.Category, actual.Category, $"{message}.Category");
         Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
-        Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
         Assert.AreEqual(expected.Qty, actual.Qty, $"{message}.Qty");
         DateAssert.AreEqual(expected.PurchaseDate, actual.PurchaseDate, $"{message}.PurchaseDate");
         Assert.AreEqual(expected.PurchaseCost, actual.PurchaseCost, $"{message}.PurchaseCost");
@@ -102,17 +66,6 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
         Assert.AreEqual(expected.RemainingQty, actual.RemainingQty, $"{message}.RemainingQty");
         Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
         //RangeAssert.IsInRange(0, 9, actual.CheckoutsCount, $"{message}.CheckoutsCount");
-
-        Assert.AreEqual(null, actual.CreatedBy, $"{message}.CreatedBy");
-        DateAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
-        DateAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
-        
-        Assert.IsNotNull(actual.AvailableActions, $"{message}.AvailableActions");
-        Assert.IsTrue(actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
-        Assert.IsFalse(actual.AvailableActions.Checkin, $"{message}.AvailableActions.Checkin");
-        Assert.IsTrue(actual.AvailableActions.Update, $"{message}.AvailableActions.Update");
-        Assert.IsTrue(actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
-        Assert.IsTrue(actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
     }
 
     public override IAsyncEnumerable<Accessory> GetAsync(SnipeIT snipeIT) 
