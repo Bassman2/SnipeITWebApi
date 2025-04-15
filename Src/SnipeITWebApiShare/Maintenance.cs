@@ -52,6 +52,12 @@ public class Maintenance : BaseItem
         {
             // optional
             Notes = Notes,
+            AssetId = Asset?.Id,
+            SupplierId = Supplier?.Id,
+            AssetMaintenanceType = AssetMaintenanceType,
+            Title = Title,
+            StartDate = StartDate,
+
         };
     }
 

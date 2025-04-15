@@ -57,6 +57,8 @@ public class License : BaseItem
             // optional
             Name = Name,
             Notes = Notes,
+            Seats = Seats,
+            CategoryId = Category?.Id,
 
         };
     }

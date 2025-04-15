@@ -16,6 +16,8 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest<License>
             Notes = notesCreate,
 
             // Image = imageCreate,    
+
+            AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,
         };
 
         update = new()
@@ -25,6 +27,7 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest<License>
             Notes = notesUpdate,
 
             // Image = imageUpdate,
+            AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,
         };
 
         patch = new()
@@ -34,6 +37,7 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest<License>
             Notes = notesPatch,
 
             // Image = imagePatch,
+            AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,
         };
     }
 

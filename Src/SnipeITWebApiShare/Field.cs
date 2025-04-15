@@ -41,6 +41,7 @@ public class Field : BaseItem
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return new()
         {
+            Element = Element,
             Name = Name,
             DbColumnName = DbColumnName,
             Format = Format,
@@ -72,6 +73,7 @@ public class Field : BaseItem
     //    };
     //}
 
+    public Elements? Element { get; set; } 
     public string? DbColumnName { get; set; }
     public string? Format { get; set; }
     public string? FieldValues { get; set; }

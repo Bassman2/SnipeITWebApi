@@ -8,6 +8,7 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
         create = new()
         {
             Name = CreateName(),
+            Element = Elements.text,
             //Phone = phoneCreate,
             //Fax = faxCreate,
             //Email = emailCreate,

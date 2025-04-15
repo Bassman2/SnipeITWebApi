@@ -3,29 +3,41 @@
 [TestClass]
 public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest<Consumable>
 {
+    public readonly NamedItem consumableCategory = (10, "Printer Paper");
+
     public SnipeITConsumablesUnitTest()
     {
         create = new Consumable()
         {
             Name = CreateName(),
             //Image = imageCreate,    
-            Notes = notesCreate,
+            //Notes = notesCreate,
+            Qty = 1,
+            Category = consumableCategory,
+
+            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Clone | Actions.Delete | Actions.Update, 
         };
 
         update = new Consumable()
         {
             Name = CreateName(),
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            //Notes = notesUpdate,
+            Qty = 1,
+            Category = consumableCategory,
 
+            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Clone | Actions.Delete | Actions.Update,
         };
 
         patch = new Consumable()
         {
             Name = CreateName(),
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            //Notes = notesUpdate,
+            Qty = 1,
+            Category = consumableCategory,
 
+            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Clone | Actions.Delete | Actions.Update,
         };
     }
     

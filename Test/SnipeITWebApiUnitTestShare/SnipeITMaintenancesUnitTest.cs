@@ -15,6 +15,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             Title = CreateName(),
             Notes = notesCreate,
             StartDate = DateTime.UtcNow,
+            AvailableActions = Actions.Delete ,
         };
 
         update = new()
@@ -22,6 +23,8 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             //Name = updateName,
             //Image = imageUpdate,
             Notes = notesUpdate,
+
+            AvailableActions = Actions.Delete,
         };
 
         patch = new()
@@ -29,6 +32,8 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             //    Name = patchName,
             //Image = imagePatch,
             Notes = notesPatch,
+
+            AvailableActions = Actions.Delete,
         };
     }
 

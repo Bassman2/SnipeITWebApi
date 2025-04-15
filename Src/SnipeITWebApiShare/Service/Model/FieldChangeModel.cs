@@ -8,6 +8,10 @@ internal class FieldChangeModel
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
+    [JsonPropertyName("element")]
+    public Elements? Element { get; set; }
+
+
     [JsonPropertyName("db_column_name")]
     public string? DbColumnName { get; set; }
 

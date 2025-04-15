@@ -5,8 +5,7 @@ internal class MaintenanceModel : BaseModel
     [JsonPropertyName("asset")]
     public HardwareModel? Asset { get; set; }
 
-    [JsonPropertyName("asset_id")]
-    public int? AssetId { get; set; }
+    
 
     [JsonPropertyName("model")]
     public NamedItemModel? Model { get; set; }
@@ -29,8 +28,7 @@ internal class MaintenanceModel : BaseModel
     [JsonPropertyName("supplier")]
     public NamedItemModel? Supplier { get; set; }
 
-    [JsonPropertyName("supplier_id")]
-    public int? SupplierId { get; set; }
+    
 
     [JsonPropertyName("cost")]
     public string? Cost { get; set; }
