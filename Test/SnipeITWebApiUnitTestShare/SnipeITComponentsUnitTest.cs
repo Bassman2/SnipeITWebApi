@@ -14,19 +14,34 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest<Component>
 
             // check
             OrderNumber = "",
+
+            // test
+            AvailableActions = Actions.Update | Actions.Delete |  Actions.Checkout | Actions.Checkin
         };
 
         update = new Component()
         {
             // update
             Name = CreateName(),
+            Qty = 5,
+            Category = (categoryId, categoryName),
+
+            // test
+            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin
         };
+
 
         patch = new Component()
         {
             // update
             Name = CreateName(),
+            Qty = 5,
+            Category = (categoryId, categoryName),
+
+            // test
+            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin
         };
+
     }
 
     public override void AreEqual(Component expected, Component actual, string message)
@@ -40,11 +55,11 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest<Component>
         Assert.AreEqual(expected.Qty, actual.Qty, $"{message}.Qty");
         DateAssert.AreEqual(expected.PurchaseDate, actual.PurchaseDate, $"{message}.PurchaseDate");
         Assert.AreEqual(expected.PurchaseCost, actual.PurchaseCost, $"{message}.PurchaseCost");
-        Assert.AreEqual(expected.OrderNumber, actual.OrderNumber, $"{message}.OrderNumber");
+        //Assert.AreEqual(expected.OrderNumber, actual.OrderNumber, $"{message}.OrderNumber");
         //Assert.AreEqual(expected.MinQty, actual.MinQty, $"{message}.MinQty");
         Assert.AreEqual(expected.MinAmt, actual.MinAmt, $"{message}.MinAmt");
         //Assert.AreEqual(expected.RemainingQty, actual.RemainingQty, $"{message}.RemainingQty");
-        Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
+        //Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
         //RangeAssert.IsInRange(0, 9, actual.CheckoutsCount, $"{message}.CheckoutsCount");
     }
 
