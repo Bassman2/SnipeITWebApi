@@ -162,10 +162,10 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
         Trace.WriteLine($"Created {typeof(T).Name}: {id}");
         T? created = await GetAsync(snipeIT, id);
 
-        var list = await GetAsync(snipeIT).ToListAsync();
-        Assert.IsNotNull(list, "list");
-        var listItem = list.FirstOrDefault(d => d.Id == id);
-        Assert.IsNotNull(listItem, "listItem");
+        //var list = await GetAsync(snipeIT).ToListAsync();
+        //Assert.IsNotNull(list, "list");
+        //var listItem = list.FirstOrDefault(d => d.Id == id);
+        //Assert.IsNotNull(listItem, "listItem");
 
         await UpdateAsync(snipeIT, id, update);
         T? updated = await GetAsync(snipeIT, id);

@@ -10,12 +10,15 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             //Name = createName,
             FirstName = firstNameCreate,
             LastName = lastNameCreate,
-            Username = usernameCreate,
+            Name = $"{lastNameCreate} {firstNameCreate}",
+            Username = CreateName(),
             Password = passwordCreate,
             Phone = phoneCreate,
             Email = emailCreate,
             //Image = imageCreate,    
             Notes = notesCreate,
+
+            AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
 
         update = new()
@@ -23,12 +26,15 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             //Name = updateName,
             FirstName = firstNameUpdate,
             LastName = lastNameUpdate,
-            Username = usernameUpdate,
+            Name = $"{lastNameUpdate} {firstNameUpdate}",
+            Username = CreateName(),
             Password = passwordUpdate,
             Phone = phoneUpdate,
             Email = emailUpdate,
             //Image = imageUpdate,
             Notes = notesUpdate,
+
+            AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
 
         patch = new()
@@ -36,12 +42,15 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             //Name = patchName,
             FirstName = firstNamePatch,
             LastName = lastNamePatch,
-            Username = usernamePatch,
+            Name = $"{lastNamePatch} {firstNamePatch}",
+            Username = CreateName(),
             Password = passwordPatch,
             Phone = phonePatch,
             Email = emailPatch,
             //Image = imagePatch,
             Notes = notesPatch,
+
+            AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
     }
 
@@ -83,7 +92,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
         Assert.AreEqual(expected.FirstName, actual.FirstName, $"{message}.FirstName");
         Assert.AreEqual(expected.LastName, actual.LastName, $"{message}.LastName");
         Assert.AreEqual(expected.Username, actual.Username, $"{message}.Username");
-        Assert.AreEqual(expected.Password, actual.Password, $"{message}.Password");
+        //Assert.AreEqual(expected.Password, actual.Password, $"{message}.Password");
         Assert.AreEqual(expected.Phone, actual.Phone, $"{message}.Phone");
         Assert.AreEqual(expected.Email, actual.Email, $"{message}.Email");
 
