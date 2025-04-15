@@ -148,6 +148,8 @@ public abstract class SnipeITBaseUnitTest
 
 public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : class
 {
+    public abstract IAsyncEnumerable<T> GetAsync(SnipeIT snipeIT);
+
     public abstract Task<T?> GetAsync(SnipeIT snipeIT, int id);
 
     public abstract Task<int> CreateAsync(SnipeIT snipeIT, T value);
@@ -165,9 +167,13 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
         using var snipeIT = new SnipeIT(developStoreKey, appName);
 
         int id = await CreateAsync(snipeIT, create);
+        Trace.WriteLine($"Created {typeof(T).Name}: {id}");
         T? created = await GetAsync(snipeIT, id);
 
-        Trace.WriteLine($"Created {typeof(T).Name}: {id}");
+        var asyncList = await snipeIT.GetAccessoriesAsync().ToListAsync();
+        Assert.IsNotNull(asyncList, "asyncList");
+        var asyncListItem = asyncList.FirstOrDefault(d => d.Id == id);
+        Assert.IsNotNull(asyncListItem, "asyncListItem");
 
         await UpdateAsync(snipeIT, id, update);
         T? updated = await GetAsync(snipeIT, id);
@@ -181,6 +187,8 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : cla
         {
             await Assert.ThrowsExactlyAsync<WebServiceException>(async () => await GetAsync(snipeIT, id));
         }
+
+        Assert.IsNotNull(created, "created");
 
         AreEqual(id, create, created, "created");
         AreEqual(id, update, updated, "updated");

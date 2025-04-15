@@ -265,6 +265,9 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
         ActionAssert.AreEqual(expected.AvailableActions, actual.AvailableActions, $"{message}.AvailableActions");
     }
 
+    public override IAsyncEnumerable<Hardware> GetAsync(SnipeIT snipeIT)
+        => snipeIT.GetHardwaresAsync();
+
     public override async Task<Hardware?> GetAsync(SnipeIT snipeIT, int id)
         => await snipeIT.GetHardwareAsync(id);
 

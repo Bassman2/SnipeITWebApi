@@ -4,38 +4,6 @@
 public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
 {
     [TestMethod]
-    public async Task TestMethodGetAccessoriesAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        var asyncList = snipeIT.GetAccessoriesAsync();
-
-        var list = await asyncList.ToListAsync();
-
-        var sort = list.OrderBy(i => i.Id).ToList();
-
-        Assert.IsNotNull(list);
-        Assert.IsNotEmpty(list);
-
-        var item = list.FirstOrDefault(d => d.Id == accessoryId);
-        Assert.IsNotNull(item);
-        Assert.AreEqual(accessoryId, item.Id, "item.Id");
-        Assert.AreEqual(accessoryName, item.Name, "item.Name");
-    }
-
-    [TestMethod]
-    public async Task TestMethodGetAccessoryAsync()
-    {
-        using var snipeIT = new SnipeIT(developStoreKey, appName);
-
-        var item = await snipeIT.GetAccessoryAsync(accessoryId);
-                
-        Assert.IsNotNull(item);
-        Assert.AreEqual(accessoryId, item.Id, "item.Id");
-        Assert.AreEqual(accessoryName, item.Name, "item.Name");
-    }
-    
-    [TestMethod]
     public async Task TestMethodCreateUpdateDeleteAccessoryAsync()
     {
         var create = new Accessory()
@@ -146,6 +114,9 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
         Assert.IsTrue(actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
         Assert.IsTrue(actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
     }
+
+    public override IAsyncEnumerable<Accessory> GetAsync(SnipeIT snipeIT) 
+        => snipeIT.GetAccessoriesAsync();
 
     public override async Task<Accessory?> GetAsync(SnipeIT snipeIT, int id)
         => await snipeIT.GetAccessoryAsync(id);
