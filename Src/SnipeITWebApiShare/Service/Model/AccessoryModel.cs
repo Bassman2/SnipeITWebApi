@@ -28,7 +28,8 @@ internal class AccessoryModel : BaseModel
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("purchase_cost")]
-    public string? PurchaseCost { get; set; }
+    [JsonConverter(typeof(FloatJsonConverter))]
+    public float? PurchaseCost { get; set; }
 
     [JsonPropertyName("order_number")]
     public string? OrderNumber { get; set; }
@@ -46,7 +47,5 @@ internal class AccessoryModel : BaseModel
     public int? Remaining { get; set; }
 
     [JsonPropertyName("checkouts_count")]
-    public int? CheckoutsCount { get; set; }
-
-   
+    public int? CheckoutsCount { get; set; }   
 }

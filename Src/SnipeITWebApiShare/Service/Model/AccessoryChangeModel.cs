@@ -18,10 +18,10 @@ internal class AccessoryChangeModel
     public string? OrderNumber { get; set; }
 
     [JsonPropertyName("purchase_cost")]
-    public string? PurchaseCost { get; set; }
+    public float? PurchaseCost { get; set; }
 
     [JsonPropertyName("purchase_date")]
-    //[JsonConverter(typeof(DateJsonConverter))]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("model_number")]
@@ -41,4 +41,7 @@ internal class AccessoryChangeModel
 
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
+
+    [JsonPropertyName("image")]
+    public string? Image { get; set; }
 }

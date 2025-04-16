@@ -2,12 +2,14 @@
 
 internal class DateTimeJsonConverter : JsonConverter<DateTime?>
 {
+    // "purchase_date": { "date": "2028-01-01",  "formatted": "Sat Jan 01, 2028" },
+    // "created_at": { "datetime": "2025-02-20 11:59:38", "formatted": "Thu Feb 20, 2025 11:59AM" }
+
     public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (reader.TokenType == JsonTokenType.String)
         {
-            // Handle "created_at": "2025-03-18T21:05:08.000000Z"
-
+            var text = reader.GetString();
             if (DateTime.TryParse(reader.GetString(), out DateTime dateTime))
             {
                 return dateTime;
@@ -15,23 +17,31 @@ internal class DateTimeJsonConverter : JsonConverter<DateTime?>
         }
         else if (reader.TokenType == JsonTokenType.StartObject)
         {
-            // Handle "created_at": { "datetime": "2025-02-20 11:59:38", "formatted": "Thu Feb 20, 2025 11:59AM" }
-
-            using (JsonDocument document = JsonDocument.ParseValue(ref reader))
+            DateTime? res = null;
+            string? propertyName = null;
+            while (reader.Read())
             {
-                if (document.RootElement.TryGetProperty("datetime", out JsonElement datetimeElement) &&
-                    datetimeElement.ValueKind == JsonValueKind.String &&
-                    DateTime.TryParse(datetimeElement.GetString(), out DateTime dateTime))
+                switch (reader.TokenType)
                 {
-                    return dateTime;
+                case JsonTokenType.PropertyName:
+                    propertyName = reader.GetString();
+                    break;
+                case JsonTokenType.String:
+                    var text = reader.GetString();
+                    if ((propertyName == "date" || propertyName == "datetime") && DateTime.TryParse(text, out DateTime dateTime))
+                    {
+                        res = dateTime;
+                    }
+                    break;
+                case JsonTokenType.EndObject:
+                    return res;
+                default:
+                    break;
                 }
             }
-
         }
         return null;
     }
-
-
 
     public override void Write(Utf8JsonWriter writer, DateTime? value, JsonSerializerOptions options)
     {

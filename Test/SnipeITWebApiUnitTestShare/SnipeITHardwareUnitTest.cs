@@ -29,14 +29,15 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             LastAuditDate = DateTime.Now,
             Location = (2, "Port Camrynland"),
             Byod = false,
+            AssetEolDate = DateTime.Now.AddYears(3),
 
             // test
             Manufacturer = modelCreateManufacturer,
             ModelNumber = modelCreateNumber,
             Category = (modelCreateCategoryId, modelCreateCategoryName),
-            CreatedBy = adminUser,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now,
+            //CreatedBy = adminUser,
+            //CreatedAt = DateTime.Now,
+            //UpdatedAt = DateTime.Now,
 
             AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone
         };
@@ -65,23 +66,15 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             LastAuditDate = DateTime.Now,
             Location = (2, "Port Camrynland"),
             Byod = false,
-
+            AssetEolDate = DateTime.Now.AddYears(3),
             // test
             Manufacturer = modelUpdateManufacturer,
             ModelNumber = modelUpdateNumber,
             Category = (modelUpdateCategoryId, modelUpdateCategoryName),
-            CreatedBy = adminUser,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now,
-            AvailableActions = new AvailableActions()
-            {
-                Checkout = true,
-                Checkin = true,
-                Update = true,
-                Restore = false,
-                Delete = true,
-                Clone = true,
-            }
+            //CreatedBy = adminUser,
+            //CreatedAt = DateTime.Now,
+            //UpdatedAt = DateTime.Now,
+            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone
         };
 
         patch = new Hardware()
@@ -111,23 +104,18 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             LastAuditDate = DateTime.Now,
             Location = (2, "Port Camrynland"),
             Byod = false,
+            AssetEolDate = DateTime.Now.AddYears(3),
+
 
             // test
             Manufacturer = modelPatchManufacturer,
             ModelNumber = modelPatchNumber,
             Category = (modelPatchCategoryId, modelPatchCategoryName),
-            CreatedBy = adminUser,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now,
-            AvailableActions = new AvailableActions()
-            {
-                Checkout = true,
-                Checkin = true,
-                Update = true,
-                Restore = false,
-                Delete = true,
-                Clone = true,
-            }
+            //CreatedBy = adminUser,
+            //CreatedAt = DateTime.Now,
+            //UpdatedAt = DateTime.Now,
+            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone
+
         };
     }
 

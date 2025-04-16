@@ -18,15 +18,15 @@ internal class BaseModel
     public NamedItemModel? CreatedBy { get; set; }
 
     [JsonPropertyName("created_at")]
-    [JsonConverter(typeof(DateJsonConverter))]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
     public DateTime? CreatedAt { get; set; }
 
     [JsonPropertyName("updated_at")]
-    [JsonConverter(typeof(DateJsonConverter))]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
     public DateTime? UpdatedAt { get; set; }
 
     [JsonPropertyName("deleted_at")]
-    [JsonConverter(typeof(DateJsonConverter))]
+    [JsonConverter(typeof(DateTimeJsonConverter))]
     public DateTime? DeletedAt { get; set; }
 
     [JsonPropertyName("available_actions")]

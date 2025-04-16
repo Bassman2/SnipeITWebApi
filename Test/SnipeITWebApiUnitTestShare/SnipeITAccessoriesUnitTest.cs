@@ -7,14 +7,26 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
     {
         create = new Accessory()
         {
-            // update
+            // required
             Name = CreateName(),
             Qty = 1,
             Category = createAccessoryCategory,
-            //Image = imageCreate,    
-            Notes = "create",
 
-            // check
+            // optional
+            OrderNumber = "5",
+            PurchaseCost = 15000.0f,
+            PurchaseDate = new DateTime(2026, 1, 1),
+            ModelNumber = "111156789",
+            Company = createCompany,
+            Location = createLocation,
+            Manufacturer = createManufacturer,
+            Supplier = createSupplier,
+
+            // default
+            Notes = notesCreate,
+            //Image = imageCreate,    
+
+            // test
             RemainingQty = 1,
             Remaining = 1,
             AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
@@ -22,12 +34,24 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
 
         update = new Accessory()
         {
-            // update
+            // required
             Name = CreateName(),
             Qty = 2,
             Category = updateAccessoryCategory,
-            //Image = imageUpdate,
+
+            // optional
+            OrderNumber = "6",
+            PurchaseCost = 30000.0f,
+            PurchaseDate = new DateTime(2027, 1, 1),
+            ModelNumber = "222256789",
+            Company = updateCompany,
+            Location = updateLocation,
+            Manufacturer = updateManufacturer,
+            Supplier = updateSupplier,
+
+            // default
             Notes = notesUpdate,
+            //Image = imageCreate,            
 
             // check
             RemainingQty = 2,
@@ -37,12 +61,24 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
 
         patch = new Accessory()
         {
-            // update
+            // required
+            // no
+
+            // optional
             Name = CreateName(),
             Qty = 3,
+            OrderNumber = "7",
+            PurchaseCost = 60000.0f,
+            PurchaseDate = new DateTime(2028, 1, 1),
+            ModelNumber = "333356789",
             Category = patchAccessoryCategory,
-            //Image = imageUpdate,
+            Company = patchCompany,
+            Location = patchLocation,
+            Manufacturer = patchManufacturer,
+            Supplier = patchSupplier,
+            // default
             Notes = notesPatch,
+            //Image = imageCreate,            
 
             // check
             RemainingQty = 3,

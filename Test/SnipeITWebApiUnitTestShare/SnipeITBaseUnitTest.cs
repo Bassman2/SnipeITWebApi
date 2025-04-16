@@ -148,6 +148,22 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem createAccessoryCategory = (8, "Keyboards");
     protected static readonly NamedItem updateAccessoryCategory = (9, "Mouse");
     protected static readonly NamedItem patchAccessoryCategory = (8, "Keyboards");
+
+    protected static readonly NamedItem createCompany = (1, "Quigley-Luettgen");
+    protected static readonly NamedItem updateCompany = (2, "Batz Inc");
+    protected static readonly NamedItem patchCompany = (3, "Turner-Windler");
+
+    protected static readonly NamedItem createLocation = (1, "East Alex");
+    protected static readonly NamedItem updateLocation = (2, "Port Camrynland");
+    protected static readonly NamedItem patchLocation = (3, "Jarrellport");
+
+    protected static readonly NamedItem createManufacturer = (2, "Microsoft");
+    protected static readonly NamedItem updateManufacturer = (3, "Dell");
+    protected static readonly NamedItem patchManufacturer = (4, "Asus");
+
+    protected static readonly NamedItem createSupplier = (1, "Bernhard PLC");
+    protected static readonly NamedItem updateSupplier = (2, "Collier, Dibbert and Cronin");
+    protected static readonly NamedItem patchSupplier = (3, "Jast PLC");
 }
 
 public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : BaseItem

@@ -40,75 +40,10 @@ public class Accessory : BaseItem
             LocationId = Location?.Id,
             ManufacturerId = Manufacturer?.Id,
             SupplierId = Supplier?.Id,
-            Notes = Notes
+            Notes = Notes,
+            Image = Image
         };
     }
-
-    //internal AccessoryModel ToCreate()
-    //{
-    //    ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
-    //    ArgumentNullException.ThrowIfNull(Category?.Id, nameof(Category.Id));
-    //    return new()
-    //    {
-    //        // required
-    //        Name = Name,
-    //        Qty = Qty,
-    //        CategoryId = Category?.Id,
-
-    //        // optional
-    //        Image = Image,
-    //        ModelNumber = ModelNumber,
-    //        Notes = Notes,
-    //        PurchaseDate = PurchaseDate,
-    //        PurchaseCost = PurchaseCost,
-    //        OrderNumber = OrderNumber,
-    //        MinQty = MinQty,
-    //        MinAmt = MinAmt,
-    //        RemainingQty = RemainingQty,
-    //        Remaining = Remaining,
-    //    };
-    //}
-
-    //internal AccessoryModel ToUpdate()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
-    //    {
-    //        Name = Name,
-    //        Image = Image,
-    //        ModelNumber = ModelNumber,
-    //        Notes = Notes,
-    //        Qty = Qty,
-    //        PurchaseDate = PurchaseDate,
-    //        PurchaseCost = PurchaseCost,
-    //        OrderNumber = OrderNumber,
-    //        MinQty = MinQty,
-    //        MinAmt = MinAmt,
-    //        RemainingQty = RemainingQty,
-    //        Remaining = Remaining,
-    //    };
-    //}
-
-    //internal AccessoryModel ToPatch()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
-    //    {
-    //        Name = Name,
-    //        Image = Image,
-    //        ModelNumber = ModelNumber,
-    //        Notes = Notes,
-    //        Qty = Qty,
-    //        PurchaseDate = PurchaseDate,
-    //        PurchaseCost = PurchaseCost,
-    //        OrderNumber = OrderNumber,
-    //        MinQty = MinQty,
-    //        MinAmt = MinAmt,
-    //        RemainingQty = RemainingQty,
-    //        Remaining = Remaining,
-    //    };
-    //}
 
     public NamedItem? Company { get; set; }
     public NamedItem? Manufacturer { get; set; }
@@ -116,11 +51,9 @@ public class Accessory : BaseItem
     public string? ModelNumber { get; set; }
     public NamedItem? Category { get; set; }
     public NamedItem? Location { get; set; }
-
-
     public int? Qty { get; set; }
     public DateTime? PurchaseDate { get; set; }
-    public string? PurchaseCost { get; set; }
+    public float? PurchaseCost { get; set; }
     public string? OrderNumber { get; set; }
     public int? MinQty { get; set; }
     public int? MinAmt { get; set; }
