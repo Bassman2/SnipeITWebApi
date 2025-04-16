@@ -18,7 +18,11 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         string str = await response.Content.ReadAsStringAsync(cancellationToken);
         if (str.StartsWith("{\"status\":\"error\""))
         {
-            var res = await ReadFromJsonAsync<ResultModel>(response, cancellationToken);
+            //var res = await ReadFromJsonAsync<ResultModel>(response, cancellationToken);
+
+            JsonTypeInfo<ResultModel> jsonTypeInfo = (JsonTypeInfo<ResultModel>)context.GetTypeInfo(typeof(ResultModel))!;
+            var res = await response.Content.ReadFromJsonAsync<ResultModel>(jsonTypeInfo, cancellationToken);
+
             throw new WebServiceException(res!.Messages);
         }
     }
