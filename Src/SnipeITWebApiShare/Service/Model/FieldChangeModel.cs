@@ -31,11 +31,14 @@ internal class FieldChangeModel
     public bool? Required { get; set; }
 
     [JsonPropertyName("display_in_user_view")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? DisplayInUserView { get; set; }
 
     [JsonPropertyName("auto_add_to_fieldsets")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? AutoAddToFieldsets { get; set; }
 
     [JsonPropertyName("show_in_listview")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? ShowInListview { get; set; }
 }

@@ -9,6 +9,10 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
         {
             Name = CreateName(),
             Element = Elements.text,
+
+            // test
+            Type = "text",
+            Required = false,
             //Phone = phoneCreate,
             //Fax = faxCreate,
             //Email = emailCreate,
@@ -19,6 +23,10 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
         update = new()
         {
             Name = CreateName(),
+
+            // test
+            Type = "text",
+            Required = false,
             //Phone = phoneUpdate,
             //Fax = faxUpdate,
             //Email = emailUpdate,
@@ -29,6 +37,10 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
         patch = new()
         {
             Name = CreateName(),
+
+            // test
+            Type = "text",
+            Required = false,
             //Phone = phonePatch,
             //Fax = faxPatch,
             //Email = emailPatch,
