@@ -7,12 +7,19 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
     {
         create = new Company()
         {
+            // required
             Name = CreateName(),
+
+            // optional
+
+            // optional not documented
             Phone = phoneCreate,
             Fax = faxCreate,
             Email = emailCreate,
-            //Image = imageCreate,    
+
+            // default
             Notes = createNotes,
+            Image = createImage,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete
@@ -20,12 +27,19 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
 
         update = new Company()
         {
+            // required
             Name = CreateName(),
+
+            // optional
+
+            // optional not documented
             Phone = phoneUpdate,
             Fax = faxUpdate,
             Email = emailUpdate,
-            //Image = imageUpdate,
+
+            // default
             Notes = updateNotes,
+            Image = updateImage,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete
@@ -33,12 +47,19 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
 
         patch = new Company()
         {
+            // required
             Name = CreateName(),
+
+            // optional
+
+            // optional not documented
             Phone = phonePatch,
             Fax = faxPatch,
             Email = emailPatch,
-            //Image = imagePatch,
+
+            // default
             Notes = patchNotes,
+            Image = patchImage,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete
@@ -47,21 +68,15 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
 
     public override void AreEqual(Company expected, Company actual, string message)
     {
-        //Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
-        //Assert.AreEqual(expected.Manufacturer, actual.Manufacturer, $"{message}.Manufacturer");
-        //Assert.AreEqual(expected.Supplier, actual.Supplier, $"{message}.Supplier");
-        //Assert.AreEqual(expected.ModelNumber, actual.ModelNumber, $"{message}.ModelNumber");
-        //Assert.AreEqual(expected.Category, actual.Category, $"{message}.Category");
-        //Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
-        //Assert.AreEqual(expected.Qty, actual.Qty, $"{message}.Qty");
-        //DateAssert.AreEqual(expected.PurchaseDate, actual.PurchaseDate, $"{message}.PurchaseDate");
-        //Assert.AreEqual(expected.PurchaseCost, actual.PurchaseCost, $"{message}.PurchaseCost");
-        //Assert.AreEqual(expected.OrderNumber, actual.OrderNumber, $"{message}.OrderNumber");
-        //Assert.AreEqual(expected.MinQty, actual.MinQty, $"{message}.MinQty");
-        //Assert.AreEqual(expected.MinAmt, actual.MinAmt, $"{message}.MinAmt");
-        //Assert.AreEqual(expected.RemainingQty, actual.RemainingQty, $"{message}.RemainingQty");
-        //Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
-        //RangeAssert.IsInRange(0, 9, actual.CheckoutsCount, $"{message}.CheckoutsCount");
+        Assert.AreEqual(expected.Phone, actual.Phone, $"{message}.Phone");
+        Assert.AreEqual(expected.Fax, actual.Fax, $"{message}.Fax");
+        Assert.AreEqual(expected.Email, actual.Email, $"{message}.Email");
+        Assert.AreEqual(expected.AssetsCount, actual.AssetsCount, $"{message}.AssetsCount");
+        Assert.AreEqual(expected.LicenseCount, actual.LicenseCount, $"{message}.LicenseCount");
+        Assert.AreEqual(expected.AccessoriesCount, actual.AccessoriesCount, $"{message}.AccessoriesCount");
+        Assert.AreEqual(expected.ConsumablesCount, actual.ConsumablesCount, $"{message}.ConsumablesCount");
+        Assert.AreEqual(expected.ComponentsCount, actual.ComponentsCount, $"{message}.ComponentsCount");
+        Assert.AreEqual(expected.UsersCount, actual.UsersCount, $"{message}.UsersCount");
     }
 
     public override IAsyncEnumerable<Company> GetAsync(SnipeIT snipeIT)

@@ -11,6 +11,7 @@ public class Company : BaseItem
         Fax = model.Fax;
         Email = model.Email;
         AssetsCount = model.AssetsCount;
+        LicenseCount = model.LicenseCount;
         AccessoriesCount = model.AccessoriesCount;
         ConsumablesCount = model.ConsumablesCount;
         ComponentsCount = model.ComponentsCount;
@@ -67,13 +68,15 @@ public class Company : BaseItem
 
     public string? Email { get; set; }
 
-    public int AssetsCount { get; set; }
+    public int AssetsCount { get; internal set; }
 
-    public int AccessoriesCount { get; set; }
+    public int LicenseCount { get; internal set; }
+
+    public int AccessoriesCount { get; internal set; }
     
-    public int ConsumablesCount { get; set; }
+    public int ConsumablesCount { get; internal set; }
     
-    public int ComponentsCount { get; set; }
+    public int ComponentsCount { get; internal set; }
     
-    public int UsersCount { get; set; }
+    public int UsersCount { get; internal set; }
 }

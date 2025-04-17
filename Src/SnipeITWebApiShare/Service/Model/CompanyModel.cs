@@ -14,6 +14,9 @@ internal class CompanyModel : BaseModel
     [JsonPropertyName("assets_count")]
     public int AssetsCount { get; set; }
 
+    [JsonPropertyName("licenses_count")]
+    public int LicenseCount { get; set; }
+
     [JsonPropertyName("accessories_count")]
     public int AccessoriesCount { get; set; }
 
