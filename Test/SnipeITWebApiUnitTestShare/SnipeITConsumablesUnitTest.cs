@@ -11,7 +11,7 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest<Consumable>
         {
             Name = CreateName(),
             //Image = imageCreate,    
-            //Notes = notesCreate,
+            //Notes = createNotes,
             Qty = 1,
             Category = consumableCategory,
 
@@ -22,7 +22,7 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest<Consumable>
         {
             Name = CreateName(),
             //Image = imageUpdate,
-            //Notes = notesUpdate,
+            //Notes = updateNotes,
             Qty = 1,
             Category = consumableCategory,
 
@@ -33,7 +33,7 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest<Consumable>
         {
             Name = CreateName(),
             //Image = imageUpdate,
-            //Notes = notesUpdate,
+            //Notes = updateNotes,
             Qty = 1,
             Category = consumableCategory,
 

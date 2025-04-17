@@ -10,7 +10,7 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Name = CreateName(),
             Phone = phoneCreate,
             Fax = faxCreate,
-            Notes = notesCreate,
+            Notes = createNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete
@@ -21,7 +21,7 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Name = CreateName(),
             Phone = phoneUpdate,
             Fax = faxUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete
@@ -32,7 +32,7 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Name = CreateName(),
             Phone = phonePatch,
             Fax = faxPatch,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete

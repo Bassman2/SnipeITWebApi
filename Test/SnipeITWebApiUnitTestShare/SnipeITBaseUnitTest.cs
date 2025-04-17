@@ -1,4 +1,11 @@
-﻿using System.Diagnostics;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Diagnostics;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics.Metrics;
+using System.Net.NetworkInformation;
+using Microsoft.Testing.Platform.Extensions.Messages;
 
 namespace SnipeITWebApiUnitTest;
 
@@ -90,11 +97,7 @@ public abstract class SnipeITBaseUnitTest
 
     protected const string imageCreate = @"D:\_Data\SnipeIT\Test\ImageA.png";
     protected const string imageUpdate = @"D:\_Data\SnipeIT\Test\ImageB.png";
-    protected const string imagePatch =  @"D:\_Data\SnipeIT\Test\ImageC.png";
-
-    protected const string notesCreate = "Note Create";
-    protected const string notesUpdate = "Note Update";
-    protected const string notesPatch = "Note Patch";
+    protected const string imagePatch = @"D:\_Data\SnipeIT\Test\ImageC.png";
 
     protected const string firstNameCreate = "Peter";
     protected const string firstNameUpdate = "Paul";
@@ -145,6 +148,15 @@ public abstract class SnipeITBaseUnitTest
     protected const string adminZip = "04529-0110";
     protected const string adminEmail = "herzog.earl@example.org";
 
+
+    protected const string createNotes = "Note Create";
+    protected const string updateNotes = "Note Update";
+    protected const string patchNotes = "Note Patch";
+
+    protected const string createImage = null;
+    protected const string updateImage = null;
+    protected const string patchImage = null;
+
     protected static readonly NamedItem createAccessoryCategory = (8, "Keyboards");
     protected static readonly NamedItem updateAccessoryCategory = (9, "Mouse");
     protected static readonly NamedItem patchAccessoryCategory = (8, "Keyboards");
@@ -164,6 +176,10 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem createSupplier = (1, "Bernhard PLC");
     protected static readonly NamedItem updateSupplier = (2, "Collier, Dibbert and Cronin");
     protected static readonly NamedItem patchSupplier = (3, "Jast PLC");
+
+
+    protected const string defaultEula = "<h1>COMPANY-OWNED EQUIPMENT AGREEMENT</h1>\n<p>Use of all equipment, software, and data owned by The Company is limited to authorized persons for business purposes only.\nThe term equipment refers to all laptop computers, desktop computers, tablets, software, printers, blackberries, key fobs, cell phones and other tangible items provided by The Company.</p>\n<ul>\n<li>All equipment provided to employees in the offices of The Company is considered the property of The Company.</li>\n<li>All equipment purchased by The Company for an employee is considered the property of The Company.</li>\n<li>Any equipment purchased by an employee and then reimbursed through the expense procedure is considered the property of The Company.</li>\n<li>Software purchased by the employee for personal use and stored on equipment owned by The Company is considered the property of The Company. </li>\n<li>If upgrades are made to the equipment (e.g. cell phones, tablets, software, etc.), whether paid for by the employee or by The Company, the equipment remains the property of The Company.</li>\n<li>If upgrading to a newer device (e.g. cell phone), the old device is to be returned to The Company.</li>\n<li>All computer, electronic, and telephonic documents and communications transmitted by, received from, or stored in the employer's equipment are the property of the employer. Employees are not to transmit or store material on the employer’s equipment in violation of any state or federal law or government regulation.</li>\n<li>Employees who are provided with equipment owned by The Company have a responsibility to protect the equipment from being lost, damaged, or stolen. If the equipment is lost, damaged, or stolen because of the employee’s negligence or willful disregard, the employee will pay the employer the amount equal to the replacement value or repair cost of the equipment.</li>\n</ul>\n<p>Upon termination, it is the employee’s responsibility to return all equipment owned by The Company to The Company on or before the last day of employment.</p>";
+
 }
 
 public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : BaseItem

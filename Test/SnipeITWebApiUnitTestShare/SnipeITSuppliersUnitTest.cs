@@ -12,7 +12,7 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Fax = faxCreate,
             Email = emailCreate,
             //Image = imageCreate,    
-            Notes = notesCreate,
+            Notes = createNotes,
 
             Url = "",
             Address = "",
@@ -32,7 +32,7 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Fax = faxUpdate,
             Email = emailUpdate,
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             Url = "",
             Address = "",
@@ -52,7 +52,7 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Fax = faxPatch,
             Email = emailPatch,
             //Image = imagePatch,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             Url = "",
             Address = "",

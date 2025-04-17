@@ -11,7 +11,7 @@ public class SnipeITLocationsUnitTest : SnipeITBaseUnitTest<Location>
             Phone = phoneCreate,
             Fax = faxCreate,
             //Image = imageCreate,    
-            Notes = notesCreate,
+            Notes = createNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete | Actions.Clone
@@ -23,7 +23,7 @@ public class SnipeITLocationsUnitTest : SnipeITBaseUnitTest<Location>
             Phone = phoneUpdate,
             Fax = faxUpdate,
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete | Actions.Clone
@@ -35,7 +35,7 @@ public class SnipeITLocationsUnitTest : SnipeITBaseUnitTest<Location>
             Phone = phonePatch,
             Fax = faxPatch,
             //Image = imagePatch,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete | Actions.Clone

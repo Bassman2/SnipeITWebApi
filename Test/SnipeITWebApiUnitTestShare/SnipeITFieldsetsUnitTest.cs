@@ -10,7 +10,7 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
             Name = CreateName(),
 
             //Image = imageCreate,    
-            //Notes = notesCreate,
+            //Notes = createNotes,
 
             // test
             AvailableActions = null,
@@ -21,7 +21,7 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
             Name = CreateName(),
 
             //Image = imageUpdate,
-            //Notes = notesUpdate,
+            //Notes = updateNotes,
 
             // test
             AvailableActions = null,
@@ -33,7 +33,7 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
             Name = CreateName(),
 
             //Image = imagePatch,
-            //Notes = notesPatch,
+            //Notes = patchNotes,
 
             // test
             AvailableActions = null,

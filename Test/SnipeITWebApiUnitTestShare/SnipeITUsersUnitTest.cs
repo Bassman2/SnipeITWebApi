@@ -16,7 +16,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Phone = phoneCreate,
             Email = emailCreate,
             //Image = imageCreate,    
-            Notes = notesCreate,
+            Notes = createNotes,
 
             AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
@@ -32,7 +32,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Phone = phoneUpdate,
             Email = emailUpdate,
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
@@ -48,7 +48,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Phone = phonePatch,
             Email = emailPatch,
             //Image = imagePatch,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };

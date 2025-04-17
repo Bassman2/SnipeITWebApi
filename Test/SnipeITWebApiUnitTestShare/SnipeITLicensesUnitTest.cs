@@ -13,7 +13,7 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest<License>
             Category = new NamedItem(categoryId, categoryName),
 
             // optional 
-            Notes = notesCreate,
+            Notes = createNotes,
 
             // Image = imageCreate,    
 
@@ -24,7 +24,7 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest<License>
         {
             // optional
             Name = CreateName(),
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             // Image = imageUpdate,
             AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,
@@ -34,7 +34,7 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest<License>
         {
             // optional 
             Name = CreateName(),
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             // Image = imagePatch,
             AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,

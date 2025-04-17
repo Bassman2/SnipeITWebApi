@@ -9,7 +9,7 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
         {
             Name = CreateName(),
             //Image = imageCreate,    
-            Notes = notesCreate,
+            Notes = createNotes,
 
             // test
             AvailableActions = Actions.Delete | Actions.Update,
@@ -19,7 +19,7 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
         {
             Name = CreateName(),
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             // test
             AvailableActions = Actions.Delete | Actions.Update,
@@ -29,7 +29,7 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
         {
             Name = CreateName(),
             //Image = imagePatch,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             // test
             AvailableActions = Actions.Delete | Actions.Update,

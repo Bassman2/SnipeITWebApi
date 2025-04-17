@@ -20,7 +20,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest<StatusLabel>
             Name = CreateName(),
             Type = StatusType.archived,
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             AvailableActions = Actions.Delete | Actions.Update
         };
@@ -30,7 +30,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest<StatusLabel>
             Name = CreateName(),
             Type = StatusType.deployable,
             //Image = imageUpdate,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             AvailableActions = Actions.Delete | Actions.Update
         };

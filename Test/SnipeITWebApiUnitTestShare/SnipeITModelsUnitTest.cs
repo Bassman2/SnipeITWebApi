@@ -28,7 +28,7 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
             //Fax = faxUpdate,
             //Email = emailUpdate,
             ////Image = imageUpdate,
-            //Notes = notesUpdate,
+            //Notes = updateNotes,
             AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
 
@@ -40,7 +40,7 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
             //Fax = faxPatch,
             //Email = emailPatch,
             //Image = imagePatch,
-            //Notes = notesPatch,
+            //Notes = patchNotes,
             AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
     }

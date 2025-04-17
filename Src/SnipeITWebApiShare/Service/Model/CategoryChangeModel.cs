@@ -23,4 +23,7 @@ internal class CategoryChangeModel
 
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
+
+    [JsonPropertyName("image")]
+    public string? Image { get; set; }
 }

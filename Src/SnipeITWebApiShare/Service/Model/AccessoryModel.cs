@@ -47,5 +47,9 @@ internal class AccessoryModel : BaseModel
     public int? Remaining { get; set; }
 
     [JsonPropertyName("checkouts_count")]
-    public int? CheckoutsCount { get; set; }   
+    public int? CheckoutsCount { get; set; }
+
+    [JsonPropertyName("user_can_checkout")]
+    public bool? UserCanCheckout { get; set; }
+
 }

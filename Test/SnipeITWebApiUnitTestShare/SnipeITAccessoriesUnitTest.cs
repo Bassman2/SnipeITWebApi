@@ -23,12 +23,13 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Supplier = createSupplier,
 
             // default
-            Notes = notesCreate,
+            Notes = createNotes,
             //Image = imageCreate,    
 
             // test
             RemainingQty = 1,
             Remaining = 1,
+            UserCanCheckout = true,
             AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
 
@@ -50,12 +51,13 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Supplier = updateSupplier,
 
             // default
-            Notes = notesUpdate,
+            Notes = updateNotes,
             //Image = imageCreate,            
 
             // check
             RemainingQty = 2,
             Remaining = 2,
+            UserCanCheckout = true,
             AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
 
@@ -77,12 +79,13 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Manufacturer = patchManufacturer,
             Supplier = patchSupplier,
             // default
-            Notes = notesPatch,
+            Notes = patchNotes,
             //Image = imageCreate,            
 
             // check
             RemainingQty = 3,
             Remaining = 3,
+            UserCanCheckout = true,
             AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
     }
@@ -103,7 +106,8 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
         Assert.AreEqual(expected.MinAmt, actual.MinAmt, $"{message}.MinAmt");
         Assert.AreEqual(expected.RemainingQty, actual.RemainingQty, $"{message}.RemainingQty");
         Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
-        //RangeAssert.IsInRange(0, 9, actual.CheckoutsCount, $"{message}.CheckoutsCount");
+        RangeAssert.IsInRange(0, 9, actual.CheckoutsCount, $"{message}.CheckoutsCount");
+        Assert.AreEqual(expected.UserCanCheckout, actual.UserCanCheckout, $"{message}.UserCanCheckout");
     }
 
     public override IAsyncEnumerable<Accessory> GetAsync(SnipeIT snipeIT) 

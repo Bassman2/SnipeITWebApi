@@ -22,6 +22,7 @@ public class Accessory : BaseItem
         RemainingQty = model.RemainingQty;
         Remaining = model.Remaining;
         CheckoutsCount = model.CheckoutsCount;
+        UserCanCheckout = model.UserCanCheckout;
     }
 
     internal AccessoryChangeModel ToChange()
@@ -55,9 +56,10 @@ public class Accessory : BaseItem
     public DateTime? PurchaseDate { get; set; }
     public float? PurchaseCost { get; set; }
     public string? OrderNumber { get; set; }
-    public int? MinQty { get; set; }
-    public int? MinAmt { get; set; }
-    public int? RemainingQty { get; set; }
-    public int? Remaining { get; set; }
-    public int? CheckoutsCount { get; }
+    public int? MinQty { get; internal set; }
+    public int? MinAmt { get; internal set; }
+    public int? RemainingQty { get; internal set; }
+    public int? Remaining { get; internal set; }
+    public int? CheckoutsCount { get; internal set; }
+    public bool? UserCanCheckout { get; internal set; }
 }

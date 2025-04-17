@@ -13,7 +13,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             Supplier = companyId,
             AssetMaintenanceType = "1",
             Title = CreateName(),
-            Notes = notesCreate,
+            Notes = createNotes,
             StartDate = DateTime.UtcNow,
             AvailableActions = Actions.Delete ,
         };
@@ -22,7 +22,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
         {
             //Name = updateName,
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             AvailableActions = Actions.Delete,
         };
@@ -31,7 +31,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
         {
             //    Name = patchName,
             //Image = imagePatch,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             AvailableActions = Actions.Delete,
         };

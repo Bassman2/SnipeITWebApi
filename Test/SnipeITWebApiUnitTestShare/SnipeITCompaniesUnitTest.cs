@@ -12,7 +12,7 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Fax = faxCreate,
             Email = emailCreate,
             //Image = imageCreate,    
-            Notes = notesCreate,
+            Notes = createNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete
@@ -25,7 +25,7 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Fax = faxUpdate,
             Email = emailUpdate,
             //Image = imageUpdate,
-            Notes = notesUpdate,
+            Notes = updateNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete
@@ -38,7 +38,7 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Fax = faxPatch,
             Email = emailPatch,
             //Image = imagePatch,
-            Notes = notesPatch,
+            Notes = patchNotes,
 
             // test
             AvailableActions = Actions.Update | Actions.Delete

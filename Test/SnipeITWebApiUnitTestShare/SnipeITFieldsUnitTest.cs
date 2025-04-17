@@ -17,7 +17,7 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             //Fax = faxCreate,
             //Email = emailCreate,
             ////Image = imageCreate,    
-            //Notes = notesCreate,
+            //Notes = createNotes,
         };
 
         update = new()
@@ -31,7 +31,7 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             //Fax = faxUpdate,
             //Email = emailUpdate,
             ////Image = imageUpdate,
-            //Notes = notesUpdate,
+            //Notes = updateNotes,
         };
 
         patch = new()
@@ -45,7 +45,7 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             //Fax = faxPatch,
             //Email = emailPatch,
             ////Image = imagePatch,
-            //Notes = notesPatch,
+            //Notes = patchNotes,
         };
     }
 

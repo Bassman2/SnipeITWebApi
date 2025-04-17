@@ -7,53 +7,83 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
     {
         create = new Category()
         {
+            // required
             Name = CreateName(),
             CategoryType = CategoryType.Asset,
-            //Image = imageCreate,    
-            Notes = notesCreate,
+
+            // optional
+            UseDefaultEula = true,
+            RequireAcceptance = true,
+            CheckinEmail = true,
+
+            // default
+            Notes = createNotes,
+            Image = createImage,    
 
             // test
+            HasEula = true,
+            Eula = defaultEula,
             AvailableActions = Actions.Update | Actions.Delete,
         };
 
         update = new Category()
         {
+            // required
             Name = CreateName(),
-            //Image = imageUpdate,
-            Notes = notesUpdate,
+            //CategoryType = CategoryType.Asset,  // In contrast to the documentary not allowed
+
+            // optional
+            UseDefaultEula = false,
+            RequireAcceptance = false,
+            CheckinEmail = false,
+
+            // default
+            Notes = updateNotes,
+            Image = updateImage,    
 
             // test
+            CategoryType = CategoryType.Asset,
+            HasEula = false,
+            Eula = null,
             AvailableActions = Actions.Update | Actions.Delete,
         };
 
         patch = new Category()
         {
+            // required
             Name = CreateName(),
-            //Image = imageUpdate,
-            Notes = notesUpdate,
+            //CategoryType = CategoryType.Asset,   // In contrast to the documentary not allowed
+
+            // optional
+            UseDefaultEula = true,
+            RequireAcceptance = true,
+            CheckinEmail = true,
+
+            // default
+            Notes = patchNotes,
+            Image = patchImage,  
 
             // test
+            CategoryType = CategoryType.Asset,
+            HasEula = true,
+            Eula = defaultEula,
             AvailableActions = Actions.Update | Actions.Delete,
         };
     }
 
     public override void AreEqual(Category expected, Category actual, string message)
     {
-        //Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
-        //Assert.AreEqual(expected.Manufacturer, actual.Manufacturer, $"{message}.Manufacturer");
-        //Assert.AreEqual(expected.Supplier, actual.Supplier, $"{message}.Supplier");
-        //Assert.AreEqual(expected.ModelNumber, actual.ModelNumber, $"{message}.ModelNumber");
-        //Assert.AreEqual(expected.Category, actual.Category, $"{message}.Category");
-        //Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
-        //Assert.AreEqual(expected.Qty, actual.Qty, $"{message}.Qty");
-        //DateAssert.AreEqual(expected.PurchaseDate, actual.PurchaseDate, $"{message}.PurchaseDate");
-        //Assert.AreEqual(expected.PurchaseCost, actual.PurchaseCost, $"{message}.PurchaseCost");
-        //Assert.AreEqual(expected.OrderNumber, actual.OrderNumber, $"{message}.OrderNumber");
-        //Assert.AreEqual(expected.MinQty, actual.MinQty, $"{message}.MinQty");
-        //Assert.AreEqual(expected.MinAmt, actual.MinAmt, $"{message}.MinAmt");
-        //Assert.AreEqual(expected.RemainingQty, actual.RemainingQty, $"{message}.RemainingQty");
-        //Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
-        //RangeAssert.IsInRange(0, 9, actual.CheckoutsCount, $"{message}.CheckoutsCount");
+        Assert.AreEqual(expected.CategoryType, actual.CategoryType, $"{message}.CategoryType");
+        Assert.AreEqual(expected.HasEula, actual.HasEula, $"{message}.HasEula");
+        Assert.AreEqual(expected.UseDefaultEula, actual.UseDefaultEula, $"{message}.UseDefaultEula");
+        Assert.AreEqual(expected.Eula, actual.Eula, $"{message}.Eula");
+        Assert.AreEqual(expected.CheckinEmail, actual.CheckinEmail, $"{message}.CheckinEmail");
+        Assert.AreEqual(expected.RequireAcceptance, actual.RequireAcceptance, $"{message}.RequireAcceptance");
+        Assert.AreEqual(expected.ItemCount, actual.ItemCount, $"{message}.ItemCount");
+        Assert.AreEqual(expected.AssetsCount, actual.AssetsCount, $"{message}.AssetsCount");
+        Assert.AreEqual(expected.AccessoriesCount, actual.AccessoriesCount, $"{message}.AccessoriesCount");
+        Assert.AreEqual(expected.ConsumablesCount, actual.ConsumablesCount, $"{message}.ConsumablesCount");
+        Assert.AreEqual(expected.LicensesCount, actual.LicensesCount, $"{message}.LicensesCount");
     }
 
     public override IAsyncEnumerable<Category> GetAsync(SnipeIT snipeIT)

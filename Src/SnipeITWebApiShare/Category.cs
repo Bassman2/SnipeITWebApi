@@ -29,51 +29,26 @@ public class Category : BaseItem
         {
             Name = Name,
             CategoryType = CategoryType,
-
-            //Url = Url,
-            //Image = Image,
-            //SupportUrl = SupportUrl,
-            //WarrantyLookupUrl = WarrantyLookupUrl,
-            //SupportPhone = SupportPhone,
-            //SupportEmail = SupportEmail,
-            //AssetsCount = AssetsCount,
-            //LicensesCount = LicensesCount,
-            //ConsumablesCount = ConsumablesCount,
-            //AccessoriesCount = AccessoriesCount,
-            //ComponentsCount = ComponentsCount,
+            UseDefaultEula = UseDefaultEula,
+            RequireAcceptance = RequireAcceptance,
+            CheckinEmail = CheckinEmail,
             Notes = Notes,
-            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
+            Image = Image,
         };
     }
 
     internal CategoryChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        if (CategoryType != null) throw new ArgumentException("You cannot change the category type once it has been created");
         return new()
         {
             Name = Name,
-            //Url = Url,
-            //Image = Image,
-            //SupportUrl = SupportUrl,
-            //WarrantyLookupUrl = WarrantyLookupUrl,
-            //SupportPhone = SupportPhone,
-            //SupportEmail = SupportEmail,
-            //AssetsCount = AssetsCount,
-            //LicensesCount = LicensesCount,
-            //ConsumablesCount = ConsumablesCount,
-            //AccessoriesCount = AccessoriesCount,
-            //ComponentsCount = ComponentsCount,
+            //CategoryType = CategoryType,      // cannot be changed
+            UseDefaultEula = UseDefaultEula,
+            RequireAcceptance = RequireAcceptance,
+            CheckinEmail = CheckinEmail,
             Notes = Notes,
-            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
+            Image = Image,
         };
     }
 
@@ -108,25 +83,25 @@ public class Category : BaseItem
 
     public CategoryType? CategoryType { get; set; }
 
-    public bool HasEula { get; set; }
+    public bool HasEula { get; internal set; }
 
     public bool UseDefaultEula { get; set; }
 
-    public string? Eula { get; set; }
+    public string? Eula { get; internal set; }
 
     public bool? CheckinEmail { get; set; }
 
     public bool RequireAcceptance { get; set; }
 
-    public int ItemCount { get; set; }
+    public int ItemCount { get; internal set; }
 
-    public int AssetsCount { get; set; }
+    public int AssetsCount { get; internal set; }
 
-    public int AccessoriesCount { get; set; }
+    public int AccessoriesCount { get; internal set; }
 
-    public int ConsumablesCount { get; set; }
+    public int ConsumablesCount { get; internal set; }
 
-    public int ComponentsCount { get; set; }
+    public int ComponentsCount { get; internal set; }
 
-    public int LicensesCount { get; set; }
+    public int LicensesCount { get; internal set; }
 }
