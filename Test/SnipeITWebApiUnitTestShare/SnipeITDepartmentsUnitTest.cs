@@ -10,8 +10,8 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
 
         TestCreate = new()
         {
-            Phone = phoneCreate,
-            Fax = faxCreate,
+            Phone = createPhone,
+            Fax = createFax,
             Notes = createNotes,
 
             // test
@@ -20,8 +20,8 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
         TestUpdate = new()
         {
             Name = CreateName(),
-            Phone = phoneUpdate,
-            Fax = faxUpdate,
+            Phone = updatePhone,
+            Fax = updateFax,
             Notes = updateNotes,
 
             // test
@@ -30,8 +30,8 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
         TestPatch = new()
         {
             Name = CreateName(),
-            Phone = phonePatch,
-            Fax = faxPatch,
+            Phone = patchPhone,
+            Fax = patchFax,
             Notes = patchNotes,
 
             // test

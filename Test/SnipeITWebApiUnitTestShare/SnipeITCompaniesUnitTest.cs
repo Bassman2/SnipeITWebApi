@@ -15,8 +15,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             // optional
 
             // optional not documented
-            Phone = phoneCreate,
-            Fax = faxCreate,
+            Phone = createPhone,
+            Fax = createFax,
             Email = emailCreate,
 
             // test
@@ -29,8 +29,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             // optional
 
             // optional not documented
-            Phone = phoneUpdate,
-            Fax = faxUpdate,
+            Phone = updatePhone,
+            Fax = updateFax,
             Email = emailUpdate,
 
             // test
@@ -43,8 +43,8 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             // optional
 
             // optional not documented
-            Phone = phonePatch,
-            Fax = faxPatch,
+            Phone = patchPhone,
+            Fax = patchFax,
             Email = emailPatch,
 
             // test

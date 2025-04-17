@@ -32,12 +32,12 @@ internal class LocationChangeModel : BaseChangeModel
     [JsonPropertyName("ldap_ou")]
     public string? LdapOu { get; set; }
 
-    [JsonPropertyName("parent")]
-    public NamedItemModel? Parent { get; set; }
+    [JsonPropertyName("parent_id")]
+    public int? ParentId { get; set; }
 
-    [JsonPropertyName("manager")]
-    public NamedItemModel? Manager { get; set; }
+    [JsonPropertyName("manager_id")]
+    public int? ManagerId { get; set; }
 
-    [JsonPropertyName("children")]
-    public List<NamedItemModel>? Children { get; set; }
+    //[JsonPropertyName("children")]
+    //public List<NamedItemModel>? Children { get; set; }
 }

@@ -74,13 +74,13 @@ public abstract class SnipeITBaseUnitTest
     protected const string userName = "User Admin";
 
 
-    protected const string phoneCreate = "+11114711";
-    protected const string phoneUpdate = "+11114712";
-    protected const string phonePatch = "+11114713";
+    protected const string createPhone = "11114711";
+    protected const string updatePhone = "11114712";
+    protected const string patchPhone = "11114713";
 
-    protected const string faxCreate = "+11114811";
-    protected const string faxUpdate = "+11114812";
-    protected const string faxPatch = "+11114813";
+    protected const string createFax = "+11114811";
+    protected const string updateFax = "+11114812";
+    protected const string patchFax = "+11114813";
 
     protected const string emailCreate = "Peter.A@unknown.com";
     protected const string emailUpdate = "Peter.B@unknown.com";
@@ -102,9 +102,34 @@ public abstract class SnipeITBaseUnitTest
     protected const string usernameUpdate = "un0002";
     protected const string usernamePatch = "un0003";
 
+    protected const string createAddress = "First Street 1";
+    protected const string updateAddress = "Second Street 2";
+    protected const string patchAddress = "Third Street 3";
+
+
     protected const string passwordCreate = "|Mnx7=4-@vd:";
     protected const string passwordUpdate = "5~g=?=m7JPDg";
     protected const string passwordPatch = "py4Nx/r$!,zQ";
+
+    protected const string createAddress2 = "Entrance A";
+    protected const string updateAddress2 = "Entrance B";
+    protected const string patchAddress2 = "Entrance C";
+
+    protected const string createCity = "New York";
+    protected const string updateCity = "Boston";
+    protected const string patchCity = "Washington";
+
+    protected const string createState = "NY";
+    protected const string updateState = "TE";
+    protected const string patchState = "HW";
+
+    protected const string createCountry = "Orange Country";
+    protected const string updateCountry = "Green Country";
+    protected const string patchCountry = "Blue Country";
+
+    protected const string createZip = "10000";
+    protected const string updateZip = "20000";
+    protected const string patchZip = "30000";
 
     protected const int modelCreateId = 1;
     protected const string modelCreateName = "Macbook Pro 13&quot;";
@@ -171,6 +196,10 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem createSupplier = (1, "Bernhard PLC");
     protected static readonly NamedItem updateSupplier = (2, "Collier, Dibbert and Cronin");
     protected static readonly NamedItem patchSupplier = (3, "Jast PLC");
+
+    protected static readonly NamedItem createUser = (4, "Jalon Kshlerin");
+    protected static readonly NamedItem updateUser = (2, "Snipe E. Head");
+    protected static readonly NamedItem patchUser = (3, "Alison Gianotto");
 
     protected static readonly DateTime createDate = DateTime.Now.AddYears(5);
     protected static readonly DateTime updateDate = DateTime.Now.AddYears(6);

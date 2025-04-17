@@ -15,8 +15,8 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             // test
             Type = "text",
             Required = false,
-            //Phone = phoneCreate,
-            //Fax = faxCreate,
+            //Phone = createPhone,
+            //Fax = createFax,
             //Email = emailCreate,
             ////Image = imageCreate,    
             //Notes = createNotes,
@@ -27,8 +27,8 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             // test
             Type = "text",
             Required = false,
-            //Phone = phoneUpdate,
-            //Fax = faxUpdate,
+            //Phone = updatePhone,
+            //Fax = updateFax,
             //Email = emailUpdate,
             ////Image = imageUpdate,
             //Notes = updateNotes,
@@ -39,8 +39,8 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             // test
             Type = "text",
             Required = false,
-            //Phone = phonePatch,
-            //Fax = faxPatch,
+            //Phone = patchPhone,
+            //Fax = patchFax,
             //Email = emailPatch,
             ////Image = imagePatch,
             //Notes = patchNotes,

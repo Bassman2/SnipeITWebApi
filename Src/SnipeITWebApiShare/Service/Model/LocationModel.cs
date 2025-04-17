@@ -56,6 +56,9 @@ internal class LocationModel : BaseModel
     [JsonPropertyName("manager")]
     public NamedItemModel? Manager { get; set; }
 
+    [JsonPropertyName("company")]
+    public NamedItemModel? Company { get; set; }
+
     [JsonPropertyName("children")]
     public List<NamedItemModel>? Children { get; set; }
 }

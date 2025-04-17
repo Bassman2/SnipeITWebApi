@@ -22,16 +22,16 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
         update = new()
         {
             Category = (categoryId, categoryName),
-            //Phone = phoneUpdate,
-            //Fax = faxUpdate,
+            //Phone = updatePhone,
+            //Fax = updateFax,
             //Email = emailUpdate,
         };
 
         patch = new()
         {
             Category = (categoryId, categoryName),
-            //Phone = phonePatch,
-            //Fax = faxPatch,
+            //Phone = patchPhone,
+            //Fax = patchFax,
             //Email = emailPatch,
         };
     }

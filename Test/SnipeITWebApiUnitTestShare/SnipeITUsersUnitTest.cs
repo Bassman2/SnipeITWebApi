@@ -15,7 +15,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Name = $"{lastNameCreate} {firstNameCreate}",
             Username = CreateName(),
             Password = passwordCreate,
-            Phone = phoneCreate,
+            Phone = createPhone,
             Email = emailCreate,
         };
 
@@ -26,7 +26,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Name = $"{lastNameUpdate} {firstNameUpdate}",
             Username = CreateName(),
             Password = passwordUpdate,
-            Phone = phoneUpdate,
+            Phone = updatePhone,
             Email = emailUpdate,
         };
 
@@ -37,7 +37,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Name = $"{lastNamePatch} {firstNamePatch}",
             Username = CreateName(),
             Password = passwordPatch,
-            Phone = phonePatch,
+            Phone = patchPhone,
             Email = emailPatch,
         };
     }

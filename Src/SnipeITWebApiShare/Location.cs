@@ -25,6 +25,7 @@ public class Location : BaseItem
         LdapOu = model.LdapOu;
         Parent = model.Parent.CastModel<NamedItem>();
         Manager = model.Manager.CastModel<NamedItem>();
+        Company = model.Company.CastModel<NamedItem>();
         Children = model.Children.CastModel<NamedItem>(); 
     }
 
@@ -70,9 +71,9 @@ public class Location : BaseItem
             Currency = Currency,
             LdapOu = LdapOu,
             Notes = Notes,
-            Parent = Parent?.ToUpdate(),
-            Manager = Manager?.ToUpdate(),
-            Children = Children?.Select(x => x.ToUpdate()).ToList(),
+            ParentId = Parent?.Id,
+            ManagerId = Manager?.Id,
+            //Children = Children?.Select(x => x.ToUpdate()).ToList(),
         };
     }
 
@@ -109,15 +110,16 @@ public class Location : BaseItem
     public string? Zip { get; set; }
     public string? Phone { get; set; }
     public string? Fax { get; set; }
-    public int? AccessoriesCount { get; }
-    public int? AssignedAccessoriesCount { get; }
-    public int? AssignedAssetsCount { get; }
-    public int? AssetsCount { get; }
-    public int? RtdAssetsCount { get; }
-    public int? UsersCount { get; }
+    public int? AccessoriesCount { get; internal set; }
+    public int? AssignedAccessoriesCount { get; internal set; }
+    public int? AssignedAssetsCount { get; internal set; }
+    public int? AssetsCount { get; internal set; }
+    public int? RtdAssetsCount { get; internal set; }
+    public int? UsersCount { get; internal set; }
     public string? Currency { get; set; }
     public string? LdapOu { get; set; }
     public NamedItem? Parent { get; set; }
     public NamedItem? Manager { get; set; }
+    public NamedItem? Company { get; set; }
     public List<NamedItem>? Children { get; set; }
 }

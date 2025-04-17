@@ -10,8 +10,8 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
 
         TestCreate = new()
         {
-            Phone = phoneCreate,
-            Fax = faxCreate,
+            Phone = createPhone,
+            Fax = createFax,
             Email = emailCreate,
 
             Url = "",
@@ -26,8 +26,8 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
 
         TestUpdate = new()
         {
-            Phone = phoneUpdate,
-            Fax = faxUpdate,
+            Phone = updatePhone,
+            Fax = updateFax,
             Email = emailUpdate,
 
             Url = "",
@@ -42,8 +42,8 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
 
         TestPatch = new()
         {
-            Phone = phonePatch,
-            Fax = faxPatch,
+            Phone = patchPhone,
+            Fax = patchFax,
             Email = emailPatch,
 
             Url = "",
