@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class CategoryChangeModel
+internal class CategoryChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("category_type")]
     public CategoryType? CategoryType { get; set; }
 
@@ -20,10 +14,4 @@ internal class CategoryChangeModel
     [JsonPropertyName("checkin_email")]
     [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? CheckinEmail { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
 }

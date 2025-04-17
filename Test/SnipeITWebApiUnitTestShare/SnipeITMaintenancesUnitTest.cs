@@ -5,35 +5,24 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
 {
     public SnipeITMaintenancesUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = Actions.Delete;
+
+        TestCreate = new()
         {
-            //Name = createName,
-            //Image = imageCreate,    
             Asset = hardwareId,
             Supplier = companyId,
             AssetMaintenanceType = "1",
             Title = CreateName(),
-            Notes = createNotes,
             StartDate = DateTime.UtcNow,
-            AvailableActions = Actions.Delete ,
         };
 
-        update = new()
+        TestUpdate = new()
         {
-            //Name = updateName,
-            //Image = imageUpdate,
-            Notes = updateNotes,
-
-            AvailableActions = Actions.Delete,
         };
 
-        patch = new()
+        TestPatch = new()
         {
-            //    Name = patchName,
-            //Image = imagePatch,
-            Notes = patchNotes,
-
-            AvailableActions = Actions.Delete,
         };
     }
 

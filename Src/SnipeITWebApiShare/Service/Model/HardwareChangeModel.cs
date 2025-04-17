@@ -1,10 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class HardwareChangeModel
+internal class HardwareChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
     [JsonPropertyName("asset_tag")]
     public string? AssetTag { get; set; }
 
@@ -13,12 +10,6 @@ internal class HardwareChangeModel
 
     [JsonPropertyName("model_id")]
     public int? ModelId { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
 
     [JsonPropertyName("serial")]
     public string? Serial { get; set; }
@@ -32,9 +23,6 @@ internal class HardwareChangeModel
 
     [JsonPropertyName("order_number")]
     public string? OrderNumber { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
 
     [JsonPropertyName("archived")]
     [JsonConverter(typeof(BooleanJsonConverter))]

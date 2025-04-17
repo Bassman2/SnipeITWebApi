@@ -56,7 +56,10 @@ public class Consumable : BaseItem
             PurchaseDate = PurchaseDate,
             MinAmt = MinAmt,
             ModelNumber = ModelNumber,
-            ItemNno = ItemNo
+            ItemNno = ItemNo,
+            Notes = Notes,
+            Image = Image
+
         };
     }
 

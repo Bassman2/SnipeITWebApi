@@ -5,14 +5,14 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
 {
     public SnipeITSuppliersUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete;
+
+        TestCreate = new()
         {
-            Name = CreateName(),
             Phone = phoneCreate,
             Fax = faxCreate,
             Email = emailCreate,
-            //Image = imageCreate,    
-            Notes = createNotes,
 
             Url = "",
             Address = "",
@@ -22,17 +22,13 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Country = "",
             Zip = "",
             Contact = "",
-            AvailableActions = Actions.Delete | Actions.Update
         };
 
-        update = new()
+        TestUpdate = new()
         {
-            Name = CreateName(),
             Phone = phoneUpdate,
             Fax = faxUpdate,
             Email = emailUpdate,
-            //Image = imageUpdate,
-            Notes = updateNotes,
 
             Url = "",
             Address = "",
@@ -42,17 +38,13 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Country = "",
             Zip = "",
             Contact = "",
-            AvailableActions = Actions.Delete | Actions.Update
         };
 
-        patch = new()
+        TestPatch = new()
         {
-            Name = CreateName(),
             Phone = phonePatch,
             Fax = faxPatch,
             Email = emailPatch,
-            //Image = imagePatch,
-            Notes = patchNotes,
 
             Url = "",
             Address = "",
@@ -62,7 +54,6 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
             Country = "",
             Zip = "",
             Contact = "",
-            AvailableActions = Actions.Delete | Actions.Update
         };
     }
 

@@ -5,7 +5,7 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
 {
     public SnipeITCompaniesUnitTest()
     {
-        userCanCheckout = true;
+        userCanCheckout = null;
         availableActions = Actions.Update | Actions.Delete;
 
         TestCreate = new()

@@ -5,18 +5,19 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
 {
     public SnipeITDepartmentsUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete;
+
+        TestCreate = new()
         {
-            Name = CreateName(),
             Phone = phoneCreate,
             Fax = faxCreate,
             Notes = createNotes,
 
             // test
-            AvailableActions = Actions.Update | Actions.Delete
         };
-        
-        update = new()
+
+        TestUpdate = new()
         {
             Name = CreateName(),
             Phone = phoneUpdate,
@@ -24,10 +25,9 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Notes = updateNotes,
 
             // test
-            AvailableActions = Actions.Update | Actions.Delete
         };
-        
-        patch = new()
+
+        TestPatch = new()
         {
             Name = CreateName(),
             Phone = phonePatch,
@@ -35,7 +35,6 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
             Notes = patchNotes,
 
             // test
-            AvailableActions = Actions.Update | Actions.Delete
         };
     }
 

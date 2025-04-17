@@ -5,40 +5,25 @@ public class SnipeITLocationsUnitTest : SnipeITBaseUnitTest<Location>
 {
     public SnipeITLocationsUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete | Actions.Clone;
+
+        TestCreate = new()
         {
-            Name = CreateName(),
             Phone = phoneCreate,
             Fax = faxCreate,
-            //Image = imageCreate,    
-            Notes = createNotes,
-
-            // test
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Clone
         };
 
-        update = new()
+        TestUpdate = new()
         {
-            Name = CreateName(),
             Phone = phoneUpdate,
             Fax = faxUpdate,
-            //Image = imageUpdate,
-            Notes = updateNotes,
-
-            // test
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Clone
         };
 
-        patch = new()
+        TestPatch = new()
         {
-            Name = CreateName(),
             Phone = phonePatch,
             Fax = faxPatch,
-            //Image = imagePatch,
-            Notes = patchNotes,
-
-            // test
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Clone
         };
     }
 

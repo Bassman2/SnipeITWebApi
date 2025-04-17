@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class ComponentChangeModel
+internal class ComponentChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("qty")]
     public int? Qty { get; set; }
 
@@ -24,6 +18,7 @@ internal class ComponentChangeModel
     public string? OrderNumber { get; set; }
 
     [JsonPropertyName("purchase_date")]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("purchase_cost")]
@@ -34,7 +29,4 @@ internal class ComponentChangeModel
 
     [JsonPropertyName("serial")]
     public string? Serial { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
 }

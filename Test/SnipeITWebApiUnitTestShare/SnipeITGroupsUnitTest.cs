@@ -5,6 +5,9 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
 {
     public SnipeITGroupsUnitTest()
     {
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin;
+
         create = new()
         {
             Name = CreateName(),

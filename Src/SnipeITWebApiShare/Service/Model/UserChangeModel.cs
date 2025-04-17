@@ -1,10 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class UserChangeModel
+internal class UserChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
     [JsonPropertyName("first_name")]
     public string? FirstName { get; set; }
 
@@ -25,8 +22,4 @@ internal class UserChangeModel
 
     [JsonPropertyName("email")]
     public string? Email { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
 }

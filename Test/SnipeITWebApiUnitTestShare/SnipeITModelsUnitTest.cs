@@ -5,43 +5,34 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
 {
     public SnipeITModelsUnitTest()
     {
+        userCanCheckout = true;
+        availableActions = Actions.Delete | Actions.Update | Actions.Clone;
+
+
         create = new()
         {
-            Name = CreateName(),
             Category = (categoryId, categoryName),
             //Url = "https://test.com",
-            //Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
             //SupportUrl = "https://support.test.com",
             //WarrantyLookupUrl = "https://checkcoverage.test.com",
             //SupportPhone = "+12725858512",
             //SupportEmail = "unknown@microsoft.com",
-            //Notes = "Dummy Note"
-
-            AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
 
         update = new()
         {
-            Name = CreateName(),
             Category = (categoryId, categoryName),
             //Phone = phoneUpdate,
             //Fax = faxUpdate,
             //Email = emailUpdate,
-            ////Image = imageUpdate,
-            //Notes = updateNotes,
-            AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
 
         patch = new()
         {
-            Name = CreateName(),
             Category = (categoryId, categoryName),
             //Phone = phonePatch,
             //Fax = faxPatch,
             //Email = emailPatch,
-            //Image = imagePatch,
-            //Notes = patchNotes,
-            AvailableActions = Actions.Delete | Actions.Update | Actions.Clone
         };
     }
 

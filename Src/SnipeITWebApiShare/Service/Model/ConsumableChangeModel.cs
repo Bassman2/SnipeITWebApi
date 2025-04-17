@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class ConsumableChangeModel
+internal class ConsumableChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("qty")]
     public int? Qty { get; set; }
 
@@ -30,6 +24,7 @@ internal class ConsumableChangeModel
     public bool? Requestable { get; set; }
 
     [JsonPropertyName("purchase_date")]
+    [JsonConverter(typeof(DateJsonConverter))]
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("min_amt")]

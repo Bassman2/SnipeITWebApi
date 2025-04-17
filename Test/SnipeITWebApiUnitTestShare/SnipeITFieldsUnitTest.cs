@@ -5,9 +5,11 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
 {
     public SnipeITFieldsUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin;
+
+        TestCreate = new()
         {
-            Name = CreateName(),
             Element = Elements.text,
 
             // test
@@ -20,10 +22,8 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             //Notes = createNotes,
         };
 
-        update = new()
+        TestUpdate = new()
         {
-            Name = CreateName(),
-
             // test
             Type = "text",
             Required = false,
@@ -34,10 +34,8 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
             //Notes = updateNotes,
         };
 
-        patch = new()
+        TestPatch = new()
         {
-            Name = CreateName(),
-
             // test
             Type = "text",
             Required = false,

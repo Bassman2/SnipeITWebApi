@@ -5,39 +5,24 @@ public class SnipeITLicensesUnitTest : SnipeITBaseUnitTest<License>
 {
     public  SnipeITLicensesUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone;
+
+        TestCreate = new()
         {
             // required
-            Name = CreateName(),
             Seats = 10,
             Category = new NamedItem(categoryId, categoryName),
-
-            // optional 
-            Notes = createNotes,
-
-            // Image = imageCreate,    
-
-            AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,
         };
 
-        update = new()
+        TestUpdate = new()
         {
             // optional
-            Name = CreateName(),
-            Notes = updateNotes,
-
-            // Image = imageUpdate,
-            AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,
         };
 
-        patch = new()
+        TestPatch = new()
         {
             // optional 
-            Name = CreateName(),
-            Notes = patchNotes,
-
-            // Image = imagePatch,
-            AvailableActions = Actions.Delete | Actions.Update | Actions.Checkout | Actions.Checkin | Actions.Clone,
         };
     }
 

@@ -17,7 +17,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             // optional
             OrderNumber = "5",
             PurchaseCost = 15000.0f,
-            PurchaseDate = new DateTime(2026, 1, 1),
+            PurchaseDate = createDate,
             ModelNumber = "111156789",
             Company = createCompany,
             Location = createLocation,
@@ -38,7 +38,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             // optional
             OrderNumber = "6",
             PurchaseCost = 30000.0f,
-            PurchaseDate = new DateTime(2027, 1, 1),
+            PurchaseDate = updateDate,
             ModelNumber = "222256789",
             Company = updateCompany,
             Location = updateLocation,
@@ -59,7 +59,7 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Qty = 3,
             OrderNumber = "7",
             PurchaseCost = 60000.0f,
-            PurchaseDate = new DateTime(2028, 1, 1),
+            PurchaseDate = patchDate,
             ModelNumber = "333356789",
             Category = patchAccessoryCategory,
             Company = patchCompany,

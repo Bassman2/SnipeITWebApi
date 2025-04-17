@@ -5,7 +5,10 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
 {
     public SnipeITHardwareUnitTest()
     {
-        create = new Hardware()
+        userCanCheckout = true;
+        availableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone;
+
+        TestCreate = new()
         {
             // required
             AssetTag = CreateName(),
@@ -13,13 +16,11 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             Model = (modelCreateId, modelCreateName),
 
             // optional
-            Name = CreateName(),
             //Image = "https://develop.snipeitapp.com/uploads/models/mbp.jpg",    // "data:@[mime];base64,[base64encodeddata]"
             Serial = CreateName(),
             PurchaseDate = DateTime.Now,
             //PurchaseCost = 500.0,
             OrderNumber = CreateName(),
-            Notes = createNotes,
             //Archived = false,
             //WarrantyMonths = 12,
             //Depreciate = false,
@@ -35,14 +36,9 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             Manufacturer = modelCreateManufacturer,
             ModelNumber = modelCreateNumber,
             Category = (modelCreateCategoryId, modelCreateCategoryName),
-            //CreatedBy = adminUser,
-            //CreatedAt = DateTime.Now,
-            //UpdatedAt = DateTime.Now,
-
-            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone
         };
 
-        update = new Hardware()
+        TestUpdate = new()
         {
             // required
             AssetTag = CreateName(),
@@ -50,13 +46,11 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             Model = (modelUpdateId, modelUpdateName),
 
             // optional
-            Name = CreateName(),
             Image = null,    // "data:@[mime];base64,[base64encodeddata]"
             Serial = CreateName(),
             PurchaseDate = DateTime.Now,
             //PurchaseCost = 500.0,
             OrderNumber = CreateName(),
-            Notes = createNotes,
             //Archived = false,
             //WarrantyMonths = 12,
             //Depreciate = false,
@@ -71,25 +65,17 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             Manufacturer = modelUpdateManufacturer,
             ModelNumber = modelUpdateNumber,
             Category = (modelUpdateCategoryId, modelUpdateCategoryName),
-            //CreatedBy = adminUser,
-            //CreatedAt = DateTime.Now,
-            //UpdatedAt = DateTime.Now,
-            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone
         };
 
-        patch = new Hardware()
+        TestPatch = new Hardware()
         {
             // required
-            Name = CreateName(),
             Model = (modelPatchId, modelPatchName),
 
             // optional
             AssetTag = CreateName(),
             StatusLabel = (2, "Pending"),
 
-
-            //Name = CreateName(),
-            Image = null,    // "data:@[mime];base64,[base64encodeddata]"
             Serial = CreateName(),
             PurchaseDate = DateTime.Now,
             //PurchaseCost = 500.0,
@@ -106,17 +92,11 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
             Byod = false,
             AssetEolDate = DateTime.Now.AddYears(3),
 
-
             // test
             Manufacturer = modelPatchManufacturer,
             ModelNumber = modelPatchNumber,
             Category = (modelPatchCategoryId, modelPatchCategoryName),
-            //CreatedBy = adminUser,
-            //CreatedAt = DateTime.Now,
-            //UpdatedAt = DateTime.Now,
-            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone
-
-        };
+         };
     }
 
     [TestMethod]

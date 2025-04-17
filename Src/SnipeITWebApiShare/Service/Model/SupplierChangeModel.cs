@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class SupplierChangeModel
+internal class SupplierChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("url")]
     public string? Url { get; set; }
 
@@ -40,7 +34,4 @@ internal class SupplierChangeModel
 
     [JsonPropertyName("contact")]
     public string? Contact { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
 }

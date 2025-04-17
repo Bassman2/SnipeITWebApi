@@ -5,38 +5,23 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
 {
     public SnipeITFieldsetsUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = null;
+
+        TestCreate = new()
         {
-            Name = CreateName(),
-
-            //Image = imageCreate,    
-            //Notes = createNotes,
-
             // test
-            AvailableActions = null,
         };
 
-        update = new()
+        TestUpdate = new()
         {
-            Name = CreateName(),
-
-            //Image = imageUpdate,
-            //Notes = updateNotes,
-
             // test
-            AvailableActions = null,
         };
 
 
-        patch = new()
+        TestPatch = new()
         {
-            Name = CreateName(),
-
-            //Image = imagePatch,
-            //Notes = patchNotes,
-
             // test
-            AvailableActions = null,
         };
     }
 

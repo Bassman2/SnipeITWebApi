@@ -5,9 +5,11 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
 {
     public SnipeITUsersUnitTest()
     {
-        create = new()
+        userCanCheckout = true;
+        availableActions = Actions.Clone | Actions.Update | Actions.Delete;
+
+        TestCreate = new()
         {
-            //Name = createName,
             FirstName = firstNameCreate,
             LastName = lastNameCreate,
             Name = $"{lastNameCreate} {firstNameCreate}",
@@ -15,15 +17,10 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Password = passwordCreate,
             Phone = phoneCreate,
             Email = emailCreate,
-            //Image = imageCreate,    
-            Notes = createNotes,
-
-            AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
 
-        update = new()
+        TestUpdate = new()
         {
-            //Name = updateName,
             FirstName = firstNameUpdate,
             LastName = lastNameUpdate,
             Name = $"{lastNameUpdate} {firstNameUpdate}",
@@ -31,15 +28,10 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Password = passwordUpdate,
             Phone = phoneUpdate,
             Email = emailUpdate,
-            //Image = imageUpdate,
-            Notes = updateNotes,
-
-            AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
 
-        patch = new()
+        TestPatch = new()
         {
-            //Name = patchName,
             FirstName = firstNamePatch,
             LastName = lastNamePatch,
             Name = $"{lastNamePatch} {firstNamePatch}",
@@ -47,10 +39,6 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             Password = passwordPatch,
             Phone = phonePatch,
             Email = emailPatch,
-            //Image = imagePatch,
-            Notes = patchNotes,
-
-            AvailableActions = Actions.Clone | Actions.Update | Actions.Delete,
         };
     }
 

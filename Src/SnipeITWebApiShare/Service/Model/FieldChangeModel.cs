@@ -1,16 +1,9 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class FieldChangeModel
+internal class FieldChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("element")]
     public Elements? Element { get; set; }
-
 
     [JsonPropertyName("db_column_name")]
     public string? DbColumnName { get; set; }

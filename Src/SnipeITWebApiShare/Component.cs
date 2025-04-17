@@ -32,6 +32,16 @@ public class Component : BaseItem
             Name = Name,
             Qty = Qty,
             CategoryId = Category?.Id,
+            LocationId = Location?.Id,
+            CompanyId = Company?.Id,
+            OrderNumber = OrderNumber,
+            PurchaseDate = PurchaseDate,
+            PurchaseCost = PurchaseCost,
+            MinAmt = MinAmt,
+            Serial = Serial,
+            Notes = Notes,
+            Image = Image
+
         };
     }
 
@@ -41,6 +51,18 @@ public class Component : BaseItem
         return new()
         {
             Name = Name,
+            Qty = Qty,
+            CategoryId = Category?.Id,
+            LocationId = Location?.Id,
+            CompanyId = Company?.Id,
+            OrderNumber = OrderNumber,
+            PurchaseDate = PurchaseDate,
+            PurchaseCost = PurchaseCost,
+            MinAmt = MinAmt,
+            Serial = Serial,
+            Notes = Notes,
+            Image = Image
+
         };
     }
 
@@ -59,9 +81,9 @@ public class Component : BaseItem
     public int? Qty { get; set; }
     public int? MinAmt { get; set; }
     public NamedItem? Category { get; set; }
-    public NamedItem? Supplier { get; set; }
-    public NamedItem? Manufacturer { get; set; }
-    public string? ModelNumber { get; set; }
+    public NamedItem? Supplier { get; internal set; }
+    public NamedItem? Manufacturer { get; internal set; }
+    public string? ModelNumber { get; internal set; }
     public string? OrderNumber { get; set; }
     public DateTime? PurchaseDate { get; set; }
     public float? PurchaseCost { get; set; }

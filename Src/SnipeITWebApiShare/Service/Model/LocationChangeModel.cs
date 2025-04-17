@@ -1,16 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class LocationChangeModel
+internal class LocationChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
-
     [JsonPropertyName("address")]
     public string? Address { get; set; }
 
@@ -40,9 +31,6 @@ internal class LocationChangeModel
 
     [JsonPropertyName("ldap_ou")]
     public string? LdapOu { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
 
     [JsonPropertyName("parent")]
     public NamedItemModel? Parent { get; set; }

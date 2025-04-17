@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class StatusLabelChangeModel 
+internal class StatusLabelChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("type")]
     [JsonConverter(typeof(JsonStringEnumConverter<StatusType>))]
     public StatusType? Type { get; set; }
@@ -22,8 +16,4 @@ internal class StatusLabelChangeModel
     [JsonPropertyName("default_label")]
     [JsonConverter(typeof(BooleanJsonConverter))]
     public bool? DefaultLabel { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
 }

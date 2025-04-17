@@ -5,79 +5,64 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest<Component>
 {
     public SnipeITComponentsUnitTest()
     {
-        create = new Component()
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin;
+
+        TestCreate = new()
         {
             // required
-            Name = CreateName(),
             Qty = 5,
-            Category = (categoryId, categoryName),
+            Category = createComponentCategory,
 
             // optional
-            Location = (locationId, locationName),
-            Company = (companyId, companyName),
+            Location = createLocation,
+            Company = createCompany,
             OrderNumber = "1",
-            PurchaseDate = DateTime.Now.AddYears(5),
+            PurchaseDate = createDate,
             PurchaseCost = 180.30f,
             MinAmt = 8,
             Serial = "1111567890",
 
-            // default
-            Notes = createNotes,
-            Image = createImage,
-
             // test
-            AvailableActions = Actions.Update | Actions.Delete |  Actions.Checkout | Actions.Checkin
+            Remaining = 5,
         };
 
-        update = new Component()
+        TestUpdate = new()
         {
             // required
-            Name = CreateName(),
             Qty = 6,
-            Category = (categoryId, categoryName),
+            Category = updateComponentCategory,
 
             // optional
-            Location = (locationId, locationName),
-            Company = (companyId, companyName),
+            Location = updateLocation,
+            Company = updateCompany,
             OrderNumber = "1",
-            PurchaseDate = DateTime.Now.AddYears(5),
+            PurchaseDate = updateDate,
             PurchaseCost = 180.30f,
             MinAmt = 8,
             Serial = "2222567890",
 
-            // default
-            Notes = updateNotes,
-            Image = updateImage,
-
             // test
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin
+            Remaining = 6,
         };
 
-
-        patch = new Component()
+        TestPatch = new()
         {
             // required
-            Name = CreateName(),
             Qty = 7,
-            Category = (categoryId, categoryName),
-
+            Category = patchComponentCategory,
 
             // optional
-            Location = (locationId, locationName),
-            Company = (companyId, companyName),
+            Location = patchLocation,
+            Company = patchCompany,
             OrderNumber = "1",
-            PurchaseDate = DateTime.Now.AddYears(5),
+            PurchaseDate = patchDate,
             PurchaseCost = 180.30f,
             MinAmt = 8,
             Serial = "3333567890",
 
-
-            // default
-            Notes = patchNotes,
-            Image = patchImage,
-
             // test
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin
+            Remaining = 7,
         };
 
     }
@@ -97,7 +82,6 @@ public class SnipeITComponentsUnitTest : SnipeITBaseUnitTest<Component>
         Assert.AreEqual(expected.PurchaseCost, actual.PurchaseCost, $"{message}.PurchaseCost");
         Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
         Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
-        Assert.AreEqual(expected.UserCanCheckout, actual.UserCanCheckout, $"{message}.UserCanCheckout");
     }
 
     public override IAsyncEnumerable<Component> GetAsync(SnipeIT snipeIT)

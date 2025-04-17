@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class AccessoryChangeModel
+internal class AccessoryChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("qty")]
     public int? Qty { get; set; }
 
@@ -38,10 +32,4 @@ internal class AccessoryChangeModel
 
     [JsonPropertyName("supplier_id")]
     public int? SupplierId { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
 }

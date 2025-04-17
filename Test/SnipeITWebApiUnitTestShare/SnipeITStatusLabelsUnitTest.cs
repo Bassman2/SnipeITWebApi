@@ -5,34 +5,22 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest<StatusLabel>
 {
     public SnipeITStatusLabelsUnitTest()
     {
-        create = new StatusLabel()
+        userCanCheckout = true;
+        availableActions = Actions.Delete | Actions.Update;
+
+        TestCreate = new()
         {
-            Name = CreateName(),
             Type = StatusType.pending,
-            //Image = imageCreate,    
-            Notes = "create",
-
-            AvailableActions = Actions.Delete | Actions.Update 
         };
 
-        update = new StatusLabel()
+        TestUpdate = new()
         {
-            Name = CreateName(),
             Type = StatusType.archived,
-            //Image = imageUpdate,
-            Notes = updateNotes,
-
-            AvailableActions = Actions.Delete | Actions.Update
         };
 
-        patch = new StatusLabel()
+        TestPatch = new()
         {
-            Name = CreateName(),
             Type = StatusType.deployable,
-            //Image = imageUpdate,
-            Notes = patchNotes,
-
-            AvailableActions = Actions.Delete | Actions.Update
         };
     }
 

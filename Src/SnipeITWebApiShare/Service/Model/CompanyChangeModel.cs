@@ -1,13 +1,7 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
-internal class CompanyChangeModel
+internal class CompanyChangeModel : BaseChangeModel
 {
-    [JsonPropertyName("id")]
-    public int Id { get; set; }
-
-    [JsonPropertyName("name")]
-    public string? Name { get; set; }
-
     [JsonPropertyName("phone")]
     public string? Phone { get; set; }
 
@@ -16,10 +10,4 @@ internal class CompanyChangeModel
 
     [JsonPropertyName("email")]
     public string? Email { get; set; }
-
-    [JsonPropertyName("image")]
-    public string? Image { get; set; }
-
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
 }

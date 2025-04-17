@@ -5,17 +5,17 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest<Manufacturer>
 {
     public SnipeITManufacturersUnitTest()
     {
-        create = new Manufacturer()
+        userCanCheckout = true;
+        availableActions = Actions.Delete | Actions.Update;
+
+        TestCreate = new()
         {
             // update
-            Name = CreateName(),
             //Url = "https://test.com",
-            ////Image = "https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg",        // https://raw.githubusercontent.com/Bassman2/SnipeITWebApi/master/.github/images/donate.gif
             //SupportUrl = "https://support.test.com",
             //WarrantyLookupUrl = "https://checkcoverage.test.com",
             //SupportPhone = "+12725858512",
             //SupportEmail = "unknown@microsoft.com",
-            //Notes = "Dummy Note"
             Url = "",
             SupportUrl = "",
             WarrantyLookupUrl = "",
@@ -23,13 +23,11 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest<Manufacturer>
             SupportEmail = "",
 
             // test
-            AvailableActions = Actions.Delete | Actions.Update
         };
 
-        update = new Manufacturer()
+        TestUpdate = new()
         {
             // update
-            Name = CreateName(),
             Url = "",
             SupportUrl = "",
             WarrantyLookupUrl = "",
@@ -37,14 +35,11 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest<Manufacturer>
             SupportEmail = "",
 
             // test
-            AvailableActions = Actions.Delete | Actions.Update
         };
 
-        patch = new Manufacturer()
+        TestPatch = new()
         {
             // update
-            Name = CreateName(),
-
             Url = "",
             SupportUrl = "",
             WarrantyLookupUrl = "",
@@ -52,7 +47,6 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest<Manufacturer>
             SupportEmail = "",
 
             // test
-            AvailableActions = Actions.Delete | Actions.Update
         };
     }
 

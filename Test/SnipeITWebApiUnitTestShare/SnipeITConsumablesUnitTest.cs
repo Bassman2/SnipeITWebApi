@@ -7,83 +7,70 @@ public class SnipeITConsumablesUnitTest : SnipeITBaseUnitTest<Consumable>
 
     public SnipeITConsumablesUnitTest()
     {
-        create = new Consumable()
+        userCanCheckout = true;
+        availableActions = Actions.Checkout | Actions.Checkin | Actions.Clone | Actions.Delete | Actions.Update;
+
+        TestCreate = new()
         {
             // required
-            Name = CreateName(),
             Qty = 1,
             Category = consumableCategory,
 
             // optional
-            Company = (companyId, companyName),
+            Company = createCompany,
+            Manufacturer = createManufacturer,
+            Location = createLocation,
             OrderNumber = "1",
-            Manufacturer = (manufacturerId, manufacturerName),
-            Location = (locationId, locationName),
             Requestable = true,
-            PurchaseDate = DateTime.Now.AddYears(5),
+            PurchaseDate = createDate,
             MinAmt = 8,
             ModelNumber = "1111567890",
             ItemNo = "11111",
-
-            // default
-            Notes = patchNotes,
-            Image = patchImage,
-            
-            // test
-            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Clone | Actions.Delete | Actions.Update, 
-        };
-
-        update = new Consumable()
-        {
-            // required
-            Name = CreateName(),
-            Qty = 1,
-            Category = consumableCategory,
-
-            // optional
-            Company = (companyId, companyName),
-            OrderNumber = "1",
-            Manufacturer = (manufacturerId, manufacturerName),
-            Location = (locationId, locationName),
-            Requestable = true,
-            PurchaseDate = DateTime.Now.AddYears(5),
-            MinAmt = 8,
-            ModelNumber = "1111567890",
-            ItemNo = "11111",
-
-            // default
-            Notes = patchNotes,
-            Image = patchImage,
 
             // test
-
-            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Clone | Actions.Delete | Actions.Update,
+            Remaining = 1,
         };
 
-        patch = new Consumable()
+        TestUpdate = new()
         {
             // required
-            Name = CreateName(),
             Qty = 1,
             Category = consumableCategory,
 
             // optional
-            Company = (companyId, companyName),
+            Company = updateCompany,
+            Manufacturer = updateManufacturer,
+            Location = updateLocation,
             OrderNumber = "1",
-            Manufacturer = (manufacturerId, manufacturerName),
-            Location = (locationId, locationName),
             Requestable = true,
-            PurchaseDate = DateTime.Now.AddYears(5),
+            PurchaseDate = updateDate,
             MinAmt = 8,
-            ModelNumber = "1111567890",
-            ItemNo = "11111",
+            ModelNumber = "22222567890",
+            ItemNo = "22222",
 
-            // default
-            Notes = patchNotes,
-            Image = patchImage,
+            // test
+            Remaining = 1,
+        };
 
+        TestPatch = new()
+        {
+            // required
+            Qty = 1,
+            Category = consumableCategory,
 
-            AvailableActions = Actions.Checkout | Actions.Checkin | Actions.Clone | Actions.Delete | Actions.Update,
+            // optional
+            Company = patchCompany,
+            Manufacturer = patchManufacturer,
+            Location = patchLocation,
+            OrderNumber = "1",
+            Requestable = true,
+            PurchaseDate = patchDate,
+            MinAmt = 8,
+            ModelNumber = "333367890",
+            ItemNo = "3333",
+
+            // test
+            Remaining = 1,
         };
     }
     
