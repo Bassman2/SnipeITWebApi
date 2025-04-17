@@ -18,7 +18,7 @@ internal class ConsumableChangeModel
     public int? CompanyId { get; set; }
 
     [JsonPropertyName("order_number")]
-    public int? OrderNumber { get; set; }
+    public string? OrderNumber { get; set; }
 
     [JsonPropertyName("manufacturer_id")]
     public int? ManufacturerId { get; set; }

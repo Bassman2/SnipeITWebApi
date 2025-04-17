@@ -5,10 +5,12 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
 {
     public SnipeITAccessoriesUnitTest()
     {
-        create = new Accessory()
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone;
+
+        TestCreate = new()
         {
             // required
-            Name = CreateName(),
             Qty = 1,
             Category = createAccessoryCategory,
 
@@ -22,21 +24,14 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Manufacturer = createManufacturer,
             Supplier = createSupplier,
 
-            // default
-            Notes = createNotes,
-            //Image = imageCreate,    
-
             // test
             RemainingQty = 1,
             Remaining = 1,
-            UserCanCheckout = true,
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
 
-        update = new Accessory()
+        TestUpdate = new()
         {
             // required
-            Name = CreateName(),
             Qty = 2,
             Category = updateAccessoryCategory,
 
@@ -50,24 +45,17 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Manufacturer = updateManufacturer,
             Supplier = updateSupplier,
 
-            // default
-            Notes = updateNotes,
-            //Image = imageCreate,            
-
             // check
             RemainingQty = 2,
             Remaining = 2,
-            UserCanCheckout = true,
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
 
-        patch = new Accessory()
+        TestPatch = new()
         {
             // required
             // no
 
             // optional
-            Name = CreateName(),
             Qty = 3,
             OrderNumber = "7",
             PurchaseCost = 60000.0f,
@@ -78,15 +66,10 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
             Location = patchLocation,
             Manufacturer = patchManufacturer,
             Supplier = patchSupplier,
-            // default
-            Notes = patchNotes,
-            //Image = imageCreate,            
 
             // check
             RemainingQty = 3,
             Remaining = 3,
-            UserCanCheckout = true,
-            AvailableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Clone,
         };
     }
 
@@ -107,7 +90,6 @@ public class SnipeITAccessoriesUnitTest : SnipeITBaseUnitTest<Accessory>
         Assert.AreEqual(expected.RemainingQty, actual.RemainingQty, $"{message}.RemainingQty");
         Assert.AreEqual(expected.Remaining, actual.Remaining, $"{message}.Remaining");
         RangeAssert.IsInRange(0, 9, actual.CheckoutsCount, $"{message}.CheckoutsCount");
-        Assert.AreEqual(expected.UserCanCheckout, actual.UserCanCheckout, $"{message}.UserCanCheckout");
     }
 
     public override IAsyncEnumerable<Accessory> GetAsync(SnipeIT snipeIT) 

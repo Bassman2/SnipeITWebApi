@@ -29,6 +29,10 @@ internal class BaseModel
     [JsonConverter(typeof(DateTimeJsonConverter))]
     public DateTime? DeletedAt { get; set; }
 
+    [JsonPropertyName("user_can_checkout")]
+    [JsonConverter(typeof(BooleanJsonConverter))]
+    public bool? UserCanCheckout { get; set; }
+
     [JsonPropertyName("available_actions")]
     public ActionsModel? AvailableActions { get; set; }
 }

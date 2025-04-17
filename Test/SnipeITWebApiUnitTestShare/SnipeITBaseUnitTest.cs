@@ -1,13 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Diagnostics;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Diagnostics.Metrics;
-using System.Net.NetworkInformation;
-using Microsoft.Testing.Platform.Extensions.Messages;
-
-namespace SnipeITWebApiUnitTest;
+﻿namespace SnipeITWebApiUnitTest;
 
 public abstract class SnipeITBaseUnitTest
 {
@@ -189,6 +180,9 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
     public required T patch;
     public bool checkDeleted = true;
 
+    protected bool? userCanCheckout = null;
+    protected AvailableActions? availableActions = null;
+
     [TestMethod]
     public async Task TestMethodWorkAsync()
     { 
@@ -281,21 +275,55 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
         
         DateAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
         DateAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
-        //DateAssert.AreEqual(today, actual.DeletedAt, $"{message}.DeletedAt");
+        //DateAssert.AreEqual(null, actual.DeletedAt, $"{message}.DeletedAt");
 
-        if (expected.AvailableActions != null || actual.AvailableActions != null)
+        Assert.AreEqual(userCanCheckout, actual.UserCanCheckout, $"{message}.UserCanCheckout");
+
+        if (availableActions != null || actual.AvailableActions != null)
         {
             Assert.IsNotNull(actual.AvailableActions, $"{message}.actual.AvailableActions");
-            Assert.IsNotNull(expected.AvailableActions, $"{message}.expected.AvailableActions");
-            Assert.AreEqual(expected.AvailableActions.Checkout, actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
-            Assert.AreEqual(expected.AvailableActions.Checkin, actual.AvailableActions.Checkin, $"{message}.AvailableActions.Checkin");
-            Assert.AreEqual(expected.AvailableActions.Update, actual.AvailableActions.Update, $"{message}.AvailableActions.Update");
-            Assert.AreEqual(expected.AvailableActions.Restore, actual.AvailableActions.Restore, $"{message}.AvailableActions.Restore");
-            Assert.AreEqual(expected.AvailableActions.Delete, actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
-            Assert.AreEqual(expected.AvailableActions.Clone, actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
+            Assert.IsNotNull(availableActions, $"{message}.expected.AvailableActions");
+            Assert.AreEqual(availableActions.Checkout, actual.AvailableActions.Checkout, $"{message}.AvailableActions.Checkout");
+            Assert.AreEqual(availableActions.Checkin, actual.AvailableActions.Checkin, $"{message}.AvailableActions.Checkin");
+            Assert.AreEqual(availableActions.Update, actual.AvailableActions.Update, $"{message}.AvailableActions.Update");
+            Assert.AreEqual(availableActions.Restore, actual.AvailableActions.Restore, $"{message}.AvailableActions.Restore");
+            Assert.AreEqual(availableActions.Delete, actual.AvailableActions.Delete, $"{message}.AvailableActions.Delete");
+            Assert.AreEqual(availableActions.Clone, actual.AvailableActions.Clone, $"{message}.AvailableActions.Clone");
         }
     }
 
+    protected T TestCreate
+    {
+        set
+        {
+            value.Name = CreateName();
+            value.Notes = createNotes;
+            value.Image = createImage;
+            create = value;
+        }
+    }
+
+    protected T TestUpdate
+    {
+        set
+        {
+            value.Name = CreateName();
+            value.Notes = updateNotes;
+            value.Image = updateImage;
+            update = value;
+        }
+    }
+
+    protected T TestPatch
+    {
+        set
+        {
+            value.Name = CreateName();
+            value.Notes = patchNotes;
+            value.Image = patchImage;
+            patch = value;
+        }
+    }
 
     public string CreateName() => Guid.NewGuid().ToString();
 }

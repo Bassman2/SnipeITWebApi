@@ -24,7 +24,7 @@ public class Category : BaseItem
     internal CategoryChangeModel ToCreate()
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        ArgumentNullException.ThrowIfNull(CategoryType, nameof(CategoryType));
+        //ArgumentNullException.ThrowIfNull(CategoryType, nameof(CategoryType));
         return new()
         {
             Name = Name,

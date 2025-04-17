@@ -47,7 +47,6 @@ public class Hardware : BaseItem
         CheckinCounter = model.CheckinCounter;
         CheckoutCounter = model.CheckoutCounter;
         RequestsCounter = model.RequestsCounter;
-        UserCanCheckout = model.UserCanCheckout;
         BookValue = model.BookValue;
         CustomFields = model.CustomFields.CastModel<CustomField>();
     }
@@ -195,7 +194,6 @@ public class Hardware : BaseItem
 
     public int? RequestsCounter { get; internal set; }
 
-    public bool? UserCanCheckout { get; internal set; }
     public string? BookValue { get; internal set; }
     public Dictionary<string, CustomField>? CustomFields { get; internal set; }
 

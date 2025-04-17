@@ -116,9 +116,6 @@ internal class HardwareModel : BaseModel
     [JsonPropertyName("requests_counter")]
     public int? RequestsCounter { get; set; }
 
-    [JsonPropertyName("user_can_checkout")]
-    public bool? UserCanCheckout { get; set; }
-
     [JsonPropertyName("book_value")]
     public string? BookValue { get; set; }
 

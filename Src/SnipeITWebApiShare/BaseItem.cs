@@ -15,8 +15,20 @@ public abstract class BaseItem
         CreatedAt = model.CreatedAt;
         UpdatedAt = model.UpdatedAt;
         DeletedAt = model.DeletedAt;
+        UserCanCheckout = model.UserCanCheckout;
         AvailableActions = model.AvailableActions?.CastModel<AvailableActions>();
     }
+
+    //internal virtual BaseModel ToCreate()
+    //{
+    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+    //    return new BaseModel()
+    //    {
+    //        Name = Name,
+    //        Image = Image,
+    //        Notes = Notes,
+    //    };
+    //}
 
     public int Id { get; internal set; }
     public string? Name { get; set; }
@@ -26,6 +38,7 @@ public abstract class BaseItem
     public DateTime? CreatedAt { get; internal set; }
     public DateTime? UpdatedAt { get; internal set; }
     public DateTime? DeletedAt { get; internal set; }
+    public bool? UserCanCheckout { get; internal set; }
     public AvailableActions? AvailableActions { get; internal set; }
 
 }

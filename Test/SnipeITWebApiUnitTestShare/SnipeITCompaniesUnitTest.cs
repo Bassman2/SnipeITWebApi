@@ -5,10 +5,12 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
 {
     public SnipeITCompaniesUnitTest()
     {
-        create = new Company()
+        userCanCheckout = true;
+        availableActions = Actions.Update | Actions.Delete;
+
+        TestCreate = new()
         {
             // required
-            Name = CreateName(),
 
             // optional
 
@@ -17,18 +19,12 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Fax = faxCreate,
             Email = emailCreate,
 
-            // default
-            Notes = createNotes,
-            Image = createImage,
-
             // test
-            AvailableActions = Actions.Update | Actions.Delete
         };
 
-        update = new Company()
+        TestUpdate = new()
         {
             // required
-            Name = CreateName(),
 
             // optional
 
@@ -37,18 +33,12 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Fax = faxUpdate,
             Email = emailUpdate,
 
-            // default
-            Notes = updateNotes,
-            Image = updateImage,
-
             // test
-            AvailableActions = Actions.Update | Actions.Delete
         };
 
-        patch = new Company()
+        TestPatch = new()
         {
             // required
-            Name = CreateName(),
 
             // optional
 
@@ -57,12 +47,7 @@ public class SnipeITCompaniesUnitTest : SnipeITBaseUnitTest<Company>
             Fax = faxPatch,
             Email = emailPatch,
 
-            // default
-            Notes = patchNotes,
-            Image = patchImage,
-
             // test
-            AvailableActions = Actions.Update | Actions.Delete
         };
     }
 

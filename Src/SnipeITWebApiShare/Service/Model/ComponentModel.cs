@@ -34,15 +34,13 @@ internal class ComponentModel : BaseModel
     public DateTime? PurchaseDate { get; set; }
 
     [JsonPropertyName("purchase_cost")]
-    public string? PurchaseCost { get; set; }
+    [JsonConverter(typeof(FloatJsonConverter))]
+    public float? PurchaseCost { get; set; }
 
     [JsonPropertyName("remaining")]
     public int? Remaining { get; set; }
 
     [JsonPropertyName("company")]
     public NamedItemModel? Company { get; set; }
-    
-    [JsonPropertyName("user_can_checkout")]
-    public int? UserCanCheckout { get; set; }
 }
 

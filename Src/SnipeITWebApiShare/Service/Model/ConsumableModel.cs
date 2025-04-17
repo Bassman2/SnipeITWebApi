@@ -42,6 +42,4 @@ internal class ConsumableModel : BaseModel
     [JsonPropertyName("qty")]
     public int? Qty { get; set; }
 
-    [JsonPropertyName("user_can_checkout")]
-    public bool UserCanCheckout { get; set; }
 }

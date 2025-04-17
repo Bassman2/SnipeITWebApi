@@ -20,7 +20,6 @@ public class Component : BaseItem
         PurchaseCost = model.PurchaseCost;
         Remaining = model.Remaining;
         Company = model.Company?.CastModel<NamedItem>();
-        UserCanCheckout = model.UserCanCheckout;
     }
 
     internal ComponentChangeModel ToCreate()
@@ -65,8 +64,7 @@ public class Component : BaseItem
     public string? ModelNumber { get; set; }
     public string? OrderNumber { get; set; }
     public DateTime? PurchaseDate { get; set; }
-    public string? PurchaseCost { get; set; }
+    public float? PurchaseCost { get; set; }
     public int? Remaining { get; set; }
     public NamedItem? Company { get; set; }
-    public int? UserCanCheckout { get; set; }
 }

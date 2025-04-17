@@ -70,7 +70,5 @@ internal class LicenseModel : BaseModel
     [JsonPropertyName("category")]
     public NamedItemModel? Category { get; set; }
 
-    [JsonPropertyName("user_can_checkout")]
-    public bool UserCanCheckout { get; set; }
-}
+ }
 

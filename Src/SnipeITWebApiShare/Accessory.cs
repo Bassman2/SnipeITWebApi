@@ -22,7 +22,6 @@ public class Accessory : BaseItem
         RemainingQty = model.RemainingQty;
         Remaining = model.Remaining;
         CheckoutsCount = model.CheckoutsCount;
-        UserCanCheckout = model.UserCanCheckout;
     }
 
     internal AccessoryChangeModel ToChange()
@@ -61,5 +60,4 @@ public class Accessory : BaseItem
     public int? RemainingQty { get; internal set; }
     public int? Remaining { get; internal set; }
     public int? CheckoutsCount { get; internal set; }
-    public bool? UserCanCheckout { get; internal set; }
 }

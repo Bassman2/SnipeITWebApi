@@ -5,10 +5,12 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
 {
     public SnipeITCategoriesUnitTest()
     {
-        create = new Category()
+        userCanCheckout = null;
+        availableActions = Actions.Update | Actions.Delete;
+
+        TestCreate = new()
         {
             // required
-            Name = CreateName(),
             CategoryType = CategoryType.Asset,
 
             // optional
@@ -16,20 +18,14 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
             RequireAcceptance = true,
             CheckinEmail = true,
 
-            // default
-            Notes = createNotes,
-            Image = createImage,    
-
             // test
             HasEula = true,
             Eula = defaultEula,
-            AvailableActions = Actions.Update | Actions.Delete,
         };
 
-        update = new Category()
+        TestUpdate = new()
         {
             // required
-            Name = CreateName(),
             //CategoryType = CategoryType.Asset,  // In contrast to the documentary not allowed
 
             // optional
@@ -37,21 +33,15 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
             RequireAcceptance = false,
             CheckinEmail = false,
 
-            // default
-            Notes = updateNotes,
-            Image = updateImage,    
-
             // test
             CategoryType = CategoryType.Asset,
             HasEula = false,
             Eula = null,
-            AvailableActions = Actions.Update | Actions.Delete,
         };
 
-        patch = new Category()
+        TestPatch = new()
         {
             // required
-            Name = CreateName(),
             //CategoryType = CategoryType.Asset,   // In contrast to the documentary not allowed
 
             // optional
@@ -59,15 +49,10 @@ public class SnipeITCategoriesUnitTest : SnipeITBaseUnitTest<Category>
             RequireAcceptance = true,
             CheckinEmail = true,
 
-            // default
-            Notes = patchNotes,
-            Image = patchImage,  
-
             // test
             CategoryType = CategoryType.Asset,
             HasEula = true,
             Eula = defaultEula,
-            AvailableActions = Actions.Update | Actions.Delete,
         };
     }
 

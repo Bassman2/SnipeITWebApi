@@ -28,7 +28,6 @@ public class License : BaseItem
         Maintained = model.Maintained;
         Supplier = model.Supplier.CastModel<NamedItem>();
         Category = model.Category.CastModel<NamedItem>();
-        UserCanCheckout = model.UserCanCheckout;
     }
 
     //internal LicenseModel ToCreate()
@@ -96,6 +95,4 @@ public class License : BaseItem
     public bool? Maintained { get; set; }
     public NamedItem? Supplier { get; set; }
     public NamedItem? Category { get; set; }
-    
-    public bool? UserCanCheckout { get; set; }
 }

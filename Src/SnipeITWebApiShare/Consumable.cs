@@ -20,7 +20,6 @@ public class Consumable : BaseItem
         PurchaseCost = model.PurchaseCost;
         PurchaseDate = model.PurchaseDate;
         Qty = model.Qty;
-        UserCanCheckout = model.UserCanCheckout;
     }
 
     //internal ConsumableChangeModel ToCreate()
@@ -49,6 +48,15 @@ public class Consumable : BaseItem
             Qty = Qty,
             CategoryId = Category?.Id,
             // optional
+            CompanyId = Company?.Id,
+            OrderNumber = OrderNumber,
+            ManufacturerId = Manufacturer?.Id,
+            LocationId = Location?.Id,
+            Requestable = Requestable,
+            PurchaseDate = PurchaseDate,
+            MinAmt = MinAmt,
+            ModelNumber = ModelNumber,
+            ItemNno = ItemNo
         };
     }
 
@@ -67,14 +75,13 @@ public class Consumable : BaseItem
     public string? ItemNo { get; set; }
     public NamedItem? Location { get; set; }
     public NamedItem? Manufacturer { get; set; }
-    public NamedItem? Supplier { get; set; }
+    public NamedItem? Supplier { get; internal set; }
     public int? MinAmt { get; set; }
     public string? ModelNumber { get; set; }
     public int? Remaining { get; set; }
     public string? OrderNumber { get; set; }
-    public string? PurchaseCost { get; set; }
+    public string? PurchaseCost { get; internal set; }
     public DateTime? PurchaseDate { get; set; }
     public int? Qty { get; set; }
-    
-    public bool? UserCanCheckout { get; set; }
+    public bool? Requestable { get; set; }
 }
