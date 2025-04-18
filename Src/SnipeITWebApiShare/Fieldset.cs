@@ -28,7 +28,7 @@ public class Fieldset : BaseItem
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         var fields = Fields?.Select(x => x.ToUpdate()).ToList();
-        var models = Models?.Select(x => x.ToCreate()).ToList();
+        //var models = Models?.Select(x => x.ToCreate()).ToList();
         return new()
         {
             Name = Name,

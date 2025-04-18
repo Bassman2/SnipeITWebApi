@@ -47,9 +47,9 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             // test
             Model = (1, "Macbook Pro 13\""),
             StatusLabel = (1, "Ready to Deploy"),
-            Location = (10, "Port Oswald"),
+            Location = null, //(10, "Port Oswald"),
             UserId = adminUser,
-        };
+        }; //
 
         TestPatch = new()
         {

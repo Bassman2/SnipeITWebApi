@@ -23,12 +23,11 @@ public class Group : BaseItem
 
     internal GroupChangeModel ToUpdate()
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return FillBase<GroupChangeModel>(new()
         {
-            Name = Name,
-            Notes = Notes,
-        };
+            Permissions = Permissions,
+        });
     }
 
     //internal GroupModel ToPatch()
@@ -42,6 +41,6 @@ public class Group : BaseItem
     //}
 
     public Permissions? Permissions { get; set; }
-    public int? UsersCount { get; }
+    public int? UsersCount { get; internal set; }
     
 }

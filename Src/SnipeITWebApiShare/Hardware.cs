@@ -195,22 +195,24 @@ public class Hardware : BaseItem
     public string? BookValue { get; internal set; }
     public Dictionary<string, CustomField>? CustomFields { get; internal set; }
 
-    public static implicit operator Hardware(int id) => new(id);
+   // public static implicit operator Hardware(int id) => new(id);
 
-    public static implicit operator Hardware(NamedItem item) => new(item.Id);
+    public static implicit operator Hardware((int, string) item) => new() { Id = item.Item1, Name = item.Item2 };
 
-    public override bool Equals(object? obj)
-    {
-        if (obj is Hardware item)
-        {
-            return Id == item.Id && Name == item.Name;
-        }
-        if (obj is NamedItem item2)
-        {
-            return Id == item2.Id && Name == item2.Name;
-        }
-        return false;
-    }
+    //public static implicit operator Hardware(NamedItem item) => new(item.Id);
+
+    //public override bool Equals(object? obj)
+    //{
+    //    if (obj is Hardware item)
+    //    {
+    //        return Id == item.Id && Name == item.Name;
+    //    }
+    //    if (obj is NamedItem item2)
+    //    {
+    //        return Id == item2.Id && Name == item2.Name;
+    //    }
+    //    return false;
+    //}
     //public override bool Equals(object? obj) => obj is NHardware item && Id == item.Id && Name == item.Name;
-    public override int GetHashCode() => base.GetHashCode();
+    //public override int GetHashCode() => base.GetHashCode();
 }

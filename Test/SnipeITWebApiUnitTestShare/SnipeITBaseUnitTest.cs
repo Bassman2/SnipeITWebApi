@@ -201,9 +201,9 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem updateUser = (2, "Snipe E. Head");
     protected static readonly NamedItem patchUser = (3, "Alison Gianotto");
 
-    protected static readonly NamedItem createHardware = (4, "Jalon Kshlerin");
-    protected static readonly NamedItem updateHardware = (2, "Snipe E. Head");
-    protected static readonly NamedItem patchHardware = (3, "Alison Gianotto");
+    protected static readonly Hardware createHardware = (4, "Jalon Kshlerin");
+    protected static readonly Hardware updateHardware = (2, "Snipe E. Head");
+    protected static readonly Hardware patchHardware = (3, "Alison Gianotto");
 
     protected static readonly DateTime createDate = DateTime.Now.AddYears(5);
     protected static readonly DateTime updateDate = DateTime.Now.AddYears(6);

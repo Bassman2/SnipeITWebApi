@@ -5,7 +5,7 @@
     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
     WriteIndented = true, 
     AllowTrailingCommas = true,
-    Converters = [ typeof(TextJsonConverter) ])]
+    Converters = [ typeof(TextJsonConverter), typeof(BooleanJsonConverter) ])]
 
 [JsonSerializable(typeof(ResultModel))]
 [JsonSerializable(typeof(PermissionsModel))]

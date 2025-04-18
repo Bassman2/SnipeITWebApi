@@ -8,33 +8,35 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
         userCanCheckout = null;
         availableActions = Actions.Update | Actions.Delete;
 
-        create = new()
+        TestCreate = new()
         {
+            Permissions = new Permissions(),
 
             // test
+            UsersCount = 0
         };
 
-        update = new()
+        TestUpdate = new()
         {
+            Permissions = new Permissions(),
 
             // test
+            UsersCount = 0
         };
 
-        patch = new()
+        TestPatch = new()
         {
+            Permissions = new Permissions(),
 
             // test
+            UsersCount = 0
         };
     }
 
     public override void AreEqual(Group expected, Group actual, string message)
     {
-        //Assert.AreEqual(expected.UsersCount, actual.UsersCount, $"{message}.UsersCount");
-
-        //Assert.IsNotNull(item.Permissions, "item.Permissions");
-        //Assert.AreEqual(0, item.UsersCount, "item.UsersCount");
-        //Assert.IsNull(item.Notes, "item.Notes");
-        //Assert.AreEqual(adminUser, item.CreatedBy, "item.CreatedBy");
+        Assert.AreEqual(expected.Permissions, actual.Permissions, $"{message}.Permissions");
+        Assert.AreEqual(expected.UsersCount, actual.UsersCount, $"{message}.UsersCount");
     }
 
     public override IAsyncEnumerable<Group> GetAsync(SnipeIT snipeIT)

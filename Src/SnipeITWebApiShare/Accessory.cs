@@ -2,7 +2,7 @@
 
 public class Accessory : BaseItem
 {
-    public Accessory()
+    internal Accessory()
     { }
 
     internal Accessory(AccessoryModel model) : base(model)
