@@ -4,7 +4,8 @@
     JsonSerializerDefaults.Web,
     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
     WriteIndented = true, 
-    AllowTrailingCommas = true)]
+    AllowTrailingCommas = true,
+    Converters = [ typeof(TextJsonConverter) ])]
 
 [JsonSerializable(typeof(ResultModel))]
 [JsonSerializable(typeof(PermissionsModel))]

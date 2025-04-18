@@ -6,8 +6,8 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
     public SnipeITMaintenancesUnitTest()
     {
         handleName = false;
-        userCanCheckout = true;
-        availableActions = Actions.Delete;
+        userCanCheckout = null;
+        availableActions = Actions.Delete | Actions.Update;
 
         TestCreate = new()
         {
@@ -24,7 +24,10 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             CompletionDate = createDate,
 
             // test
-            Model= (1, "Macbook Pro 13\"")
+            Model= (1, "Macbook Pro 13\""),
+            StatusLabel = (1, "Ready to Deploy"),
+            Location = (10, "Port Oswald"),
+            UserId = adminUser,
         };
 
         TestUpdate = new()
@@ -39,14 +42,19 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             // option
             IsWarranty = true,
             Cost = updateCost,
-            CompletionDate = updateDate
+            CompletionDate = updateDate,
+
+            // test
+            Model = (1, "Macbook Pro 13\""),
+            StatusLabel = (1, "Ready to Deploy"),
+            Location = (10, "Port Oswald"),
+            UserId = adminUser,
         };
 
         TestPatch = new()
         {
             // required
             AssetMaintenanceType = MaintenanceType.HardwareSupport,
-
 
             // option
             Title = CreateName(),
@@ -55,14 +63,20 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             StartDate = patchDate,
             IsWarranty = true,
             Cost = patchCost,
-            CompletionDate = patchDate
+            CompletionDate = patchDate,
+
+            // test
+            Model = (1, "Macbook Pro 13\""),
+            StatusLabel = (1, "Ready to Deploy"),
+            Location = (10, "Port Oswald"),
+            UserId = adminUser,
         };
     }
 
     public override void AreEqual(Maintenance expected, Maintenance actual, string message)
     {
         Assert.AreEqual(expected.Asset, actual.Asset, $"{message}.Asset");
-        Assert.AreEqual(expected.Model, actual.Model, $"{message}.Model");
+        Assert.AreEqual(expected.Model?.Id, actual.Model?.Id, $"{message}.Model.Id");    // bug in SnipeIT model name not correct
         Assert.AreEqual(expected.StatusLabel, actual.StatusLabel, $"{message}.StatusLabel");
         Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
         Assert.AreEqual(expected.Title, actual.Title, $"{message}.Title");
@@ -71,9 +85,9 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
         Assert.AreEqual(expected.Supplier, actual.Supplier, $"{message}.Supplier");
         Assert.AreEqual(expected.Cost, actual.Cost, $"{message}.Cost");
         Assert.AreEqual(expected.AssetMaintenanceType, actual.AssetMaintenanceType, $"{message}.AssetMaintenanceType");
-        Assert.AreEqual(expected.StartDate, actual.StartDate, $"{message}.StartDate");
+        DateAssert.AreEqual(expected.StartDate, actual.StartDate, $"{message}.StartDate");
         Assert.AreEqual(expected.AssetMaintenanceTime, actual.AssetMaintenanceTime, $"{message}.AssetMaintenanceTime");
-        Assert.AreEqual(expected.CompletionDate, actual.CompletionDate, $"{message}.CompletionDate");
+        DateAssert.AreEqual(expected.CompletionDate, actual.CompletionDate, $"{message}.CompletionDate");
         Assert.AreEqual(expected.UserId, actual.UserId, $"{message}.UserId");
         Assert.AreEqual(expected.IsWarranty, actual.IsWarranty, $"{message}.IsWarranty");
     }

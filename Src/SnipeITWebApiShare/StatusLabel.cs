@@ -1,5 +1,6 @@
 ﻿namespace SnipeITWebApi;
 
+
 public class StatusLabel : BaseItem
 {
     public StatusLabel()
@@ -56,9 +57,14 @@ public class StatusLabel : BaseItem
     //    };
     //}
 
+    public static implicit operator StatusLabel((int, string) item) => new() { Id = item.Item1, Name = item.Item2 };
+
+
     public StatusType? Type { get; set; }
     public string? Color { get; set; }
     public bool? ShowInNav { get; set; }
     public bool? DefaultLabel { get; set; }
     public int? AssetsCount { get; set; }
+
+
 }

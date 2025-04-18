@@ -2,6 +2,9 @@
 
 internal class FloatJsonConverter : JsonConverter<float?>
 {
+    //private static readonly CultureInfo culture = new CultureInfo("en-US");
+    private static readonly CultureInfo culture = new CultureInfo("de-DE");
+
     public override float? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (reader.TokenType == JsonTokenType.Null)
@@ -11,7 +14,7 @@ internal class FloatJsonConverter : JsonConverter<float?>
         if (reader.TokenType == JsonTokenType.String)
         {
             string? value = reader.GetString();
-            if (value != null && float.TryParse(value, out float result))
+            if (value != null && float.TryParse(value, culture, out float result))
             {
                 return result;
             }
@@ -30,7 +33,9 @@ internal class FloatJsonConverter : JsonConverter<float?>
     {
         if (value != null)
         {
-            writer.WriteNumberValue(value.Value);
+            //writer.WriteNumberValue(value.Value);
+            string str = value.Value.ToString(culture);
+            writer.WriteStringValue(str);
         }
         else
         {
@@ -38,3 +43,11 @@ internal class FloatJsonConverter : JsonConverter<float?>
         }
     }
 }
+
+/* problem 
+Maintenance Costs
+
+Field      JSON post       JSON post return   JSON get
+3000.5  => 3000.5       => 30005            => "30.005,00"
+3000,5  => "3000,5"     => 3000.5           => "3.000,50"
+*/

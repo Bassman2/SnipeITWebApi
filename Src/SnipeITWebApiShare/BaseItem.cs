@@ -39,4 +39,7 @@ public abstract class BaseItem
     public bool? UserCanCheckout { get; internal set; }
     public AvailableActions? AvailableActions { get; internal set; }
 
+    public override bool Equals(object? obj) => obj is BaseItem item && Id == item.Id && Name == item.Name;
+    public override int GetHashCode() => base.GetHashCode();
+    public override string ToString() => $"{Id} : {Name}";
 }

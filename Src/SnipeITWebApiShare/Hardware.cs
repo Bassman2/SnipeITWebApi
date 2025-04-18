@@ -199,6 +199,18 @@ public class Hardware : BaseItem
 
     public static implicit operator Hardware(NamedItem item) => new(item.Id);
 
-    public override bool Equals(object? obj) => obj is Hardware item && Id == item.Id && Name == item.Name;
+    public override bool Equals(object? obj)
+    {
+        if (obj is Hardware item)
+        {
+            return Id == item.Id && Name == item.Name;
+        }
+        if (obj is NamedItem item2)
+        {
+            return Id == item2.Id && Name == item2.Name;
+        }
+        return false;
+    }
+    //public override bool Equals(object? obj) => obj is NHardware item && Id == item.Id && Name == item.Name;
     public override int GetHashCode() => base.GetHashCode();
 }

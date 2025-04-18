@@ -1,5 +1,6 @@
 ﻿namespace SnipeITWebApi.Service.Model;
 
+[DebuggerDisplay("{this.GetType().Name}: {Id} : { {Name}")]
 internal class BaseModel
 {
     [JsonPropertyName("id")]
