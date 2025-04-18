@@ -1,5 +1,6 @@
 ﻿namespace SnipeITWebApi;
 
+[DebuggerDisplay("{this.GetType().Name}: {Id} : {Name}")]
 public abstract class BaseItem
 {
     internal BaseItem()
@@ -26,18 +27,7 @@ public abstract class BaseItem
         item.Notes = Notes;
         return item;
     }
-
-    //internal virtual BaseModel ToCreate()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new BaseModel()
-    //    {
-    //        Name = Name,
-    //        Image = Image,
-    //        Notes = Notes,
-    //    };
-    //}
-
+    
     public int Id { get; internal set; }
     public string? Name { get; set; }
     public string? Image { get; set; }

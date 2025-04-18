@@ -1,5 +1,6 @@
 ﻿namespace SnipeITWebApi;
 
+[DebuggerDisplay("{Id} : {Name}")]
 public class NamedItem 
 {
     public NamedItem(int id, string? name = null)

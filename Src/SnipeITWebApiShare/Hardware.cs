@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace SnipeITWebApi;
+﻿namespace SnipeITWebApi;
 
 [DebuggerDisplay("{Id} : {Name} : {AssetTag}")]
 public class Hardware : BaseItem
@@ -201,4 +199,6 @@ public class Hardware : BaseItem
 
     public static implicit operator Hardware(NamedItem item) => new(item.Id);
 
+    public override bool Equals(object? obj) => obj is Hardware item && Id == item.Id && Name == item.Name;
+    public override int GetHashCode() => base.GetHashCode();
 }

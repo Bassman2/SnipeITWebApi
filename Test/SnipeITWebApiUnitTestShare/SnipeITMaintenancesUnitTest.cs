@@ -5,6 +5,7 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
 {
     public SnipeITMaintenancesUnitTest()
     {
+        handleName = false;
         userCanCheckout = true;
         availableActions = Actions.Delete;
 
@@ -20,7 +21,10 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             // option
             IsWarranty = true,
             Cost = createCost,
-            CompletionDate = createDate
+            CompletionDate = createDate,
+
+            // test
+            Model= (1, "Macbook Pro 13\"")
         };
 
         TestUpdate = new()

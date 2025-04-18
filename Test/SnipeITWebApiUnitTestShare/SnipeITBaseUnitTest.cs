@@ -224,6 +224,7 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
     public required T patch;
     public bool checkDeleted = true;
 
+    protected bool handleName = true;
     protected bool? userCanCheckout = null;
     protected AvailableActions? availableActions = null;
 
@@ -306,7 +307,7 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
         Assert.IsNotNull(actual, $"{message}.actual");
 
         Assert.AreEqual(id, actual.Id, $"{message}.Id");
-        Assert.AreEqual(expected.Name, actual.Name, $"{message}.Name");
+        Assert.AreEqual(handleName ? expected.Name : null, actual.Name, $"{message}.Name");
         //Assert.AreEqual(expected.Image, actual.Image, $"{message}.Image");
         Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
 
