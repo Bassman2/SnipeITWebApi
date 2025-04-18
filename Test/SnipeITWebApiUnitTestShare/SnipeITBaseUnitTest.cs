@@ -201,9 +201,17 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem updateUser = (2, "Snipe E. Head");
     protected static readonly NamedItem patchUser = (3, "Alison Gianotto");
 
+    protected static readonly NamedItem createHardware = (4, "Jalon Kshlerin");
+    protected static readonly NamedItem updateHardware = (2, "Snipe E. Head");
+    protected static readonly NamedItem patchHardware = (3, "Alison Gianotto");
+
     protected static readonly DateTime createDate = DateTime.Now.AddYears(5);
     protected static readonly DateTime updateDate = DateTime.Now.AddYears(6);
     protected static readonly DateTime patchDate = DateTime.Now.AddYears(7);
+
+    protected static readonly float createCost = 11000.11f;
+    protected static readonly float updateCost = 22000.22f;
+    protected static readonly float patchCost = 33000.33f;
 
     protected const string defaultEula = "<h1>COMPANY-OWNED EQUIPMENT AGREEMENT</h1>\n<p>Use of all equipment, software, and data owned by The Company is limited to authorized persons for business purposes only.\nThe term equipment refers to all laptop computers, desktop computers, tablets, software, printers, blackberries, key fobs, cell phones and other tangible items provided by The Company.</p>\n<ul>\n<li>All equipment provided to employees in the offices of The Company is considered the property of The Company.</li>\n<li>All equipment purchased by The Company for an employee is considered the property of The Company.</li>\n<li>Any equipment purchased by an employee and then reimbursed through the expense procedure is considered the property of The Company.</li>\n<li>Software purchased by the employee for personal use and stored on equipment owned by The Company is considered the property of The Company. </li>\n<li>If upgrades are made to the equipment (e.g. cell phones, tablets, software, etc.), whether paid for by the employee or by The Company, the equipment remains the property of The Company.</li>\n<li>If upgrading to a newer device (e.g. cell phone), the old device is to be returned to The Company.</li>\n<li>All computer, electronic, and telephonic documents and communications transmitted by, received from, or stored in the employer's equipment are the property of the employer. Employees are not to transmit or store material on the employer’s equipment in violation of any state or federal law or government regulation.</li>\n<li>Employees who are provided with equipment owned by The Company have a responsibility to protect the equipment from being lost, damaged, or stolen. If the equipment is lost, damaged, or stolen because of the employee’s negligence or willful disregard, the employee will pay the employer the amount equal to the replacement value or repair cost of the equipment.</li>\n</ul>\n<p>Upon termination, it is the employee’s responsibility to return all equipment owned by The Company to The Company on or before the last day of employment.</p>";
 

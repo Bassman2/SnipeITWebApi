@@ -5,37 +5,25 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
 {
     public SnipeITGroupsUnitTest()
     {
-        userCanCheckout = true;
-        availableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin;
+        userCanCheckout = null;
+        availableActions = Actions.Update | Actions.Delete;
 
         create = new()
         {
-            Name = CreateName(),
-            //Image = imageCreate,    
-            Notes = createNotes,
 
             // test
-            AvailableActions = Actions.Delete | Actions.Update,
         };
 
         update = new()
         {
-            Name = CreateName(),
-            //Image = imageUpdate,
-            Notes = updateNotes,
 
             // test
-            AvailableActions = Actions.Delete | Actions.Update,
         };
 
         patch = new()
         {
-            Name = CreateName(),
-            //Image = imagePatch,
-            Notes = patchNotes,
 
             // test
-            AvailableActions = Actions.Delete | Actions.Update,
         };
     }
 

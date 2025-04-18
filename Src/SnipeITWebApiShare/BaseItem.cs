@@ -18,6 +18,14 @@ public abstract class BaseItem
         UserCanCheckout = model.UserCanCheckout;
         AvailableActions = model.AvailableActions?.CastModel<AvailableActions>();
     }
+    
+    internal T FillBase<T>(T item) where T : BaseChangeModel
+    {
+        item.Name = Name;
+        item.Image = Image;
+        item.Notes = Notes;
+        return item;
+    }
 
     //internal virtual BaseModel ToCreate()
     //{

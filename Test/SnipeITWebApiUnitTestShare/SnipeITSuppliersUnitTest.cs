@@ -5,7 +5,7 @@ public class SnipeITSuppliersUnitTest : SnipeITBaseUnitTest<Supplier>
 {
     public SnipeITSuppliersUnitTest()
     {
-        userCanCheckout = true;
+        userCanCheckout = null;
         availableActions = Actions.Update | Actions.Delete;
 
         TestCreate = new()

@@ -3,9 +3,7 @@
 internal class MaintenanceModel : BaseModel
 {
     [JsonPropertyName("asset")]
-    public HardwareModel? Asset { get; set; }
-
-    
+    public HardwareModel? Asset { get; set; }    
 
     [JsonPropertyName("model")]
     public NamedItemModel? Model { get; set; }
@@ -27,14 +25,14 @@ internal class MaintenanceModel : BaseModel
 
     [JsonPropertyName("supplier")]
     public NamedItemModel? Supplier { get; set; }
-
     
-
     [JsonPropertyName("cost")]
-    public string? Cost { get; set; }
+    [JsonConverter(typeof(FloatJsonConverter))]
+    public float? Cost { get; set; }
 
     [JsonPropertyName("asset_maintenance_type")]
-    public string? AssetMaintenanceType { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter<MaintenanceType>))]
+    public MaintenanceType? AssetMaintenanceType { get; set; }
 
     [JsonPropertyName("start_date")]
     [JsonConverter(typeof(DateJsonConverter))]
@@ -52,5 +50,6 @@ internal class MaintenanceModel : BaseModel
     public NamedItemModel? UserId { get; set; }
 
     [JsonPropertyName("is_warranty")]
-    public int? IsWarranty { get; set; }
+    [JsonConverter(typeof(BooleanJsonConverter))]
+    public bool? IsWarranty { get; set; }
 }

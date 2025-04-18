@@ -199,4 +199,6 @@ public class Hardware : BaseItem
 
     public static implicit operator Hardware(int id) => new(id);
 
+    public static implicit operator Hardware(NamedItem item) => new(item.Id);
+
 }

@@ -10,26 +10,68 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
 
         TestCreate = new()
         {
-            Asset = hardwareId,
-            Supplier = companyId,
-            AssetMaintenanceType = "1",
+            // required
             Title = CreateName(),
-            StartDate = DateTime.UtcNow,
+            Asset = createHardware,
+            Supplier = createSupplier,
+            AssetMaintenanceType = MaintenanceType.Maintenance,
+            StartDate = createDate,
+
+            // option
+            IsWarranty = true,
+            Cost = createCost,
+            CompletionDate = createDate
         };
 
         TestUpdate = new()
         {
+            // required
+            Title = CreateName(),
+            Asset = updateHardware,
+            Supplier = updateSupplier,
+            AssetMaintenanceType = MaintenanceType.Repair,
+            StartDate = updateDate,
+
+            // option
+            IsWarranty = true,
+            Cost = updateCost,
+            CompletionDate = updateDate
         };
 
         TestPatch = new()
         {
+            // required
+            AssetMaintenanceType = MaintenanceType.HardwareSupport,
+
+
+            // option
+            Title = CreateName(),
+            Asset = patchHardware,
+            Supplier = patchSupplier,
+            StartDate = patchDate,
+            IsWarranty = true,
+            Cost = patchCost,
+            CompletionDate = patchDate
         };
     }
 
     public override void AreEqual(Maintenance expected, Maintenance actual, string message)
     {
-
-
+        Assert.AreEqual(expected.Asset, actual.Asset, $"{message}.Asset");
+        Assert.AreEqual(expected.Model, actual.Model, $"{message}.Model");
+        Assert.AreEqual(expected.StatusLabel, actual.StatusLabel, $"{message}.StatusLabel");
+        Assert.AreEqual(expected.Company, actual.Company, $"{message}.Company");
+        Assert.AreEqual(expected.Title, actual.Title, $"{message}.Title");
+        Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
+        Assert.AreEqual(expected.RtdLocation, actual.RtdLocation, $"{message}.RtdLocation");
+        Assert.AreEqual(expected.Supplier, actual.Supplier, $"{message}.Supplier");
+        Assert.AreEqual(expected.Cost, actual.Cost, $"{message}.Cost");
+        Assert.AreEqual(expected.AssetMaintenanceType, actual.AssetMaintenanceType, $"{message}.AssetMaintenanceType");
+        Assert.AreEqual(expected.StartDate, actual.StartDate, $"{message}.StartDate");
+        Assert.AreEqual(expected.AssetMaintenanceTime, actual.AssetMaintenanceTime, $"{message}.AssetMaintenanceTime");
+        Assert.AreEqual(expected.CompletionDate, actual.CompletionDate, $"{message}.CompletionDate");
+        Assert.AreEqual(expected.UserId, actual.UserId, $"{message}.UserId");
+        Assert.AreEqual(expected.IsWarranty, actual.IsWarranty, $"{message}.IsWarranty");
     }
 
     public override IAsyncEnumerable<Maintenance> GetAsync(SnipeIT snipeIT)

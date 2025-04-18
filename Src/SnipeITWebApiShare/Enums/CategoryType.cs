@@ -1,7 +1,6 @@
 ﻿namespace SnipeITWebApi;
 
 [JsonConverter(typeof(JsonStringEnumConverter<CategoryType>))]
-
 public enum CategoryType
 {
     [EnumMember(Value = "asset")]

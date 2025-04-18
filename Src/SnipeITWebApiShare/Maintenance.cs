@@ -48,17 +48,23 @@ public class Maintenance : BaseItem
     internal MaintenanceChangeModel ToUpdate()
     {
         //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<MaintenanceChangeModel>(new()
         {
             // optional
-            Notes = Notes,
+            //Name = Name,
+            Title = Title,
             AssetId = Asset?.Id,
             SupplierId = Supplier?.Id,
             AssetMaintenanceType = AssetMaintenanceType,
-            Title = Title,
             StartDate = StartDate,
+            IsWarrenty = IsWarranty,
+            Cost = Cost,
+            CompletionDate = CompletionDate,
 
-        };
+            //Notes = Notes,
+            //Image = Image,
+
+        });
     }
 
     //internal MaintenanceModel ToPatch()
@@ -79,11 +85,11 @@ public class Maintenance : BaseItem
     public NamedItem? Location { get; set; }
     public NamedItem? RtdLocation { get; set; }
     public NamedItem? Supplier { get; set; }
-    public string? Cost { get; set; }
-    public string? AssetMaintenanceType { get; set; }
+    public float? Cost { get; set; }
+    public MaintenanceType? AssetMaintenanceType { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? AssetMaintenanceTime { get; set; }
     public DateTime? CompletionDate { get; set; }
     public NamedItem? UserId { get; set; }
-    public int? IsWarranty { get; set; }
+    public bool? IsWarranty { get; set; }
 }

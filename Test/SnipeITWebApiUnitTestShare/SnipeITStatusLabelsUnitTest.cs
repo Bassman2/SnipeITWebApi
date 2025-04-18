@@ -5,7 +5,7 @@ public class SnipeITStatusLabelsUnitTest : SnipeITBaseUnitTest<StatusLabel>
 {
     public SnipeITStatusLabelsUnitTest()
     {
-        userCanCheckout = true;
+        userCanCheckout = null;
         availableActions = Actions.Delete | Actions.Update;
 
         TestCreate = new()

@@ -5,7 +5,7 @@ public class SnipeITDepartmentsUnitTest : SnipeITBaseUnitTest<Department>
 {
     public SnipeITDepartmentsUnitTest()
     {
-        userCanCheckout = true;
+        userCanCheckout = null;
         availableActions = Actions.Update | Actions.Delete;
 
         TestCreate = new()

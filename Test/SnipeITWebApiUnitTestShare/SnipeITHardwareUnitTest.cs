@@ -5,7 +5,7 @@ public class SnipeITHardwareUnitTest : SnipeITBaseUnitTest<Hardware>
 {
     public SnipeITHardwareUnitTest()
     {
-        userCanCheckout = true;
+        userCanCheckout = false;
         availableActions = Actions.Checkout | Actions.Checkin | Actions.Update | Actions.Delete | Actions.Clone;
 
         TestCreate = new()
