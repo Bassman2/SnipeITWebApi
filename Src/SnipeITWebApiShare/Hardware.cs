@@ -63,7 +63,7 @@ public class Hardware : BaseItem
     internal HardwareChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<HardwareChangeModel>(new()
         {
             AssetTag = AssetTag,
             StatusId = StatusLabel?.Id,
@@ -88,7 +88,7 @@ public class Hardware : BaseItem
 
             // free
             
-        };
+        });
     }
 
     //internal HardwareModel ToPatch()

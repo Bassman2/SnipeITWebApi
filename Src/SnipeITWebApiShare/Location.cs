@@ -56,7 +56,7 @@ public class Location : BaseItem
     internal LocationChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<LocationChangeModel>(new()
         {
             Name = Name,
             Image = Image,
@@ -74,7 +74,7 @@ public class Location : BaseItem
             ParentId = Parent?.Id,
             ManagerId = Manager?.Id,
             //Children = Children?.Select(x => x.ToUpdate()).ToList(),
-        };
+        });
     }
 
     //internal LocationModel ToPatch()

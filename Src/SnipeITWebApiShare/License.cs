@@ -51,7 +51,7 @@ public class License : BaseItem
     internal LicenseChangeModel ToUpdate()
     {
         //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<LicenseChangeModel>(new()
         {
             // optional
             Name = Name,
@@ -59,7 +59,7 @@ public class License : BaseItem
             Seats = Seats,
             CategoryId = Category?.Id,
 
-        };
+        });
     }
 
     //internal LicenseModel ToPatch()

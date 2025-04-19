@@ -75,7 +75,7 @@ public class User : BaseItem
             ArgumentException.ThrowIfNullOrWhiteSpace(Username, nameof(Username));
             ArgumentException.ThrowIfNullOrWhiteSpace(Password, nameof(Password));
         }
-        return new()
+        return FillBase<UserChangeModel>(new()
         {
             FirstName = FirstName,
             LastName = LastName,
@@ -84,8 +84,7 @@ public class User : BaseItem
             PasswordConfirmation = Password,
             Phone = Phone,
             Email = Email,
-            Notes = Notes,
-        };
+        });
     }
 
     //internal UserModel ToPatch()

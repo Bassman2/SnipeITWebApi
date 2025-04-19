@@ -27,7 +27,16 @@ public abstract class BaseItem : NamedItem
         item.Notes = Notes;
         return item;
     }
-    
+
+    //protected T create;
+    //protected T update;
+    //protected T patch;
+
+    //internal T ToCreate() => FillBase<T>(create ?? update);
+    //internal T ToUpdate() => update ?? create;
+    //internal T ToPatch() => patch ?? update ?? create;
+
+
     //public int Id { get; internal set; }
     //public string? Name { get; set; }
     public string? Image { get; set; }

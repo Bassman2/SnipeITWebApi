@@ -32,7 +32,7 @@ public class StatusLabel : BaseItem
     internal StatusLabelChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<StatusLabelChangeModel>(new()
         {
             Name = Name,
             Type = Type,
@@ -40,7 +40,7 @@ public class StatusLabel : BaseItem
             ShowInNav = ShowInNav,
             DefaultLabel = DefaultLabel,
             Notes = Notes,
-        };
+        });
     }
 
     //internal StatusLabelModel ToPatch()

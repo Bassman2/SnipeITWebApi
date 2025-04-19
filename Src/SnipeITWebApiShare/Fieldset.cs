@@ -29,12 +29,11 @@ public class Fieldset : BaseItem
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         var fields = Fields?.Select(x => x.ToUpdate()).ToList();
         //var models = Models?.Select(x => x.ToCreate()).ToList();
-        return new()
+        return FillBase<FieldsetChangeModel>(new()
         {
-            Name = Name,
             //Fields = new ListModel<FieldModel> { Total = fields?.Count ?? 0, Rows = fields },
             //Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
-        };
+        });
     }
 
     //internal FieldsetModel ToPatch()

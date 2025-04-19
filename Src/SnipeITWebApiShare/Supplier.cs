@@ -49,7 +49,7 @@ public class Supplier : BaseItem
     internal SupplierChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<SupplierChangeModel>(new()
         {
             Name = Name,
             Url = Url,
@@ -64,7 +64,7 @@ public class Supplier : BaseItem
             Email = Email,
             Contact = Contact,
             Notes = Notes
-        };
+        });
     }
 
     //internal SupplierModel ToPatch()
