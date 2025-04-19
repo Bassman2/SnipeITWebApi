@@ -26,10 +26,9 @@ public class Accessory : BaseItem
 
     internal AccessoryChangeModel ToChange()
     {
-        return new()
+        return FillBase<AccessoryChangeModel>(new()
         {
             // required
-            Name = Name,
             Qty = Qty,
             CategoryId = Category?.Id,
             OrderNumber = OrderNumber,
@@ -40,9 +39,7 @@ public class Accessory : BaseItem
             LocationId = Location?.Id,
             ManufacturerId = Manufacturer?.Id,
             SupplierId = Supplier?.Id,
-            Notes = Notes,
-            Image = Image
-        };
+        });
     }
 
     public NamedItem? Company { get; set; }

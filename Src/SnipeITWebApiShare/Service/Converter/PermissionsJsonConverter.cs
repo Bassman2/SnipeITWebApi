@@ -17,6 +17,10 @@ internal class PermissionsJsonConverter : JsonConverter<PermissionsModel?>
             JsonTypeInfo<PermissionsModel> jsonTypeInfo = (JsonTypeInfo<PermissionsModel>)SourceGenerationContext.Default.GetTypeInfo(typeof(PermissionsModel))!;
             return JsonSerializer. Deserialize<PermissionsModel>(ref reader, jsonTypeInfo);
         }
+        if (reader.TokenType == JsonTokenType.StartArray)
+        {
+            reader.Skip();
+        }
         return null;
     }
 

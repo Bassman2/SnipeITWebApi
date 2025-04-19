@@ -5,48 +5,44 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest<Manufacturer>
 {
     public SnipeITManufacturersUnitTest()
     {
-        userCanCheckout = true;
+        userCanCheckout = null;
         availableActions = Actions.Delete | Actions.Update;
 
         TestCreate = new()
         {
             // update
-            //Url = "https://test.com",
-            //SupportUrl = "https://support.test.com",
-            //WarrantyLookupUrl = "https://checkcoverage.test.com",
-            //SupportPhone = "+12725858512",
-            //SupportEmail = "unknown@microsoft.com",
+            
+            // test
             Url = "",
             SupportUrl = "",
             WarrantyLookupUrl = "",
             SupportPhone = "",
             SupportEmail = "",
-
-            // test
         };
 
         TestUpdate = new()
         {
             // update
+
+            // test
             Url = "",
             SupportUrl = "",
             WarrantyLookupUrl = "",
             SupportPhone = "",
             SupportEmail = "",
-
-            // test
         };
 
         TestPatch = new()
         {
             // update
+
+
+            // test
             Url = "",
             SupportUrl = "",
             WarrantyLookupUrl = "",
             SupportPhone = "",
             SupportEmail = "",
-
-            // test
         };
     }
 
@@ -57,22 +53,11 @@ public class SnipeITManufacturersUnitTest : SnipeITBaseUnitTest<Manufacturer>
         Assert.AreEqual(expected.WarrantyLookupUrl, actual.WarrantyLookupUrl, $"{message}.WarrantyLookupUrl");
         Assert.AreEqual(expected.SupportPhone, actual.SupportPhone, $"{message}.SupportPhone");
         Assert.AreEqual(expected.SupportEmail, actual.SupportEmail, $"{message}.SupportEmail");
-
-        //Assert.AreEqual("https://apple.com", item.Url, "item.Url");
-        //Assert.AreEqual("https://develop.snipeitapp.com/uploads/manufacturers/apple.jpg", item.Image, "item.Image");
-        //Assert.AreEqual("https://support.apple.com", item.SupportUrl, "item.SupportUrl");
-        //Assert.AreEqual("https://checkcoverage.apple.com", item.WarrantyLookupUrl, "item.WarrantyLookupUrl");
-        //Assert.AreEqual("+19864240208", item.SupportPhone, "item.SupportPhon");
-        //Assert.AreEqual("carey.sanford@example.net", item.SupportEmail, "item.SupportEmail");
-
-        //Assert.AreNotEqual(0, item.AssetsCount, "item.AssetsCount");
-        //Assert.IsNotNull(item.LicensesCount, "item.LicensesCount");
-        //Assert.AreEqual(0, item.ConsumablesCount, "item.ConsumablesCount");
-        //RangeAssert.IsInRange(3, 4, item.AccessoriesCount, "item.AccessoriesCount");
-        //Assert.AreEqual(0, item.ComponentsCount, "item.ComponentsCount");
-        //Assert.AreEqual(notes, item.Notes, "item.Notes");
-
-
+        Assert.AreEqual(expected.AssetsCount, actual.AssetsCount, $"{message}.AssetsCount");
+        Assert.AreEqual(expected.LicensesCount, actual.LicensesCount, $"{message}.LicensesCount");
+        Assert.AreEqual(expected.ConsumablesCount, actual.ConsumablesCount, $"{message}.ConsumablesCount");
+        Assert.AreEqual(expected.AccessoriesCount, actual.AccessoriesCount, $"{message}.AccessoriesCount");
+        Assert.AreEqual(expected.ComponentsCount, actual.ComponentsCount, $"{message}.ConsumaComponentsCountblesCount");
     }
 
     public override IAsyncEnumerable<Manufacturer> GetAsync(SnipeIT snipeIT)

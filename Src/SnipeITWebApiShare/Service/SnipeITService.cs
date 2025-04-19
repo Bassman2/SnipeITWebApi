@@ -609,11 +609,12 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
         return res;
     }
 
-    public async Task<GroupChangeModel?> CreateGroupAsync(GroupChangeModel model, CancellationToken cancellationToken)
+    public async Task<BaseChangeModel?> CreateGroupAsync(GroupChangeModel model, CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNotConnected(client);
 
-        var res = await PostAsJsonAsync<GroupChangeModel, ResultModel<GroupChangeModel>>("api/v1/groups", model, cancellationToken);
+        //var res = await PostAsJsonAsync<GroupChangeModel, ResultModel<GroupChangeModel>>("api/v1/groups", model, cancellationToken);
+        var res = await PostAsJsonAsync<GroupChangeModel, ResultModel<BaseChangeModel>>("api/v1/groups", model, cancellationToken);
         CheckResultForError(res);
         return res!.Payload;
     }

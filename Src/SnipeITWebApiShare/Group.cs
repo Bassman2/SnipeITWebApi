@@ -26,7 +26,7 @@ public class Group : BaseItem
         //ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         return FillBase<GroupChangeModel>(new()
         {
-            Permissions = Permissions,
+            Permissions = Permissions?.ToUpdate(),
         });
     }
 

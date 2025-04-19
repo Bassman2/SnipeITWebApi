@@ -3,6 +3,6 @@
 internal class GroupChangeModel : BaseChangeModel
 {
     [JsonPropertyName("permissions")]
-    public Permissions? Permissions { get; set; }
+    public PermissionsModel? Permissions { get; set; }
 }
    
