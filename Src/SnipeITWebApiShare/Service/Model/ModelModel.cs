@@ -15,7 +15,8 @@ internal class ModelModel : BaseModel
     public string? MinAmt { get; set; }
 
     [JsonPropertyName("remaining")]
-    public int? Remaining { get; set; }
+    [JsonConverter(typeof(BooleanJsonConverter))]
+    public bool? Remaining { get; set; }
 
     [JsonPropertyName("depreciation")]
     public NamedItemModel? Depreciation { get; set; }
@@ -38,7 +39,8 @@ internal class ModelModel : BaseModel
     // TODO : default_fieldset_values
 
     [JsonPropertyName("eol")]
-    public string? Eol { get; set; }
+    [JsonConverter(typeof(IntJsonConverter))]
+    public int? Eol { get; set; }
 
     [JsonPropertyName("requestable")]
     [JsonConverter(typeof(BooleanJsonConverter))]

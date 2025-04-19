@@ -173,6 +173,10 @@ public abstract class SnipeITBaseUnitTest
     protected const string updateImage = null;
     protected const string patchImage = null;
 
+    protected const string createModelNumber = "100011";
+    protected const string updateModelNumber = "200022";
+    protected const string patchModelNumber = "300033";
+
     protected static readonly NamedItem createAccessoryCategory = (8, "Keyboards");
     protected static readonly NamedItem updateAccessoryCategory = (9, "Mouse");
     protected static readonly NamedItem patchAccessoryCategory = (8, "Keyboards");
@@ -180,6 +184,10 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem createComponentCategory = (8, "Keyboards");
     protected static readonly NamedItem updateComponentCategory = (9, "Mouse");
     protected static readonly NamedItem patchComponentCategory = (8, "Keyboards");
+
+    protected static readonly NamedItem createAssetCategory = (1, "Laptops");
+    protected static readonly NamedItem updateAssetCategory = (2, "Desktops");
+    protected static readonly NamedItem patchAssetCategory = (3, "Tablets");
 
     protected static readonly NamedItem createCompany = (1, "Quigley-Luettgen");
     protected static readonly NamedItem updateCompany = (2, "Batz Inc");
@@ -200,6 +208,10 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem createUser = (4, "Jalon Kshlerin");
     protected static readonly NamedItem updateUser = (2, "Snipe E. Head");
     protected static readonly NamedItem patchUser = (3, "Alison Gianotto");
+
+    protected static readonly NamedItem createFieldset = (4, "Jalon Kshlerin");
+    protected static readonly NamedItem updateFieldset = (2, "Snipe E. Head");
+    protected static readonly NamedItem patchFieldset = (3, "Alison Gianotto");
 
     protected static readonly Hardware createHardware = (4, "Jalon Kshlerin");
     protected static readonly Hardware updateHardware = (2, "Snipe E. Head");

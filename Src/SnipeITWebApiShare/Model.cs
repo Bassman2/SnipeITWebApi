@@ -21,31 +21,10 @@ public class Model : BaseItem
 
     //internal ModelModel ToCreate()
     //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
     //    return new()
     //    {
 
-    //        //Id = Id,
-    //        Name = Name,
-    //        CategoryId = Category?.Id,
-    //        //Url = Url,
-    //        //Image = Image,
-    //        //SupportUrl = SupportUrl,
-    //        //WarrantyLookupUrl = WarrantyLookupUrl,
-    //        //SupportPhone = SupportPhone,
-    //        //SupportEmail = SupportEmail,
-    //        //AssetsCount = AssetsCount,
-    //        //LicensesCount = LicensesCount,
-    //        //ConsumablesCount = ConsumablesCount,
-    //        //AccessoriesCount = AccessoriesCount,
-    //        //ComponentsCount = ComponentsCount,
-    //        //Notes = Notes,
-    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-    //        //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
+   
     //    };
     //}
 
@@ -53,28 +32,16 @@ public class Model : BaseItem
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
-        return new()
+        return FillBase<ModelChangeModel>(new()
         {
-            Name = Name,
             CategoryId = Category?.Id,
-            //Url = Url,
-            //Image = Image,
-            //SupportUrl = SupportUrl,
-            //WarrantyLookupUrl = WarrantyLookupUrl,
-            //SupportPhone = SupportPhone,
-            //SupportEmail = SupportEmail,
-            //AssetsCount = AssetsCount,
-            //LicensesCount = LicensesCount,
-            //ConsumablesCount = ConsumablesCount,
-            //AccessoriesCount = AccessoriesCount,
-            //ComponentsCount = ComponentsCount,
-            //Notes = Notes,
-            //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-            //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-            //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-            //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-            //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
-        };
+            ModelNumber = ModelNumber,
+            FieldsetId = Fieldset?.Id,
+            ManufacturerId = Manufacturer?.Id,
+            DepreciationId = Depreciation?.Id,
+            Requestable = Requestable,
+            Eol = Eol
+        });
     }
 
     //internal ModelModel ToPatch()
@@ -83,25 +50,7 @@ public class Model : BaseItem
     //    ArgumentOutOfRangeException.ThrowIfZero(Category?.Id ?? 0, nameof(Category.Id));
     //    return new()
     //    {
-    //        Name = Name,
-    //        CategoryId = Category?.Id,
-    //        //Url = Url,
-    //        //Image = Image,
-    //        //SupportUrl = SupportUrl,
-    //        //WarrantyLookupUrl = WarrantyLookupUrl,
-    //        //SupportPhone = SupportPhone,
-    //        //SupportEmail = SupportEmail,
-    //        //AssetsCount = AssetsCount,
-    //        //LicensesCount = LicensesCount,
-    //        //ConsumablesCount = ConsumablesCount,
-    //        //AccessoriesCount = AccessoriesCount,
-    //        //ComponentsCount = ComponentsCount,
-    //        //Notes = Notes,
-    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-    //        //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
+    
     //    };
     //}
 
@@ -111,7 +60,7 @@ public class Model : BaseItem
 
     public string? MinAmt { get; set; }
 
-    public int? Remaining { get; set; }
+    public bool? Remaining { get; set; }
 
     public NamedItem? Depreciation { get; set; }
 
@@ -123,7 +72,7 @@ public class Model : BaseItem
 
     // TODO : default_fieldset_values
 
-    public string? Eol { get; set; }
+    public int? Eol { get; set; }
 
     public bool? Requestable { get; set; }
 }
