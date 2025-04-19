@@ -41,7 +41,7 @@ public class Consumable : BaseItem
     internal ConsumableChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<ConsumableChangeModel>(new()
         {
             // required
             Name = Name,
@@ -60,7 +60,7 @@ public class Consumable : BaseItem
             Notes = Notes,
             Image = Image
 
-        };
+        });
     }
 
     //internal ConsumableModel ToPatch()

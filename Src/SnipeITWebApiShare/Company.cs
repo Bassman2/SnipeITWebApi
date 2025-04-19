@@ -35,7 +35,7 @@ public class Company : BaseItem
     internal CompanyChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<CompanyChangeModel>(new()
         {
             Name = Name,
             Phone = Phone,
@@ -43,13 +43,13 @@ public class Company : BaseItem
             Email = Email,
             Image = Image,
             Notes = Notes,
-        };
+        });
     }
 
     //internal CompanyChangeModel ToPatch()
     //{
     //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
+    //    return FillBase<CompanyChangeModel>(new()
     //    {
     //        Name = Name,
     //        Phone = Phone,
@@ -57,10 +57,10 @@ public class Company : BaseItem
     //        Email = Email,
     //        Image = Image,
     //        Notes = Notes,
-    //    };
+    //    });
     //}
 
-    
+
 
     public string? Phone { get; set; }
 

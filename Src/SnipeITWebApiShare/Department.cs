@@ -33,13 +33,13 @@ public class Department : BaseItem
     internal DepartmentChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<DepartmentChangeModel>(new()
         {
             Name = Name,
             Phone = Phone,
             Fax = Fax,
             Notes = Notes,
-        };
+        });
     }
 
     //internal DepartmentModel ToPatch()

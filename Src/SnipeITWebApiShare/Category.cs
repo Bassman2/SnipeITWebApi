@@ -25,7 +25,7 @@ public class Category : BaseItem
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         //ArgumentNullException.ThrowIfNull(CategoryType, nameof(CategoryType));
-        return new()
+        return FillBase<CategoryChangeModel>(new()
         {
             Name = Name,
             CategoryType = CategoryType,
@@ -34,13 +34,13 @@ public class Category : BaseItem
             CheckinEmail = CheckinEmail,
             Notes = Notes,
             Image = Image,
-        };
+        });
     }
 
     internal CategoryChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<CategoryChangeModel>(new()
         {
             Name = Name,
             //CategoryType = CategoryType,      // cannot be changed
@@ -49,7 +49,7 @@ public class Category : BaseItem
             CheckinEmail = CheckinEmail,
             Notes = Notes,
             Image = Image,
-        };
+        });
     }
 
     //internal CategoryModel ToPatch()
@@ -57,7 +57,7 @@ public class Category : BaseItem
     //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
     //    if (CategoryType != null) throw new ArgumentException("You cannot change the category type once it has been created");
 
-    //    return new()
+    //    return FillBase<CategoryChangeModel>(new()
     //    {
     //        Name = Name,
 
@@ -78,7 +78,7 @@ public class Category : BaseItem
     //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
     //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
     //        //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
-    //    };
+    //    });
     //}
 
     public CategoryType? CategoryType { get; set; }

@@ -27,7 +27,7 @@ public class Component : BaseItem
         ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
         ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
         ArgumentNullException.ThrowIfNull(Category, nameof(Category));
-        return new()
+        return FillBase<ComponentChangeModel>(new()
         {
             Name = Name,
             Qty = Qty,
@@ -42,13 +42,13 @@ public class Component : BaseItem
             Notes = Notes,
             Image = Image
 
-        };
+        });
     }
 
     internal ComponentChangeModel ToUpdate()
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<ComponentChangeModel>(new()
         {
             Name = Name,
             Qty = Qty,
@@ -63,19 +63,19 @@ public class Component : BaseItem
             Notes = Notes,
             Image = Image
 
-        };
+        });
     }
 
     //internal ComponentModel ToPatch()
     //{
     //    ArgumentNullException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
+    //    return FillBase<ComponentChangeModel>(new()
     //    {
     //        Name = Name,
-    //    };
+    //    });
     //}
 
-   
+
     public string? Serial { get; set; }
     public NamedItem? Location { get; set; }
     public int? Qty { get; set; }

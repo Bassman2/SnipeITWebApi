@@ -39,7 +39,7 @@ public class Field : BaseItem
     internal FieldChangeModel ToUpdate()
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-        return new()
+        return FillBase<FieldChangeModel>(new()
         {
             Element = Element,
             Name = Name,
@@ -52,7 +52,7 @@ public class Field : BaseItem
             DisplayInUserView = DisplayInUserView,
             AutoAddToFieldsets = AutoAddToFieldsets,
             ShowInListview = ShowInListview
-        };
+        });
     }
 
     //internal FieldModel ToPatch()
