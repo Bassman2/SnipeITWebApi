@@ -5,8 +5,9 @@ public class SnipeITFieldsUnitTest : SnipeITBaseUnitTest<Field>
 {
     public SnipeITFieldsUnitTest()
     {
-        userCanCheckout = true;
-        availableActions = Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin;
+        handleNotes = false;
+        userCanCheckout = null;
+        availableActions = null; // Actions.Update | Actions.Delete | Actions.Checkout | Actions.Checkin;
 
         TestCreate = new()
         {

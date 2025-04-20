@@ -5,7 +5,8 @@ public class SnipeITFieldsetsUnitTest : SnipeITBaseUnitTest<Fieldset>
 {
     public SnipeITFieldsetsUnitTest()
     {
-        userCanCheckout = true;
+        handleNotes = false;
+        userCanCheckout = null;
         availableActions = null;
 
         TestCreate = new()

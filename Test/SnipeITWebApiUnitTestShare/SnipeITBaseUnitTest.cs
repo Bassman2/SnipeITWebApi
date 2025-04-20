@@ -189,33 +189,37 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem updateAssetCategory = (2, "Desktops");
     protected static readonly NamedItem patchAssetCategory = (3, "Tablets");
 
-    protected static readonly NamedItem createCompany = (1, "Quigley-Luettgen");
-    protected static readonly NamedItem updateCompany = (2, "Batz Inc");
-    protected static readonly NamedItem patchCompany = (3, "Turner-Windler");
+    protected static readonly NamedItem createCompany = (1, "Paucek, Krajcik and Rogahn");
+    protected static readonly NamedItem updateCompany = (2, "Feest Group");
+    protected static readonly NamedItem patchCompany = (3, "Rice LLC");
 
-    protected static readonly NamedItem createLocation = (1, "East Alex");
-    protected static readonly NamedItem updateLocation = (2, "Port Camrynland");
-    protected static readonly NamedItem patchLocation = (3, "Jarrellport");
+    protected static readonly NamedItem createLocation = (1, "East Jeanette");
+    protected static readonly NamedItem updateLocation = (2, "Samanthaside");
+    protected static readonly NamedItem patchLocation = (3, "New Steve");
 
     protected static readonly NamedItem createManufacturer = (2, "Microsoft");
     protected static readonly NamedItem updateManufacturer = (3, "Dell");
     protected static readonly NamedItem patchManufacturer = (4, "Asus");
 
-    protected static readonly NamedItem createSupplier = (1, "Bernhard PLC");
-    protected static readonly NamedItem updateSupplier = (2, "Collier, Dibbert and Cronin");
-    protected static readonly NamedItem patchSupplier = (3, "Jast PLC");
+    protected static readonly NamedItem createSupplier = (1, "Cartwright, Denesik and Denesik");
+    protected static readonly NamedItem updateSupplier = (2, "Kling and Sons");
+    protected static readonly NamedItem patchSupplier = (3, "Schaden-Mertz");
 
-    protected static readonly NamedItem createUser = (4, "Jalon Kshlerin");
-    protected static readonly NamedItem updateUser = (2, "Snipe E. Head");
-    protected static readonly NamedItem patchUser = (3, "Alison Gianotto");
+    protected static readonly NamedItem createUser = (2, "Head Snipe E.");
+    protected static readonly NamedItem updateUser = (3, "Gianotto Alison");
+    protected static readonly NamedItem patchUser = (4, "Kessler Jessica");
 
     protected static readonly NamedItem createFieldset = (4, "Jalon Kshlerin");
     protected static readonly NamedItem updateFieldset = (2, "Snipe E. Head");
     protected static readonly NamedItem patchFieldset = (3, "Alison Gianotto");
 
-    protected static readonly Hardware createHardware = (4, "Jalon Kshlerin");
-    protected static readonly Hardware updateHardware = (2, "Snipe E. Head");
-    protected static readonly Hardware patchHardware = (3, "Alison Gianotto");
+    protected static readonly Hardware createHardware = (1, "", "1632299708");
+    protected static readonly Hardware updateHardware = (2, "", "440728759");
+    protected static readonly Hardware patchHardware = (3, "", "587501817");
+
+    protected static readonly NamedItem createHardwareLocation = (5, "Celestineberg");  // Hardware 1
+    protected static readonly NamedItem updateHardwareLocation = (10, "Boehmside");   // Hardware 2
+    protected static readonly NamedItem patchHardwareLocation = (4, "Mylenefurt");    // Hardware 3
 
     protected static readonly DateTime createDate = DateTime.Now.AddYears(5);
     protected static readonly DateTime updateDate = DateTime.Now.AddYears(6);
@@ -237,6 +241,7 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
     public bool checkDeleted = true;
 
     protected bool handleName = true;
+    protected bool handleNotes = true;
     protected bool? userCanCheckout = null;
     protected AvailableActions? availableActions = null;
 
@@ -321,7 +326,7 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
         Assert.AreEqual(id, actual.Id, $"{message}.Id");
         Assert.AreEqual(handleName ? expected.Name : null, actual.Name, $"{message}.Name");
         //Assert.AreEqual(expected.Image, actual.Image, $"{message}.Image");
-        Assert.AreEqual(expected.Notes, actual.Notes, $"{message}.Notes");
+        Assert.AreEqual(handleNotes ? expected.Notes : null, actual.Notes, $"{message}.Notes");
 
         AreEqual(expected, actual, message);
 

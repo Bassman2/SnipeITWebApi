@@ -26,7 +26,9 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             // test
             Model= (1, "Macbook Pro 13\""),
             StatusLabel = (1, "Ready to Deploy"),
-            Location = (10, "Port Oswald"),
+            Location = createHardwareLocation,   // location from createHardware
+            RtdLocation = createHardwareLocation,
+
             UserId = adminUser,
         };
 
@@ -47,9 +49,10 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             // test
             Model = (1, "Macbook Pro 13\""),
             StatusLabel = (1, "Ready to Deploy"),
-            Location = null, //(10, "Port Oswald"),
+            Location = updateHardwareLocation,   // location from updateHardware,
+            RtdLocation = updateHardwareLocation, 
             UserId = adminUser,
-        }; //
+        }; 
 
         TestPatch = new()
         {
@@ -68,7 +71,8 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             // test
             Model = (1, "Macbook Pro 13\""),
             StatusLabel = (1, "Ready to Deploy"),
-            Location = (10, "Port Oswald"),
+            Location = patchHardwareLocation,   // location from patchHardware
+            RtdLocation = patchHardwareLocation,
             UserId = adminUser,
         };
     }

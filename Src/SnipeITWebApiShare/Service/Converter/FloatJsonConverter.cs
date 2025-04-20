@@ -2,8 +2,8 @@
 
 internal class FloatJsonConverter : JsonConverter<float?>
 {
-    //private static readonly CultureInfo culture = new CultureInfo("en-US");
-    private static readonly CultureInfo culture = new CultureInfo("de-DE");
+    private static readonly CultureInfo culture = new CultureInfo("en-US");
+    //private static readonly CultureInfo culture = new CultureInfo("de-DE");
 
     public override float? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
