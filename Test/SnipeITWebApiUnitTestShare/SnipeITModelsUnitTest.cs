@@ -5,7 +5,7 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
 {
     public SnipeITModelsUnitTest()
     {
-        userCanCheckout = true;
+        userCanCheckout = null;
         availableActions = Actions.Delete | Actions.Update | Actions.Clone;
 
         TestCreate = new()
@@ -22,11 +22,7 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
             // test
             Remaining = false,
             AssetsCount = 0,
-            //Url = "https://test.com",
-            //SupportUrl = "https://support.test.com",
-            //WarrantyLookupUrl = "https://checkcoverage.test.com",
-            //SupportPhone = "+12725858512",
-            //SupportEmail = "unknown@microsoft.com",
+            Requestable = false,
         };
 
         TestUpdate = new()
@@ -39,8 +35,12 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
             Manufacturer = updateManufacturer,
             Eol = 9,
             Fieldset = updateFieldset,
-            Depreciation = (5, ""),
-            Requestable = true,
+            Depreciation = null,
+
+            // test
+            Remaining = false,
+            AssetsCount = 0,
+            Requestable = false,
         };
 
         TestPatch = new()
@@ -51,8 +51,12 @@ public class SnipeITModelsUnitTest : SnipeITBaseUnitTest<Model>
             Manufacturer = patchManufacturer,
             Eol = 9,
             Fieldset = patchFieldset,
-            Depreciation = (5, ""),
-            Requestable = true,
+            Depreciation = null,
+
+            // test
+            Remaining = false,
+            AssetsCount = 0,
+            Requestable = false,
         };
     }
 

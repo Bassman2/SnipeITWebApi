@@ -209,9 +209,9 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem updateUser = (3, "Gianotto Alison");
     protected static readonly NamedItem patchUser = (4, "Kessler Jessica");
 
-    protected static readonly NamedItem createFieldset = (4, "Jalon Kshlerin");
-    protected static readonly NamedItem updateFieldset = (2, "Snipe E. Head");
-    protected static readonly NamedItem patchFieldset = (3, "Alison Gianotto");
+    protected static readonly NamedItem createFieldset = (1, "Mobile Devices");
+    protected static readonly NamedItem updateFieldset = (2, "Laptops and Desktops");
+    protected static readonly NamedItem patchFieldset = (1, "Mobile Devices");
 
     protected static readonly Hardware createHardware = (1, "", "1632299708");
     protected static readonly Hardware updateHardware = (2, "", "440728759");
