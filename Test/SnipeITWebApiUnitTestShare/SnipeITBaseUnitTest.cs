@@ -7,11 +7,12 @@ public abstract class SnipeITBaseUnitTest
 
     protected const string appName = "UnitTest";
 
-    protected const string lastUpdate = "2025-04-03";
+    protected const string lastUpdate = "2025-04-19";
 
 
     // server: "2025-04-15 23:54:50"
     // local:  "2025-04-16 08:54:50"
+    protected readonly DateTime todayDate = DateTime.Now.AddHours(-9);
     protected readonly string today = DateTime.Now.AddHours(-9).ToString("yyyy-MM-dd");
 
 

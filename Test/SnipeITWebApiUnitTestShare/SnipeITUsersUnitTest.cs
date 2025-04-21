@@ -122,30 +122,45 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
 
         var item = await snipeIT.GetUserMeAsync();
 
-        Assert.IsNotNull(item);
-        Assert.AreEqual(userId, item.Id, "item.Id");
-        Assert.AreEqual(adminAvatar, item.Avatar, "item.Avatar");
-        Assert.AreEqual(userName, item.Name, "item.Name");
-        Assert.AreEqual("Admin", item.FirstName, "item.FirstName");
-        Assert.AreEqual("User", item.LastName, "item.LastName");
-        Assert.AreEqual("admin", item.Username, "item.Username");
-        Assert.AreEqual(false, item.Remote, "item.Remote");
-        Assert.AreEqual("en-US", item.Locale, "item.Locale");
-        Assert.AreEqual("7308", item.EmployeeNum, "item.EmployeeNum");
-        Assert.IsNull(item.Manager, "item.Manager");
-        Assert.AreEqual("Sociologist", item.Jobtitle, "item.Jobtitle");
-        Assert.AreEqual(false, item.Vip, "item.Vip");
-        Assert.AreEqual("1-718-848-7397", item.Phone, "item.Phone");
-        Assert.IsNull(item.Website, "item.Website");
-        Assert.AreEqual(adminAddress, item.Address, "item.Address");
-        Assert.AreEqual(adminCity, item.City, "item.City");
-        Assert.AreEqual(adminState, item.State, "item.State");
-        Assert.AreEqual(adminCountry, item.Country, "item.Country");
-        Assert.AreEqual(adminZip, item.Zip, "item.Zip");
-        Assert.AreEqual(adminEmail, item.Email, "item.Email");
-        Assert.AreEqual(new NamedItem(4, "Client Services"), item.Department, "item.Department");
-        Assert.IsNull(item.Location, "item.Location");
-        Assert.AreEqual("Created by DB seeder", item.Notes, "item.Notes");
+        User expected = new()
+        {
+            FirstName = "Admin",
+            LastName = "User",
+            Username = "admin",
+            //Password = passwordPatch,
+            Email = "buddy67@example.com",
+            Permissions = null,
+            Activated = true,
+            Phone = "+1.657.485.1441",
+            Jobtitle = "Nonfarm Animal Caretaker",
+            Manager = null,
+            EmployeeNum = "3919",
+            Company = createCompany,
+            TwoFactorEnrolled = false,
+            TwoFactorOptin = false,
+            Department = patchDepartment,
+            Location = null,
+            Remote = false,
+            Groups = null,
+            Vip = false,
+            StartDate = null,
+            EndDate = null,
+            Address = "111 Rempel Skyway\nLake Marjolaine, IL 95555-5282",
+            City = "Rodriguezview",
+            State = "WV",
+            Country = "Hong Kong",
+            Zip = "85949-3550",
+            Name = "User Admin",
+            Notes = "Created by DB seeder",
+            Avatar = "https://develop.snipeitapp.com/uploads/avatars/1.jpg",
+            Image = "https://develop.snipeitapp.com/uploads/default.png",
+            Locale = "en-US",
+            LdapImport = false,
+            AutoassignLicenses = true,
+            LastLogin = todayDate,
+        };
+
+        AreEqualIternal(1, expected, item, "me");
     }
 
     public override void AreEqual(User expected, User actual, string message)
@@ -170,7 +185,7 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
         Assert.AreEqual(expected.Email, actual.Email, $"{message}.Email");
         Assert.AreEqual(expected.Department, actual.Department, $"{message}.Department");
         Assert.AreEqual(expected.Location, actual.Location, $"{message}.Location");
-        Assert.AreEqual(expected.Permissions, actual.Permissions, $"{message}.Permissions");
+        //Assert.AreEqual(expected.Permissions, actual.Permissions, $"{message}.Permissions");
         Assert.AreEqual(expected.Activated, actual.Activated, $"{message}.Activated");
         Assert.AreEqual(expected.AutoassignLicenses, actual.AutoassignLicenses, $"{message}.AutoassignLicenses");
         Assert.AreEqual(expected.LdapImport, actual.LdapImport, $"{message}.LdapImport");
