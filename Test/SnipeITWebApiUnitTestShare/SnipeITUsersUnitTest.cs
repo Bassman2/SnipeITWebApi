@@ -1,4 +1,6 @@
-﻿namespace SnipeITWebApiUnitTest;
+﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+
+namespace SnipeITWebApiUnitTest;
 
 [TestClass]
 public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
@@ -158,9 +160,13 @@ public class SnipeITUsersUnitTest : SnipeITBaseUnitTest<User>
             LdapImport = false,
             AutoassignLicenses = true,
             LastLogin = todayDate,
+            CreatedAt = lastUpdateDate,
         };
 
+        availableActions = Actions.Clone | Actions.Update;
         AreEqualIternal(1, expected, item, "me");
+        availableActions = Actions.Clone | Actions.Update | Actions.Delete;
+
     }
 
     public override void AreEqual(User expected, User actual, string message)

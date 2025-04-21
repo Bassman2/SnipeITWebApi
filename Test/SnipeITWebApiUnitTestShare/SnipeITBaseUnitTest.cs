@@ -8,6 +8,7 @@ public abstract class SnipeITBaseUnitTest
     protected const string appName = "UnitTest";
 
     protected const string lastUpdate = "2025-04-19";
+    protected readonly DateTime lastUpdateDate = new DateTime(2025, 4, 19);
 
 
     // server: "2025-04-15 23:54:50"
@@ -349,7 +350,7 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
             Assert.AreEqual(adminUser, actual.CreatedBy, $"{message}.CreatedBy");
         }
         
-        DateAssert.AreEqual(today, actual.CreatedAt, $"{message}.CreatedAt");
+        DateAssert.AreEqual(expected.CreatedAt ?? todayDate, actual.CreatedAt, $"{message}.CreatedAt");
         DateAssert.AreEqual(today, actual.UpdatedAt, $"{message}.UpdatedAt");
         //DateAssert.AreEqual(null, actual.DeletedAt, $"{message}.DeletedAt");
 

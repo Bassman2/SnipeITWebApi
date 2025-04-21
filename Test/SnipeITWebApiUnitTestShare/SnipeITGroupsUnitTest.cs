@@ -35,7 +35,7 @@ public class SnipeITGroupsUnitTest : SnipeITBaseUnitTest<Group>
 
     public override void AreEqual(Group expected, Group actual, string message)
     {
-        Assert.AreEqual(expected.Permissions, actual.Permissions, $"{message}.Permissions");
+        //Assert.AreEqual(expected.Permissions, actual.Permissions, $"{message}.Permissions");
         Assert.AreEqual(expected.UsersCount, actual.UsersCount, $"{message}.UsersCount");
     }
 

@@ -202,6 +202,117 @@ public class Permissions
         };
     }
 
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj != null && obj is Permissions perm)
+        {
+            return
+                Superuser == perm.Superuser &&
+                Admin == perm.Admin &&
+                Import == perm.Import &&
+                ReportsView == perm.ReportsView &&
+                AssetsView == perm.AssetsView &&
+                AssetsCreate == perm.AssetsCreate &&
+                AssetsEdit == perm.AssetsEdit &&
+                AssetsDelete == perm.AssetsDelete &&
+                AssetsCheckin == perm.AssetsCheckin &&
+                AssetsCheckout == perm.AssetsCheckout &&
+                AssetsAudit == perm.AssetsAudit &&
+                AssetsViewRequestable == perm.AssetsViewRequestable &&
+                AssetsViewEncryptedCustomFields == perm.AssetsViewEncryptedCustomFields &&
+                AccessoriesView == perm.AccessoriesView &&
+                AccessoriesCreate == perm.AccessoriesCreate &&
+                AccessoriesEdit == perm.AccessoriesEdit &&
+                AccessoriesDelete == perm.AccessoriesDelete &&
+                AccessoriesCheckout == perm.AccessoriesCheckout &&
+                AccessoriesCheckin == perm.AccessoriesCheckin &&
+                AccessoriesFiles == perm.AccessoriesFiles &&
+                ConsumablesView == perm.ConsumablesView &&
+                ConsumablesCreate == perm.ConsumablesCreate &&
+                ConsumablesEdit == perm.ConsumablesEdit &&
+                ConsumablesDelete == perm.ConsumablesDelete &&
+                ConsumablesCheckout == perm.ConsumablesCheckout &&
+                ConsumablesFiles == perm.ConsumablesFiles &&
+                LicensesView == perm.LicensesView &&
+                LicensesCreate == perm.LicensesCreate &&
+                LicensesEdit == perm.LicensesEdit &&
+                LicensesDelete == perm.LicensesDelete &&
+                LicensesCheckout == perm.LicensesCheckout &&
+                LicensesKeys == perm.LicensesKeys &&
+                LicensesFiles == perm.LicensesFiles &&
+                ComponentsView == perm.ComponentsView &&
+                ComponentsCreate == perm.ComponentsCreate &&
+                ComponentsEdit == perm.ComponentsEdit &&
+                ComponentsDelete == perm.ComponentsDelete &&
+                ComponentsCheckout == perm.ComponentsCheckout &&
+                ComponentsCheckin == perm.ComponentsCheckin &&
+                ComponentsFiles == perm.ComponentsFiles &&
+                KitsView == perm.KitsView &&
+                KitsCreate == perm.KitsCreate &&
+                KitsEdit == perm.KitsEdit &&
+                KitsDelete == perm.KitsDelete &&
+                UsersView == perm.UsersView &&
+                UsersCreate == perm.UsersCreate &&
+                UsersEdit == perm.UsersEdit &&
+                UsersDelete == perm.UsersDelete &&
+                ModelsView == perm.ModelsView &&
+                ModelsCreate == perm.ModelsCreate &&
+                ModelsEdit == perm.ModelsEdit &&
+                ModelsDelete == perm.ModelsDelete &&
+                CategoriesView == perm.CategoriesView &&
+                CategoriesCreate == perm.CategoriesCreate &&
+                CategoriesEdit == perm.CategoriesEdit &&
+                CategoriesDelete == perm.CategoriesDelete &&
+
+                DepartmentsView == perm.DepartmentsView &&
+                DepartmentsCreate == perm.DepartmentsCreate &&
+                DepartmentsEdit == perm.DepartmentsEdit &&
+
+                DepartmentsDelete == perm.DepartmentsDelete &&
+                StatusLabelsView == perm.StatusLabelsView &&
+                StatusLabelsCreate == perm.StatusLabelsCreate &&
+                StatusLabelsEdit == perm.StatusLabelsEdit &&
+                StatusLabelsDelete == perm.StatusLabelsDelete &&
+                CustomFieldsView == perm.CustomFieldsView &&
+                CustomFieldsCreate == perm.CustomFieldsCreate &&
+                CustomFieldsEdit == perm.CustomFieldsEdit &&
+                CustomFieldsDelete == perm.CustomFieldsDelete &&
+                SuppliersView == perm.SuppliersView &&
+                SuppliersCreate == perm.SuppliersCreate &&
+                SuppliersEdit == perm.SuppliersEdit &&
+                SuppliersDelete == perm.SuppliersDelete &&
+                ManufacturersView == perm.ManufacturersView &&
+                ManufacturersCreate == perm.ManufacturersCreate &&
+                ManufacturersEdit == perm.ManufacturersEdit &&
+                ManufacturersDelete == perm.ManufacturersDelete &&
+                DepreciationsView == perm.DepreciationsView &&
+                DepreciationsCreate == perm.DepreciationsCreate &&
+                DepreciationsEdit == perm.DepreciationsEdit &&
+                DepreciationsDelete == perm.DepreciationsDelete &&
+                LocationsView == perm.LocationsView &&
+                LocationsCreate == perm.LocationsCreate &&
+                LocationsEdit == perm.LocationsEdit &&
+                LocationsDelete == perm.LocationsDelete &&
+                CompaniesView == perm.CompaniesView &&
+                CompaniesCreate == perm.CompaniesCreate &&
+                CompaniesEdit == perm.CompaniesEdit &&
+                CompaniesDelete == perm.CompaniesDelete &&
+                SelfTwoFactor == perm.SelfTwoFactor &&
+                SelfApi == perm.SelfApi &&
+                SelfEditLocation == perm.SelfEditLocation &&
+
+                SelfCheckoutAssets == perm.SelfCheckoutAssets &&
+                SelfViewPurchaseCost == perm.SelfViewPurchaseCost;
+        }
+        return false;
+
+    }
+
     public bool? Superuser { get; set; }
     public bool? Admin { get; set; }
     public bool? Import { get; set; }
