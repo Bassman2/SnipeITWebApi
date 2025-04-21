@@ -69,7 +69,8 @@ internal class UserModel : BaseModel
     public NamedItemModel? Location { get; set; }
 
     [JsonPropertyName("permissions")]
-    public NamedItemModel? Permissions { get; set; }
+    [JsonConverter(typeof(PermissionsJsonConverter))]
+    public PermissionsModel? Permissions { get; set; }
 
     [JsonPropertyName("activated")]
     public bool? Activated { get; set; }
@@ -120,5 +121,6 @@ internal class UserModel : BaseModel
     public DateTime? LastLogin { get; set; }
 
     [JsonPropertyName("groups")]
-    public string? Groups { get; set; }
+    [JsonConverter(typeof(ListJsonConverter))]
+    public List<NamedItemModel>? Groups { get; set; }
 }

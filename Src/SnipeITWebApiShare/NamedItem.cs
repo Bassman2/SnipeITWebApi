@@ -27,14 +27,15 @@ public class NamedItem
     //    };
     //}
 
-    //internal NamedItemModel ToUpdate()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
-    //    {
-    //        Name = Name,
-    //    };
-    //}
+    internal NamedItemModel ToModel()
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
+        return new()
+        {
+            Id = Id,
+            Name = Name,
+        };
+    }
 
     //internal NamedItemModel ToPatch()
     //{

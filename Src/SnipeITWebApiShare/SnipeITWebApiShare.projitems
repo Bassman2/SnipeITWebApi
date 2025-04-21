@@ -39,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\FloatJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\IntJsonConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ListJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\TextJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AccessoryChangeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\BaseChangeModel.cs" />

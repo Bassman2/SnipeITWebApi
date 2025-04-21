@@ -209,6 +209,19 @@ public abstract class SnipeITBaseUnitTest
     protected static readonly NamedItem updateUser = (3, "Gianotto Alison");
     protected static readonly NamedItem patchUser = (4, "Kessler Jessica");
 
+    protected static readonly NamedItem createUserSwitched = (2, "Snipe E. Head");
+    protected static readonly NamedItem updateUserSwitched = (3, "Alison Gianotto");
+    protected static readonly NamedItem patchUserSwitched = (4, "Jessica Kessler");
+
+    protected static readonly NamedItem createDepartment = (1, "Human Resources");
+    protected static readonly NamedItem updateDepartment = (2, "Engineering");
+    protected static readonly NamedItem patchDepartment = (3, "Marketing");
+
+    protected static readonly NamedItem createGroup = (1, "admin");
+    protected static readonly NamedItem updateGroup = (1, "admin");
+    protected static readonly NamedItem patchGroup = (1, "admin");
+
+
     protected static readonly NamedItem createFieldset = (1, "Mobile Devices");
     protected static readonly NamedItem updateFieldset = (2, "Laptops and Desktops");
     protected static readonly NamedItem patchFieldset = (1, "Mobile Devices");
@@ -358,8 +371,8 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
     {
         set
         {
-            value.Name = CreateName();
-            value.Notes = createNotes;
+            value.Name = value.Name ?? CreateName();
+            value.Notes = value.Notes ?? createNotes;
             value.Image = createImage;
             create = value;
         }
@@ -369,8 +382,8 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
     {
         set
         {
-            value.Name = CreateName();
-            value.Notes = updateNotes;
+            value.Name = value.Name ?? CreateName();
+            value.Notes = value.Notes ?? updateNotes;
             value.Image = updateImage;
             update = value;
         }
@@ -380,8 +393,8 @@ public abstract class SnipeITBaseUnitTest<T> : SnipeITBaseUnitTest where T : Bas
     {
         set
         {
-            value.Name = CreateName();
-            value.Notes = patchNotes;
+            value.Name = value.Name ?? CreateName();
+            value.Notes = value.Notes ?? patchNotes;
             value.Image = patchImage;
             patch = value;
         }

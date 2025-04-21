@@ -27,7 +27,7 @@ public class User : BaseItem
         Email = model.Email;
         Department = model.Department.CastModel<NamedItem>();
         Location = model.Location.CastModel<NamedItem>();
-        Permissions = model.Permissions.CastModel<NamedItem>();
+        Permissions = model.Permissions.CastModel<Permissions>(); 
         Activated = model.Activated;
         AutoassignLicenses = model.AutoassignLicenses;
         LdapImport = model.LdapImport;
@@ -43,7 +43,7 @@ public class User : BaseItem
         StartDate = model.StartDate;
         EndDate = model.EndDate;
         LastLogin = model.LastLogin;
-        Groups = model.Groups;
+        Groups = model.Groups.CastModel<NamedItem>(); 
     }
 
     //internal UserModel ToCreate()
@@ -82,8 +82,23 @@ public class User : BaseItem
             Username = Username,
             Password = Password,
             PasswordConfirmation = Password,
-            Phone = Phone,
             Email = Email,
+            Activated = Activated,
+            Phone = Phone,
+            Jobtitle = Jobtitle,
+            ManagerId = Manager?.Id,
+            EmployeeNum = EmployeeNum,
+            CompanyId = Company?.Id,
+            TwoFactorEnrolled = TwoFactorEnrolled,
+            TwoFactorOptin = TwoFactorOptin,
+            DepartmentId = Department?.Id,
+            LocationId = Location?.Id,
+            Remote = Remote,
+            Groups = Groups?.Select(g => g.ToModel()).ToList(),
+            AutoassignLicenses = AutoassignLicenses,
+            Vip = Vip,
+            StartDate = StartDate,
+            EndDate = EndDate
         });
     }
 
@@ -151,7 +166,7 @@ public class User : BaseItem
 
     public NamedItem? Location { get; set; }
 
-    public NamedItem? Permissions { get; set; }
+    public Permissions? Permissions { get; set; }
 
     public bool? Activated { get; set; }
 
@@ -163,25 +178,25 @@ public class User : BaseItem
 
     public bool? TwoFactorOptin { get; set; }
 
-    public int AssetsCount { get; }
+    public int AssetsCount { get; internal set; }
 
-    public int LicensesCount { get; }
+    public int LicensesCount { get; internal set; }
 
-    public int AccessoriesCount { get; }
+    public int AccessoriesCount { get; internal set; }
 
-    public int ConsumablesCount { get; }
+    public int ConsumablesCount { get; internal set; }
 
-    public int ManagesUsersCount { get; }
+    public int ManagesUsersCount { get; internal set; }
 
-    public int ManagesLocationsCount { get; }
+    public int ManagesLocationsCount { get; internal set; }
 
-    public NamedItem? Company { get; }
+    public NamedItem? Company { get; set; }
 
-    public DateTime? StartDate { get; }
+    public DateTime? StartDate { get; set; }
 
-    public DateTime? EndDate { get; }
+    public DateTime? EndDate { get; set; }
 
-    public DateTime? LastLogin { get; }
+    public DateTime? LastLogin { get; internal set; }
 
-    public string? Groups { get; set; }
+    public List<NamedItem>? Groups { get; set; }
 }
