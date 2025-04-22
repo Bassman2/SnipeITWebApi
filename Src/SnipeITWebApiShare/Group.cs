@@ -1,7 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents a group in the Snipe-IT system, including its permissions and user count.
+/// </summary>
 public class Group : BaseItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Group"/> class.
+    /// </summary>
     public Group() 
     { }
     
@@ -10,16 +16,6 @@ public class Group : BaseItem
         Permissions = model.Permissions.CastModel<Permissions>();
         UsersCount = model.UsersCount;
     }
-
-    //internal GroupModel ToCreate()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
-    //    {
-    //        Name = Name,
-    //        Notes = Notes,
-    //    };
-    //}
 
     internal GroupChangeModel ToUpdate()
     {
@@ -30,17 +26,14 @@ public class Group : BaseItem
         });
     }
 
-    //internal GroupModel ToPatch()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
-    //    {
-    //        Name = Name,
-    //        Notes = Notes,
-    //    };
-    //}
 
+    /// <summary>
+    /// Gets or sets the permissions associated with the group.
+    /// </summary>
     public Permissions? Permissions { get; set; }
+
+    /// <summary>
+    /// Gets the number of users in the group.
+    /// </summary>
     public int? UsersCount { get; internal set; }
-    
 }

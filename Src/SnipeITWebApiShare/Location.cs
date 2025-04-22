@@ -1,7 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents a location in the Snipe-IT system, including address, contact information, and related counts.
+/// </summary>
 public class Location : BaseItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Location"/> class.
+    /// </summary>
     public Location()
     { }   
 
@@ -102,24 +108,103 @@ public class Location : BaseItem
     //}
 
 
+    /// <summary>
+    /// Gets or sets the primary address of the location.
+    /// </summary>
     public string? Address { get; set; }
+
+    /// <summary>
+    /// Gets or sets the secondary address of the location.
+    /// </summary>
     public string? Address2 { get; set; }
+
+    /// <summary>
+    /// Gets or sets the city of the location.
+    /// </summary>
     public string? City { get; set; }
+
+    /// <summary>
+    /// Gets or sets the state of the location.
+    /// </summary>
     public string? State { get; set; }
+
+    /// <summary>
+    /// Gets or sets the country of the location.
+    /// </summary>
     public string? Country { get; set; }
+
+    /// <summary>
+    /// Gets or sets the ZIP code of the location.
+    /// </summary>
     public string? Zip { get; set; }
+
+    /// <summary>
+    /// Gets or sets the phone number of the location.
+    /// </summary>
     public string? Phone { get; set; }
+
+    /// <summary>
+    /// Gets or sets the fax number of the location.
+    /// </summary>
     public string? Fax { get; set; }
+
+    /// <summary>
+    /// Gets the count of accessories at the location.
+    /// </summary>
     public int? AccessoriesCount { get; internal set; }
+
+    /// <summary>
+    /// Gets the count of assigned accessories at the location.
+    /// </summary>
     public int? AssignedAccessoriesCount { get; internal set; }
+
+    /// <summary>
+    /// Gets the count of assigned assets at the location.
+    /// </summary>
     public int? AssignedAssetsCount { get; internal set; }
+
+    /// <summary>
+    /// Gets the total count of assets at the location.
+    /// </summary>
     public int? AssetsCount { get; internal set; }
+
+    /// <summary>
+    /// Gets the count of returned-to-depot (RTD) assets at the location.
+    /// </summary>
     public int? RtdAssetsCount { get; internal set; }
+
+    /// <summary>
+    /// Gets the count of users associated with the location.
+    /// </summary>
     public int? UsersCount { get; internal set; }
+
+    /// <summary>
+    /// Gets or sets the currency used at the location.
+    /// </summary>
     public string? Currency { get; set; }
+
+    /// <summary>
+    /// Gets or sets the LDAP organizational unit associated with the location.
+    /// </summary>
     public string? LdapOu { get; set; }
+
+    /// <summary>
+    /// Gets or sets the parent location.
+    /// </summary>
     public NamedItem? Parent { get; set; }
+
+    /// <summary>
+    /// Gets or sets the manager of the location.
+    /// </summary>
     public NamedItem? Manager { get; set; }
+
+    /// <summary>
+    /// Gets or sets the company associated with the location.
+    /// </summary>
     public NamedItem? Company { get; set; }
+
+    /// <summary>
+    /// Gets or sets the child locations of this location.
+    /// </summary>
     public List<NamedItem>? Children { get; set; }
 }

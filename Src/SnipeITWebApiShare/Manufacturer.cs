@@ -1,7 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents a manufacturer in the Snipe-IT system, including details such as URLs, support information, and associated item counts.
+/// </summary>
 public class Manufacturer : BaseItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Manufacturer"/> class.
+    /// </summary>
     public Manufacturer()
     { }
 
@@ -65,23 +71,53 @@ public class Manufacturer : BaseItem
     //}
 
 
+    /// <summary>
+    /// Gets or sets the URL of the manufacturer.
+    /// </summary>
     public string? Url { get; set; }
-        
+
+    /// <summary>
+    /// Gets or sets the support URL of the manufacturer.
+    /// </summary>
     public string? SupportUrl { get; set; }
 
+    /// <summary>
+    /// Gets or sets the warranty lookup URL of the manufacturer.
+    /// </summary>
     public string? WarrantyLookupUrl { get; set; }
 
+    /// <summary>
+    /// Gets or sets the support phone number of the manufacturer.
+    /// </summary>
     public string? SupportPhone { get; set; }
 
+    /// <summary>
+    /// Gets or sets the support email address of the manufacturer.
+    /// </summary>
     public string? SupportEmail { get; set; }
 
+    /// <summary>
+    /// Gets the count of assets associated with the manufacturer.
+    /// </summary>
     public int AssetsCount { get; }
 
+    /// <summary>
+    /// Gets the count of licenses associated with the manufacturer.
+    /// </summary>
     public int LicensesCount { get; }
 
+    /// <summary>
+    /// Gets the count of consumables associated with the manufacturer.
+    /// </summary>
     public int ConsumablesCount { get; }
 
+    /// <summary>
+    /// Gets the count of accessories associated with the manufacturer.
+    /// </summary>
     public int AccessoriesCount { get; }
 
+    /// <summary>
+    /// Gets the count of components associated with the manufacturer.
+    /// </summary>
     public int ComponentsCount { get; }
 }

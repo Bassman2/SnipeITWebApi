@@ -1,7 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents a consumable item in the Snipe-IT system, including its details such as category, company, location, and other metadata.
+/// </summary>
 public class Consumable : BaseItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Consumable"/> class.
+    /// </summary>
     public Consumable()
     { }   
 
@@ -21,22 +27,6 @@ public class Consumable : BaseItem
         PurchaseDate = model.PurchaseDate;
         Qty = model.Qty;
     }
-
-    //internal ConsumableChangeModel ToCreate()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    ArgumentNullException.ThrowIfNull(Qty, nameof(Qty));
-    //    ArgumentNullException.ThrowIfNull(Category, nameof(Category));
-    //    return new()
-    //    {
-    //        // required
-    //        Name = Name,
-    //        Qty = Qty,
-    //        CategoryId = Category?.Id,
-    //        // optional
-    //    };
-
-    //}
 
     internal ConsumableChangeModel ToUpdate()
     {
@@ -63,28 +53,73 @@ public class Consumable : BaseItem
         });
     }
 
-    //internal ConsumableModel ToPatch()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    return new()
-    //    {
-    //        Name = Name,
-    //    };
-    //}
-
-
+    /// <summary>
+    /// Gets or sets the category of the consumable.
+    /// </summary>
     public NamedItem? Category { get; set; }
+
+    /// <summary>
+    /// Gets or sets the company associated with the consumable.
+    /// </summary>
     public NamedItem? Company { get; set; }
+
+    /// <summary>
+    /// Gets or sets the item number of the consumable.
+    /// </summary>
     public string? ItemNo { get; set; }
+
+    /// <summary>
+    /// Gets or sets the location of the consumable.
+    /// </summary>
     public NamedItem? Location { get; set; }
+
+    /// <summary>
+    /// Gets or sets the manufacturer of the consumable.
+    /// </summary>
     public NamedItem? Manufacturer { get; set; }
+
+    /// <summary>
+    /// Gets the supplier of the consumable.
+    /// </summary>
     public NamedItem? Supplier { get; internal set; }
+
+    /// <summary>
+    /// Gets or sets the minimum amount threshold for the consumable.
+    /// </summary>
     public int? MinAmt { get; set; }
+
+    /// <summary>
+    /// Gets or sets the model number of the consumable.
+    /// </summary>
     public string? ModelNumber { get; set; }
+
+    /// <summary>
+    /// Gets or sets the remaining quantity of the consumable.
+    /// </summary>
     public int? Remaining { get; set; }
+
+    /// <summary>
+    /// Gets or sets the order number associated with the consumable.
+    /// </summary>
     public string? OrderNumber { get; set; }
+
+    /// <summary>
+    /// Gets the purchase cost of the consumable.
+    /// </summary>
     public string? PurchaseCost { get; internal set; }
+
+    /// <summary>
+    /// Gets or sets the purchase date of the consumable.
+    /// </summary>
     public DateTime? PurchaseDate { get; set; }
+
+    /// <summary>
+    /// Gets or sets the quantity of the consumable.
+    /// </summary>
     public int? Qty { get; set; }
+
+    /// <summary>
+    /// Gets or sets a value indicating whether the consumable is requestable.
+    /// </summary>
     public bool? Requestable { get; set; }
 }

@@ -1,7 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents a fieldset in the Snipe-IT system, which groups related fields and models.
+/// </summary>
 public class Fieldset : BaseItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Fieldset"/> class.
+    /// </summary>
     public Fieldset()
     { }   
 
@@ -10,19 +16,6 @@ public class Fieldset : BaseItem
         Fields = model.Fields?.Rows.CastModel<Field>();
         Models = model.Models?.Rows.CastModel<NamedItem>();
     }
-
-    //internal FieldsetModel ToCreate()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    var fields = Fields?.Select(x => x.ToUpdate()).ToList();
-    //    var models = Models?.Select(x => x.ToCreate()).ToList();
-    //    return new()
-    //    {
-    //        Name = Name,
-    //        Fields = new ListModel<FieldChangeModel> { Total = fields?.Count ?? 0, Rows = fields },
-    //        Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
-    //    };
-    //}
 
     internal FieldsetChangeModel ToUpdate()
     {
@@ -36,20 +29,14 @@ public class Fieldset : BaseItem
         });
     }
 
-    //internal FieldsetModel ToPatch()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    var fields = Fields?.Select(x => x.ToUpdate()).ToList();
-    //    var models = Models?.Select(x => x.ToCreate()).ToList();
-    //    return new()
-    //    {
-    //        Name = Name,
-    //        Fields = new ListModel<FieldModel> { Total = fields?.Count ?? 0, Rows = fields },
-    //        Models = new ListModel<NamedItemModel> { Total = fields?.Count ?? 0, Rows = models }
-    //    };
-    //}
 
-    
+    /// <summary>
+    /// Gets or sets the list of fields associated with the fieldset.
+    /// </summary>
     public List<Field>? Fields { get; set; }
+
+    /// <summary>
+    /// Gets or sets the list of models associated with the fieldset.
+    /// </summary>
     public List<NamedItem>? Models { get; set; }
 }
