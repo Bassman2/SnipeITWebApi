@@ -1,24 +1,39 @@
 ﻿namespace SnipeITWebApi;
 
-
-// Remark
-// The return json from create, update, patch and delete is not identically to get.
-// Because of this the return json will not be used.
-
-
+/// <summary>
+/// Provides methods to interact with the Snipe-IT API for managing assets, accessories, categories, and more.
+/// </summary>
+/// <remarks>
+/// The return JSON from create, update, patch, and delete operations is not identical to the JSON returned by get operations.
+/// As a result, the return JSON is not used in these methods.
+/// </remarks>
 public class SnipeIT : IDisposable
 {
     private SnipeITService? service;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SnipeIT"/> class using a store key and application name.
+    /// </summary>
+    /// <param name="storeKey">The key to retrieve the host and token from the key store.</param>
+    /// <param name="appName">The name of the application using the API.</param>
     public SnipeIT(string storeKey, string appName)
     : this(new Uri(KeyStore.Key(storeKey)?.Host!), KeyStore.Key(storeKey)!.Token!, appName)
     { }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SnipeIT"/> class using a host URI, token, and application name.
+    /// </summary>
+    /// <param name="host">The base URI of the Snipe-IT API.</param>
+    /// <param name="token">The authentication token for the API.</param>
+    /// <param name="appName">The name of the application using the API.</param>
     public SnipeIT(Uri host, string token, string appName)
     {
         service = new(host, new BearerAuthenticator(token), appName);
     }
 
+    /// <summary>
+    /// Disposes the resources used by the <see cref="SnipeIT"/> instance.
+    /// </summary>
     public void Dispose()
     {
         if (this.service != null)
@@ -31,6 +46,11 @@ public class SnipeIT : IDisposable
 
     #region Assets
 
+    /// <summary>
+    /// Gets the total number of hardware assets.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The total number of hardware assets.</returns>
     public async Task<int> GetNumberOfHardwaresAsync(CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -39,6 +59,11 @@ public class SnipeIT : IDisposable
         return res;
     }
 
+    /// <summary>
+    /// Retrieves all hardware assets asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Hardware"/> objects.</returns>
     public async IAsyncEnumerable<Hardware> GetHardwaresAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -53,6 +78,13 @@ public class SnipeIT : IDisposable
         //Debug.WriteLine($"GetHardwaresAsync: {i}");
     }
 
+    /// <summary>
+    /// Retrieves hardware assets by category asynchronously.
+    /// </summary>
+    /// <param name="category">The ID of the category.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Hardware"/> objects.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the category ID is less than or equal to zero.</exception>
     public async IAsyncEnumerable<Hardware> GetHardwaresByCategoryAsync(int category, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -65,6 +97,13 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific hardware asset by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the hardware asset.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Hardware"/> object if found; otherwise, null.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<Hardware?> GetHardwareAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -74,6 +113,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Hardware>();
     }
 
+    /// <summary>
+    /// Creates a new hardware asset.
+    /// </summary>
+    /// <param name="item">The hardware asset to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created hardware asset.</returns>
     public async Task<int> CreateHardwareAsync(Hardware item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -82,6 +127,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing hardware asset.
+    /// </summary>
+    /// <param name="id">The ID of the hardware asset to update.</param>
+    /// <param name="item">The updated hardware asset.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -91,15 +143,27 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Hardware>();
     }
 
+    /// <summary>
+    /// Patches an existing hardware asset.
+    /// </summary>
+    /// <param name="id">The ID of the hardware asset to patch.</param>
+    /// <param name="item">The patched hardware asset.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
         var res = await service.PatchHardwareAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Hardware>();
     }
 
+    /// <summary>
+    /// Deletes a hardware asset.
+    /// </summary>
+    /// <param name="id">The ID of the hardware asset to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteHardwareAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -108,6 +172,14 @@ public class SnipeIT : IDisposable
         var res = await service.DeleteHardwareAsync(id, cancellationToken);
     }
 
+    /// <summary>
+    /// Checks out a hardware asset.
+    /// </summary>
+    /// <param name="id">The ID of the hardware asset to check out.</param>
+    /// <param name="item">The hardware asset details for checkout.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Hardware"/> object after checkout.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<Hardware?> CheckoutHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -117,6 +189,14 @@ public class SnipeIT : IDisposable
         return res.CastModel<Hardware>();
     }
 
+    /// <summary>
+    /// Checks in a hardware asset.
+    /// </summary>
+    /// <param name="id">The ID of the hardware asset to check in.</param>
+    /// <param name="item">The hardware asset details for check-in.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Hardware"/> object after check-in.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<Hardware?> CheckinHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);

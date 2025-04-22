@@ -1,7 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents a category in the Snipe-IT system, including its type, counts, and related properties.
+/// </summary>
 public class Category : BaseItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Category"/> class.
+    /// </summary>
     public Category()
     { } 
 
@@ -51,57 +57,64 @@ public class Category : BaseItem
             Image = Image,
         });
     }
-
-    //internal CategoryModel ToPatch()
-    //{
-    //    ArgumentException.ThrowIfNullOrWhiteSpace(Name, nameof(Name));
-    //    if (CategoryType != null) throw new ArgumentException("You cannot change the category type once it has been created");
-
-    //    return FillBase<CategoryChangeModel>(new()
-    //    {
-    //        Name = Name,
-
-    //        //Url = Url,
-    //        //Image = Image,
-    //        //SupportUrl = SupportUrl,
-    //        //WarrantyLookupUrl = WarrantyLookupUrl,
-    //        //SupportPhone = SupportPhone,
-    //        //SupportEmail = SupportEmail,
-    //        //AssetsCount = AssetsCount,
-    //        //LicensesCount = LicensesCount,
-    //        //ConsumablesCount = ConsumablesCount,
-    //        //AccessoriesCount = AccessoriesCount,
-    //        //ComponentsCount = ComponentsCount,
-    //        Notes = Notes,
-    //        //CreatedBy = model.CreatedBy.CastModel<NamedItem>();
-    //        //CreatedAt = model.CreatedAt.CastModel<DateItem>();
-    //        //UpdatedAt = model.UpdatedAt.CastModel<DateItem>();
-    //        //DeletedAt = model.DeletedAt.CastModel<DateItem>();
-    //        //AvailableActions = model.AvailableActions.CastModel<AvailableActions>();
-    //    });
-    //}
-
+    
+    /// <summary>
+    /// Gets or sets the type of the category (e.g., Asset, Accessory, Consumable, etc.).
+    /// </summary>
     public CategoryType? CategoryType { get; set; }
 
+    /// <summary>
+    /// Gets a value indicating whether the category has an End User License Agreement (EULA).
+    /// </summary>
     public bool HasEula { get; internal set; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether the default EULA should be used for this category.
+    /// </summary>
     public bool UseDefaultEula { get; set; }
 
+    /// <summary>
+    /// Gets the EULA text associated with this category, if any.
+    /// </summary>
     public string? Eula { get; internal set; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether check-in emails are required for this category.
+    /// </summary>
     public bool? CheckinEmail { get; set; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether acceptance of the category's terms is required.
+    /// </summary>
     public bool RequireAcceptance { get; set; }
 
+    /// <summary>
+    /// Gets the total number of items in this category.
+    /// </summary>
     public int ItemCount { get; internal set; }
 
+    /// <summary>
+    /// Gets the total number of assets in this category.
+    /// </summary>
     public int AssetsCount { get; internal set; }
 
+    /// <summary>
+    /// Gets the total number of accessories in this category.
+    /// </summary>
     public int AccessoriesCount { get; internal set; }
 
+    /// <summary>
+    /// Gets the total number of consumables in this category.
+    /// </summary>
     public int ConsumablesCount { get; internal set; }
 
+    /// <summary>
+    /// Gets the total number of components in this category.
+    /// </summary>
     public int ComponentsCount { get; internal set; }
 
+    /// <summary>
+    /// Gets the total number of licenses in this category.
+    /// </summary>
     public int LicensesCount { get; internal set; }
 }
