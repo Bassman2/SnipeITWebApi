@@ -9,7 +9,7 @@
     <RootNamespace>SnipeITWebApiUnitTest</RootNamespace>
     <PublishTrimmed>False</PublishTrimmed>
     <PublishAot>False</PublishAot>
-    <Version>0.0.2.0</Version>
+    <Version>0.0.3.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
