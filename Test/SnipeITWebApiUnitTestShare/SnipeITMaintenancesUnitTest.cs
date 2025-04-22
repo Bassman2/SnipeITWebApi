@@ -7,7 +7,6 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
     {
         handleName = false;
         userCanCheckout = null;
-        availableActions = Actions.Delete | Actions.Update;
 
         TestCreate = new()
         {
@@ -25,11 +24,12 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
 
             // test
             Model= (1, "Macbook Pro 13\""),
-            StatusLabel = (1, "Ready to Deploy"),
-            Location = createHardwareLocation,   // location from createHardware
-            RtdLocation = createHardwareLocation,
+            StatusLabel = (5, "Out for Repair"),
+            Location = null, //createHardwareLocation,   // location from createHardware
+            RtdLocation = null, //createHardwareLocation,
 
             UserId = adminUser,
+            AvailableActions = Actions.Delete
         };
 
         TestUpdate = new()
@@ -52,6 +52,8 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             Location = updateHardwareLocation,   // location from updateHardware,
             RtdLocation = updateHardwareLocation, 
             UserId = adminUser,
+            AvailableActions = Actions.Delete | Actions.Update,
+
         }; 
 
         TestPatch = new()
@@ -71,9 +73,11 @@ public class SnipeITMaintenancesUnitTest : SnipeITBaseUnitTest<Maintenance>
             // test
             Model = (1, "Macbook Pro 13\""),
             StatusLabel = (1, "Ready to Deploy"),
-            Location = patchHardwareLocation,   // location from patchHardware
+            Location = null, //patchHardwareLocation,   // location from patchHardware
             RtdLocation = patchHardwareLocation,
             UserId = adminUser,
+            AvailableActions = Actions.Delete,
+
         };
     }
 

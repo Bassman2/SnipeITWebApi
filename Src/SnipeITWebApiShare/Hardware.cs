@@ -117,7 +117,7 @@ public class Hardware : BaseItem
     //        Name = Name,
     //    };
     //}
-    public static implicit operator Hardware((int, string, string) item) => new() { Id = item.Item1, Name = item.Item2, AssetTag = item.Item3 };
+    public static implicit operator Hardware((int, string?, string) item) => new() { Id = item.Item1, Name = item.Item2, AssetTag = item.Item3 };
 
     public override string ToString() => $"{Id} : {Name} : {AssetTag}";
 
@@ -127,6 +127,7 @@ public class Hardware : BaseItem
     {
         if (obj is Hardware item)
         {
+            bool x = item.Name == null ? true : Name == item.Name;
             return Id == item.Id && (item.Name == null ? true : Name == item.Name) && AssetTag == item.AssetTag;
         }
         if (obj is NamedItem item2)
