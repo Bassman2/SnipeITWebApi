@@ -1,8 +1,14 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents a base class for items in the Snipe-IT system, providing common properties and functionality.
+/// </summary>
 [DebuggerDisplay("{this.GetType().Name}: {Id} : {Name}")]
 public abstract class BaseItem : NamedItem
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="BaseItem"/> class.
+    /// </summary>
     internal BaseItem()
     { }
 
@@ -28,27 +34,43 @@ public abstract class BaseItem : NamedItem
         return item;
     }
 
-    //protected T create;
-    //protected T update;
-    //protected T patch;
-
-    //internal T ToCreate() => FillBase<T>(create ?? update);
-    //internal T ToUpdate() => update ?? create;
-    //internal T ToPatch() => patch ?? update ?? create;
-
-
-    //public int Id { get; internal set; }
-    //public string? Name { get; set; }
+    /// <summary>
+    /// Gets or sets the image associated with the item.
+    /// </summary>
     public string? Image { get; set; }
-    public string? Notes { get; set; }
-    public NamedItem? CreatedBy { get; internal set; }
-    public DateTime? CreatedAt { get; internal set; }
-    public DateTime? UpdatedAt { get; internal set; }
-    public DateTime? DeletedAt { get; internal set; }
-    public bool? UserCanCheckout { get; internal set; }
-    public AvailableActions? AvailableActions { get; internal set; }
 
-    //public override bool Equals(object? obj) => obj is BaseItem item && Id == item.Id && Name == item.Name;
-    //public override int GetHashCode() => base.GetHashCode();
-    //public override string ToString() => $"{Id} : {Name}";
+    /// <summary>
+    /// Gets or sets the notes associated with the item.
+    /// </summary>
+    public string? Notes { get; set; }
+
+    /// <summary>
+    /// Gets the user who created the item.
+    /// </summary>
+    public NamedItem? CreatedBy { get; internal set; }
+
+    /// <summary>
+    /// Gets the date and time when the item was created.
+    /// </summary>
+    public DateTime? CreatedAt { get; internal set; }
+
+    /// <summary>
+    /// Gets the date and time when the item was last updated.
+    /// </summary>
+    public DateTime? UpdatedAt { get; internal set; }
+
+    /// <summary>
+    /// Gets the date and time when the item was deleted, if applicable.
+    /// </summary>
+    public DateTime? DeletedAt { get; internal set; }
+
+    /// <summary>
+    /// Gets a value indicating whether the user can check out the item.
+    /// </summary>
+    public bool? UserCanCheckout { get; internal set; }
+
+    /// <summary>
+    /// Gets the actions that are available for the item.
+    /// </summary>
+    public AvailableActions? AvailableActions { get; internal set; }
 }

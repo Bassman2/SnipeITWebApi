@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Accessory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AvailableActions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assigned.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Company.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Enums\Status.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AccessoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ActionsModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Service\Model\AssignedModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CategoryModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\CompanyModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\ComponentModel.cs" />
