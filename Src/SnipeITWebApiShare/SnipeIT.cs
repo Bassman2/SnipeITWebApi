@@ -75,7 +75,6 @@ public class SnipeIT : IDisposable
             i++;
             yield return item.CastModel<Hardware>()!;
         }
-        //Debug.WriteLine($"GetHardwaresAsync: {i}");
     }
 
     /// <summary>
@@ -133,6 +132,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the hardware asset to update.</param>
     /// <param name="item">The updated hardware asset.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
@@ -148,6 +148,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the hardware asset to patch.</param>
     /// <param name="item">The patched hardware asset.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
@@ -162,6 +163,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the hardware asset to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteHardwareAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -259,6 +261,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the accessory to update.</param>
     /// <param name="item">The updated accessory.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
@@ -274,6 +277,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the accessory to patch.</param>
     /// <param name="item">The patched accessory.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
@@ -288,6 +292,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the accessory to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteAccessoryAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -351,6 +356,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the category to update.</param>
     /// <param name="item">The updated category.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
@@ -366,6 +372,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the category to patch.</param>
     /// <param name="item">The patched category.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
@@ -380,6 +387,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the category to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteCategoryAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -443,6 +451,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the company to update.</param>
     /// <param name="item">The updated company.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
     {
@@ -458,6 +467,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the company to patch.</param>
     /// <param name="item">The patched company.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
     {
@@ -472,6 +482,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the company to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteCompanyAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -558,6 +569,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the component to update.</param>
     /// <param name="item">The updated component.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateComponentAsync(int id, Component item, CancellationToken cancellationToken = default)
     {
@@ -573,6 +585,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the component to patch.</param>
     /// <param name="item">The patched component.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchComponentAsync(int id, Component item, CancellationToken cancellationToken = default)
     {
@@ -587,6 +600,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the component to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteComponentAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -650,6 +664,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the consumable to update.</param>
     /// <param name="item">The updated consumable.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateConsumableAsync(int id, Consumable item, CancellationToken cancellationToken = default)
     {
@@ -665,6 +680,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the consumable to patch.</param>
     /// <param name="item">The patched consumable.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchConsumableAsync(int id, Consumable item, CancellationToken cancellationToken = default)
     {
@@ -679,6 +695,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the consumable to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteConsumableAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -742,6 +759,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the department to update.</param>
     /// <param name="item">The updated department.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateDepartmentAsync(int id, Department item, CancellationToken cancellationToken = default)
     {
@@ -757,6 +775,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the department to patch.</param>
     /// <param name="item">The patched department.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchDepartmentAsync(int id, Department item, CancellationToken cancellationToken = default)
     {
@@ -771,6 +790,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the department to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteDepartmentAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -834,6 +854,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the fieldset to update.</param>
     /// <param name="item">The updated fieldset.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateFieldsetAsync(int id, Fieldset item, CancellationToken cancellationToken = default)
     {
@@ -849,6 +870,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the fieldset to patch.</param>
     /// <param name="item">The patched fieldset.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchFieldsetAsync(int id, Fieldset item, CancellationToken cancellationToken = default)
     {
@@ -863,6 +885,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the fieldset to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteFieldsetAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -926,6 +949,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the field to update.</param>
     /// <param name="item">The updated field.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateFieldAsync(int id, Field item, CancellationToken cancellationToken = default)
     {
@@ -941,6 +965,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the field to patch.</param>
     /// <param name="item">The patched field.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchFieldAsync(int id, Field item, CancellationToken cancellationToken = default)
     {
@@ -955,6 +980,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the field to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteFieldAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1018,6 +1044,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the group to update.</param>
     /// <param name="item">The updated group.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateGroupAsync(int id, Group item, CancellationToken cancellationToken = default)
     {
@@ -1033,6 +1060,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the group to patch.</param>
     /// <param name="item">The patched group.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchGroupAsync(int id, Group item, CancellationToken cancellationToken = default)
     {
@@ -1047,6 +1075,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the group to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteGroupAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1110,6 +1139,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the license to update.</param>
     /// <param name="item">The updated license.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateLicenseAsync(int id, License item, CancellationToken cancellationToken = default)
     {
@@ -1125,6 +1155,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the license to patch.</param>
     /// <param name="item">The patched license.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchLicenseAsync(int id, License item, CancellationToken cancellationToken = default)
     {
@@ -1139,6 +1170,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the license to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteLicenseAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1202,6 +1234,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the location to update.</param>
     /// <param name="item">The updated location.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateLocationAsync(int id, Location item, CancellationToken cancellationToken = default)
     {
@@ -1217,6 +1250,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the location to patch.</param>
     /// <param name="item">The patched location.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchLocationAsync(int id, Location item, CancellationToken cancellationToken = default)
     {
@@ -1231,6 +1265,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the location to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteLocationAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1294,6 +1329,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the maintenance record to update.</param>
     /// <param name="item">The updated maintenance record.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateMaintenanceAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
     {
@@ -1309,6 +1345,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the maintenance record to patch.</param>
     /// <param name="item">The patched maintenance record.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchMaintenanceAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
     {
@@ -1323,6 +1360,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the maintenance record to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteMaintenanceAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1386,6 +1424,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the manufacturer to update.</param>
     /// <param name="item">The updated manufacturer.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
@@ -1401,6 +1440,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the manufacturer to patch.</param>
     /// <param name="item">The patched manufacturer.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
@@ -1415,6 +1455,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the manufacturer to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1479,6 +1520,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the model to update.</param>
     /// <param name="item">The updated model.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
@@ -1494,6 +1536,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the model to patch.</param>
     /// <param name="item">The patched model.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
@@ -1508,6 +1551,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the model to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteModelAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1571,6 +1615,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the status label to update.</param>
     /// <param name="item">The updated status label.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateStatusLabelAsync(int id, StatusLabel item, CancellationToken cancellationToken = default)
     {
@@ -1586,6 +1631,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the status label to patch.</param>
     /// <param name="item">The patched status label.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchStatusLabelAsync(int id, StatusLabel item, CancellationToken cancellationToken = default)
     {
@@ -1600,6 +1646,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the status label to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteStatusLabelAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1663,6 +1710,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the supplier to update.</param>
     /// <param name="item">The updated supplier.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateSupplierAsync(int id, Supplier item, CancellationToken cancellationToken = default)
     {
@@ -1678,6 +1726,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the supplier to patch.</param>
     /// <param name="item">The patched supplier.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchSupplierAsync(int id, Supplier item, CancellationToken cancellationToken = default)
     {
@@ -1692,6 +1741,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the supplier to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteSupplierAsync(int id, CancellationToken cancellationToken = default)
     {
@@ -1757,6 +1807,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the user to update.</param>
     /// <param name="item">The updated user details.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateUserAsync(int id, User item, CancellationToken cancellationToken = default)
     {
@@ -1772,6 +1823,7 @@ public class SnipeIT : IDisposable
     /// <param name="id">The ID of the user to patch.</param>
     /// <param name="item">The patched user details.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchUserAsync(int id, User item, CancellationToken cancellationToken = default)
     {
@@ -1786,6 +1838,7 @@ public class SnipeIT : IDisposable
     /// </summary>
     /// <param name="id">The ID of the user to delete.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteUserAsync(int id, CancellationToken cancellationToken = default)
     {
