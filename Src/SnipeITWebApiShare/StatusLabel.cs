@@ -66,6 +66,7 @@ public class StatusLabel : BaseItem
     /// Implicitly converts a tuple containing an ID and name to a <see cref="StatusLabel"/>.
     /// </summary>
     /// <param name="item">A tuple containing the ID and name of the status label.</param>
+    /// <returns>A new <see cref="StatusLabel"/> instance with the specified ID and name.</returns>
     public static implicit operator StatusLabel((int, string) item) => new() { Id = item.Item1, Name = item.Item2 };
 
     /// <summary>

@@ -72,6 +72,7 @@ public class NamedItem
     /// Implicitly converts a tuple containing an ID and name to a <see cref="NamedItem"/>.
     /// </summary>
     /// <param name="item">A tuple containing the ID and name of the item.</param>
+    /// <returns>A new <see cref="NamedItem"/> instance with the specified ID and name.</returns>
     public static implicit operator NamedItem((int, string) item) => new() { Id = item.Item1, Name = item.Item2 };
 
     /// <summary>
