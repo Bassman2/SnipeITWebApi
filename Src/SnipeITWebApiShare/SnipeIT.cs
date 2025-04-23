@@ -210,6 +210,11 @@ public class SnipeIT : IDisposable
 
     #region Accessories
 
+    /// <summary>
+    /// Retrieves all accessories asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Accessory"/> objects.</returns>
     public async IAsyncEnumerable<Accessory> GetAccessoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -221,6 +226,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific accessory by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the accessory.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Accessory"/> object if found; otherwise, null.</returns>
     public async Task<Accessory?> GetAccessoryAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -229,6 +240,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Accessory>();
     }
 
+    /// <summary>
+    /// Creates a new accessory.
+    /// </summary>
+    /// <param name="item">The accessory to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created accessory.</returns>
     public async Task<int> CreateAccessoryAsync(Accessory item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -237,6 +254,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing accessory.
+    /// </summary>
+    /// <param name="id">The ID of the accessory to update.</param>
+    /// <param name="item">The updated accessory.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -246,6 +270,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Accessory>();
     }
 
+    /// <summary>
+    /// Patches an existing accessory.
+    /// </summary>
+    /// <param name="id">The ID of the accessory to patch.</param>
+    /// <param name="item">The patched accessory.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -255,6 +286,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Accessory>();
     }
 
+    /// <summary>
+    /// Deletes an accessory.
+    /// </summary>
+    /// <param name="id">The ID of the accessory to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteAccessoryAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -267,6 +304,11 @@ public class SnipeIT : IDisposable
 
     #region Categories
 
+    /// <summary>
+    /// Retrieves all categories asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Category"/> objects.</returns>
     public async IAsyncEnumerable<Category> GetCategoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -278,6 +320,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific category by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the category.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Category"/> object if found; otherwise, null.</returns>
     public async Task<Category?> GetCategoryAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -286,6 +334,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Category>();
     }
 
+    /// <summary>
+    /// Creates a new category.
+    /// </summary>
+    /// <param name="item">The category to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created category.</returns>
     public async Task<int> CreateCategoryAsync(Category item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -294,6 +348,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing category.
+    /// </summary>
+    /// <param name="id">The ID of the category to update.</param>
+    /// <param name="item">The updated category.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -303,6 +364,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Category>();
     }
 
+    /// <summary>
+    /// Patches an existing category.
+    /// </summary>
+    /// <param name="id">The ID of the category to patch.</param>
+    /// <param name="item">The patched category.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -312,6 +380,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Category>();
     }
 
+    /// <summary>
+    /// Deletes a category.
+    /// </summary>
+    /// <param name="id">The ID of the category to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteCategoryAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -324,6 +398,11 @@ public class SnipeIT : IDisposable
 
     #region Companies
 
+    /// <summary>
+    /// Retrieves all companies asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Company"/> objects.</returns>
     public async IAsyncEnumerable<Company> GetCompaniesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -335,6 +414,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific company by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the company.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Company"/> object if found; otherwise, null.</returns>
     public async Task<Company?> GetCompanyAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -343,6 +428,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Company>();
     }
 
+    /// <summary>
+    /// Creates a new company.
+    /// </summary>
+    /// <param name="item">The company to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created company.</returns>
     public async Task<int> CreateCompanyAsync(Company item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -351,6 +442,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing company.
+    /// </summary>
+    /// <param name="id">The ID of the company to update.</param>
+    /// <param name="item">The updated company.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -360,6 +458,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Company>();
     }
 
+    /// <summary>
+    /// Patches an existing company.
+    /// </summary>
+    /// <param name="id">The ID of the company to patch.</param>
+    /// <param name="item">The patched company.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -369,6 +474,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Company>();
     }
 
+    /// <summary>
+    /// Deletes a company.
+    /// </summary>
+    /// <param name="id">The ID of the company to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteCompanyAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -381,6 +492,11 @@ public class SnipeIT : IDisposable
 
     #region Components
 
+    /// <summary>
+    /// Retrieves all components asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Component"/> objects.</returns>
     public async IAsyncEnumerable<Component> GetComponentsAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -392,10 +508,18 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves components asynchronously with optional filters.
+    /// </summary>
+    /// <param name="name">The name of the component to filter by.</param>
+    /// <param name="search">A search term to filter components.</param>
+    /// <param name="orderNumber">The order number to filter components.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Component"/> objects.</returns>
     public async IAsyncEnumerable<Component> GetComponentsAsync(
         string? name = null,
         string? search = null,
-        string? orderNumber = null,        
+        string? orderNumber = null,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -407,6 +531,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific component by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the component.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Component"/> object if found; otherwise, null.</returns>
     public async Task<Component?> GetComponentAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -415,6 +545,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Component>();
     }
 
+    /// <summary>
+    /// Creates a new component.
+    /// </summary>
+    /// <param name="item">The component to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created component.</returns>
     public async Task<int> CreateComponentAsync(Component item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -423,6 +559,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing component.
+    /// </summary>
+    /// <param name="id">The ID of the component to update.</param>
+    /// <param name="item">The updated component.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateComponentAsync(int id, Component item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -432,6 +575,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Component>();
     }
 
+    /// <summary>
+    /// Patches an existing component.
+    /// </summary>
+    /// <param name="id">The ID of the component to patch.</param>
+    /// <param name="item">The patched component.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchComponentAsync(int id, Component item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -441,6 +591,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Component>();
     }
 
+    /// <summary>
+    /// Deletes a component.
+    /// </summary>
+    /// <param name="id">The ID of the component to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteComponentAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -453,6 +609,11 @@ public class SnipeIT : IDisposable
 
     #region Consumables
 
+    /// <summary>
+    /// Retrieves all consumables asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Consumable"/> objects.</returns>
     public async IAsyncEnumerable<Consumable> GetConsumablesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -464,6 +625,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific consumable by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the consumable.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Consumable"/> object if found; otherwise, null.</returns>
     public async Task<Consumable?> GetConsumableAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -472,6 +639,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Consumable>();
     }
 
+    /// <summary>
+    /// Creates a new consumable.
+    /// </summary>
+    /// <param name="item">The consumable to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created consumable.</returns>
     public async Task<int> CreateConsumableAsync(Consumable item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -480,6 +653,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing consumable.
+    /// </summary>
+    /// <param name="id">The ID of the consumable to update.</param>
+    /// <param name="item">The updated consumable.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateConsumableAsync(int id, Consumable item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -489,6 +669,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Consumable>();
     }
 
+    /// <summary>
+    /// Patches an existing consumable.
+    /// </summary>
+    /// <param name="id">The ID of the consumable to patch.</param>
+    /// <param name="item">The patched consumable.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchConsumableAsync(int id, Consumable item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -498,6 +685,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Consumable>();
     }
 
+    /// <summary>
+    /// Deletes a consumable.
+    /// </summary>
+    /// <param name="id">The ID of the consumable to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteConsumableAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
