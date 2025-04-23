@@ -139,8 +139,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateHardwareAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Hardware>();
+        await service.UpdateHardwareAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -155,7 +154,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchHardwareAsync(id, item.ToUpdate(), cancellationToken);
+        await service.PatchHardwareAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -169,7 +168,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteHardwareAsync(id, cancellationToken);
+        await service.DeleteHardwareAsync(id, cancellationToken);
     }
 
     /// <summary>
@@ -266,8 +265,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateAccessoryAsync(id, item.ToChange(), cancellationToken);
-        //return res.CastModel<Accessory>();
+        await service.UpdateAccessoryAsync(id, item.ToChange(), cancellationToken);
     }
 
     /// <summary>
@@ -282,8 +280,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchAccessoryAsync(id, item.ToChange(), cancellationToken);
-        //return res.CastModel<Accessory>();
+        await service.PatchAccessoryAsync(id, item.ToChange(), cancellationToken);
     }
 
     /// <summary>
@@ -297,7 +294,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteAccessoryAsync(id, cancellationToken);
+        await service.DeleteAccessoryAsync(id, cancellationToken);
     }
 
     #endregion
@@ -360,8 +357,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateCategoryAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Category>();
+        await service.UpdateCategoryAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -376,8 +372,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchCategoryAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Category>();
+        await service.PatchCategoryAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -391,7 +386,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteCategoryAsync(id, cancellationToken);
+        await service.DeleteCategoryAsync(id, cancellationToken);
     }
 
     #endregion
@@ -454,8 +449,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateCompanyAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Company>();
+        await service.UpdateCompanyAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -470,8 +464,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchCompanyAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Company>();
+        await service.PatchCompanyAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -485,7 +478,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteCompanyAsync(id, cancellationToken);
+        await service.DeleteCompanyAsync(id, cancellationToken);
     }
 
     #endregion
@@ -571,8 +564,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateComponentAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Component>();
+        await service.UpdateComponentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -587,8 +579,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchComponentAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Component>();
+        await service.PatchComponentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -602,7 +593,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteComponentAsync(id, cancellationToken);
+        await service.DeleteComponentAsync(id, cancellationToken);
     }
 
     #endregion
@@ -665,8 +656,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateConsumableAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Consumable>();
+        await service.UpdateConsumableAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -681,8 +671,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchConsumableAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Consumable>();
+        await service.PatchConsumableAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -696,7 +685,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteConsumableAsync(id, cancellationToken);
+        await service.DeleteConsumableAsync(id, cancellationToken);
     }
 
     #endregion
@@ -759,8 +748,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateDepartmentAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Department>();
+        await service.UpdateDepartmentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -775,8 +763,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchDepartmentAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Department>();
+        await service.PatchDepartmentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -790,7 +777,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteDepartmentAsync(id, cancellationToken);
+        await service.DeleteDepartmentAsync(id, cancellationToken);
     }
 
     #endregion
@@ -853,8 +840,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateFieldsetAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Fieldset>();
+        await service.UpdateFieldsetAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -869,8 +855,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchFieldsetAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Fieldset>();
+        await service.PatchFieldsetAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -884,7 +869,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteFieldsetAsync(id, cancellationToken);
+        await service.DeleteFieldsetAsync(id, cancellationToken);
     }
 
     #endregion
@@ -947,8 +932,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateFieldAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Field>();
+        await service.UpdateFieldAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -963,8 +947,7 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchFieldAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Field>();
+        await service.PatchFieldAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -978,13 +961,18 @@ public class SnipeIT : IDisposable
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteFieldAsync(id, cancellationToken);
+        await service.DeleteFieldAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region Groups
 
+    /// <summary>
+    /// Retrieves all groups asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Group"/> objects.</returns>
     public async IAsyncEnumerable<Group> GetGroupsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -996,6 +984,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific group by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the group.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Group"/> object if found; otherwise, null.</returns>
     public async Task<Group?> GetGroupAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1004,6 +998,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Group>();
     }
 
+    /// <summary>
+    /// Creates a new group.
+    /// </summary>
+    /// <param name="item">The group to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created group.</returns>
     public async Task<int> CreateGroupAsync(Group item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1012,36 +1012,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing group.
+    /// </summary>
+    /// <param name="id">The ID of the group to update.</param>
+    /// <param name="item">The updated group.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateGroupAsync(int id, Group item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateGroupAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Group>();
+        await service.UpdateGroupAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing group.
+    /// </summary>
+    /// <param name="id">The ID of the group to patch.</param>
+    /// <param name="item">The patched group.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchGroupAsync(int id, Group item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchGroupAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Group>();
+        await service.PatchGroupAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a group.
+    /// </summary>
+    /// <param name="id">The ID of the group to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteGroupAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteGroupAsync(id, cancellationToken);
+        await service.DeleteGroupAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region Licenses
 
+    /// <summary>
+    /// Retrieves all licenses asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="License"/> objects.</returns>
     public async IAsyncEnumerable<License> GetLicensesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1053,6 +1076,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific license by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the license.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="License"/> object if found; otherwise, null.</returns>
     public async Task<License?> GetLicenseAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1061,6 +1090,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<License>();
     }
 
+    /// <summary>
+    /// Creates a new license.
+    /// </summary>
+    /// <param name="item">The license to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created license.</returns>
     public async Task<int> CreateLicenseAsync(License item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1069,36 +1104,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing license.
+    /// </summary>
+    /// <param name="id">The ID of the license to update.</param>
+    /// <param name="item">The updated license.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateLicenseAsync(int id, License item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateLicenseAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<License>();
+        await service.UpdateLicenseAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing license.
+    /// </summary>
+    /// <param name="id">The ID of the license to patch.</param>
+    /// <param name="item">The patched license.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchLicenseAsync(int id, License item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchLicenseAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<License>();
+        await service.PatchLicenseAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a license.
+    /// </summary>
+    /// <param name="id">The ID of the license to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteLicenseAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteLicenseAsync(id, cancellationToken);
+        await service.DeleteLicenseAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region Locations
 
+    /// <summary>
+    /// Retrieves all locations asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Location"/> objects.</returns>
     public async IAsyncEnumerable<Location> GetLocationsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1110,6 +1168,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific location by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the location.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Location"/> object if found; otherwise, null.</returns>
     public async Task<Location?> GetLocationAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1118,6 +1182,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Location>();
     }
 
+    /// <summary>
+    /// Creates a new location.
+    /// </summary>
+    /// <param name="item">The location to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created location.</returns>
     public async Task<int> CreateLocationAsync(Location item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1126,36 +1196,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing location.
+    /// </summary>
+    /// <param name="id">The ID of the location to update.</param>
+    /// <param name="item">The updated location.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateLocationAsync(int id, Location item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateLocationAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Location>();
+        await service.UpdateLocationAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing location.
+    /// </summary>
+    /// <param name="id">The ID of the location to patch.</param>
+    /// <param name="item">The patched location.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchLocationAsync(int id, Location item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchLocationAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Location>();
+        await service.PatchLocationAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a location.
+    /// </summary>
+    /// <param name="id">The ID of the location to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteLocationAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteLocationAsync(id, cancellationToken);
+        await service.DeleteLocationAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region Maintenances
 
+    /// <summary>
+    /// Retrieves all maintenances asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Maintenance"/> objects.</returns>
     public async IAsyncEnumerable<Maintenance> GetMaintenancesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1167,6 +1260,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific maintenance by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the maintenance.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Maintenance"/> object if found; otherwise, null.</returns>
     public async Task<Maintenance?> GetMaintenanceAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1175,6 +1274,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Maintenance>();
     }
 
+    /// <summary>
+    /// Creates a new maintenance record.
+    /// </summary>
+    /// <param name="item">The maintenance record to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created maintenance record.</returns>
     public async Task<int> CreateMaintenanceAsync(Maintenance item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1183,36 +1288,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing maintenance record.
+    /// </summary>
+    /// <param name="id">The ID of the maintenance record to update.</param>
+    /// <param name="item">The updated maintenance record.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateMaintenanceAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateMaintenanceAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Maintenance>();
+        await service.UpdateMaintenanceAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing maintenance record.
+    /// </summary>
+    /// <param name="id">The ID of the maintenance record to patch.</param>
+    /// <param name="item">The patched maintenance record.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchMaintenanceAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchMaintenanceAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Maintenance>();
+        await service.PatchMaintenanceAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a maintenance record.
+    /// </summary>
+    /// <param name="id">The ID of the maintenance record to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteMaintenanceAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteMaintenanceAsync(id, cancellationToken);
+        await service.DeleteMaintenanceAsync(id, cancellationToken);
     }
-
-    #endregion
 
     #region Manufacturers
 
+    #endregion
+
+    /// <summary>
+    /// Retrieves all manufacturers asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Manufacturer"/> objects.</returns>
     public async IAsyncEnumerable<Manufacturer> GetManufacturersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1224,6 +1352,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific manufacturer by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the manufacturer.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Manufacturer"/> object if found; otherwise, null.</returns>
     public async Task<Manufacturer?> GetManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1232,6 +1366,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Manufacturer>();
     }
 
+    /// <summary>
+    /// Creates a new manufacturer.
+    /// </summary>
+    /// <param name="item">The manufacturer to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created manufacturer.</returns>
     public async Task<int> CreateManufacturerAsync(Manufacturer item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1240,36 +1380,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing manufacturer.
+    /// </summary>
+    /// <param name="id">The ID of the manufacturer to update.</param>
+    /// <param name="item">The updated manufacturer.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdatManufacturerAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Manufacturer>();
+        await service.UpdatManufacturerAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing manufacturer.
+    /// </summary>
+    /// <param name="id">The ID of the manufacturer to patch.</param>
+    /// <param name="item">The patched manufacturer.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchManufacturerAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Manufacturer>();
+        await service.PatchManufacturerAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a manufacturer.
+    /// </summary>
+    /// <param name="id">The ID of the manufacturer to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteManufacturerAsync(id, cancellationToken);
+        await service.DeleteManufacturerAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region Models
 
+    /// <summary>
+    /// Retrieves all models asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Model"/> objects.</returns>
     public async IAsyncEnumerable<Model> GetModelsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1281,6 +1444,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific model by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the model.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Model"/> object if found; otherwise, null.</returns>
     public async Task<Model?> GetModelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1290,6 +1459,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Model>();
     }
 
+    /// <summary>
+    /// Creates a new model.
+    /// </summary>
+    /// <param name="item">The model to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created model.</returns>
     public async Task<int> CreateModelAsync(Model item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1298,36 +1473,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing model.
+    /// </summary>
+    /// <param name="id">The ID of the model to update.</param>
+    /// <param name="item">The updated model.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateModelAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Model>();
+        await service.UpdateModelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing model.
+    /// </summary>
+    /// <param name="id">The ID of the model to patch.</param>
+    /// <param name="item">The patched model.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchModelAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Model>();
+        await service.PatchModelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a model.
+    /// </summary>
+    /// <param name="id">The ID of the model to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteModelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteModelAsync(id, cancellationToken);
+        await service.DeleteModelAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region StatusLabels
 
+    /// <summary>
+    /// Retrieves all status labels asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="StatusLabel"/> objects.</returns>
     public async IAsyncEnumerable<StatusLabel> GetStatusLabelsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1339,6 +1537,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific status label by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the status label.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="StatusLabel"/> object if found; otherwise, null.</returns>
     public async Task<StatusLabel?> GetStatusLabelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1347,6 +1551,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<StatusLabel>();
     }
 
+    /// <summary>
+    /// Creates a new status label.
+    /// </summary>
+    /// <param name="item">The status label to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created status label.</returns>
     public async Task<int> CreateStatusLabelAsync(StatusLabel item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1355,36 +1565,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing status label.
+    /// </summary>
+    /// <param name="id">The ID of the status label to update.</param>
+    /// <param name="item">The updated status label.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateStatusLabelAsync(int id, StatusLabel item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateStatusLabelAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<StatusLabel>();
+        await service.UpdateStatusLabelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing status label.
+    /// </summary>
+    /// <param name="id">The ID of the status label to patch.</param>
+    /// <param name="item">The patched status label.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchStatusLabelAsync(int id, StatusLabel item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchStatusLabelAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<StatusLabel>();
+        await service.PatchStatusLabelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a status label.
+    /// </summary>
+    /// <param name="id">The ID of the status label to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteStatusLabelAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteStatusLabelAsync(id, cancellationToken);
+        await service.DeleteStatusLabelAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region Suppliers
 
+    /// <summary>
+    /// Retrieves all suppliers asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Supplier"/> objects.</returns>
     public async IAsyncEnumerable<Supplier> GetSuppliersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1396,6 +1629,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific supplier by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the supplier.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Supplier"/> object if found; otherwise, null.</returns>
     public async Task<Supplier?> GetSupplierAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1404,6 +1643,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Supplier>();
     }
 
+    /// <summary>
+    /// Creates a new supplier.
+    /// </summary>
+    /// <param name="item">The supplier to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created supplier.</returns>
     public async Task<int> CreateSupplierAsync(Supplier item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1412,36 +1657,59 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing supplier.
+    /// </summary>
+    /// <param name="id">The ID of the supplier to update.</param>
+    /// <param name="item">The updated supplier.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateSupplierAsync(int id, Supplier item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateSupplierAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Supplier>();
+        await service.UpdateSupplierAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing supplier.
+    /// </summary>
+    /// <param name="id">The ID of the supplier to patch.</param>
+    /// <param name="item">The patched supplier.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchSupplierAsync(int id, Supplier item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchSupplierAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<Supplier>();
+        await service.PatchSupplierAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a supplier.
+    /// </summary>
+    /// <param name="id">The ID of the supplier to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteSupplierAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteSupplierAsync(id, cancellationToken);
+        await service.DeleteSupplierAsync(id, cancellationToken);
     }
 
     #endregion
 
     #region Users
 
+    /// <summary>
+    /// Retrieves all users asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="User"/> objects.</returns>
     public async IAsyncEnumerable<User> GetUsersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1453,6 +1721,13 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific user by their ID.
+    /// </summary>
+    /// <param name="id">The ID of the user.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="User"/> object if found; otherwise, null.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<User?> GetUserAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1462,6 +1737,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<User>();
     }
 
+    /// <summary>
+    /// Creates a new user.
+    /// </summary>
+    /// <param name="item">The user to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created user.</returns>
     public async Task<int> CreateUserAsync(User item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -1470,32 +1751,55 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing user.
+    /// </summary>
+    /// <param name="id">The ID of the user to update.</param>
+    /// <param name="item">The updated user details.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateUserAsync(int id, User item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.UpdateUserAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<User>();
+        await service.UpdateUserAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Patches an existing user.
+    /// </summary>
+    /// <param name="id">The ID of the user to patch.</param>
+    /// <param name="item">The patched user details.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchUserAsync(int id, User item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.PatchUserAsync(id, item.ToUpdate(), cancellationToken);
-        //return res.CastModel<User>();
+        await service.PatchUserAsync(id, item.ToUpdate(), cancellationToken);
     }
 
+    /// <summary>
+    /// Deletes a user.
+    /// </summary>
+    /// <param name="id">The ID of the user to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteUserAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await service.DeleteUserAsync(id, cancellationToken);
+        await service.DeleteUserAsync(id, cancellationToken);
     }
 
+    /// <summary>
+    /// Retrieves the currently authenticated user.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="User"/> object representing the authenticated user.</returns>
     public async Task<User?> GetUserMeAsync(CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);

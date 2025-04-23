@@ -1,7 +1,13 @@
 ﻿namespace SnipeITWebApi;
 
+/// <summary>
+/// Represents the permissions assigned to a user in the Snipe-IT system.
+/// </summary>
 public class Permissions
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Permissions"/> class.
+    /// </summary>
     public Permissions()
     { }
 
@@ -202,11 +208,20 @@ public class Permissions
         };
     }
 
+    /// <summary>
+    /// Serves as the default hash function.
+    /// </summary>
+    /// <returns>A hash code for the current object.</returns>
     public override int GetHashCode()
     {
         return base.GetHashCode();
     }
 
+    /// <summary>
+    /// Determines whether the specified object is equal to the current <see cref="Permissions"/> instance.
+    /// </summary>
+    /// <param name="obj">The object to compare with the current instance.</param>
+    /// <returns><c>true</c> if the specified object is equal to the current instance; otherwise, <c>false</c>.</returns>
     public override bool Equals(object? obj)
     {
         if (obj != null && obj is Permissions perm)
