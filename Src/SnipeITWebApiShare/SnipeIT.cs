@@ -703,6 +703,11 @@ public class SnipeIT : IDisposable
 
     #region Departments
 
+    /// <summary>
+    /// Retrieves all departments asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Department"/> objects.</returns>
     public async IAsyncEnumerable<Department> GetDepartmentsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -714,6 +719,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific department by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the department.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Department"/> object if found; otherwise, null.</returns>
     public async Task<Department?> GetDepartmentAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -722,6 +733,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Department>();
     }
 
+    /// <summary>
+    /// Creates a new department.
+    /// </summary>
+    /// <param name="item">The department to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created department.</returns>
     public async Task<int> CreateDepartmentAsync(Department item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -730,6 +747,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing department.
+    /// </summary>
+    /// <param name="id">The ID of the department to update.</param>
+    /// <param name="item">The updated department.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateDepartmentAsync(int id, Department item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -739,6 +763,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Department>();
     }
 
+    /// <summary>
+    /// Patches an existing department.
+    /// </summary>
+    /// <param name="id">The ID of the department to patch.</param>
+    /// <param name="item">The patched department.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchDepartmentAsync(int id, Department item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -748,6 +779,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Department>();
     }
 
+    /// <summary>
+    /// Deletes a department.
+    /// </summary>
+    /// <param name="id">The ID of the department to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteDepartmentAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -760,6 +797,11 @@ public class SnipeIT : IDisposable
 
     #region Fieldsets
 
+    /// <summary>
+    /// Retrieves all fieldsets asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Fieldset"/> objects.</returns>
     public async IAsyncEnumerable<Fieldset> GetFieldsetsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -771,6 +813,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific fieldset by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the fieldset.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Fieldset"/> object if found; otherwise, null.</returns>
     public async Task<Fieldset?> GetFieldsetAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -779,6 +827,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Fieldset>();
     }
 
+    /// <summary>
+    /// Creates a new fieldset.
+    /// </summary>
+    /// <param name="item">The fieldset to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created fieldset.</returns>
     public async Task<int> CreateFieldsetAsync(Fieldset item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -787,6 +841,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing fieldset.
+    /// </summary>
+    /// <param name="id">The ID of the fieldset to update.</param>
+    /// <param name="item">The updated fieldset.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateFieldsetAsync(int id, Fieldset item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -796,6 +857,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Fieldset>();
     }
 
+    /// <summary>
+    /// Patches an existing fieldset.
+    /// </summary>
+    /// <param name="id">The ID of the fieldset to patch.</param>
+    /// <param name="item">The patched fieldset.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchFieldsetAsync(int id, Fieldset item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -805,6 +873,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Fieldset>();
     }
 
+    /// <summary>
+    /// Deletes a fieldset.
+    /// </summary>
+    /// <param name="id">The ID of the fieldset to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteFieldsetAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -817,6 +891,11 @@ public class SnipeIT : IDisposable
 
     #region Fields
 
+    /// <summary>
+    /// Retrieves all fields asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>An asynchronous stream of <see cref="Field"/> objects.</returns>
     public async IAsyncEnumerable<Field> GetFieldsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -828,6 +907,12 @@ public class SnipeIT : IDisposable
         }
     }
 
+    /// <summary>
+    /// Retrieves a specific field by its ID.
+    /// </summary>
+    /// <param name="id">The ID of the field.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The <see cref="Field"/> object if found; otherwise, null.</returns>
     public async Task<Field?> GetFieldAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -836,6 +921,12 @@ public class SnipeIT : IDisposable
         return res.CastModel<Field>();
     }
 
+    /// <summary>
+    /// Creates a new field.
+    /// </summary>
+    /// <param name="item">The field to create.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>The ID of the created field.</returns>
     public async Task<int> CreateFieldAsync(Field item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -844,6 +935,13 @@ public class SnipeIT : IDisposable
         return res?.Id ?? 0;
     }
 
+    /// <summary>
+    /// Updates an existing field.
+    /// </summary>
+    /// <param name="id">The ID of the field to update.</param>
+    /// <param name="item">The updated field.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateFieldAsync(int id, Field item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -853,6 +951,13 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Field>();
     }
 
+    /// <summary>
+    /// Patches an existing field.
+    /// </summary>
+    /// <param name="id">The ID of the field to patch.</param>
+    /// <param name="item">The patched field.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchFieldAsync(int id, Field item, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
@@ -862,6 +967,12 @@ public class SnipeIT : IDisposable
         //return res.CastModel<Field>();
     }
 
+    /// <summary>
+    /// Deletes a field.
+    /// </summary>
+    /// <param name="id">The ID of the field to delete.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteFieldAsync(int id, CancellationToken cancellationToken = default)
     {
         WebServiceException.ThrowIfNullOrNotConnected(this.service);
