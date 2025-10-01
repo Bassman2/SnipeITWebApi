@@ -7,8 +7,6 @@
 internal class SnipeITService(Uri host, IAuthenticator? authenticator, string appName) 
     : JsonService(host, authenticator, appName, SourceGenerationContext.Default)
 {
-    private const int limit = 500;
-
     protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
        
     protected override async Task ErrorCheckAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
@@ -1125,13 +1123,19 @@ internal class SnipeITService(Uri host, IAuthenticator? authenticator, string ap
 
     #region Private
 
+    
     private async IAsyncEnumerable<T> GetListAsync<T>(string requestUri, [EnumeratorCancellation] CancellationToken cancellationToken, [CallerMemberName] string memberName = "") //where T : class
     {
         ArgumentRequestUriException.ThrowIfNullOrWhiteSpace(requestUri, nameof(requestUri));
         WebServiceException.ThrowIfNotConnected(client);
 
+        const int limit = 500;  
         int total = 1;
-        int offset = 0;
+        int offset = 0; 
+
+        //const int limit = 100;  //500
+        //int total = 2000;
+        //int offset = 1520; // 0;
         while (offset < total)
         {
             

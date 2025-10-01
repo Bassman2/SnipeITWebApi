@@ -75,5 +75,7 @@
 
 [JsonSerializable(typeof(ResultModel<BaseChangeModel>))]
 
+[JsonSerializable(typeof(List<CustomFieldModel>))]
+
 internal partial class SourceGenerationContext  : JsonSerializerContext
 { }

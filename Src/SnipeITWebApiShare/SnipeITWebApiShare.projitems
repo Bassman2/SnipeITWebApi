@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Permissions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\CastExtentions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateTimeJsonConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DictionaryOrEmptyArrayConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\FloatJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\IntJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ListJsonConverter.cs" />

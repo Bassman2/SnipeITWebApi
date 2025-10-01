@@ -26,7 +26,9 @@ internal class HardwareModel : BaseModel
     public string? ModelNumber { get; set; }
 
     [JsonPropertyName("eol")]
-    public string? Eol { get; set; }
+    [JsonConverter(typeof(DateTimeJsonConverter))]
+    public DateTime? Eol { get; set; }
+    //public string? Eol { get; set; }
 
     [JsonPropertyName("asset_eol_date")]
     [JsonConverter(typeof(DateJsonConverter))]
@@ -120,5 +122,6 @@ internal class HardwareModel : BaseModel
     public string? BookValue { get; set; }
 
     [JsonPropertyName("custom_fields")]
+    [JsonConverter(typeof(DictionaryOrEmptyArrayConverter<string, CustomFieldModel>))]
     public Dictionary<string, CustomFieldModel>? CustomFields { get; set; }
 }

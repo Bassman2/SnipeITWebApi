@@ -56,7 +56,7 @@ public class Hardware : BaseItem
         CheckoutCounter = model.CheckoutCounter;
         RequestsCounter = model.RequestsCounter;
         BookValue = model.BookValue;
-        CustomFields = model.CustomFields.CastModel<CustomField>();
+        //CustomFields = model.CustomFields.CastModel<CustomField>();
     }
 
     //internal HardwareModel ToCreate()
@@ -156,8 +156,8 @@ public class Hardware : BaseItem
     {
         if (obj is Hardware item)
         {
-            bool x = item.Name == null ? true : Name == item.Name;
-            return Id == item.Id && (item.Name == null ? true : Name == item.Name) && AssetTag == item.AssetTag;
+            //bool x = item.Name == null ? true : Name == item.Name;
+            return Id == item.Id && (item.Name == null || Name == item.Name) && AssetTag == item.AssetTag;
         }
         if (obj is NamedItem item2)
         {
@@ -203,7 +203,7 @@ public class Hardware : BaseItem
     /// <summary>
     /// Gets the end-of-life (EOL) status of the hardware.
     /// </summary>
-    public string? Eol { get; internal set; }
+    public DateTime? Eol { get; internal set; }
 
     /// <summary>
     /// Gets the end-of-life (EOL) date of the hardware.

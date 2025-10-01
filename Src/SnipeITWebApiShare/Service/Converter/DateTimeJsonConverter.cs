@@ -9,7 +9,7 @@ internal class DateTimeJsonConverter : JsonConverter<DateTime?>
     {
         if (reader.TokenType == JsonTokenType.String)
         {
-            var text = reader.GetString();
+            var _ = reader.GetString();
             if (DateTime.TryParse(reader.GetString(), out DateTime dateTime))
             {
                 return dateTime;
