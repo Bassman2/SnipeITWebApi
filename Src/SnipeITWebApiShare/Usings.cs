@@ -6,9 +6,8 @@ global using System.Text;
 global using WebServiceClient;
 global using WebServiceClient.Store;
 
-global using SnipeITWebApi.Service;
-global using SnipeITWebApi.Service.Converter;
-global using SnipeITWebApi.Service.Model;
+global using SnipeITWebApi.JsonConverters;
+global using SnipeITWebApi.Models;
 
 // allow unit test to access internal properties
 [assembly: InternalsVisibleTo("SnipeITWebApiUnitTest")]
