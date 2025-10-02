@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\StatusLabelChangeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SupplierChangeModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\UserChangeModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeIT.cs" />
     <Compile Include="..\SnipeITWebApiShare\Service\Converter\BooleanJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\DateJsonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Converter\ImageConverter.cs" />
@@ -93,7 +94,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\SupplierModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\Model\UserModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Service\SnipeITService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SnipeIT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SnipeIT_old.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StatusLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Supplier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User.cs" />

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace SnipeITWebApi;
+﻿namespace SnipeITWebApi;
 
 /// <summary>
 /// Provides methods to interact with the Snipe-IT API for managing assets, accessories, categories, and more.
@@ -9,41 +7,41 @@ namespace SnipeITWebApi;
 /// The return JSON from create, update, patch, and delete operations is not identical to the JSON returned by get operations.
 /// As a result, the return JSON is not used in these methods.
 /// </remarks>
-public class SnipeIT : JsonService
+public class SnipeIT_old : IDisposable
 {
+    private SnipeITService? service;
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="SnipeIT"/> class using a store key to retrieve the service host and authenticator.
+    /// Initializes a new instance of the <see cref="SnipeIT"/> class using a store key and application name.
     /// </summary>
-    /// <param name="storeKey">The key used to retrieve the service host and authenticator from the key store.</param>
-    /// <param name="appName">The name of the application using the service.</param>
-    public SnipeIT(string storeKey, string appName) : base(storeKey, appName, SourceGenerationContext.Default)
+    /// <param name="storeKey">The key to retrieve the host and token from the key store.</param>
+    /// <param name="appName">The name of the application using the API.</param>
+    public SnipeIT_old(string storeKey, string appName)
+    : this(new Uri(KeyStore.Key(storeKey)?.Host!), KeyStore.Key(storeKey)!.Token!, appName)
     { }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="SnipeIT"/> class with a specified service host and authenticator.
+    /// Initializes a new instance of the <see cref="SnipeIT"/> class using a host URI, token, and application name.
     /// </summary>
-    /// <param name="host">The service host URI.</param>
-    /// <param name="authenticator">The authenticator to use for the service, or null if not required.</param>
-    /// <param name="appName">The name of the application using the service.</param>
-    public SnipeIT(Uri host, IAuthenticator? authenticator, string appName) : base(host, authenticator, appName, SourceGenerationContext.Default)
-    { }
-
-    protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
-
-    protected override async Task ErrorCheckAsync(HttpResponseMessage response, string memberName, CancellationToken cancellationToken)
+    /// <param name="host">The base URI of the Snipe-IT API.</param>
+    /// <param name="token">The authentication token for the API.</param>
+    /// <param name="appName">The name of the application using the API.</param>
+    public SnipeIT_old(Uri host, string token, string appName)
     {
-        await base.ErrorCheckAsync(response, memberName, cancellationToken);
+        service = new(host, new BearerAuthenticator(token), appName);
+    }
 
-        string str = await response.Content.ReadAsStringAsync(cancellationToken);
-        if (str.StartsWith("{\"status\":\"error\""))
+    /// <summary>
+    /// Disposes the resources used by the <see cref="SnipeIT"/> instance.
+    /// </summary>
+    public void Dispose()
+    {
+        if (this.service != null)
         {
-            //var res = await ReadFromJsonAsync<ResultModel>(response, cancellationToken);
-
-            JsonTypeInfo<ResultModel> jsonTypeInfo = (JsonTypeInfo<ResultModel>)context.GetTypeInfo(typeof(ResultModel))!;
-            var res = await response.Content.ReadFromJsonAsync<ResultModel>(jsonTypeInfo, cancellationToken);
-
-            throw new WebServiceException(res!.Messages);
+            this.service.Dispose();
+            this.service = null;
         }
+        GC.SuppressFinalize(this);
     }
 
     #region Assets
@@ -55,14 +53,10 @@ public class SnipeIT : JsonService
     /// <returns>The total number of hardware assets.</returns>
     public async Task<int> GetNumberOfHardwaresAsync(CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<ListModel<HardwareModel>>("api/v1/hardware?limit=1&offset=0", cancellationToken);
-        if (res != null && res.Rows != null)
-        {
-            return res.Total;
-        }
-        return 0;
+        var res = await service.GetNumberOfHardwaresAsync(cancellationToken);
+        return res;
     }
 
     /// <summary>
@@ -72,9 +66,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Hardware"/> objects.</returns>
     public async IAsyncEnumerable<Hardware> GetHardwaresAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<HardwareModel>("api/v1/hardware", cancellationToken);
+        var res = service.GetHardwaresAsync(cancellationToken);
         int i = 0;
         await foreach (var item in res)
         {
@@ -92,10 +86,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the category ID is less than or equal to zero.</exception>
     public async IAsyncEnumerable<Hardware> GetHardwaresByCategoryAsync(int category, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(category, 0, nameof(category));
 
-        var res = GetListAsync<HardwareModel>(CombineUrl("api/v1/hardware", ("category_id", category)), cancellationToken);
+        var res = service.GetHardwaresByCategoryAsync(category, cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Hardware>()!;
@@ -111,10 +105,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<Hardware?> GetHardwareAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await GetFromJsonAsync<HardwareModel>($"api/v1/hardware/{id}", cancellationToken);
+        var res = await service.GetHardwareAsync(id, cancellationToken);
         return res.CastModel<Hardware>();
     }
 
@@ -126,11 +120,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created hardware asset.</returns>
     public async Task<int> CreateHardwareAsync(Hardware item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>("api/v1/hardware", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateHardwareAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -143,11 +136,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateHardwareAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -160,11 +152,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchHardwareAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -176,11 +167,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteHardwareAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteHardwareAsync(id, cancellationToken);
     }
 
     /// <summary>
@@ -193,13 +183,11 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<Hardware?> CheckoutHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PostAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}/checkout", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res?.Payload.CastModel<Hardware>();
-
+        var res = await service.CheckoutHardwareAsync(id, item.ToUpdate(), cancellationToken);
+        return res.CastModel<Hardware>();
     }
 
     /// <summary>
@@ -212,12 +200,11 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<Hardware?> CheckinHardwareAsync(int id, Hardware item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PostAsJsonAsync<HardwareChangeModel, ResultModel<HardwareChangeModel>>($"api/v1/hardware/{id}/checkin", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res?.Payload.CastModel<Hardware>(); 
+        var res = await service.CheckinHardwareAsync(id, item.ToUpdate(), cancellationToken);
+        return res.CastModel<Hardware>();
     }
 
     #endregion
@@ -231,9 +218,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Accessory"/> objects.</returns>
     public async IAsyncEnumerable<Accessory> GetAccessoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<AccessoryModel>("api/v1/accessories", cancellationToken);
+        var res = service.GetAccessoriesAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Accessory>()!;
@@ -248,10 +235,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Accessory"/> object if found; otherwise, null.</returns>
     public async Task<Accessory?> GetAccessoryAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<AccessoryModel>($"api/v1/accessories/{id}", cancellationToken);
+        var res = await service.GetAccessoryAsync(id, cancellationToken);
         return res.CastModel<Accessory>();
     }
 
@@ -263,11 +249,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created accessory.</returns>
     public async Task<int> CreateAccessoryAsync(Accessory item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<AccessoryChangeModel, ResultModel<AccessoryChangeModel>>("api/v1/accessories", item.ToChange(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0; 
+        var res = await service.CreateAccessoryAsync(item.ToChange(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -280,11 +265,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<AccessoryChangeModel, ResultModel<AccessoryChangeModel>>($"api/v1/accessories/{id}", item.ToChange(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateAccessoryAsync(id, item.ToChange(), cancellationToken);
     }
 
     /// <summary>
@@ -297,11 +281,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchAccessoryAsync(int id, Accessory item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<AccessoryChangeModel, ResultModel<AccessoryChangeModel>>($"api/v1/accessories/{id}", item.ToChange(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchAccessoryAsync(id, item.ToChange(), cancellationToken);
     }
 
     /// <summary>
@@ -313,11 +296,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteAccessoryAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<AccessoryChangeModel>>($"api/v1/accessories/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteAccessoryAsync(id, cancellationToken);
     }
 
     #endregion
@@ -331,9 +313,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Category"/> objects.</returns>
     public async IAsyncEnumerable<Category> GetCategoriesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<CategoryModel>("api/v1/categories", cancellationToken);
+        var res = service.GetCategoriesAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Category>()!;
@@ -348,11 +330,10 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Category"/> object if found; otherwise, null.</returns>
     public async Task<Category?> GetCategoryAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<CategoryModel>($"api/v1/categories/{id}", cancellationToken);
-        return res.CastModel<Category>(); 
+        var res = await service.GetCategoryAsync(id, cancellationToken);
+        return res.CastModel<Category>();
     }
 
     /// <summary>
@@ -363,11 +344,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created category.</returns>
     public async Task<int> CreateCategoryAsync(Category item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<CategoryChangeModel, ResultModel<CategoryChangeModel>>("api/v1/categories", item.ToCreate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0; 
+        var res = await service.CreateCategoryAsync(item.ToCreate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -380,11 +360,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<CategoryChangeModel, ResultModel<CategoryChangeModel>>($"api/v1/categories/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateCategoryAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -397,11 +376,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchCategoryAsync(int id, Category item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<CategoryChangeModel, ResultModel<CategoryChangeModel>>($"api/v1/categories/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchCategoryAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -413,11 +391,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteCategoryAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<CategoryChangeModel>>($"api/v1/categories/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteCategoryAsync(id, cancellationToken);
     }
 
     #endregion
@@ -431,9 +408,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Company"/> objects.</returns>
     public async IAsyncEnumerable<Company> GetCompaniesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<CompanyModel>("api/v1/companies", cancellationToken);
+        var res = service.GetCompaniesAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Company>()!;
@@ -448,10 +425,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Company"/> object if found; otherwise, null.</returns>
     public async Task<Company?> GetCompanyAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<CompanyModel>($"api/v1/companies/{id}", cancellationToken);
+        var res = await service.GetCompanyAsync(id, cancellationToken);
         return res.CastModel<Company>();
     }
 
@@ -463,11 +439,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created company.</returns>
     public async Task<int> CreateCompanyAsync(Company item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<CompanyChangeModel, ResultModel<CompanyChangeModel>>("api/v1/companies", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateCompanyAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -480,11 +455,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<CompanyChangeModel, ResultModel<CompanyChangeModel>>($"api/v1/companies/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateCompanyAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -497,11 +471,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchCompanyAsync(int id, Company item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<CompanyChangeModel, ResultModel<CompanyChangeModel>>($"api/v1/companies/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchCompanyAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -513,11 +486,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteCompanyAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<CompanyChangeModel>>($"api/v1/companies/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteCompanyAsync(id, cancellationToken);
     }
 
     #endregion
@@ -531,9 +503,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Component"/> objects.</returns>
     public async IAsyncEnumerable<Component> GetComponentsAsync([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<ComponentModel>("api/v1/components", cancellationToken);
+        var res = service.GetComponentsAsync(null, null, null, cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Component>()!;
@@ -554,10 +526,9 @@ public class SnipeIT : JsonService
         string? orderNumber = null,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        string req = CombineUrl("api/v1/components", ("name", name), ("search", search), ("order_number", orderNumber));
-        var res = GetListAsync<ComponentModel>(req, cancellationToken);
+        var res = service.GetComponentsAsync(name, search, orderNumber, cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Component>()!;
@@ -572,10 +543,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Component"/> object if found; otherwise, null.</returns>
     public async Task<Component?> GetComponentAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<ComponentModel>($"api/v1/components/{id}", cancellationToken);
+        var res = await service.GetComponentAsync(id, cancellationToken);
         return res.CastModel<Component>();
     }
 
@@ -587,11 +557,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created component.</returns>
     public async Task<int> CreateComponentAsync(Component item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<ComponentChangeModel, ResultModel<ComponentChangeModel>>("api/v1/components", item.ToCreate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0; 
+        var res = await service.CreateComponentAsync(item.ToCreate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -604,11 +573,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateComponentAsync(int id, Component item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<ComponentChangeModel, ResultModel<ComponentChangeModel>>($"api/v1/components/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateComponentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -621,11 +589,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchComponentAsync(int id, Component item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<ComponentChangeModel, ResultModel<ComponentChangeModel>>($"api/v1/components/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchComponentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -637,11 +604,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteComponentAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<ComponentChangeModel>>($"api/v1/components/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteComponentAsync(id, cancellationToken);
     }
 
     #endregion
@@ -655,9 +621,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Consumable"/> objects.</returns>
     public async IAsyncEnumerable<Consumable> GetConsumablesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<ConsumableModel>("api/v1/consumables", cancellationToken);
+        var res = service.GetConsumablesAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Consumable>()!;
@@ -672,10 +638,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Consumable"/> object if found; otherwise, null.</returns>
     public async Task<Consumable?> GetConsumableAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<ConsumableModel>($"api/v1/consumables/{id}", cancellationToken);
+        var res = await service.GetConsumableAsync(id, cancellationToken);
         return res.CastModel<Consumable>();
     }
 
@@ -687,11 +652,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created consumable.</returns>
     public async Task<int> CreateConsumableAsync(Consumable item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<ConsumableChangeModel, ResultModel<ConsumableChangeModel>>("api/v1/consumables", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateConsumableAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -704,11 +668,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateConsumableAsync(int id, Consumable item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<ConsumableChangeModel, ResultModel<ConsumableChangeModel>>($"api/v1/consumables/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateConsumableAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -721,11 +684,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchConsumableAsync(int id, Consumable item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<ConsumableChangeModel, ResultModel<ConsumableChangeModel>>($"api/v1/consumables/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchConsumableAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -737,11 +699,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteConsumableAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<ConsumableChangeModel>>($"api/v1/consumables/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteConsumableAsync(id, cancellationToken);
     }
 
     #endregion
@@ -755,9 +716,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Department"/> objects.</returns>
     public async IAsyncEnumerable<Department> GetDepartmentsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<DepartmentModel>("api/v1/departments", cancellationToken);
+        var res = service.GetDepartmentsAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Department>()!;
@@ -772,11 +733,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Department"/> object if found; otherwise, null.</returns>
     public async Task<Department?> GetDepartmentAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<DepartmentModel>($"api/v1/departments/{id}", cancellationToken);
-
+        var res = await service.GetDepartmentAsync(id, cancellationToken);
         return res.CastModel<Department>();
     }
 
@@ -788,11 +747,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created department.</returns>
     public async Task<int> CreateDepartmentAsync(Department item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<DepartmentChangeModel, ResultModel<DepartmentChangeModel>>("api/v1/departments", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateDepartmentAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -805,11 +763,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateDepartmentAsync(int id, Department item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<DepartmentChangeModel, ResultModel<DepartmentChangeModel>>($"api/v1/departments/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateDepartmentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -822,11 +779,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchDepartmentAsync(int id, Department item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<DepartmentChangeModel, ResultModel<DepartmentChangeModel>>($"api/v1/departments/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchDepartmentAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -838,11 +794,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteDepartmentAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<DepartmentChangeModel>>($"api/v1/departments/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteDepartmentAsync(id, cancellationToken);
     }
 
     #endregion
@@ -856,9 +811,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Fieldset"/> objects.</returns>
     public async IAsyncEnumerable<Fieldset> GetFieldsetsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<FieldsetModel>("api/v1/fieldsets", cancellationToken);
+        var res = service.GetFieldsetsAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Fieldset>()!;
@@ -873,10 +828,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Fieldset"/> object if found; otherwise, null.</returns>
     public async Task<Fieldset?> GetFieldsetAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<FieldsetModel>($"api/v1/fieldsets/{id}", cancellationToken);
+        var res = await service.GetFieldsetAsync(id, cancellationToken);
         return res.CastModel<Fieldset>();
     }
 
@@ -888,11 +842,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created fieldset.</returns>
     public async Task<int> CreateFieldsetAsync(Fieldset item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<FieldsetChangeModel, ResultModel<FieldsetChangeModel>>("api/v1/fieldsets", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;        
+        var res = await service.CreateFieldsetAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -905,11 +858,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateFieldsetAsync(int id, Fieldset item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<FieldsetChangeModel, ResultModel<FieldsetChangeModel>>($"api/v1/fieldsets/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateFieldsetAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -922,11 +874,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchFieldsetAsync(int id, Fieldset item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<FieldsetChangeModel, ResultModel<FieldsetChangeModel>>($"api/v1/fieldsets/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchFieldsetAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -938,11 +889,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteFieldsetAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<FieldsetChangeModel>>($"api/v1/fieldsets/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteFieldsetAsync(id, cancellationToken);
     }
 
     #endregion
@@ -956,9 +906,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Field"/> objects.</returns>
     public async IAsyncEnumerable<Field> GetFieldsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<FieldModel>("api/v1/fields", cancellationToken);
+        var res = service.GetFieldsAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Field>()!;
@@ -973,10 +923,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Field"/> object if found; otherwise, null.</returns>
     public async Task<Field?> GetFieldAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<FieldModel>($"api/v1/fields/{id}", cancellationToken);
+        var res = await service.GetFieldAsync(id, cancellationToken);
         return res.CastModel<Field>();
     }
 
@@ -988,11 +937,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created field.</returns>
     public async Task<int> CreateFieldAsync(Field item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<FieldChangeModel, ResultModel<FieldChangeModel>>("api/v1/fields", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateFieldAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1005,11 +953,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateFieldAsync(int id, Field item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<FieldChangeModel, ResultModel<FieldChangeModel>>($"api/v1/fields/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateFieldAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1022,11 +969,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchFieldAsync(int id, Field item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<FieldChangeModel, ResultModel<FieldChangeModel>>($"api/v1/fields/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchFieldAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1038,11 +984,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteFieldAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<FieldChangeModel>>($"api/v1/fields/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteFieldAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1056,9 +1001,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Group"/> objects.</returns>
     public async IAsyncEnumerable<Group> GetGroupsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<GroupModel>("api/v1/groups", cancellationToken);
+        var res = service.GetGroupsAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Group>()!;
@@ -1073,10 +1018,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Group"/> object if found; otherwise, null.</returns>
     public async Task<Group?> GetGroupAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<GroupModel>($"api/v1/groups/{id}", cancellationToken);
+        var res = await service.GetGroupAsync(id, cancellationToken);
         return res.CastModel<Group>();
     }
 
@@ -1088,11 +1032,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created group.</returns>
     public async Task<int> CreateGroupAsync(Group item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<GroupChangeModel, ResultModel<BaseChangeModel>>("api/v1/groups", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateGroupAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1105,11 +1048,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateGroupAsync(int id, Group item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<GroupChangeModel, ResultModel<GroupChangeModel>>($"api/v1/groups/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateGroupAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1122,11 +1064,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchGroupAsync(int id, Group item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<GroupChangeModel, ResultModel<GroupChangeModel>>($"api/v1/groups/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchGroupAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1138,11 +1079,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteGroupAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<GroupChangeModel>>($"api/v1/groups/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteGroupAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1156,9 +1096,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="License"/> objects.</returns>
     public async IAsyncEnumerable<License> GetLicensesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<LicenseModel>("api/v1/licenses", cancellationToken);
+        var res = service.GetLicensesAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<License>()!;
@@ -1173,10 +1113,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="License"/> object if found; otherwise, null.</returns>
     public async Task<License?> GetLicenseAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<LicenseModel>($"api/v1/licenses/{id}", cancellationToken);
+        var res = await service.GetLicenseAsync(id, cancellationToken);
         return res.CastModel<License>();
     }
 
@@ -1188,11 +1127,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created license.</returns>
     public async Task<int> CreateLicenseAsync(License item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<LicenseChangeModel, ResultModel<LicenseChangeModel>>("api/v1/licenses", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateLicenseAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1205,11 +1143,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateLicenseAsync(int id, License item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<LicenseChangeModel, ResultModel<LicenseChangeModel>>($"api/v1/licenses/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateLicenseAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1222,12 +1159,11 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchLicenseAsync(int id, License item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<LicenseChangeModel, ResultModel<LicenseChangeModel>>($"api/v1/licenses/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-   }
+        await service.PatchLicenseAsync(id, item.ToUpdate(), cancellationToken);
+    }
 
     /// <summary>
     /// Deletes a license.
@@ -1238,11 +1174,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteLicenseAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<LicenseChangeModel>>($"api/v1/licenses/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteLicenseAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1256,9 +1191,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Location"/> objects.</returns>
     public async IAsyncEnumerable<Location> GetLocationsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<LocationModel>("api/v1/locations", cancellationToken);
+        var res = service.GetLocationsAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Location>()!;
@@ -1273,10 +1208,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Location"/> object if found; otherwise, null.</returns>
     public async Task<Location?> GetLocationAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<LocationModel>($"api/v1/locations/{id}", cancellationToken);
+        var res = await service.GetLocationAsync(id, cancellationToken);
         return res.CastModel<Location>();
     }
 
@@ -1288,11 +1222,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created location.</returns>
     public async Task<int> CreateLocationAsync(Location item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<LocationChangeModel, ResultModel<LocationChangeModel>>("api/v1/locations", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateLocationAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1305,11 +1238,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateLocationAsync(int id, Location item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<LocationChangeModel, ResultModel<LocationChangeModel>>($"api/v1/locations/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateLocationAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1322,11 +1254,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchLocationAsync(int id, Location item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<LocationChangeModel, ResultModel<LocationChangeModel>>($"api/v1/locations/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchLocationAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1338,11 +1269,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteLocationAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<LocationChangeModel>>($"api/v1/locations/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteLocationAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1356,9 +1286,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Maintenance"/> objects.</returns>
     public async IAsyncEnumerable<Maintenance> GetMaintenancesAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<MaintenanceModel>("api/v1/maintenances", cancellationToken);
+        var res = service.GetMaintenancesAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Maintenance>()!;
@@ -1373,10 +1303,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Maintenance"/> object if found; otherwise, null.</returns>
     public async Task<Maintenance?> GetMaintenanceAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<MaintenanceModel>($"api/v1/maintenances/{id}", cancellationToken);
+        var res = await service.GetMaintenanceAsync(id, cancellationToken);
         return res.CastModel<Maintenance>();
     }
 
@@ -1388,11 +1317,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created maintenance record.</returns>
     public async Task<int> CreateMaintenanceAsync(Maintenance item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<MaintenanceChangeModel, ResultModel<MaintenanceChangeModel>>("api/v1/maintenances", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateMaintenanceAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1405,11 +1333,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateMaintenanceAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<MaintenanceChangeModel, ResultModel<MaintenanceChangeModel>>($"api/v1/maintenances/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateMaintenanceAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1422,11 +1349,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchMaintenanceAsync(int id, Maintenance item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<MaintenanceChangeModel, ResultModel<MaintenanceChangeModel>>($"api/v1/maintenances/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchMaintenanceAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1438,11 +1364,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteMaintenanceAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<MaintenanceChangeModel>>($"api/v1/maintenances/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteMaintenanceAsync(id, cancellationToken);
     }
 
     #region Manufacturers
@@ -1456,9 +1381,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Manufacturer"/> objects.</returns>
     public async IAsyncEnumerable<Manufacturer> GetManufacturersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<ManufacturerModel>("api/v1/manufacturers", cancellationToken);
+        var res = service.GetManufacturersAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Manufacturer>()!;
@@ -1473,10 +1398,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Manufacturer"/> object if found; otherwise, null.</returns>
     public async Task<Manufacturer?> GetManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<ManufacturerModel>($"api/v1/manufacturers/{id}", cancellationToken);
+        var res = await service.GetManufacturerAsync(id, cancellationToken);
         return res.CastModel<Manufacturer>();
     }
 
@@ -1488,11 +1412,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created manufacturer.</returns>
     public async Task<int> CreateManufacturerAsync(Manufacturer item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<ManufacturerChangeModel, ResultModel<ManufacturerChangeModel>>("api/v1/manufacturers", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateManufacturerAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1505,11 +1428,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<ManufacturerChangeModel, ResultModel<ManufacturerChangeModel>>($"api/v1/manufacturers/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdatManufacturerAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1522,11 +1444,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchManufacturerAsync(int id, Manufacturer item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<ManufacturerChangeModel, ResultModel<ManufacturerChangeModel>>($"api/v1/manufacturers/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchManufacturerAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1538,11 +1459,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteManufacturerAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<ManufacturerChangeModel>>($"api/v1/manufacturers/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteManufacturerAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1556,9 +1476,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Model"/> objects.</returns>
     public async IAsyncEnumerable<Model> GetModelsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<ModelModel>("api/v1/models", cancellationToken);
+        var res = service.GetModelsAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Model>()!;
@@ -1573,10 +1493,10 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Model"/> object if found; otherwise, null.</returns>
     public async Task<Model?> GetModelAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await GetFromJsonAsync<ModelModel>($"api/v1/models/{id}", cancellationToken);
+        var res = await service.GetModelAsync(id, cancellationToken);
         return res.CastModel<Model>();
     }
 
@@ -1588,11 +1508,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created model.</returns>
     public async Task<int> CreateModelAsync(Model item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<ModelChangeModel, ResultModel<ModelChangeModel>>("api/v1/models", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateModelAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1605,11 +1524,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<ModelChangeModel, ResultModel<ModelChangeModel>>($"api/v1/models/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateModelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1622,11 +1540,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchModelAsync(int id, Model item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<ModelChangeModel, ResultModel<ModelChangeModel>>($"api/v1/models/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchModelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1638,11 +1555,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteModelAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<ModelChangeModel>>($"api/v1/models/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteModelAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1656,9 +1572,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="StatusLabel"/> objects.</returns>
     public async IAsyncEnumerable<StatusLabel> GetStatusLabelsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<StatusLabelModel>("api/v1/statuslabels", cancellationToken);
+        var res = service.GetStatusLabelsAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<StatusLabel>()!;
@@ -1673,10 +1589,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="StatusLabel"/> object if found; otherwise, null.</returns>
     public async Task<StatusLabel?> GetStatusLabelAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<StatusLabelModel>($"api/v1/statuslabels/{id}", cancellationToken);
+        var res = await service.GetStatusLabelAsync(id, cancellationToken);
         return res.CastModel<StatusLabel>();
     }
 
@@ -1688,11 +1603,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created status label.</returns>
     public async Task<int> CreateStatusLabelAsync(StatusLabel item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<StatusLabelChangeModel, ResultModel<StatusLabelChangeModel>>("api/v1/statuslabels", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateStatusLabelAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1705,11 +1619,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateStatusLabelAsync(int id, StatusLabel item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<StatusLabelChangeModel, ResultModel<StatusLabelChangeModel>>($"api/v1/statuslabels/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateStatusLabelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1722,11 +1635,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchStatusLabelAsync(int id, StatusLabel item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<StatusLabelChangeModel, ResultModel<StatusLabelChangeModel>>($"api/v1/statuslabels/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchStatusLabelAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1738,11 +1650,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteStatusLabelAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<StatusLabelChangeModel>>($"api/v1/statuslabels/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteStatusLabelAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1756,9 +1667,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="Supplier"/> objects.</returns>
     public async IAsyncEnumerable<Supplier> GetSuppliersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<SupplierModel>("api/v1/suppliers", cancellationToken);
+        var res = service.GetSuppliersAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<Supplier>()!;
@@ -1773,10 +1684,9 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="Supplier"/> object if found; otherwise, null.</returns>
     public async Task<Supplier?> GetSupplierAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
-        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<SupplierModel>($"api/v1/suppliers/{id}", cancellationToken);
+        var res = await service.GetSupplierAsync(id, cancellationToken);
         return res.CastModel<Supplier>();
     }
 
@@ -1788,11 +1698,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created supplier.</returns>
     public async Task<int> CreateSupplierAsync(Supplier item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<SupplierChangeModel, ResultModel<SupplierChangeModel>>("api/v1/suppliers", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateSupplierAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1805,11 +1714,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateSupplierAsync(int id, Supplier item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<SupplierChangeModel, ResultModel<SupplierChangeModel>>($"api/v1/suppliers/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateSupplierAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1822,11 +1730,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchSupplierAsync(int id, Supplier item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<SupplierChangeModel, ResultModel<SupplierChangeModel>>($"api/v1/suppliers/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchSupplierAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1838,11 +1745,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteSupplierAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<SupplierChangeModel>>($"api/v1/suppliers/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteSupplierAsync(id, cancellationToken);
     }
 
     #endregion
@@ -1856,9 +1762,9 @@ public class SnipeIT : JsonService
     /// <returns>An asynchronous stream of <see cref="User"/> objects.</returns>
     public async IAsyncEnumerable<User> GetUsersAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = GetListAsync<UserModel>("api/v1/users", cancellationToken);
+        var res = service.GetUsersAsync(cancellationToken);
         await foreach (var item in res)
         {
             yield return item.CastModel<User>()!;
@@ -1874,10 +1780,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task<User?> GetUserAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await GetFromJsonAsync<UserModel>($"api/v1/users/{id}", cancellationToken);
+        var res = await service.GetUserAsync(id, cancellationToken);
         return res.CastModel<User>();
     }
 
@@ -1889,11 +1795,10 @@ public class SnipeIT : JsonService
     /// <returns>The ID of the created user.</returns>
     public async Task<int> CreateUserAsync(User item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await PostAsJsonAsync<UserChangeModel, ResultModel<UserChangeModel>>("api/v1/users", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
-        return res!.Payload?.Id ?? 0;
+        var res = await service.CreateUserAsync(item.ToUpdate(), cancellationToken);
+        return res?.Id ?? 0;
     }
 
     /// <summary>
@@ -1906,11 +1811,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task UpdateUserAsync(int id, User item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PutAsJsonAsync<UserChangeModel, ResultModel<UserChangeModel>>($"api/v1/users/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.UpdateUserAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1923,11 +1827,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task PatchUserAsync(int id, User item, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await PatchAsJsonAsync<UserChangeModel, ResultModel<UserChangeModel>>($"api/v1/users/{id}", item.ToUpdate(), cancellationToken);
-        CheckResultForError(res);
+        await service.PatchUserAsync(id, item.ToUpdate(), cancellationToken);
     }
 
     /// <summary>
@@ -1939,11 +1842,10 @@ public class SnipeIT : JsonService
     /// <exception cref="ArgumentOutOfRangeException">Thrown if the ID is less than or equal to zero.</exception>
     public async Task DeleteUserAsync(int id, CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
         ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(id, 0, nameof(id));
 
-        var res = await DeleteAsJsonAsync<ResultModel<UserChangeModel>>($"api/v1/users/{id}", cancellationToken);
-        CheckResultForError(res);
+        await service.DeleteUserAsync(id, cancellationToken);
     }
 
     /// <summary>
@@ -1953,61 +1855,10 @@ public class SnipeIT : JsonService
     /// <returns>The <see cref="User"/> object representing the authenticated user.</returns>
     public async Task<User?> GetUserMeAsync(CancellationToken cancellationToken = default)
     {
-        WebServiceException.ThrowIfNotConnected(client);
+        WebServiceException.ThrowIfNullOrNotConnected(this.service);
 
-        var res = await GetFromJsonAsync<UserModel>("api/v1/users/me", cancellationToken);
+        var res = await service.GetUserMeAsync(cancellationToken);
         return res.CastModel<User>();
-    }
-
-    #endregion
-
-    #region private
-
-    private async IAsyncEnumerable<T> GetListAsync<T>(string requestUri, [EnumeratorCancellation] CancellationToken cancellationToken, [CallerMemberName] string memberName = "") //where T : class
-    {
-        ArgumentRequestUriException.ThrowIfNullOrWhiteSpace(requestUri, nameof(requestUri));
-        WebServiceException.ThrowIfNotConnected(client);
-
-        const int limit = 500;
-        int total = 1;
-        int offset = 0;
-
-        //const int limit = 100;  //500
-        //int total = 2000;
-        //int offset = 1520; // 0;
-        while (offset < total)
-        {
-
-            var res = await GetFromJsonAsync<ListModel<T>>(CombineUrl(requestUri, ("limit", limit), ("offset", offset)), cancellationToken, memberName);
-            if (res != null && res.Rows != null)
-            {
-
-                Debug.WriteLine($"Offset {offset} Limit {limit} ListModel total {res.Total} rows {res.Rows.Count}");
-
-                foreach (var item in res.Rows)
-                {
-                    yield return item;
-                }
-
-                total = res.Total;
-                offset += res.Rows.Count;
-            }
-            else
-            {
-                //Debug.WriteLine("Else");
-                break;
-            }
-        }
-
-        //Debug.WriteLine("End");
-    }
-
-    private static void CheckResultForError<T>(ResultModel<T>? result)
-    {
-        if (result != null && result.Status == Status.Error)
-        {
-            throw new WebServiceException(result.ToString());
-        }
     }
 
     #endregion

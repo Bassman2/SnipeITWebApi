@@ -7,7 +7,7 @@
     <AssemblyName>SnipeITWebApi</AssemblyName>
     <RootNamespace>SnipeITWebApi</RootNamespace>
     <Version>0.1.0.0</Version>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
