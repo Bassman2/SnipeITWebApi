@@ -2,14 +2,14 @@
 _layout: landing
 ---
 
-## JenkinsWebApi 
+## SnipeITWebApi 
 
-JenkinsWebApi is a .NET API for the Jenkins web service.	
+SnipeITWebApi is a .NET API for the SnipeIT web service.	
 		
 ### Getting Started
 
 
-To get started, add the JenkinsWebApi package to your project.
+To get started, add the SnipeITWebApi package to your project.
 
 
 
