@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/Doc/">
+    <Project Path="Doc/SnipeITWebApiDoc/SnipeITWebApiDoc.shfbproj" Type="7cf6df6d-3b04-46f8-a40b-537d21bca0b4" Id="efc73092-01cc-489d-9e25-39b5a879a976">
+      <BuildDependency Project="Src/SnipeITWebApi80/SnipeITWebApi80.csproj" />
+      <BuildDependency Project="Src/SnipeITWebApi90/SnipeITWebApi90.csproj" />
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Src/">
+    <Project Path="../WebServiceClient/Src/WebServiceClientShare/WebServiceClientShare.shproj" />
+    <Project Path="Src/SnipeITWebApi80/SnipeITWebApi80.csproj" />
+    <Project Path="Src/SnipeITWebApi90/SnipeITWebApi90.csproj" />
+    <Project Path="Src/SnipeITWebApiShare/SnipeITWebApiShare.shproj" />
+  </Folder>
+  <Folder Name="/Test/">
+    <Project Path="Test/SnipeITWebApiUnitTest80/SnipeITWebApiUnitTest80.csproj" />
+    <Project Path="Test/SnipeITWebApiUnitTest90/SnipeITWebApiUnitTest90.csproj" />
+    <Project Path="Test/SnipeITWebApiUnitTestShare/SnipeITWebApiUnitTestShare.shproj" />
+  </Folder>
+</Solution>
