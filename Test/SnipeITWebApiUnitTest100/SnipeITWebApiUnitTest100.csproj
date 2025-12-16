@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\SnipeITWebApi90\SnipeITWebApi90.csproj" />
+    <ProjectReference Include="..\..\Src\SnipeITWebApi100\SnipeITWebApi100.csproj" />
   </ItemGroup>
 
   <ItemGroup>
