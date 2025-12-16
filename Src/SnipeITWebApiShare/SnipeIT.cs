@@ -36,6 +36,7 @@ public class SnipeIT : JsonService
     {
         client.DefaultRequestHeaders.Add("User-Agent", appName);
         client.DefaultRequestHeaders.Add("Accept", "application/json");
+        //client.DefaultRequestHeaders.Add("Content-Type", "application/json");   // does not run with Content-Type
     }
 
     protected override string? AuthenticationTestUrl => "api/v1/hardware?limit=1&offset=0";
